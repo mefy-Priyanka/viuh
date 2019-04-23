@@ -1,0 +1,106 @@
+/* login css */
+section.background {
+    height: 100vh;
+    background: #2e89b2;
+}
+.logincard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .cContent {
+    background: #002751;
+    width: 50%;
+  }
+  div#rbackground {
+    background: #fff;
+    padding: 0;
+}
+.rightContent .input-field.col.s12 {
+    margin: 0 0 27px 0 !important;
+}
+p.account {
+    text-align: center;
+    margin-top: 2em;
+    margin-bottom: 0;
+    color: #736a6a;
+    font-size: 18px;
+    font-weight: 500;
+    font-family: 'Roboto', sans-serif;
+}
+span.sign {
+    color: #24a4f8;
+    font-weight: 600;
+}
+.row.backgnd {
+    background: #2e89b2;
+}
+p.forgotPassword {
+    text-align: center;
+    font-size: 18px;
+    color: #fff;
+    margin-top: 10px;
+    margin-bottom: 0;
+    font-family: 'Roboto', sans-serif;
+}
+.cContent .row {
+    margin-bottom: 0 !important;
+}
+p.logo {
+    color: #fff;
+    font-size: 22px;
+    font-weight: 500;
+    margin: 1em 0 0 1em;
+    font-family: 'Roboto', sans-serif;
+}
+i.material-icons.prefix {
+    color: #9E9E9E;
+    font-size: 27px;
+}
+  .rightContent {
+    padding: 2em;
+}
+button.login {
+    width: 100%;
+    background: #1fa0f8;
+    color: #fff;
+    border: none;
+    height: 43px;
+    font-size: 13px;
+    font-weight: 600;
+}
+svg#profile {
+    height: 50px;
+    width: 50px;
+    fill: #002854;
+}
+h1.loginHeader {
+    color: #002854;
+    font-size: 26px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+.rhead {
+    text-align: center;
+}
+.paddingo {
+    padding: 0;
+}
+input[type=text]:not(.browser-default):focus:not([readonly]) ,input[type=password]:not(.browser-default):focus:not([readonly])  {
+    border-bottom: 1px solid #1fa0f8;
+    -webkit-box-shadow: 0 1px 0 0 #1fa0f8;
+    box-shadow: 0 1px 0 0 #1fa0f8;
+}
+input[type=text]:not(.browser-default):focus:not([readonly])+label ,input[type=password]:not(.browser-default):focus:not([readonly])+label{
+    color: #1fa0f8;
+}
+/* login css */
+/* Responsive css */
+@media only screen and (min-width: 320px) and (max-width: 1024px){
+    .cContent{
+        width: auto;
+    }
+}
+/* Responsive css */
