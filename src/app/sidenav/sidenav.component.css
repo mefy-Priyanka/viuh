@@ -286,7 +286,7 @@ i.fa.fa-home {
 @media (min-width: 768px) {
   .navbar-fixed-left,
   .navbar-fixed-right {
-    width: 293px;
+    width: 23vw;
     height: 100vh;
     border-radius: 0;
   }
@@ -435,5 +435,32 @@ nav ul a:hover {
 }
 .row.bagColor {
   background: #25364b;
+}
+ul.dropdown-menu.sitetting li a {
+  padding: 0;
+  color:#4d5258;
+}
+ul.dropdown-menu.sitetting li a i {
+  height: 32px;
+  font-size: 15px;
+  margin-right: 1em;
+  color: #4d5258;
+}
+ul.dropdown-menu.sitetting {
+  padding: 1em!important;
+  top: 0;
+}
+ul.dropdown-menu.sitetting > li > a:hover {
+  background-color: transparent;
+  color: #314662;
+}
+ul.dropdown-menu.sitetting {
+  background: #fff;
+}
+.dropdown-menu.sitetting:after {
+  border-right: 10px solid #ffffff;
+}
+ul.dropdown-menu.sitetting.colori li a i {
+  color: #32b1f8 !important;
 }
 /* sidenav css */

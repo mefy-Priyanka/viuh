@@ -1,0 +1,72 @@
+/* fleet css */
+.ft h1 {
+    font-size: 34px;
+    padding: 19px 0;
+    padding-left: 20px;
+    margin:0;
+  }
+section.fleet {
+    margin-left: -2em;
+}
+.ft {
+    background: #fff;
+}
+select {
+    display: block;
+}
+.fleetForm {
+    padding: 2em 4em;
+}
+button.submitBtn {
+    height: 44px;
+    width: 120px;
+    background: #32b1f8;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 5px;
+}
+.card.fleetCard{
+    margin-left: 1em;
+    margin-right: 1em;
+    border-left: 7px solid #32b1f8;
+}
+button.addBtn {
+    border-radius: 50px;
+    border: none;
+    background: #32b1f8;
+    color: #fff;
+    height: 35px;
+    width: 35px;
+    font-size: 21px;
+    font-weight: 600;
+}
+.padding-o {
+    padding: 0;
+}
+.padding-r {
+    padding-right: 0;
+}
+.card.fleetCard input[type="file"] {
+    line-height: 39px;
+    border: 1px solid #f2f2f2;
+}
+.input-field.toet input {
+    border: 1px solid #f2f2f2;
+    text-indent: 20px;
+}
+.input-field.col.s6.toet {
+    padding: 0;
+    margin-bottom: 0;
+}
+p.docType {
+    font-size: 15px;
+    font-weight: 600;
+    color: #25364b;
+    font-family: 'Montserrat', sans-serif;
+}
+.card.fleetCard .input-field.col label {
+    left: 0;
+}
+/* fleet css */
