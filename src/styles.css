@@ -2,6 +2,26 @@
 body {
     margin: 0;
 }
+a.floatEa:hover{
+    color: #fff !important;
+}
+.floatEa{
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: #304660;
+    color: #FFF;
+    border-radius: 50px;
+    font-size: 20px;
+    text-align: center;
+    box-shadow: 0px 0px 18px 4px #30465f5c;
+}
+
+.my-float{
+	margin-top:22px;
+}
 .error {
     color: #FF0000;
     text-shadow: 2px 2px #efe0e0;            /***ERROR CLASS ****/

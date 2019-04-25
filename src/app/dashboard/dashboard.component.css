@@ -1,0 +1,10 @@
+/* dashboard css */
+div#padding-o {
+    padding: 0;
+}
+section.dashboard {
+    background: #e4edef;
+    height: 100vh;
+    overflow-x: hidden;
+}
+/* dashboard css */
