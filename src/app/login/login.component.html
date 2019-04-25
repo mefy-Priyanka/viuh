@@ -2,6 +2,7 @@
 <section class="background">
   <div class="logincard">
     <div class="cContent">
+      
       <div class="row">
         <div class="col-md-4 paddingo">
           <div class="leftContent">
@@ -35,22 +36,24 @@
               <h1 class="loginHeader">LOGIN</h1>
             </div>
             <div class="row">
-              <form class="col s12">
+              <form class="col s12" [formGroup]="userForm" novalidat>
                 <div class="row">
                   <div class="input-field col s12">
                     <i class="material-icons prefix">mail</i>
-                    <input id="icon_prefix" type="text" class="validate">
+                    <input id="icon_prefix" type="text" class="validate" formControlName="email">
+                    <p class="error" [ngStyle]="{'font-size':'12px'}" *ngIf="userFormErrors.email.required ||userFormErrors.email.email || (userForm.controls.email.pristine && submitted)">PLease enter valid email</p>
                     <label for="icon_prefix">Email*</label>
                   </div>
                 </div>
                 <div class="row">
                   <div class="input-field col s12">
                     <i class="material-icons prefix">lock</i>
-                    <input id="icon_prefix" type="password" class="validate">
+                    <input id="icon_prefix" type="password" class="validate" formControlName="password">
+                    <p class="error" [ngStyle]="{'font-size':'12px'}" *ngIf="userFormErrors.password.required || (userForm.controls.password.pristine && submitted)">Can't be empty</p>
                     <label for="icon_prefix">Password*</label>
                   </div>
                 </div>
-                <button class="login">LOGIN</button>
+                <button class="login" (click)="login()">LOGIN</button>
                 <p class="account">No account yet? <span class="sign">Sign up for free</span></p>
               </form>
             </div>
@@ -60,6 +63,7 @@
       <div class="row backgnd">
         <p class="forgotPassword">Forgot Password?</p>
       </div>
+
     </div>
   </div>
 </section>

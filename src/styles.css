@@ -2,3 +2,9 @@
 body {
     margin: 0;
 }
+.error {
+    color: #FF0000;
+    text-shadow: 2px 2px #efe0e0;            /***ERROR CLASS ****/
+    color: red;
+    font-size: 19px;
+}
