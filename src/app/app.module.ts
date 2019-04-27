@@ -16,6 +16,8 @@ import { ContractorcreateComponent } from './dashboard/contractorcreate/contract
 import { InviteComponent } from './dashboard/invite/invite.component';
 /*****************************SERVICE****************/
 import { UserService } from './service/user.service';
+import { SharedService } from './service/shared.service';
+
 
 @NgModule({
   declarations: [
@@ -37,7 +39,7 @@ import { UserService } from './service/user.service';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [UserService],
+  providers: [UserService,SharedService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

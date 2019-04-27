@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import {  FormBuilder, FormGroup, Validators, } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserService } from '../service/user.service';
-import { FormControl, FormBuilder, FormGroup, Validators, } from '@angular/forms';
+import { SharedService } from '../service/shared.service';
+
+
 
 @Component({
   selector: 'app-login',
@@ -12,7 +16,7 @@ export class LoginComponent implements OnInit {
   public userForm: FormGroup;
   public submitted:boolean=false;
   public loader: boolean 
-  constructor(private userService:UserService,private formBuilder: FormBuilder)
+  constructor(private formBuilder: FormBuilder,private router: Router,private userService:UserService,private sharedService:SharedService,)
    { 
       /******************ERRORS OF userForm ********************** */
     this.userFormErrors = {
@@ -70,7 +74,13 @@ login(){
     }
     this.userService.login(data).subscribe(value=>{
       console.log('login',value)
+      let result:any={}
+      result=value
+      // this.sharedService.loginInfo(result)
       this.loader = false;
+      localStorage.setItem('userId',result.user._id);
+      localStorage.setItem('emailId',result.user.email);
+      this.router.navigate(['/dashboard'])
     },
     err=>{
       console.log('err',err.error)
