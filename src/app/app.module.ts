@@ -12,6 +12,7 @@ import { UserComponent } from './dashboard/user/user.component';
 import { OrderComponent } from './dashboard/order/order.component';
 import { ContractorcreateComponent } from './dashboard/contractorcreate/contractorcreate.component';
 import { InviteComponent } from './dashboard/invite/invite.component';
+import { AccountComponent } from './account/account.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { InviteComponent } from './dashboard/invite/invite.component';
     UserComponent,
     OrderComponent,
     ContractorcreateComponent,
-    InviteComponent
+    InviteComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,
