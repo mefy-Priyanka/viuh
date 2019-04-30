@@ -6,7 +6,8 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
+   { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent }, 
   { path: 'sidenav', component: SidenavComponent },
   { path: 'dashboard', component: DashboardComponent },
   

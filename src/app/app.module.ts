@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+/**********************COMPONENT************************** */
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +15,8 @@ import { OrderComponent } from './dashboard/order/order.component';
 import { ContractorcreateComponent } from './dashboard/contractorcreate/contractorcreate.component';
 import { InviteComponent } from './dashboard/invite/invite.component';
 import { AccountComponent } from './account/account.component';
+/*****************************SERVICE****************/
+import { UserService } from './service/user.service';
 
 @NgModule({
   declarations: [
@@ -30,9 +34,12 @@ import { AccountComponent } from './account/account.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
