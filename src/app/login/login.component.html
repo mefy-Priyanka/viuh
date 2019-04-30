@@ -6,7 +6,7 @@
       <div class="row">
         <div class="col-md-4 paddingo">
           <div class="leftContent">
-              <p class="logo">Lalbaba Enterprise</p>
+              <p class="logo">Transport System</p>
           </div>
 
         </div>
@@ -39,15 +39,26 @@
               <form class="col s12" [formGroup]="userForm" novalidat>
                 <div class="row">
                   <div class="input-field col s12">
-                    <i class="material-icons prefix">mail</i>
+                    <!-- <i class="material-icons prefix">mail</i> -->
                     <input id="icon_prefix" type="text" class="validate" formControlName="email">
                     <p class="error" [ngStyle]="{'font-size':'12px'}" *ngIf="userFormErrors.email.required ||userFormErrors.email.email || (userForm.controls.email.pristine && submitted)">PLease enter valid email</p>
                     <label for="icon_prefix">Email*</label>
                   </div>
                 </div>
                 <div class="row">
+                    <div class="input-field col s12">
+                        <!-- <label for="icon_prefix" class="labelOrganisation">Organisation*</label> -->
+                        <select class="orga">
+                          <option value="" disabled selected>Your Organisation</option>
+                          <option value="1">Lalbaba</option>
+                          <option value="2">Patro</option>
+                        </select>
+                       
+                      </div>
+                </div>
+                <div class="row">
                   <div class="input-field col s12">
-                    <i class="material-icons prefix">lock</i>
+                    <!-- <i class="material-icons prefix">lock</i> -->
                     <input id="icon_prefix" type="password" class="validate" formControlName="password">
                     <p class="error" [ngStyle]="{'font-size':'12px'}" *ngIf="userFormErrors.password.required || (userForm.controls.password.pristine && submitted)">Can't be empty</p>
                     <label for="icon_prefix">Password*</label>

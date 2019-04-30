@@ -14,6 +14,7 @@ import { UserComponent } from './dashboard/user/user.component';
 import { OrderComponent } from './dashboard/order/order.component';
 import { ContractorcreateComponent } from './dashboard/contractorcreate/contractorcreate.component';
 import { InviteComponent } from './dashboard/invite/invite.component';
+import { AccountComponent } from './account/account.component';
 /*****************************SERVICE****************/
 import { UserService } from './service/user.service';
 import { SharedService } from './service/shared.service';
@@ -30,7 +31,8 @@ import { SharedService } from './service/shared.service';
     UserComponent,
     OrderComponent,
     ContractorcreateComponent,
-    InviteComponent
+    InviteComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,
