@@ -42,7 +42,7 @@
                     <!-- <i class="material-icons prefix">mail</i> -->
                     <input id="icon_prefix" type="text" class="validate" formControlName="email">
                     <p class="error" [ngStyle]="{'font-size':'12px'}" *ngIf="userFormErrors.email.required ||userFormErrors.email.email || (userForm.controls.email.pristine && submitted)">PLease enter valid email</p>
-                    <label for="icon_prefix">Email*</label>
+                    <label for="icon_prefix">Email <span class="blue_star">*</span></label>
                   </div>
                 </div>
                 <div class="row">
@@ -61,7 +61,7 @@
                     <!-- <i class="material-icons prefix">lock</i> -->
                     <input id="icon_prefix" type="password" class="validate" formControlName="password">
                     <p class="error" [ngStyle]="{'font-size':'12px'}" *ngIf="userFormErrors.password.required || (userForm.controls.password.pristine && submitted)">Can't be empty</p>
-                    <label for="icon_prefix">Password*</label>
+                    <label for="icon_prefix">Password <span class="blue_star">*</span></label>
                   </div>
                 </div>
                 <button class="login" (click)="login()">LOGIN</button>
