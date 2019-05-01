@@ -123,4 +123,117 @@ i.fa.fa-question-circle-o {
     font-size: 27px;
 }
 /* table css */
+/* modal css */
+.vertical-alignment-helper {
+    display:table;
+    height: 100%;
+    width: 100%;
+}
+.vertical-align-center {
+    display: table-cell;
+    vertical-align: middle;
+}
+.modal-content {
+    width:inherit;
+    height:inherit;
+    margin: 0 auto;
+}
+div#userModal .modal-content {
+    padding: 0 1em 0 1em;
+    box-shadow: none;
+    background: transparent;
+    border: none;
+    width: 100%;
+}
+span.blue_star {
+    color: #32b1f8;
+}
+h4.modal-title.accountTitle {
+    font-size: 18px;
+}
+select {
+    display: block;
+}
+div#userModal .row {
+    margin: 0;
+}
+div#userModal .input-field {
+    margin: 1em 0 0 0;
+}
+div#userModal .modal-footer {
+    text-align: center;
+    padding: 0;
+    padding-top: 1em;
+    margin-top: 10px;
+    border: none;
+}
+button.saveBtn {
+    background: #2791fc;
+    border: none;
+    height: 38px;
+    width: 104px;
+    color: #fff;
+    margin-right: 1em;
+    font-weight: 600;
+    border-radius: 5px;
+}
+button.cancelBtn {
+    background: #9f9a9a;
+    border: none;
+    height: 38px;
+    width: 104px;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 5px;
+}
+div#userModal .modal-body {
+    padding: 0;
+}
+div#userModal input {
+    border: 1px solid #f2f2f2;
+    text-indent: 12px;
+    opacity:1;
+    height: 2.5rem;
+}
+div#userModal textarea {
+    border: 1px solid #f2f2f2;
+    text-indent: 12px;
+    margin-bottom: 1em;
+    height: auto !important;
+}
+div#userModal select {
+    background-color: #fafafa;
+}
+
+.check label span{
+    display: inline-block;
+    margin-left: 2em;
+}
+div#userModal i.fa.fa-question-circle-o {
+    font-size: 15px;
+    margin-left: 10px;
+}
+div#userModal {
+    max-height: 93%;
+}
+div#userModal .modal-header {
+    /* padding-top: 0; */
+}
+/* ******************* */
+input.fileType {
+    width: 15vw;
+    height: 8vh;
+    padding-top: 7px;
+    display: flex;
+    padding-left: 6px;
+}
+.input-field.myFilet.aeto {
+    margin-top: 0 !important;
+    padding-left: 0;
+}
+.input-field.myFilet {
+    outline:none;
+    margin: 0 !important;
+}
+/* modal css */
 /* contractor css */
