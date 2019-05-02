@@ -6,13 +6,15 @@
     margin:0;
   }
 section.fleet {
-    margin-left: -2em;
+    /* margin-left: -2em; */
 }
 .ft {
     background: #fff;
 }
 select {
     display: block;
+    height: 2.7rem;
+    color: #9e9e9e;
 }
 .fleetForm {
     padding: 2em 4em;
@@ -21,6 +23,7 @@ button.submitBtn {
     height: 44px;
     width: 120px;
     background: #32b1f8;
+    margin-right:1em;
     border: none;
     outline: none;
     color: #fff;
@@ -28,9 +31,11 @@ button.submitBtn {
     border-radius: 5px;
 }
 .card.fleetCard{
-    margin-left: 1em;
-    margin-right: 1em;
+    margin-left: 2em;
+    margin-right: 2em;
+    margin-top: 3em;
     border-left: 7px solid #32b1f8;
+    margin-bottom: 2em;
 }
 button.addBtn {
     border-radius: 50px;
@@ -40,6 +45,7 @@ button.addBtn {
     height: 35px;
     width: 35px;
     font-size: 21px;
+    margin-top: 37px;
     font-weight: 600;
 }
 .padding-o {
@@ -49,7 +55,8 @@ button.addBtn {
     padding-right: 0;
 }
 .card.fleetCard input[type="file"] {
-    line-height: 39px;
+    /* line-height: 39px; */
+    width: 100%;
     border: 1px solid #f2f2f2;
 }
 .input-field.toet input {
@@ -69,4 +76,52 @@ p.docType {
 .card.fleetCard .input-field.col label {
     left: 0;
 }
+.fleetForm input {
+    border: 1px solid #f2f2f2 !important;
+    text-indent: 12px;
+    height: 2.7rem !important;
+}
+span.blue_star {
+    color: #32b1f8;
+}
+.input-field.myFilet.aeto {
+    margin-top: 0 !important;
+    padding-left: 0;
+}
+.input-field.myFilet {
+    outline:none;
+    margin: 0 !important;
+}
+input.fileType {
+    /* width: 15vw; */
+    padding-top: 7px;
+    display: flex;
+    padding-left: 6px;
+}
+.contractorButton {
+    padding-left: 5em;
+}
+button.cancelBtn {
+    height: 44px;
+    width: 120px;
+    background: transparent;
+    border: 1px solid #7b839c;
+    outline: none;
+    color: #7b839c;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-right: 1em;
+}
 /* fleet css */
+
+/* Responsive css */
+@media only screen and (min-width: 320px) and (max-width: 767px){
+    .fleetForm {
+        padding: 0;
+    }
+}
+/* Responsive css */
+
+
+
+

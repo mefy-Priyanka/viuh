@@ -286,7 +286,7 @@ i.fa.fa-home {
 @media (min-width: 768px) {
   .navbar-fixed-left,
   .navbar-fixed-right {
-    width: 23vw;
+    width: 25%;
     height: 100vh;
     border-radius: 0;
   }
@@ -464,3 +464,20 @@ ul.dropdown-menu.sitetting.colori li a i {
   color: #32b1f8 !important;
 }
 /* sidenav css */
+
+
+
+.navbar-fixed-left[_ngcontent-uvl-c2], .navbar-fixed-right[_ngcontent-uvl-c2]{
+  position: inherit;
+}
+
+
+
+
+/* Responsive css */
+@media only screen and (min-width: 768px) and (max-width: 1023px){
+  p.headernav {
+    font-size: 15px !important;
+  }
+}
+/* Responsive css */

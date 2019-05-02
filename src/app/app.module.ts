@@ -17,6 +17,7 @@ import { InviteComponent } from './dashboard/invite/invite.component';
 import { AccountComponent } from './account/account.component';
 /*****************************SERVICE****************/
 import { UserService } from './service/user.service';
+import { CreatecontractorComponent } from './createcontractor/createcontractor.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { UserService } from './service/user.service';
     OrderComponent,
     ContractorcreateComponent,
     InviteComponent,
-    AccountComponent
+    AccountComponent,
+    CreatecontractorComponent
   ],
   imports: [
     BrowserModule,
