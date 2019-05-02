@@ -119,6 +119,10 @@ button.cancelBtn {
     .fleetForm {
         padding: 0;
     }
+    .contractorButton {
+        padding-left: 0;
+        text-align: center;
+    }
 }
 /* Responsive css */
 

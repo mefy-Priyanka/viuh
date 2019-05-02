@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./companycreate.component.css']
 })
 export class CompanycreateComponent implements OnInit {
+
   fieldinput:boolean=true;
   imagefile:boolean=false;
   constructor() { }
@@ -13,6 +14,7 @@ export class CompanycreateComponent implements OnInit {
     this.fieldinput=false;
     this.imagefile=true;
       }
+
   ngOnInit() {
   }
 
