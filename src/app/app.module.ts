@@ -18,6 +18,7 @@ import { AccountComponent } from './account/account.component';
 /*****************************SERVICE****************/
 import { UserService } from './service/user.service';
 import { CreatecontractorComponent } from './createcontractor/createcontractor.component';
+import { CompanycreateComponent } from './companycreate/companycreate.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { CreatecontractorComponent } from './createcontractor/createcontractor.c
     ContractorcreateComponent,
     InviteComponent,
     AccountComponent,
-    CreatecontractorComponent
+    CreatecontractorComponent,
+    CompanycreateComponent
   ],
   imports: [
     BrowserModule,
