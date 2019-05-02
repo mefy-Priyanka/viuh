@@ -14,11 +14,13 @@ import { UserComponent } from './dashboard/user/user.component';
 import { OrderComponent } from './dashboard/order/order.component';
 import { ContractorcreateComponent } from './dashboard/contractorcreate/contractorcreate.component';
 import { InviteComponent } from './dashboard/invite/invite.component';
-import { AccountComponent } from './account/account.component';
+// import { AccountComponent } from './account/account.component';
 /*****************************SERVICE****************/
 import { UserService } from './service/user.service';
 import { CreatecontractorComponent } from './createcontractor/createcontractor.component';
-import { CompanycreateComponent } from './companycreate/companycreate.component';
+import { CompanycreateComponent } from './dashboard/companycreate/companycreate.component';
+import { AccountComponent } from './dashboard/account/account.component';
+// import { CompanycreateComponent } from './companycreate/companycreate.component';
 
 @NgModule({
   declarations: [
