@@ -1,20 +1,22 @@
 <!-- Dashboard  -->
 <section class="dashboard">
-<div class="row">
-  <div class="col-md-12" id="padding-o">
-    <div class="col-md-3" id="padding-o">
-   <app-sidenav></app-sidenav>
-    </div>
-    <div class="col-md-9" id="padding-o">
-       <!-- <app-fleet></app-fleet> -->
-       <!-- <app-contractor></app-contractor> -->
-       <!-- <app-user></app-user> -->
-       <!-- <app-order></app-order> -->
-       <!-- <app-invite></app-invite> -->
-       <app-account></app-account>
-       <!-- <app-contractorcreate></app-contractorcreate> -->
+  <div class="row">
+    <div class="col-md-12" id="padding-o">
+      <div class="col-md-3" id="padding-o">
+        <app-sidenav></app-sidenav>
+      </div>
+      <div class="col-md-9 ipadwidth" id="padding-o">
+        <app-fleet *ngIf="fleet"></app-fleet>
+        <app-account *ngIf="account"></app-account>
+        <app-order *ngIf="order"></app-order>
+        <app-user *ngIf="user"></app-user>
+        <app-companycreate *ngIf="companycreate"></app-companycreate>
+        <app-createcontractor *ngIf="contractorcreate"></app-createcontractor>
+                <!-- <app-contractor *ngIf="contractor"></app-contractor> -->
+        <!-- <app-invite></app-invite> -->
+        <!-- <app-contractorcreate></app-contractorcreate> -->
+      </div>
     </div>
   </div>
-</div>
 </section>
 <!-- Dashboard  -->

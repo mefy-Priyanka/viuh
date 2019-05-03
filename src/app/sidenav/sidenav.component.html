@@ -40,7 +40,7 @@
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
                      <i class="fa fa-cog" aria-hidden="true"></i></a>
                   <ul class="dropdown-menu sitetting">
-                     <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i>Users</a></li>
+                     <li (click)="userdetail()"><a ><i class="fa fa-user" aria-hidden="true"></i>Users</a></li>
                      <li><a href="#"><i class="fa fa-sticky-note" aria-hidden="true"></i>Terms</a></li>
                      <li><a href="#"><i class="fa fa-truck" aria-hidden="true"></i>Vehicle Kind</a></li>
                      <li><a href="#"><i class="fa fa-tags"></i>VAT rates</a></li>
@@ -51,7 +51,7 @@
                </li>
             </ul>
          </div>
-         <div class="row leftCet">
+         <div class="row leftCet" (click)="orderdetail()">
             <p class="navMain">Main</p>
 
             <ul>
@@ -75,13 +75,13 @@
                </li>
             </ul>
          </div>
-         <div class="row leftCet">
+         <div class="row leftCet" (click)="contractordetail()">
             <ul>
                <li><i class="fa fa-sliders" aria-hidden="true"></i></li>
                <li class="order">Contractors</li>
                <li class="dropdown flRight">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
-                     <button class="addItem"><i class="fa fa-plus-circle" aria-hidden="true"></i>Add</button></a>
+                     <button class="addItem" ><i class="fa fa-plus-circle" aria-hidden="true"></i>Add</button></a>
                   <!-- <ul class="dropdown-menu">
                      <li><a href="#">Table 1</a></li>
                      <li><a href="#">Table 2</a></li>
@@ -94,7 +94,7 @@
                </li>
             </ul>
          </div>
-         <div class="row leftCet">
+         <div class="row leftCet" (click)="fleetdetail()">
             <ul>
                <li><i class="fa fa-truck" aria-hidden="true"></i></li>
                <li class="order">Fleet</li>
@@ -122,10 +122,16 @@
                </li>
             </ul>
          </div>
-         <div class="row leftCet">
+         <div class="row leftCet" (click)="companydetail()">
             <ul>
                <li><i class="fa fa-id-card-o" aria-hidden="true"></i></li>
-               <li class="order">Expenses</li>
+               <li class="order">Company</li>
+            </ul>
+         </div>
+         <div class="row leftCet" (click)="accountdetail()">
+            <ul>
+               <li><i class="fa fa-money" aria-hidden="true"></i></li>
+               <li class="order">Accounts</li>
             </ul>
          </div>
          <hr class="mHrLine">

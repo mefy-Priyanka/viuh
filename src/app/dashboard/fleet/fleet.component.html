@@ -8,47 +8,45 @@
       <div class="row">
           <form class="col s12">
             <div class="fleetForm">
-            <div class="row">
-              <!-- <div class="input-field col s6 toet">
-                <input id="icon_prefix" type="text" class="validate">
-                <label for="icon_prefix">Truck Number</label>
-              </div> -->
-              <div class="input-field col s6 toet">
-                  <input placeholder="Truck Number" id="first_name" type="text" class="validate">
-                  <!-- <label for="first_name">First Name</label> -->
-                </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s6 padding-o">
-                    <select>
-                        <option value="" disabled selected>Ownership</option>
-                        <option value="1">Owned</option>
-                        <option value="2">Contract</option>
-                        <!-- <option value="3">Option 3</option> -->
-                      </select>
-                  </div>
-              </div>
-              <div class="row">
-                     <div class="row">
-                <div class="input-field col s4 padding-r">
-                    <select>
-                        <option value="" disabled selected>Document</option>
-                        <option value="1">R/C</option>
-                        <option value="2">Insurance</option>
-                        <option value="3">Lorem</option>
-                      </select>
-                  </div>
-                  <div class="input-field col s4 padding-r">
-                        <input type="file" name="myFile">
+                <div class="row">
+                    <div class="input-field col s6">
+                      <p><label>Truck Number</label></p>
+                      <input type="text" class="validate">
                     </div>
-                    <div class="input-field col s3 toet">
-                        <input placeholder="Valid upto(dd/mm/yyyy)" id="first_name" type="text" class="validate">
-                      </div>
-                    <div class="input-field col s1">
-                   <button class="addBtn">+</button>
+                    <div class="input-field col s6">
+                      <p><label>Ownership <span class="blue_star">*</span></label></p>
+                      <select>
+                          <option value="" disabled selected>Ownership</option>
+                          <option value="1">Owned</option>
+                          <option value="2">Contract</option>
+                        </select>
                     </div>
-              </div>
-                </div>
+                  </div>
+                  <p><span class="blue_star">******Upload Files*********</span></p>
+                  <div class="row">
+                      <div class="input-field col s4">
+                          <p><label>Document <span class="blue_star">*</span></label></p>
+                          <select>
+                              <option value="" disabled selected>Document</option>
+                              <option value="1">R/C</option>
+                              <option value="2">Insurance</option>
+                              <option value="3">Lorem</option>
+                            </select>
+                        </div>
+                        <div class="input-field col s4">
+                            <p><label>Company Logo</label></p>
+                            <div class="input-field myFilet aeto"><input type="file" class="validate" class="fileType">
+                            </div>
+                          </div>
+                          <div class="input-field col s3">
+                              <p><label>Valid Upto</label></p>
+                              <input placeholder="dd/mm/yyyy" id="first_name" type="text" class="validate">
+                            </div>
+                            <div class="input-field col s1">
+                                <button class="addBtn">+</button>
+                              </div>
+              
+                    </div>
                 <div class="row">
                   <div class="col-md-4">
                     <p class="docType">DOC Type</p>
@@ -72,11 +70,17 @@
                       </ul>
                   </div>
                 </div>
-                <button class="submitBtn">Submit</button>
+               
               </div>
           </form>
         </div>
   </div>
+  <div class="row">
+      <div class="contractorButton">
+          <button class="submitBtn">Submit</button>
+          <button class="cancelBtn">Cancel</button>
+      </div>
+    </div>
 </div>
 </section>
 <!-- Fleet management -->
