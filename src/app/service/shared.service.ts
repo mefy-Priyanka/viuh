@@ -6,12 +6,13 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class SharedService {
-  dashboardContent:BehaviorSubject<any> = new BehaviorSubject({});;
-  fleetContent:BehaviorSubject<any> = new BehaviorSubject({});;
-  orderContent:BehaviorSubject<any> = new BehaviorSubject({});;
-  contractorContent:BehaviorSubject<any> = new BehaviorSubject({});;
-  userContent:BehaviorSubject<any> = new BehaviorSubject({});;
-  companyContent:BehaviorSubject<any> = new BehaviorSubject({});;
+  dashboardContent:BehaviorSubject<any> = new BehaviorSubject({});
+  fleetContent:BehaviorSubject<any> = new BehaviorSubject({});
+  orderContent:BehaviorSubject<any> = new BehaviorSubject({});
+  contractorContent:BehaviorSubject<any> = new BehaviorSubject({});
+  userContent:BehaviorSubject<any> = new BehaviorSubject({});
+  companyContent:BehaviorSubject<any> = new BehaviorSubject({});
+
 
 
   constructor() { }
@@ -39,4 +40,5 @@ export class SharedService {
     this.companyContent.next(params)  
     console.log("hi");
   }
+
 }

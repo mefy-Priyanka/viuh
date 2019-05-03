@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SharedService } from '../service/shared.service';
+import { UserService } from '../service/user.service';
 
 @Component({
   selector: 'app-sidenav',
@@ -13,7 +15,14 @@ export class SidenavComponent implements OnInit {
   public contractordata: boolean = true;
   public userdata: boolean = true;
   public companydata: boolean = true;
-  constructor(private SharedService: SharedService) { }
+  public loginId:any={};
+  public accountId: any;
+  constructor(private router: Router, private SharedService: SharedService,public userService: UserService) { 
+    this.loginId = localStorage.getItem('userId');
+    console.log("loginId",this.loginId);
+
+}
+  // **************dashboard toggle*********************
   accountdetail(){
     this.SharedService.dashboardtoggle(this.accountdata);
     console.log('Data sent');
@@ -38,7 +47,27 @@ export class SidenavComponent implements OnInit {
     this.SharedService.companytoggle(this.companydata);
     console.log('Data sent'); 
   }
+  // **************dashboard toggle*********************
+    
   ngOnInit() {
+    this.getuserDetail();
   }
-
+  // *****UserInfo***********
+  getuserDetail(){
+    console.log('ggg',this.loginId)
+  this.userService.getlogininfo(this.loginId).subscribe(data => {
+    console.log('data', data)
+    },
+    err=>{
+      console.log(err)
+    })
+  }
+   /******END***********/
+  /*************logout**************/
+  logout() {
+    localStorage.clear();
+     this.router.navigate(['/login']);
+     console.log("logout");
+  }
+    /* ************END**************/
 }

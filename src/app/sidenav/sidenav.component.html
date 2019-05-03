@@ -11,7 +11,7 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
          <div class="row bagColor">
-            <p class="headernav">Lalbaba Enterprise</p>
+            <p class="headernav">Name{{loginUserDetail?.user.organisation}}</p>
          </div>
          <div class="row">
             <div class="profileNav">
@@ -27,7 +27,7 @@
                         <ul class="dropdown-menu sitetting">
                            <li><a href="#"><i class="fa fa-cog"></i>User Settings</a></li>
                            <li><a href="#"><i class="fa fa-lock" aria-hidden="true"></i>Password change</a></li>
-                           <li><a href="#"><i class="fa fa-sign-out"></i>Logout</a></li>
+                           <li (click)="logout()"><a><i class="fa fa-sign-out"></i>Logout</a></li>
                         </ul>
                      </li>
                </ul>

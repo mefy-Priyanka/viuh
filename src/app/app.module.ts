@@ -17,6 +17,7 @@ import { InviteComponent } from './dashboard/invite/invite.component';
 import { CreatecontractorComponent } from './createcontractor/createcontractor.component';
 import { CompanycreateComponent } from './dashboard/companycreate/companycreate.component';
 import { AccountComponent } from './dashboard/account/account.component';
+// import { AuthGuard } from './auth.guard';
 // import { AccountComponent } from './account/account.component';
 /*****************************SERVICE****************/
 import { UserService } from './service/user.service';
@@ -37,7 +38,7 @@ import { SharedService } from './service/shared.service';
     InviteComponent,
     AccountComponent,
     CreatecontractorComponent,
-    CompanycreateComponent
+    CompanycreateComponent,
   ],
   imports: [
     BrowserModule,

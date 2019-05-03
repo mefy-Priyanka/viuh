@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   public userForm: FormGroup;
   public submitted:boolean=false;
   public loader: boolean 
-  constructor(private formBuilder: FormBuilder,private router: Router,private userService:UserService,private sharedService:SharedService,)
+  constructor(private formBuilder: FormBuilder,private router: Router,private userService:UserService,private SharedService:SharedService,)
    { 
       /******************ERRORS OF userForm ********************** */
     this.userFormErrors = {
