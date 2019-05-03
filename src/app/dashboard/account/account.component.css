@@ -100,7 +100,7 @@ button.addItema i {
     border: none;
 }
 .card.margina {
-    margin: 2em 1em;
+    margin: 2em;
     box-shadow: none;
     border-radius: 5px;
 }
@@ -221,3 +221,20 @@ div#accountModal .modal-header {
 
 /* modal css */
 /* order css */
+/* Responsive css */
+@media only screen and (min-width: 320px) and (max-width: 767px){
+div#accountModal {
+  width: 100%;
+}
+}
+@media only screen and (min-width: 768px) and (max-width: 1024px){
+div#accountModal {
+    max-height: 50%;
+}
+}
+@media only screen and (max-width: 1024px){
+    div#accountModal {
+        max-height: 39%;
+    }
+    }
+/* Responsive css */

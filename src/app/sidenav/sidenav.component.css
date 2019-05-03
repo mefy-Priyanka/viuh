@@ -471,7 +471,9 @@ ul.dropdown-menu.sitetting.colori li a i {
   position: inherit;
 }
 
-
+span.lalbabat {
+  display: none;
+}
 
 
 /* Responsive css */
@@ -479,10 +481,49 @@ ul.dropdown-menu.sitetting.colori li a i {
   p.headernav {
     font-size: 15px !important;
   }
+  p.userWelcome {
+    margin-left: 6px;
+}
+li.order {
+  margin-left: 6px;
+}
 }
 @media only screen and (min-width: 320px) and (max-width: 767px){
 div#navbar {
   background: #314662;
+}
+ul.dropdown-menu.sitetting {
+  padding: 1em!important;
+  top: 13vw;
+  left: -32vw;
+}
+.dropdown-menu:after {
+  left: 41vw;
+  top: -15px;
+  transform: rotate(90deg);
+}
+div#navbar {
+  padding: 0;
+}
+.navbar-header {
+  position: fixed;
+  width: 100%;
+  background: #314762;
+}
+.navbar-fixed-left, .navbar-fixed-right {
+  position: absolute;
+  top: -4em;
+}
+span.lalbabat {
+  font-size: 20px;
+  margin-left: 1em;
+  display: initial;
+}
+p.headernav {
+  display: none;
+}
+.row.bagColor {
+  height: 9vh;
 }
 }
 /* Responsive css */

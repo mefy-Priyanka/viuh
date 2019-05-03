@@ -123,6 +123,9 @@ button.cancelBtn {
         padding-left: 0;
         text-align: center;
     }
+    .card.fleetCard .input-field.col label {
+        font-size: 10px !important;
+    }
 }
 /* Responsive css */
 
