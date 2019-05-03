@@ -21,7 +21,8 @@ export class LoginComponent implements OnInit {
       /******************ERRORS OF userForm ********************** */
     this.userFormErrors = {
       email: {},
-      password: {}
+      password: {},
+      organisation:{}
     };
     /****************************** ENDS **************************************** */
 
@@ -54,7 +55,8 @@ onuserFormValuesChanged() {
     createLoginForm() {
       return this.formBuilder.group({
         email: ['',[ Validators.required,Validators.email]],
-        password: ['', Validators.required]
+        password: ['', Validators.required],
+        organisation:['',Validators.required]
        
       });
     }
@@ -70,13 +72,14 @@ login(){
     this.submitted=false;
     let data={
       email:this.userForm.value.email,
-      password:this.userForm.value.password
+      password:this.userForm.value.password,
+      organisation:this.userForm.value.organisation
     }
+    console.log('data',data)
     this.userService.login(data).subscribe(value=>{
       console.log('login',value)
       let result:any={}
       result=value
-      // this.sharedService.loginInfo(result)
       this.loader = false;
       localStorage.setItem('userId',result.user._id);
       localStorage.setItem('emailId',result.user.email);
