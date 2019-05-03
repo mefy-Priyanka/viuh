@@ -5,7 +5,6 @@ import { HttpClientModule } from '@angular/common/http';
 /**********************COMPONENT************************** */
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { AppRoutingModule } from './app-routing.module';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FleetComponent } from './dashboard/fleet/fleet.component';
@@ -17,12 +16,21 @@ import { InviteComponent } from './dashboard/invite/invite.component';
 import { CreatecontractorComponent } from './createcontractor/createcontractor.component';
 import { CompanycreateComponent } from './dashboard/companycreate/companycreate.component';
 import { AccountComponent } from './dashboard/account/account.component';
-// import { AuthGuard } from './auth.guard';
-// import { AccountComponent } from './account/account.component';
+import { RouterModule, Routes } from '@angular/router';
 /*****************************SERVICE****************/
 import { UserService } from './service/user.service';
 import { SharedService } from './service/shared.service';
-// import { CompanycreateComponent } from './companycreate/companycreate.component';
+
+const routes: Routes = [
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+ { path: 'login', component: LoginComponent }, 
+ { path: 'sidenav', component: SidenavComponent },
+
+ { 
+   path: 'dashboard', component:DashboardComponent
+}
+ 
+];
 
 @NgModule({
   declarations: [
@@ -39,14 +47,17 @@ import { SharedService } from './service/shared.service';
     AccountComponent,
     CreatecontractorComponent,
     CompanycreateComponent,
+
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    // AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    RouterModule.forRoot(routes) 
   ],
+  exports: [ RouterModule ],
   providers: [UserService,SharedService],
   bootstrap: [AppComponent]
 })
