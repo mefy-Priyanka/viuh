@@ -6,12 +6,12 @@
         <app-sidenav></app-sidenav>
       </div>
       <div class="col-md-9 ipadwidth" id="padding-o">
-        <app-fleet *ngIf="fleet"></app-fleet>
-        <app-account *ngIf="account"></app-account>
-        <app-order *ngIf="order"></app-order>
-        <app-user *ngIf="user"></app-user>
-        <app-companycreate *ngIf="companycreate"></app-companycreate>
-        <app-createcontractor *ngIf="contractorcreate"></app-createcontractor>
+        <app-fleet *ngIf="sharenav=='fleetdetail'"></app-fleet>
+        <app-account *ngIf="sharenav=='accountdetail'"></app-account>
+        <app-order *ngIf="sharenav=='orderdetail'"></app-order>
+        <app-user *ngIf="sharenav=='user'"></app-user>
+        <app-companycreate *ngIf="sharenav=='companydetail'"></app-companycreate>
+        <app-createcontractor *ngIf="sharenav=='contractordetail'"></app-createcontractor>
                 <!-- <app-contractor *ngIf="contractor"></app-contractor> -->
         <!-- <app-invite></app-invite> -->
         <!-- <app-contractorcreate></app-contractorcreate> -->

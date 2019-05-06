@@ -10,11 +10,6 @@ import { UserService } from '../service/user.service';
 })
 export class SidenavComponent implements OnInit {
   public accountdata: boolean = true;
-  public fleetdata: boolean = true;
-  public orderdata: boolean = true;
-  public contractordata: boolean = true;
-  public userdata: boolean = true;
-  public companydata: boolean = true;
   public loginId:any={};
   public accountId: any;
   constructor(private router: Router, private SharedService: SharedService,public userService: UserService) { 
@@ -23,29 +18,9 @@ export class SidenavComponent implements OnInit {
 
 }
   // **************dashboard toggle*********************
-  accountdetail(){
-    this.SharedService.dashboardtoggle(this.accountdata);
+  abc(a){
+    this.SharedService.abc(a);
     console.log('Data sent');
-  }
-  fleetdetail(){
-    this.SharedService.fleettoggle(this.fleetdata);
-    console.log('Data sent');
-  }
-  orderdetail(){
-    this.SharedService.ordertoggle(this.orderdata);
-    console.log('Data sent');
-  }
-  contractordetail(){
-    this.SharedService.contractortoggle(this.contractordata);
-    console.log('Data sent');
-  }
-  userdetail(){
-    this.SharedService.usertoggle(this.userdata);
-    console.log('Data sent'); 
-  }
-  companydetail(){
-    this.SharedService.companytoggle(this.companydata);
-    console.log('Data sent'); 
   }
   // **************dashboard toggle*********************
     
