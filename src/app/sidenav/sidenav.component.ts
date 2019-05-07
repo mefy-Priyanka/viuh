@@ -11,7 +11,8 @@ import { UserService } from '../service/user.service';
 export class SidenavComponent implements OnInit {
   public accountdata: boolean = true;
   public userId:any={};
-  public accountId: any;
+  public accountId: any={};
+  public userDetail:any={};  /***********LOGIN USER DETAIL *************/
   constructor(private router: Router, private SharedService: SharedService,public userService: UserService) { 
     this.userId = localStorage.getItem('userId');   /************** LOGIN USER ID FECTCH FROM LOCAL STORAGE****/
     console.log("loginId",this.userId);
@@ -31,6 +32,9 @@ export class SidenavComponent implements OnInit {
 getUserDetail(){
   this.userService.logininfo(this.userId).subscribe(data=>{
     console.log(data)
+    let result :any={}
+    result=data;
+    this.userDetail=result.result
   },
   error=>{
     console.log(error)

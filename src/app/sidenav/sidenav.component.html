@@ -11,14 +11,14 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
          <div class="row bagColor">
-            <p class="headernav">Lalbaba{{loginUserDetail?.user.organisation}}</p>
+            <p class="headernav">{{userDetail?.organisation}}</p>
          </div>
          <div class="row">
             <div class="profileNav">
                <ul>
                   <li><i class="fa fa-user-o" aria-hidden="true"></i></li>
                   <li>
-                     <p class="userWelcome">Welcome<br><span class="userName">Sanjay</span></p>
+                     <p class="userWelcome">Welcome<br><span class="userName">{{userDetail?.name}}</span></p>
                   </li>
                   <!-- <li class="rightArrow"><i class="fa fa-chevron-down" aria-hidden="true"></i></li> -->
                   <li class="dropdown rightArrow">
