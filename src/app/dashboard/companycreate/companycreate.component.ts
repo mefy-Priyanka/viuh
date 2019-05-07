@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CompanyService } from '../../service/company.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -22,7 +23,7 @@ export class CompanycreateComponent implements OnInit {
   invoice: any;
   pan: any;
   reg: any;
-  constructor(private formBuilder: FormBuilder, private companyService: CompanyService, private toastr: ToastrService) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private companyService: CompanyService, private toastr: ToastrService) {
     this.userId = localStorage.getItem('userId');
     // **********Company form errors
     this.companyFormErrors = {

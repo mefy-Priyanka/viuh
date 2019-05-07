@@ -236,6 +236,7 @@ p.headernav {
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     margin: 1em 0;
+    text-transform: uppercase;
 }
 i.fa.fa-user-o {
   margin-top: 16px;
@@ -383,6 +384,7 @@ i.fa.fa-user-o {
 span.userName {
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
+    text-transform: uppercase;
     font-size: 17px;
 }
 ul.nav.navbar-nav {
@@ -516,6 +518,7 @@ div#navbar {
 span.lalbabat {
   font-size: 20px;
   margin-left: 1em;
+  text-transform: uppercase;
   display: initial;
 }
 p.headernav {

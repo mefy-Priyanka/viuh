@@ -78,6 +78,15 @@
             </div>
             <div class="modal-body">
               <form [formGroup]="createUserForm">
+                  <div class="row">
+                      <div class="input-field col s3">
+                        <label>Name<span class="blue_star">*</span></label>
+                      </div>
+                      <div class="input-field col s7">
+                        <input  type="text" class="validate" formControlName="name">
+                        <p class="errormessage" *ngIf="createuserFormErrors.name.required || (createUserForm.controls.name.pristine && submitted)">Enter Name</p>
+                      </div>
+                    </div>
                 <div class="row">
                   <div class="input-field col s3">
                     <label>Email<span class="blue_star">*</span></label>

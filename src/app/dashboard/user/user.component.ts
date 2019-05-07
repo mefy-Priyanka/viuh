@@ -22,6 +22,7 @@ export class UserComponent implements OnInit {
     this.adminId = localStorage.getItem('userId');
 
     this.createuserFormErrors = {
+      name:{},
       email: {},
       password: {},
       organisation: {},
@@ -54,6 +55,7 @@ export class UserComponent implements OnInit {
   }
   createpersonForm() {
     return this.formBuilder.group({
+      name: ['', Validators.required],
       email: ['',[ Validators.required,Validators.email]],
       password: ['', Validators.required],
       organisation: ['', Validators.required],
@@ -74,6 +76,7 @@ export class UserComponent implements OnInit {
         window.alert('You have entered less than 6 characters for password');
       }
       let data = {
+        name:this.createUserForm.value.name,
         email: this.createUserForm.value.email,
         password: this.createUserForm.value.password,
         superAdminId: this.adminId,
