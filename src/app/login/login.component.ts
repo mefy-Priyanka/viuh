@@ -3,6 +3,7 @@ import {  FormBuilder, FormGroup, Validators, } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from '../service/user.service';
 import { SharedService } from '../service/shared.service';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -16,15 +17,15 @@ export class LoginComponent implements OnInit {
   public userForm: FormGroup;
   public submitted:boolean=false;
   public loader: boolean 
-  constructor(private formBuilder: FormBuilder,private router: Router,private userService:UserService,private SharedService:SharedService,)
+  constructor(private toastr: ToastrService,private formBuilder: FormBuilder,private router: Router,private userService:UserService,private SharedService:SharedService,)
    { 
-      /******************ERRORS OF userForm ********************** */
+      /*******ERRORS OF userForm ********* */
     this.userFormErrors = {
       email: {},
       password: {},
       organisation:{}
     };
-    /****************************** ENDS **************************************** */
+    /********** ENDS ************** */
 
    }
 
@@ -34,7 +35,7 @@ export class LoginComponent implements OnInit {
       this.onuserFormValuesChanged();
     });
   }
-/******************************IT CATCHES ALL CHANGES IN FORM******************/
+/***********IT CATCHES ALL CHANGES IN FORM*******/
 onuserFormValuesChanged() {
   for (const field in this.userFormErrors) {
     if (!this.userFormErrors.hasOwnProperty(field)) {
@@ -50,8 +51,8 @@ onuserFormValuesChanged() {
     }
   }
 }
-    /****************************** ENDS **************************************** */
- /***********************LOGIN FORM ***************************** */
+    /********** ENDS ************** */
+ /********LOGIN FORM ********** */
     createLoginForm() {
       return this.formBuilder.group({
         email: ['',[ Validators.required,Validators.email]],
@@ -60,10 +61,10 @@ onuserFormValuesChanged() {
        
       });
     }
-    /****************************** ENDS **************************************** */
+    /********** ENDS ************** */
 
  
-    /*************************LOGIN ********************** */
+    /********LOGIN ********* */
 login(){
   console.log(this.userForm.value);
   this.submitted=true;
@@ -77,6 +78,7 @@ login(){
     }
     console.log('data',data)
     this.userService.login(data).subscribe(value=>{
+      this.toastr.success('Welcome!', 'Successfully Logged In'),
       console.log('login',value)
       let result:any={}
       result=value
@@ -86,6 +88,7 @@ login(){
       this.router.navigate(['/dashboard'])
     },
     err=>{
+      this.toastr.error('Error!', 'Login failed'),
       console.log('err',err.error)
       this.loader = false;
     })
@@ -96,6 +99,5 @@ login(){
   }
 
 }
-    /****************************** ENDS **************************************** */
-
+    /********** ENDS ************** */
 }

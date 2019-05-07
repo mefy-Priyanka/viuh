@@ -3,6 +3,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 /**********************COMPONENT************************** */
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+ 
+import { ToastrModule } from 'ngx-toastr';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
@@ -55,7 +58,14 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes) 
+    RouterModule.forRoot(routes),
+
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot({
+      timeOut:2000,
+      positionClass:'toast-top-right',
+      preventDuplicates:true
+    }) // ToastrModule added
   ],
   exports: [ RouterModule ],
   providers: [UserService,SharedService],
