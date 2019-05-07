@@ -1,10 +1,28 @@
 <!-- create company -->
 <section class="createcontract">
+    <!-- Loader -->
+<div class="loading" *ngIf="loader">
+    <div class="sk-circle">
+      <div class="sk-circle1 sk-child"></div>
+      <div class="sk-circle2 sk-child"></div>
+      <div class="sk-circle3 sk-child"></div>
+      <div class="sk-circle4 sk-child"></div>
+      <div class="sk-circle5 sk-child"></div>
+      <div class="sk-circle6 sk-child"></div>
+      <div class="sk-circle7 sk-child"></div>
+      <div class="sk-circle8 sk-child"></div>
+      <div class="sk-circle9 sk-child"></div>
+      <div class="sk-circle10 sk-child"></div>
+      <div class="sk-circle11 sk-child"></div>
+      <div class="sk-circle12 sk-child"></div>
+    </div>
+  </div>
+<!-- Loader -->
   <div class="ft">
     <h1>Company | Create
     </h1>
   </div>
-  <form class="createContractorForm">
+  <form class="createContractorForm"[formGroup]="companyForm">
     <div class="row">
       <div class="col-md-12">
            <!-- input type -->
@@ -15,46 +33,49 @@
               <div class="nota">
                 <div class="row">
                   <div class="input-field col s4">
-                    <p><label>Contact person</label></p>
-                    <input type="text" class="validate">
-                  </div>
-                  <div class="input-field col s4">
                     <p><label>Email <span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate">
+                    <input type="text" class="validate" formControlName="email">
                   </div>
                   <div class="input-field col s4">
                     <p><label>Company Name</label></p>
-                    <input type="text" class="validate">
+                    <input type="text" class="validate" formControlName="companyName">
                   </div>
-
+                  <div class="input-field col s4">
+                    <p><label>Registration No. <span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" formControlName="regNo">
+                  </div>
                 </div>
                 <div class="row">
                   <div class="input-field col s4">
                     <p><label>Address</label></p>
-                    <input type="text" class="validate">
+                    <input type="text" class="validate" formControlName="Address">
                   </div>
-                  <div class="input-field col s4">
-                    <p><label>Registration No. <span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate">
-                  </div>
+    
                   <div class="input-field col s4">
                     <p><label>Phone Number</label></p>
-                    <input type="text" class="validate">
+                    <input type="text" class="validate" formControlName="phoneNumber">
                   </div>
-
+                  <div class="input-field col s4">
+                    <p><label>PAN No. <span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" formControlName="panCard">
+                  </div>
                 </div>
                 <div class="row">
                   <div class="input-field col s4">
                     <p><label>Currency</label></p>
-                    <input type="text" class="validate">
+                    <!-- <input type="text" class="validate" formControlName="currency"> -->
+                    <select formControlName="currency">
+                      <option value="" disabled selected>Choose your option</option>
+                      <option value="Rupees">Rupees</option>
+                    </select>
                   </div>
                   <div class="input-field col s4">
                     <p><label>GST No. <span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate">
+                    <input type="text" class="validate" formControlName="gstNo">
                   </div>
                   <div class="input-field col s4">
                     <p><label>Trade License No. <span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate">
+                    <input type="text" class="validate" formControlName="tradeLicenseNo">
                   </div>
 
                 </div>
@@ -62,12 +83,9 @@
                 <div class="row">
                   <div class="input-field col s4">
                     <p><label>Invoice No. <span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate">
+                    <input type="text" class="validate" formControlName="invoiceNo">
                   </div>
-                  <div class="input-field col s4">
-                    <p><label>PAN No. <span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate">
-                  </div>
+         
                 </div>
               </div>
       
@@ -95,17 +113,17 @@
                 <div class="row">
                   <div class="input-field col s4">
                     <p><label>Company Logo</label></p>
-                    <div class="input-field col s7 myFilet aeto"><input type="file" class="validate" class="fileType">
+                    <div class="input-field col s7 myFilet aeto"><input type="file" class="validate" (change)="upload($event,'companyLogo')" class="fileType" formControlName="companyLogo" >
                     </div>
                   </div>
                   <div class="input-field col s4">
                     <p><label>Trade License</label></p>
-                    <div class="input-field col s7 myFilet aeto"><input type="file" class="validate" class="fileType">
+                    <div class="input-field col s7 myFilet aeto"><input type="file" class="validate" (change)="upload($event,'tradeLicenseId')" formControlName="tradeLicenseId" class="fileType">
                     </div>
                   </div>
                   <div class="input-field col s4">
                     <p><label>GST</label></p>
-                    <div class="input-field col s7 myFilet aeto"><input type="file" class="validate" class="fileType">
+                    <div class="input-field col s7 myFilet aeto"><input type="file" class="validate" (change)="upload($event,'gstId')" formControlName="gstId" class="fileType">
                     </div>
                   </div>
                 </div>
@@ -113,17 +131,17 @@
 
                   <div class="input-field col s4">
                     <p><label>Invoice</label></p>
-                    <div class="input-field col s7 myFilet aeto"><input type="file" class="validate" class="fileType">
+                    <div class="input-field col s7 myFilet aeto"><input formControlName="invoiceId" (change)="upload($event,'invoiceId')" type="file" class="validate" class="fileType">
                     </div>
                   </div>
                   <div class="input-field col s4">
                     <p><label>PAN</label></p>
-                    <div class="input-field col s7 myFilet aeto"><input type="file" class="validate" class="fileType">
+                    <div class="input-field col s7 myFilet aeto"><input formControlName="panId" (change)="upload($event,'panId')" type="file" class="validate" class="fileType">
                     </div>
                   </div>
                   <div class="input-field col s4">
                     <p><label>Registration</label></p>
-                    <div class="input-field col s7 myFilet aeto"><input type="file" class="validate" class="fileType">
+                    <div class="input-field col s7 myFilet aeto"><input formControlName="regId" (change)="upload($event,'regId')" type="file" class="validate" class="fileType">
                     </div>
                   </div>
                 </div>
@@ -133,7 +151,7 @@
           </div>
           <div class="row">
             <div class="contractorButton">
-              <button class="submitBtn" (click)="showContent()">Save</button>
+              <button class="submitBtn" (click)="FormSubmit()">Save</button>
               <button class="cancelBtn">Cancel</button>
             </div>
           </div>

@@ -15,9 +15,10 @@ export class UserComponent implements OnInit {
   createuserFormErrors: any;
   public loader: boolean = false;
   public adminId: any = {};
+  public uModal:boolean=false;
   submitted: boolean = false; //SHOW ERROR,IF INVALID FORM IS SUBMITTED
-  a: any;
-  constructor(private formBuilder: FormBuilder, private userService: UserService, private toastr: ToastrService, ) {
+  pass: any;
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private toastr: ToastrService ) {
     this.adminId = localStorage.getItem('userId');
 
     this.createuserFormErrors = {
@@ -53,7 +54,7 @@ export class UserComponent implements OnInit {
   }
   createpersonForm() {
     return this.formBuilder.group({
-      email: ['', Validators.required],
+      email: ['',[ Validators.required,Validators.email]],
       password: ['', Validators.required],
       organisation: ['', Validators.required],
       role: ['', Validators.required]
@@ -66,9 +67,9 @@ export class UserComponent implements OnInit {
     this.loader = true;
     if (this.createUserForm.valid) {
       this.submitted = false;
-      this.a = this.createUserForm.value.password;
-      console.log("password", this.a.length)
-      if (this.a.length < 6) {
+      this.pass = this.createUserForm.value.password;
+      console.log("password", this.pass.length)
+      if (this.pass.length < 6) {
         console.log("error password");
         window.alert('You have entered less than 6 characters for password');
       }
