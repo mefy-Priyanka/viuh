@@ -14,8 +14,9 @@ export class UserComponent implements OnInit {
   createUserForm: FormGroup;
   createuserFormErrors: any;
   public loader: boolean = false;
-  public adminId:any={};
+  public adminId: any = {};
   submitted: boolean = false; //SHOW ERROR,IF INVALID FORM IS SUBMITTED
+  a: any;
   constructor(private formBuilder: FormBuilder, private userService: UserService, private toastr: ToastrService, ) {
     this.adminId = localStorage.getItem('userId');
 
@@ -65,10 +66,16 @@ export class UserComponent implements OnInit {
     this.loader = true;
     if (this.createUserForm.valid) {
       this.submitted = false;
+      this.a = this.createUserForm.value.password;
+      console.log("password", this.a.length)
+      if (this.a.length < 6) {
+        console.log("error password");
+        window.alert('You have entered less than 6 characters for password');
+      }
       let data = {
         email: this.createUserForm.value.email,
         password: this.createUserForm.value.password,
-        adminId:this.adminId,
+        superAdminId: this.adminId,
         organisation: this.createUserForm.value.organisation,
         role: this.createUserForm.value.role
       }
@@ -87,6 +94,7 @@ export class UserComponent implements OnInit {
           this.submitted = false;
           this.loader = false;
           this.toastr.error('Error!', 'Server Error')
+          this.createUserForm.reset();
           // $('#userModal').modal('hide');
           //initialize all modals
           // $('#userModal').closeModal();
