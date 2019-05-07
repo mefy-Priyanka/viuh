@@ -15,11 +15,11 @@ export class SidenavComponent implements OnInit {
   public contractordata: boolean = true;
   public userdata: boolean = true;
   public companydata: boolean = true;
-  public loginId:any={};
+  public userId:any={};
   public accountId: any;
   constructor(private router: Router, private SharedService: SharedService,public userService: UserService) { 
-    this.loginId = localStorage.getItem('userId');
-    console.log("loginId",this.loginId);
+    this.userId = localStorage.getItem('userId');   /************** LOGIN USER ID FECTCH FROM LOCAL STORAGE****/
+    console.log("loginId",this.userId);
 
 }
   // **************dashboard toggle*********************
@@ -50,19 +50,18 @@ export class SidenavComponent implements OnInit {
   // **************dashboard toggle*********************
     
   ngOnInit() {
-    this.getuserDetail();
+    this.getUserDetail();
   }
   // *****UserInfo***********
-  getuserDetail(){
-    console.log('ggg',this.loginId)
-  this.userService.getlogininfo(this.loginId).subscribe(data => {
-    console.log('data', data)
-    },
-    err=>{
-      console.log(err)
-    })
-  }
-   /******END***********/
+getUserDetail(){
+  this.userService.logininfo(this.userId).subscribe(data=>{
+    console.log(data)
+  },
+  error=>{
+    console.log(error)
+  })
+}
+   /********************END*******************************/
   /*************logout**************/
   logout() {
     localStorage.clear();

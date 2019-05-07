@@ -7,13 +7,14 @@ import { APIURL } from '../UrlConfig'
 export class UserService {
 
   constructor(private httpClient: HttpClient) { }
-  /*********************CREATE ADMIN*****************************/ 
-login(data) {
-  return this.httpClient.post(APIURL + 'user/login', data);
-} 
+  /*********************CREATE ADMIN*****************************/
+  login(data) {
+    return this.httpClient.post(APIURL + 'user/login', data);
+  }
 
-getlogininfo(userId){
-  console.log('userId',APIURL+'user/userById?userId='+userId)
-  return this.httpClient.get(APIURL+'user/userById?userId='+userId)
-   }
+  logininfo(userId: any) {
+    console.log('userId', APIURL + 'user/userById?userId=' + userId)
+    return this.httpClient.get(APIURL + 'user/userById?userId=' + userId)
+  }
 }
+// return this.http.get(APIURL + 'account/getByAccountId?accountId='+ id)
