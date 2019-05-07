@@ -1,102 +1,157 @@
 <!-- create contractor -->
 <section class="createcontract">
-  <div class="ft">
-    <h1>Contractor | Create
-    </h1>
-  </div>
-  <div class="row">
-    <div class="col-md-12">
-      <div class="col-md-4">
-        <div class="card corCard">
-          <div class="row">
-            <form class="col s12">
-              <div class="contractForm">
-                <div class="row">
-                  <label class="vname">Name<span class="multiply">*</span></label>
-                  <div class="input-field col s12 toet">
-                    <input placeholder="" id="name" type="text" class="validate">
-                  </div>
-                </div>
-                <div class="row">
-                  <label class="vname">Short Name</label>
-                  <div class="input-field col s12 toet">
-                    <input placeholder="" id="Lname" type="text" class="validate">
-                  </div>
-                </div>
-                <div class="row">
-                  <label class="vname">VAT ID</label>
-                  <div class="input-field col s12 toet">
-                    <input placeholder="" id="vid" type="text" class="validate">
-                  </div>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-8">
-        <div class="card corCard">
-          <div class="row">
-            <form class="col s12">
-              <div class="contractForm">
-                <div class="row">
-                  <label class="vname">Name :</label>
-                  <div class="input-field col s12 toet">
-                    <input placeholder="" id="name" type="text" class="validate">
-                  </div>
-                </div>
-                <div class="row">
-
-                  <div class="input-field col s4 toeta">
-                    <label class="vnamea">Street:</label>
-                    <input placeholder="" id="Lname" type="text" class="validate">
-                  </div> 
-
-                  <div class="input-field col s4 toeta">
-                    <label class="vnamea">Building:</label>
-                    <input placeholder="" id="Lname" type="text" class="validate">
-                  </div>
-
-                  <div class="input-field col s4 toeta">
-                    <label class="vnamea">Premise:</label>
-                    <input placeholder="" id="Lname" type="text" class="validate">
-                  </div>
-                </div>
-                <div class="row">
-
-                    <div class="input-field col s4 toeta">
-                      <label class="vnamea">Postal Code:</label>
-                      <input placeholder="" id="Lname" type="text" class="validate">
+    <div class="ft">
+      <h1>Company | Create
+      </h1>
+    </div>
+    <form class="createContractorForm">
+      <div class="row">
+        <div class="col-md-12">
+             <!-- input type -->
+          <div *ngIf="fieldinput">
+            <div class="card corCard">
+              <div class="row">
+             
+                <div class="nota">
+                  <div class="row">
+                    <div class="input-field col s4">
+                      <p><label>Contact person</label></p>
+                      <input type="text" class="validate">
+                    </div>
+                    <div class="input-field col s4">
+                      <p><label>Email <span class="blue_star">*</span></label></p>
+                      <input type="text" class="validate">
+                    </div>
+                    <div class="input-field col s4">
+                      <p><label>Company Name</label></p>
+                      <input type="text" class="validate">
                     </div>
   
-                    <div class="input-field col s4 toeta">
-                      <label class="vnamea">City:</label>
-                      <input placeholder="" id="Lname" type="text" class="validate">
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s4">
+                      <p><label>Address</label></p>
+                      <input type="text" class="validate">
+                    </div>
+                    <div class="input-field col s4">
+                      <p><label>Registration No. <span class="blue_star">*</span></label></p>
+                      <input type="text" class="validate">
+                    </div>
+                    <div class="input-field col s4">
+                      <p><label>Phone Number</label></p>
+                      <input type="text" class="validate">
                     </div>
   
-                    <div class="input-field col s4 toeta">
-                      <label class="vnameat">Country: <span class="multiply">*</span></label>
-                      <select>
-                          <option value="" disabled selected>Country</option>
-                          <option value="1">India</option>
-                          <option value="2">USA</option>
-                          <!-- <option value="3">Option 3</option> -->
-                        </select>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s4">
+                      <p><label>Currency</label></p>
+                      <input type="text" class="validate">
+                    </div>
+                    <div class="input-field col s4">
+                      <p><label>GST No. <span class="blue_star">*</span></label></p>
+                      <input type="text" class="validate">
+                    </div>
+                    <div class="input-field col s4">
+                      <p><label>Trade License No. <span class="blue_star">*</span></label></p>
+                      <input type="text" class="validate">
+                    </div>
+  
+                  </div>
+  
+                  <div class="row">
+                    <div class="input-field col s4">
+                      <p><label>Invoice No. <span class="blue_star">*</span></label></p>
+                      <input type="text" class="validate">
+                    </div>
+                    <div class="input-field col s4">
+                      <p><label>PAN No. <span class="blue_star">*</span></label></p>
+                      <input type="text" class="validate">
                     </div>
                   </div>
+                </div>
+        
               </div>
-            </form>
+            </div>
+            <div class="row">
+              <div class="contractorButton">
+                <button class="submitBtn" (click)="showContent()">Next</button>
+                <button class="cancelBtn">Cancel</button>
+              </div>
+            </div>
           </div>
+  
+  
+  
+  
+          <!-- input type -->
+          <!-- uploadfiles -->
+          <div *ngIf="imagefile">
+            <div class="card corCard">
+              <div class="row">
+  
+                <div class="imgFile">
+                  <p><span class="blue_star">******Upload Files*********</span></p>
+                  <div class="row">
+                    <div class="input-field col s4">
+                      <p><label>Company Logo</label></p>
+                      <div class="input-field col s7 myFilet aeto"><input type="file" class="validate" class="fileType">
+                      </div>
+                    </div>
+                    <div class="input-field col s4">
+                      <p><label>Trade License</label></p>
+                      <div class="input-field col s7 myFilet aeto"><input type="file" class="validate" class="fileType">
+                      </div>
+                    </div>
+                    <div class="input-field col s4">
+                      <p><label>GST</label></p>
+                      <div class="input-field col s7 myFilet aeto"><input type="file" class="validate" class="fileType">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+  
+                    <div class="input-field col s4">
+                      <p><label>Invoice</label></p>
+                      <div class="input-field col s7 myFilet aeto"><input type="file" class="validate" class="fileType">
+                      </div>
+                    </div>
+                    <div class="input-field col s4">
+                      <p><label>PAN</label></p>
+                      <div class="input-field col s7 myFilet aeto"><input type="file" class="validate" class="fileType">
+                      </div>
+                    </div>
+                    <div class="input-field col s4">
+                      <p><label>Registration</label></p>
+                      <div class="input-field col s7 myFilet aeto"><input type="file" class="validate" class="fileType">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+  
+              </div>
+            </div>
+            <div class="row">
+              <div class="contractorButton">
+                <button class="submitBtn" (click)="showContent()">Save</button>
+                <button class="cancelBtn">Cancel</button>
+              </div>
+            </div>
+          </div>
+  
+  
+  
+  
+          <!-- uploadfiles -->
+  
+  
+  
+  
+  
         </div>
       </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="contractorButton">
-      <button class="submitBtn">Save</button>
-      <button class="cancelBtn">Cancel</button>
-    </div>
-  </div>
-</section>
+  
+    </form>
+  </section>
 
 <!-- create contractor -->

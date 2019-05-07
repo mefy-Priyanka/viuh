@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~ngx-toastr/toastr.css';  /* regular style toast*/ 
 body {
     margin: 0;
 }
@@ -19,7 +20,16 @@ a.floatEa:hover{
     text-align: center;
     box-shadow: 0px 0px 18px 4px #30465f5c;
 }
-
+.errormessage{
+  color: red;
+  text-align: center;
+  font-size: 14px;
+  font-style: italic;
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  position: absolute;
+  bottom: -1em;
+}
 .my-float{
 	margin-top:22px;
 }
@@ -29,7 +39,9 @@ a.floatEa:hover{
     color: red;
     font-size: 19px;
 }
-
+.modal-backdrop.fade.in {
+  opacity: 0;
+}
 
 /* loader */
 .sk-circle {
