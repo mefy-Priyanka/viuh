@@ -10,11 +10,12 @@ import { UserService } from '../service/user.service';
 })
 export class SidenavComponent implements OnInit {
   public accountdata: boolean = true;
-  public loginId:any={};
-  public accountId: any;
+  public userId:any={};
+  public accountId: any={};
+  public userDetail:any={};  /***********LOGIN USER DETAIL *************/
   constructor(private router: Router, private SharedService: SharedService,public userService: UserService) { 
-    this.loginId = localStorage.getItem('userId');
-    console.log("loginId",this.loginId);
+    this.userId = localStorage.getItem('userId');   /************** LOGIN USER ID FECTCH FROM LOCAL STORAGE****/
+    console.log("loginId",this.userId);
 
 }
   // **************dashboard toggle*********************
@@ -25,19 +26,21 @@ export class SidenavComponent implements OnInit {
   // **************dashboard toggle*********************
     
   ngOnInit() {
-    this.getuserDetail();
+    this.getUserDetail();
   }
   // *****UserInfo***********
-  getuserDetail(){
-    console.log('ggg',this.loginId)
-  this.userService.getlogininfo(this.loginId).subscribe(data => {
-    console.log('data', data)
-    },
-    err=>{
-      console.log(err)
-    })
-  }
-   /******END***********/
+getUserDetail(){
+  this.userService.logininfo(this.userId).subscribe(data=>{
+    console.log(data)
+    let result :any={}
+    result=data;
+    this.userDetail=result.result
+  },
+  error=>{
+    console.log(error)
+  })
+}
+   /********************END*******************************/
   /*************logout**************/
   logout() {
     localStorage.clear();
