@@ -64,7 +64,7 @@ export class UserComponent implements OnInit {
     });
   }
   saveUser() {
-    this.SharedService.abc('accountdetail');
+
 
     console.log(this.createUserForm.value)
     console.log(this.adminId)
@@ -97,7 +97,7 @@ export class UserComponent implements OnInit {
     
         this.createUserForm.reset();
         this.loader = false;
-        // $('#userModal').modal('hide');
+        this.SharedService.abc('accountdetail');
       },
         err => {
           this.submitted = false;
