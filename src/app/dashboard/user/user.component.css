@@ -228,7 +228,10 @@ div#userModal {
 div#userModal .modal-header {
     padding-top: 0;
 }
-
+button.saveBtn:disabled {
+    cursor: not-allowed;
+    background: #2d425b;
+}
 /* modal css */
 /* user css */
 /* Responsive css */

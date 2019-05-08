@@ -8,17 +8,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { SidenavComponent } from './sidenav/sidenav.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { FleetComponent } from './dashboard/fleet/fleet.component';
+// import { SidenavComponent } from './sidenav/sidenav.component';
+// import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardModule } from './dashboard/dashboard.module'
+// import { FleetComponent } from './dashboard/fleet/fleet.component';
 import { ContractorComponent } from './dashboard/contractor/contractor.component';
-import { UserComponent } from './dashboard/user/user.component';
-import { OrderComponent } from './dashboard/order/order.component';
-import { ContractorcreateComponent } from './dashboard/contractorcreate/contractorcreate.component';
+// import { UserComponent } from './dashboard/user/user.component';
+// import { OrderComponent } from './dashboard/order/order.component';
+// import { ContractorcreateComponent } from './dashboard/contractorcreate/contractorcreate.component';
 import { InviteComponent } from './dashboard/invite/invite.component';
-import { CreatecontractorComponent } from './createcontractor/createcontractor.component';
-import { CompanycreateComponent } from './dashboard/companycreate/companycreate.component';
-import { AccountComponent } from './dashboard/account/account.component';
+// import { CreatecontractorComponent } from './createcontractor/createcontractor.component';
+// import { CompanycreateComponent } from './dashboard/companycreate/companycreate.component';
+// import { AccountComponent } from './dashboard/account/account.component';
 import { RouterModule, Routes } from '@angular/router';
 /*****************************SERVICE****************/
 import { UserService } from './service/user.service';
@@ -27,10 +28,12 @@ import { SharedService } from './service/shared.service';
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
  { path: 'login', component: LoginComponent }, 
- { path: 'sidenav', component: SidenavComponent },
+//  { path: 'sidenav', component: SidenavComponent },
 
  { 
-   path: 'dashboard', component:DashboardComponent
+   path: 'dashboard',
+   loadChildren: './dashboard/dashboard.module#DashboardModule'
+
 }
  
 ];
@@ -39,17 +42,17 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     LoginComponent,
-    SidenavComponent,
-    DashboardComponent,
-    FleetComponent,
+    // SidenavComponent,
+    // DashboardComponent,
+    // FleetComponent,
     ContractorComponent,
-    UserComponent,
-    OrderComponent,
-    ContractorcreateComponent,
+    // UserComponent,
+    // OrderComponent,
+    // ContractorcreateComponent,
     InviteComponent,
-    AccountComponent,
-    CreatecontractorComponent,
-    CompanycreateComponent,
+    // AccountComponent,
+    // CreatecontractorComponent,
+    // CompanycreateComponent,
 
   ],
   imports: [
