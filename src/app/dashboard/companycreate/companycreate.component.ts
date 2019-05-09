@@ -12,9 +12,9 @@ import { ToastrService } from 'ngx-toastr';
 export class CompanycreateComponent implements OnInit {
   companyForm: FormGroup;
   companyFormErrors: any;
-  fieldinput:boolean=true;
-  imagefile:boolean=false;
-  public loader:boolean=false;
+  fieldinput: boolean = true;
+  imagefile: boolean = false;
+  public loader: boolean = false;
   submitted: boolean = false; //SHOW ERROR,IF INVALID FORM IS SUBMITTED
   userId: string;
   companyId: any;
@@ -23,34 +23,36 @@ export class CompanycreateComponent implements OnInit {
   invoice: any;
   pan: any;
   reg: any;
-  constructor(private formBuilder: FormBuilder, private router: Router, private companyService: CompanyService, private toastr: ToastrService) {
+  constructor(private formBuilder: FormBuilder,
+    private router: Router, private companyService:
+      CompanyService, private toastr: ToastrService) {
     this.userId = localStorage.getItem('userId');
     // **********Company form errors
     this.companyFormErrors = {
-      email:{},
-      companyName:{},
-      regNo:{},
-      regId:{},
-      gstNo:{},
-      gstId:{},
-      tradeLicenseNo:{},
-      tradeLicenseId:{},
-      invoiceNo:{},
-      invoiceId:{},
-      panCard:{},
-      panId:{},
-      Address:{},
-      companyLogo:{},
-      currency:{},
-      phoneNumber:{}
+      email: {},
+      companyName: {},
+      regNo: {},
+      regId: {},
+      gstNo: {},
+      gstId: {},
+      tradeLicenseNo: {},
+      tradeLicenseId: {},
+      invoiceNo: {},
+      invoiceId: {},
+      panCard: {},
+      panId: {},
+      Address: {},
+      companyLogo: {},
+      currency: {},
+      phoneNumber: {}
     };
-      // **********Company form errors end
-   }
+    // **********Company form errors end
+  }
   // ******************** div toggle
-  showContent(){
-    this.fieldinput=false;
-    this.imagefile=true;
-      }
+  showContent() {
+    this.fieldinput = false;
+    this.imagefile = true;
+  }
   // ******************** div toggle end
   ngOnInit() {
     this.companyForm = this.createCompanyForm()
@@ -59,26 +61,26 @@ export class CompanycreateComponent implements OnInit {
       this.onCompanyFormValuesChanged();
     });
   }
-    /******************************IT CATCHES ALL CHANGES IN FORM******************/
-    onCompanyFormValuesChanged() {
-      for (const field in this.companyFormErrors) {
-        if (!this.companyFormErrors.hasOwnProperty(field)) {
-          continue;
-        }
-        // Clear previous errors
-        this.companyFormErrors[field] = {};
-        // Get the control
-        const control = this.companyForm.get(field);
-  
-        if (control && control.dirty && !control.valid) {
-          this.companyFormErrors[field] = control.errors;
-        }
+  /******************************IT CATCHES ALL CHANGES IN FORM******************/
+  onCompanyFormValuesChanged() {
+    for (const field in this.companyFormErrors) {
+      if (!this.companyFormErrors.hasOwnProperty(field)) {
+        continue;
+      }
+      // Clear previous errors
+      this.companyFormErrors[field] = {};
+      // Get the control
+      const control = this.companyForm.get(field);
+
+      if (control && control.dirty && !control.valid) {
+        this.companyFormErrors[field] = control.errors;
       }
     }
-// ***************Company Form
-  createCompanyForm(){
+  }
+  // ***************Company Form
+  createCompanyForm() {
     return this.formBuilder.group({
-      email: ['',[ Validators.required,Validators.email]],
+      email: ['', [Validators.required, Validators.email]],
       companyName: ['', Validators.required],
       regNo: ['', Validators.required],
       regId: ['', Validators.required],
@@ -96,51 +98,51 @@ export class CompanycreateComponent implements OnInit {
       phoneNumber: ['', Validators.required]
     });
   }
-// ***************Company Form end
+  // ***************Company Form end
   // *****************************Company form submit***************************
-  FormSubmit(){
+  FormSubmit() {
     console.log(this.companyForm.value)
     this.submitted = true;
     this.loader = true;
-if(this.companyForm.valid){
-  let data = {
-    email: this.companyForm.value.email,
-    companyName: this.companyForm.value.companyName,
-    regNo: this.companyForm.value.regNo,
-    regId: this.reg,
-    gstNo: this.companyForm.value.gstNo,
-    gstId: this.gst,
-    tradeLicenseNo: this.companyForm.value.tradeLicenseNo,
-    tradeLicenseId: this.tradeId,
-    invoiceNo: this.companyForm.value.invoiceNo,
-    invoiceId: this.invoice,
-    panCard: this.companyForm.value.panCard,
-    panId: this.pan,
-    Address: this.companyForm.value.Address,
-    companyLogo: this.companyId,
-    currency: this.companyForm.value.currency,
-    phoneNumber: this.companyForm.value.phoneNumber,
-    userId:this.userId
+    if (this.companyForm.valid) {
+      let data = {
+        email: this.companyForm.value.email,
+        companyName: this.companyForm.value.companyName,
+        regNo: this.companyForm.value.regNo,
+        regId: this.reg,
+        gstNo: this.companyForm.value.gstNo,
+        gstId: this.gst,
+        tradeLicenseNo: this.companyForm.value.tradeLicenseNo,
+        tradeLicenseId: this.tradeId,
+        invoiceNo: this.companyForm.value.invoiceNo,
+        invoiceId: this.invoice,
+        panCard: this.companyForm.value.panCard,
+        panId: this.pan,
+        Address: this.companyForm.value.Address,
+        companyLogo: this.companyId,
+        currency: this.companyForm.value.currency,
+        phoneNumber: this.companyForm.value.phoneNumber,
+        userId: this.userId
 
-  }
-  this.companyService.createCompany(data).subscribe(value => {
-    this.submitted = false;
-    this.toastr.success('Congo!', 'Successfully Created'),
-      console.log('user', value)
-    let result: any = {}
-    result = value
-    this.companyForm.reset();
-    this.loader = false;
-  },
-    err => {
-      console.log(err)
-      this.submitted = false;
-      this.loader = false;
-      this.toastr.error('Error!', 'Server Error')
-      this.companyForm.reset();
-    })
-  console.log("data", data);
-}
+      }
+      this.companyService.createCompany(data).subscribe(value => {
+        this.submitted = false;
+        this.toastr.success('Congo!', 'Successfully Created'),
+          console.log('user', value)
+        let result: any = {}
+        result = value
+        this.companyForm.reset();
+        this.loader = false;
+      },
+        err => {
+          console.log(err)
+          this.submitted = false;
+          this.loader = false;
+          this.toastr.error('Error!', 'Server Error')
+          this.companyForm.reset();
+        })
+      console.log("data", data);
+    }
   }
   /*******************************FILE UPLOAD SECTION**********************/
   upload(event, type) {
@@ -157,7 +159,7 @@ if(this.companyForm.valid){
     this.companyService.fileUpload(formData).subscribe(response => {
       this.loader = false;
       this.toastr.success('Great !', 'File Successfully Uploaded'),
-      console.log(response);
+        console.log(response);
       let result: any = {};
       result = response;
       if (type == "companyLogo") {
@@ -182,6 +184,9 @@ if(this.companyForm.valid){
       console.log(this.companyForm.value)
     }, err => {
       console.log(err);
+      this.loader = false;
+      this.toastr.error('oops !', 'File Upload Failed');
+
     });
   }
 }

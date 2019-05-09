@@ -34,7 +34,7 @@ button.submitBtn {
     margin-right: 1em;
 }
 .contractorButton {
-    padding-left: 5em;
+   text-align: center;
 }
 button.cancelBtn {
     height: 44px;

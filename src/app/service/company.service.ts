@@ -18,6 +18,12 @@ export class CompanyService {
  /****************************FILE UPLOAD METHOD*****************************/
  fileUpload(data) {
   console.log('file data', data)
-  return this.httpClient.post(APIURL+ 'file/upload', data)
+  return this.httpClient.post(APIURL+ 'file/upload', data);
 }
+
+createContractor(data){
+  console.log(data);
+  return this.httpClient.post(APIURL+ 'contractor/create', data)
+}
+
 }
