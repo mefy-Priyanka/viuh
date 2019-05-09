@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CreatecontractorComponent implements OnInit {
 
-  
+
   @ViewChild('regId') regId: ElementRef;
   @ViewChild('companyLogo') companyLogo: ElementRef;
   @ViewChild('tradeLicenseId') tradeLicenseId: ElementRef;
@@ -37,7 +37,7 @@ export class CreatecontractorComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     private router: Router, private companyService:
-     CompanyService, private toastr: ToastrService) {
+      CompanyService, private toastr: ToastrService) {
 
     this.userId = localStorage.getItem('userId');
 
@@ -56,15 +56,15 @@ export class CreatecontractorComponent implements OnInit {
     };
 
   }
-  createContractorForm(){
+  createContractorForm() {
     return this.formBuilder.group({
-      email: ['',[ Validators.required,Validators.email]],
+      email: ['', [Validators.required, Validators.email]],
       contactPersonName: ['', Validators.required],
-      companyName: ['', Validators.required],
-      regNo: ['', Validators.required],
-      gstNo: ['', Validators.required],
-      tradeLicenseNo: ['', Validators.required],
-      invoiceNo: ['', Validators.required],
+      companyName: ['',],
+      regNo: [''],
+      gstNo: [''],
+      tradeLicenseNo: [''],
+      invoiceNo: ['',],
       panCard: ['', Validators.required],
       Address: ['', Validators.required],
       currency: ['', Validators.required],
@@ -76,7 +76,6 @@ export class CreatecontractorComponent implements OnInit {
   }
   ngOnInit() {
     this.contractorForm = this.createContractorForm()
-
     this.contractorForm.valueChanges.subscribe(() => {
       this.onContractorFormValuesChanged();
     });
@@ -123,7 +122,7 @@ export class CreatecontractorComponent implements OnInit {
         userId: this.userId
 
       }
-      console.log('let data be',data);
+      console.log('let data be', data);
       this.companyService.createContractor(data).subscribe(value => {
         this.submitted = false;
         this.toastr.success('Congo!', 'Successfully Created'),
@@ -185,31 +184,31 @@ export class CreatecontractorComponent implements OnInit {
       console.log(err);
       this.reset(type);
       this.loader = false;
-      
+
       this.toastr.error('oops !', 'File Upload Failed');
 
     });
   }
-reset(type) {
-  if (type == "companyLogo") {
-    this.companyLogo.nativeElement.value = "";
-  }
-  else if (type == "tradeLicenseId") {
-    this.tradeLicenseId.nativeElement.value = "";
-  }
-  else if (type == "gstId") {
-    this.gstId.nativeElement.value = "";
-  }
-  else if (type == "invoiceId") {
-    this.invoiceId.nativeElement.value = "";
-  }
-  else if (type == "panId") {
-    this.panId.nativeElement.value = "";
-  }
-  else if (type == "regId") {
-    this.regId.nativeElement.value = "";
+  reset(type) {
+    if (type == "companyLogo") {
+      this.companyLogo.nativeElement.value = "";
+    }
+    else if (type == "tradeLicenseId") {
+      this.tradeLicenseId.nativeElement.value = "";
+    }
+    else if (type == "gstId") {
+      this.gstId.nativeElement.value = "";
+    }
+    else if (type == "invoiceId") {
+      this.invoiceId.nativeElement.value = "";
+    }
+    else if (type == "panId") {
+      this.panId.nativeElement.value = "";
+    }
+    else if (type == "regId") {
+      this.regId.nativeElement.value = "";
+
+    }
 
   }
-
-}
 }
