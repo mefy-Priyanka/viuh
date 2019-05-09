@@ -21,7 +21,8 @@ export class SidenavComponent implements OnInit {
   // **************dashboard toggle*********************
   abc(a){
     this.SharedService.abc(a);
-    console.log('Data sent');
+    // this.router.navigate(['/dashboard/fleet']);
+    console.log('Data sent',a);
   }
   // **************dashboard toggle*********************
     

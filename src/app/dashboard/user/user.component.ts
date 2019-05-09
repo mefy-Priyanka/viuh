@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../../service/user.service';
 import { ToastrService } from 'ngx-toastr';
+import { SharedService } from '../../service/shared.service';
 
 declare var $: any;
 
@@ -15,14 +16,14 @@ export class UserComponent implements OnInit {
   createuserFormErrors: any;
   public loader: boolean = false;
   public adminId: any = {};
-  public uModal:boolean=false;
+  public uModal: boolean = false;
   submitted: boolean = false; //SHOW ERROR,IF INVALID FORM IS SUBMITTED
   pass: any;
-  constructor(private formBuilder: FormBuilder, private userService: UserService, private toastr: ToastrService ) {
+  constructor(private formBuilder: FormBuilder, private SharedService: SharedService, private userService: UserService, private toastr: ToastrService) {
     this.adminId = localStorage.getItem('userId');
 
     this.createuserFormErrors = {
-      name:{},
+      name: {},
       email: {},
       password: {},
       organisation: {},
@@ -56,13 +57,15 @@ export class UserComponent implements OnInit {
   createpersonForm() {
     return this.formBuilder.group({
       name: ['', Validators.required],
-      email: ['',[ Validators.required,Validators.email]],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
       organisation: ['', Validators.required],
       role: ['', Validators.required]
     });
   }
   saveUser() {
+
+
     console.log(this.createUserForm.value)
     console.log(this.adminId)
     this.submitted = true;
@@ -76,7 +79,7 @@ export class UserComponent implements OnInit {
         window.alert('You have entered less than 6 characters for password');
       }
       let data = {
-        name:this.createUserForm.value.name,
+        name: this.createUserForm.value.name,
         email: this.createUserForm.value.email,
         password: this.createUserForm.value.password,
         superAdminId: this.adminId,
@@ -89,10 +92,12 @@ export class UserComponent implements OnInit {
         this.toastr.success('Congo!', 'Successfully Created'),
           console.log('user', value)
         let result: any = {}
-        result = value
+        result = value;
+       
+    
         this.createUserForm.reset();
         this.loader = false;
-        // $('#userModal').modal('hide');
+        this.SharedService.abc('accountdetail');
       },
         err => {
           this.submitted = false;
