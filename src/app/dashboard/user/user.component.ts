@@ -3,7 +3,7 @@ import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { UserService } from '../../service/user.service';
 import { ToastrService } from 'ngx-toastr';
 
-declare var $: any;
+declare var $ :any;
 
 @Component({
   selector: 'app-user',
@@ -13,10 +13,11 @@ declare var $: any;
 export class UserComponent implements OnInit {
   createUserForm: FormGroup;
   createuserFormErrors: any;
+  public allUserList:any=[];
   public loader: boolean = false;
   public adminId: any = {};
-  submitted: boolean = false; //SHOW ERROR,IF INVALID FORM IS SUBMITTED
-  a: any;
+   public submitted: boolean = false; //SHOW ERROR,IF INVALID FORM IS SUBMITTED
+
   constructor(private formBuilder: FormBuilder, private userService: UserService, private toastr: ToastrService, ) {
     this.adminId = localStorage.getItem('userId');
 
@@ -34,6 +35,7 @@ export class UserComponent implements OnInit {
     this.createUserForm.valueChanges.subscribe(() => {
       this.onUserFormValuesChanged();
     });
+    this. userList()
   }
   /******************************IT CATCHES ALL CHANGES IN FORM******************/
   onUserFormValuesChanged() {
@@ -88,17 +90,32 @@ export class UserComponent implements OnInit {
         result = value
         this.createUserForm.reset();
         this.loader = false;
-        // $('#userModal').modal('hide');
+        $('#userModal').modal('hide');
       },
         err => {
+          console.log(err)
           this.submitted = false;
           this.loader = false;
           this.toastr.error('Error!', 'Server Error')
           this.createUserForm.reset();
-          // $('#userModal').modal('hide');
+          $('#userModal').modal('hide');
           //initialize all modals
           // $('#userModal').closeModal();
         })
     }
   }
+  /***************************** GET USERLIST BY SUPERADMIN ****************** */
+  userList(){
+    this.userService.userlist( this.adminId).subscribe(data=>{
+      let result:any={}
+      result=data
+      this.allUserList=result.result;
+      console.log('alluserlist',this.allUserList)
+    },err=>{
+      console.log(err)
+    })
+  }
+  /********************************END**************************************/
+
+
 }

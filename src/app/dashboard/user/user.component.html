@@ -23,11 +23,11 @@
         </a>
     <div class="ft">
       <h1>Users
-        <button class="addItema" data-toggle="modal" data-target="#userModal"><i class="fa fa-plus-circle" aria-hidden="true"></i>Add</button>
+        <button  class="addItema" data-toggle="modal" data-target="#userModal"><i class="fa fa-plus-circle" aria-hidden="true"></i>Add</button>
       </h1>
     </div>
     <div class="card margina">
-        <div class="tableide">
+        <div class="tableide" *ngFor="let list of allUserList; let i = index">
             <div class="row">
                 <div id="no-more-tables">
                     <table class="col-md-12 table-bordered table-striped table-condensed cf">
@@ -42,19 +42,12 @@
                     </thead>
                     <tbody>
                       <tr>
-                        <td class="thno" data-title="NO.">1.</td>
-                        <td class="thname" data-title="NAME">sanjaysinha.mail@gmail.com</td>
-                        <td class="thname" data-title="VAT ID">yes</td>
-                        <td data-title="ADDRESS" class="numeric">2019-02-20 14:37</td>
+                        <td class="thno" data-title="NO.">{{i+1}}.</td>
+                        <td class="thname" data-title="NAME">{{list?.email}}</td>
+                        <td class="thname" data-title="VAT ID">{{ list?.is_active}}</td>
+                        <td data-title="ADDRESS" class="numeric">{{list?.createdDate}}</td>
                         <td data-title="VAT ID" class="numeric"></td>
                       </tr>
-                      <tr>
-                          <td class="thno" data-title="NO.">1.</td>
-                          <td class="thname" data-title="NAME">sanjaysinha.mail@gmail.com</td>
-                          <td class="thname" data-title="VAT ID">yes</td>
-                          <td data-title="ADDRESS" class="numeric">2019-02-20 14:37</td>
-                          <td data-title="VAT ID" class="numeric"></td>
-                        </tr>
                     </tbody>
                   </table>
                 </div>
@@ -64,8 +57,8 @@
     </div>
     </section>
       <!-- Modal -->
-  <div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="vertical-alignment-helper">
+  <div  class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="vertical-alignment-helper" >
         <div class="modal-dialog modal-lg vertical-align-center">
           <div class="modal-content">
             <div class="modal-header">
@@ -76,7 +69,7 @@
               <h4 class="modal-title accountTitle">Create User</h4>
     
             </div>
-            <div class="modal-body">
+            <div class="modal-body" >
               <form [formGroup]="createUserForm">
                 <div class="row">
                   <div class="input-field col s3">
