@@ -71,6 +71,15 @@
             </div>
             <div class="modal-body" >
               <form [formGroup]="createUserForm">
+                  <div class="row">
+                      <div class="input-field col s3">
+                        <label>Name<span class="blue_star">*</span></label>
+                      </div>
+                      <div class="input-field col s7">
+                        <input  type="text" class="validate" formControlName="name">
+                        <p class="errormessage" *ngIf="createuserFormErrors.name.required || (createUserForm.controls.name.pristine && submitted)">Enter Name</p>
+                      </div>
+                    </div>
                 <div class="row">
                   <div class="input-field col s3">
                     <label>Email<span class="blue_star">*</span></label>
@@ -85,7 +94,8 @@
                     <label>Password</label>
                   </div>
                   <div class="input-field col s7">
-                    <input type="password" class="validate" id="pass1" formControlName="password">
+                    <input type="password" class="validate" id="pass1" minlength="6" formControlName="password">
+                    <p class="errormessage" *ngIf="createuserFormErrors.password.minlength">Password should be of 6 digit</p>
                     <p class="errormessage" *ngIf="createuserFormErrors.password.required || (createUserForm.controls.password.pristine && submitted)">Password can not be empty</p>
 
                   </div>
@@ -118,8 +128,8 @@
                       </div>
                     </div>
                 <div class="modal-footer">
-                    <button type="button" class="saveBtn" data-dismiss="modal" (click)="saveUser()">Save</button>
-                    <button type="button" class="cancelBtn">Cancel</button>
+                    <button type="button" class="saveBtn" data-dismiss="modal" [disabled]="!createUserForm.valid" (click)="saveUser()">Save</button>
+                    <button type="button" class="cancelBtn" data-dismiss="modal">Cancel</button>
                 </div>
               </form>
             </div>

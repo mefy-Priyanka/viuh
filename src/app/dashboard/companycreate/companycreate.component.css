@@ -79,6 +79,10 @@ form.createContractorForm .row {
 .imgFile {
     margin: 2em;
 }
+button.submitBtn:disabled {
+    cursor: not-allowed;
+    background: #2d425b;
+}
 /* company create css */
 
 /* Responsive css */

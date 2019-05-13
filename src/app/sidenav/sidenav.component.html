@@ -1,7 +1,7 @@
 <nav class="navbar navbar-inverse navbar-fixed-left">
    <div class="">
       <div class="navbar-header">
-         <span class="lalbabat">Lalbaba Enterprise</span>
+         <span class="lalbabat">{{userDetail?.organisation}}</span>
          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
             aria-controls="navbar">
             <span class="icon-bar"></span>
@@ -136,6 +136,12 @@
             </ul>
          </div>
          <hr class="mHrLine">
+         <div class="row leftCet" (click)="abc('contact')">
+            <ul>
+               <li><i class="fa fa-money" aria-hidden="true"></i></li>
+               <li class="order">Contact</li>
+            </ul>
+         </div>
       </div>
    </div>
 </nav>

@@ -223,19 +223,22 @@ div#userModal i.fa.fa-question-circle-o {
     margin-left: 10px;
 }
 div#userModal {
-    max-height: 73%;
+    max-height: 83%;
 }
 div#userModal .modal-header {
     padding-top: 0;
 }
-
+button.saveBtn:disabled {
+    cursor: not-allowed;
+    background: #2d425b;
+}
 /* modal css */
 /* user css */
 /* Responsive css */
 @media only screen and (min-width: 320px) and (max-width: 767px){
     div#userModal {
       width: 100%;
-      max-height: 59% !important;
+      max-height: 70% !important;
     }
     }
     @media only screen and (min-width: 768px) and (max-width: 1024px){
@@ -245,7 +248,7 @@ div#userModal .modal-header {
     }
     @media only screen and (max-width: 1024px){
         div#userModal {
-            max-height: 39%;
+            max-height: 44%;
         }
         }
     /* Responsive css */
