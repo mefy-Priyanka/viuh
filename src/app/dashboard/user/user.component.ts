@@ -16,11 +16,16 @@ export class UserComponent implements OnInit {
   createuserFormErrors: any;
   public loader: boolean = false;
   public adminId: any = {};
-  public uModal: boolean = false;
+  public superadminId: any = {};
+  // public uModal: boolean = false;
   submitted: boolean = false; //SHOW ERROR,IF INVALID FORM IS SUBMITTED
   pass: any;
+  userlistDetail: any = [];
+
   constructor(private formBuilder: FormBuilder, private SharedService: SharedService, private userService: UserService, private toastr: ToastrService) {
     this.adminId = localStorage.getItem('userId');
+    this.superadminId = localStorage.getItem('superadminId');
+
 
     this.createuserFormErrors = {
       name: {},
@@ -32,12 +37,29 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.userList();
+
     this.createUserForm = this.createpersonForm()
 
     this.createUserForm.valueChanges.subscribe(() => {
       this.onUserFormValuesChanged();
     });
   }
+  // *****UserInfo***********
+  userList() {
+    this.userService.userList(this.superadminId).subscribe(data => {
+      console.log(data)
+      let result: any = {}
+      result = data;
+      this.userlistDetail = result.result
+      console.log(this.userlistDetail)
+
+    },
+      error => {
+        console.log(error)
+      })
+  }
+  /********************END*******************************/
   /******************************IT CATCHES ALL CHANGES IN FORM******************/
   onUserFormValuesChanged() {
     for (const field in this.createuserFormErrors) {
@@ -93,8 +115,8 @@ export class UserComponent implements OnInit {
           console.log('user', value)
         let result: any = {}
         result = value;
-       
-    
+
+
         this.createUserForm.reset();
         this.loader = false;
         this.SharedService.abc('accountdetail');

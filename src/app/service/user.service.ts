@@ -24,5 +24,9 @@ export class UserService {
     return this.httpClient.post(APIURL + 'user/userCreate', data)
   }
   /********************************END**************************************/
-
+  /* *******************************Get user list**************************/
+  userList(superadminId) {
+    console.log("superAdminId",superadminId)
+    return this.httpClient.get(APIURL + 'user/userBySuperAdmin')
+  }
 }

@@ -77,9 +77,9 @@
                 <div class="row">
                   <div class="input-field col s12">
                     <!-- <i class="material-icons prefix">lock</i> -->
-                    <input id="icon_prefix" type="password" class="validate" formControlName="password">
+                    <input id="p" type="password" class="validate" formControlName="password">
                     <p class="error" [ngStyle]="{'font-size':'12px'}" *ngIf="userFormErrors.password.required || (userForm.controls.password.pristine && submitted)">Can't be empty</p>
-                    <label for="icon_prefix">Password <span class="blue_star">*</span></label>
+                    <label for="p">Password <span class="blue_star">*</span></label>
                   </div>
                 </div>
                 <button class="login" (click)="login()">LOGIN</button>

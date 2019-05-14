@@ -33,28 +33,25 @@
                     <table class="col-md-12 table-bordered table-striped table-condensed cf">
                     <thead class="cf">
                       <tr>
-                        <th class="numeric">NO.</th>
+                        <th class="numeric">NAME</th>
                         <th>EMAIL</th>
                         <th>IS ACTIVE</th>
+                        <th>ORGANISATION</th>
+                        <th>ROLE</th>
                         <th>CREATED AT</th>
-                        <th><i class="fa fa-question-circle-o" aria-hidden="true"></i></th>
+                        <!-- <th><i class="fa fa-question-circle-o" aria-hidden="true"></i></th> -->
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td class="thno" data-title="NO.">1.</td>
-                        <td class="thname" data-title="NAME">sanjaysinha.mail@gmail.com</td>
-                        <td class="thname" data-title="VAT ID">yes</td>
-                        <td data-title="ADDRESS" class="numeric">2019-02-20 14:37</td>
-                        <td data-title="VAT ID" class="numeric"></td>
+                      <tr *ngFor="let list of userlistDetail ; let i=index">
+                        <td class="thno" data-title="NAME">{{list.name}}</td>
+                        <td class="thname" data-title="EMAIL">{{list.email}}</td>
+                        <td class="thname" data-title="IS ACTIVE">{{list.is_active}}</td>
+                        <td data-title="ORGANISATION">{{list.organisation}}</td>
+                        <td data-title="ROLE">{{list.role}}</td>
+                        <td data-title="CREATED">{{list.createdDate}}</td>
+                        <!-- <td data-title="EDIT">A</td> -->
                       </tr>
-                      <tr>
-                          <td class="thno" data-title="NO.">1.</td>
-                          <td class="thname" data-title="NAME">sanjaysinha.mail@gmail.com</td>
-                          <td class="thname" data-title="VAT ID">yes</td>
-                          <td data-title="ADDRESS" class="numeric">2019-02-20 14:37</td>
-                          <td data-title="VAT ID" class="numeric"></td>
-                        </tr>
                     </tbody>
                   </table>
                 </div>
