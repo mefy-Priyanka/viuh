@@ -112,6 +112,14 @@ button.cancelBtn {
     border-radius: 5px;
     margin-right: 1em;
 }
+.row.at {
+    margin: 0;
+}
+p.docType.ae {
+    color: #9E9E9E;
+    font-size: 14px;
+    font-weight: 500;
+}
 /* fleet css */
 
 

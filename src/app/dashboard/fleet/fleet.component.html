@@ -35,10 +35,7 @@
                   
 
                 </select>
-                <div class="input-field col s3">
-                  <p><label>Doc Number</label></p>
-                  <input placeholder="dd/mm/yyyy" id="first_name" type="text" [(ngModel)]="selected.docnumber" class="validate" [ngModelOptions]="{standalone: true}"> 
-                </div>
+            
 
               </div>
               <div class="input-field col s3">
@@ -46,8 +43,11 @@
                 <div class="input-field myFilet aeto"><input type="file" class="validate" class="fileType" #mydoc (change)="upload($event,selectedOption)" >
                 </div>
               </div>
-
               <div class="input-field col s3">
+                  <p><label>Doc Number</label></p>
+                  <input placeholder="Enter Number" id="first_name" type="text" [(ngModel)]="selected.docnumber" class="validate" [ngModelOptions]="{standalone: true}"> 
+                </div>
+              <div class="input-field col s2">
                 <p><label>Valid Upto</label></p>
                 <input placeholder="dd/mm/yyyy" id="first_name" type="text" [(ngModel)]="selected.valid" class="validate" [ngModelOptions]="{standalone: true}"> 
               </div>
@@ -58,31 +58,31 @@
             </div>
             
 
-            <div class="row">
-              <div class="col-md-3">
+            <div class="row at">
+              <div class="col-md-4">
                 <p class="docType">DOC Type</p>
                 
               </div>
-              <div class="col-md-3">
+              <div class="col-md-4">
                 <p class="docType">DOC Name</p>
                
               </div>
-              <div class="col-md-3">
+              <div class="col-md-4">
                 <p class="docType">VALID UPTO</p>
               
               </div>
             </div>
-            <div class="row" *ngFor='let x of vardata'>
+            <div class="row at" *ngFor='let x of vardata'>
               <div class="col-md-4">
-                <p class="docType">{{x.name}}</p>
+                <p class="docType ae">{{x.name}}</p>
                 
               </div>
               <div class="col-md-4">
-                <p class="docType">{{x.number}}</p>
+                <p class="docType ae">{{x.number}}</p>
                
               </div>
               <div class="col-md-4">
-                <p class="docType">{{x.valid}}</p>
+                <p class="docType ae">{{x.valid}}</p>
               
               </div>
             </div>
