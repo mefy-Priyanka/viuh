@@ -26,4 +26,9 @@ createContractor(data){
   return this.httpClient.post(APIURL+ 'contractor/create', data)
 }
 
+fleetcreation(data){
+  console.log(data);
+  return this.httpClient.post(APIURL+ 'fleet/create', data)
+}
+
 }

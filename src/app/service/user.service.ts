@@ -25,4 +25,13 @@ export class UserService {
   }
   /********************************END**************************************/
 
+
+
+  userlist(id){
+    return this.httpClient.get(APIURL + 'user/userBySuperAdmin?superAdminId='+id)
+
+  }
+  delete(id){
+    return this.httpClient.delete(APIURL+'user/delete?userId='+id)
+  }
 }

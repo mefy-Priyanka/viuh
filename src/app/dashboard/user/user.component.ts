@@ -3,6 +3,7 @@ import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { UserService } from '../../service/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { SharedService } from '../../service/shared.service';
+import * as moment from 'moment';
 
 declare var $: any;
 
@@ -19,9 +20,13 @@ export class UserComponent implements OnInit {
   public uModal: boolean = false;
   submitted: boolean = false; //SHOW ERROR,IF INVALID FORM IS SUBMITTED
   pass: any;
+  userDetail: any;
+  role: string;
+  organisation: string;
   constructor(private formBuilder: FormBuilder, private SharedService: SharedService, private userService: UserService, private toastr: ToastrService) {
     this.adminId = localStorage.getItem('userId');
-
+    this.role=localStorage.getItem('role');
+    this.organisation=localStorage.getItem('organisation')
     this.createuserFormErrors = {
       name: {},
       email: {},
@@ -31,12 +36,31 @@ export class UserComponent implements OnInit {
     };
   }
 
+  getUserDetail(){
+    this.loader=true;
+    this.userService.userlist(localStorage.getItem('SuperAdmin')).subscribe(data=>{
+      console.log(data)
+      let result :any={}
+      result=data;
+      this.userDetail=result.result
+      console.log(this.userDetail);
+      this.loader=false;
+    },
+    error=>{
+      console.log(error);
+      this.loader=false;
+      
+    })
+  }
+     /********************END*******************************/
+
   ngOnInit() {
     this.createUserForm = this.createpersonForm()
 
     this.createUserForm.valueChanges.subscribe(() => {
       this.onUserFormValuesChanged();
     });
+    this.getUserDetail();
   }
   /******************************IT CATCHES ALL CHANGES IN FORM******************/
   onUserFormValuesChanged() {
@@ -94,10 +118,12 @@ export class UserComponent implements OnInit {
         let result: any = {}
         result = value;
        
-    
+        this.getUserDetail();
+
         this.createUserForm.reset();
         this.loader = false;
-        this.SharedService.abc('accountdetail');
+
+        // this.SharedService.abc('accountdetail');
       },
         err => {
           this.submitted = false;
@@ -107,7 +133,22 @@ export class UserComponent implements OnInit {
           // $('#userModal').modal('hide');
           //initialize all modals
           // $('#userModal').closeModal();
-        })
+        });
     }
+  }
+
+
+  delete(id){
+    this.loader=true;
+    this.userService.delete(id).subscribe(result=>{
+      console.log('delete',result);
+      this.getUserDetail();
+      this.loader=false
+    },
+    err=>{
+      console.log(err);
+      this.loader=false;
+    });
+    
   }
 }
