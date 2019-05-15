@@ -9,7 +9,7 @@ export class UserService {
   constructor(private httpClient: HttpClient) { }
 
   /*********************LOGIN API*****************************/
-  login(data) {
+  login(data: any) {
     return this.httpClient.post(APIURL + 'user/login', data);
   }
   /********************************END**************************************/
@@ -19,12 +19,14 @@ export class UserService {
     return this.httpClient.get(APIURL + 'user/userById?userId=' + userId)
   }
   /********************************END**************************************/
+  
   /***************************** CREATE USER BY SUPERADMIN  ****************** */
-  createUser(data) {
+  createUser(data: any) {
     return this.httpClient.post(APIURL + 'user/userCreate', data)
   }
   /********************************END**************************************/
 
+<<<<<<< HEAD
 
 
   userlist(id){
@@ -34,4 +36,14 @@ export class UserService {
   delete(id){
     return this.httpClient.delete(APIURL+'user/delete?userId='+id)
   }
+=======
+  /***************************** GET USERLIST BY SUPERADMIN ****************** */
+  userlist(superAdminId: any) {
+    return this.httpClient.get(APIURL + 'user/userBySuperAdmin?superAdminId=' + superAdminId)
+  }
+  /********************************END**************************************/
+
+
+
+>>>>>>> 467dbac61924ffafb320f22ea079d794026b457e
 }

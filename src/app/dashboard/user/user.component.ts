@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { SharedService } from '../../service/shared.service';
 import * as moment from 'moment';
 
-declare var $: any;
+declare var $ :any;
 
 @Component({
   selector: 'app-user',
@@ -15,8 +15,10 @@ declare var $: any;
 export class UserComponent implements OnInit {
   createUserForm: FormGroup;
   createuserFormErrors: any;
+  public allUserList:any=[];
   public loader: boolean = false;
   public adminId: any = {};
+<<<<<<< HEAD
   public uModal: boolean = false;
   submitted: boolean = false; //SHOW ERROR,IF INVALID FORM IS SUBMITTED
   pass: any;
@@ -24,6 +26,11 @@ export class UserComponent implements OnInit {
   role: string;
   organisation: string;
   constructor(private formBuilder: FormBuilder, private SharedService: SharedService, private userService: UserService, private toastr: ToastrService) {
+=======
+   public submitted: boolean = false; //SHOW ERROR,IF INVALID FORM IS SUBMITTED
+   public pass: any;
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private toastr: ToastrService, private SharedService: SharedService, ) {
+>>>>>>> 467dbac61924ffafb320f22ea079d794026b457e
     this.adminId = localStorage.getItem('userId');
     this.role=localStorage.getItem('role');
     this.organisation=localStorage.getItem('organisation')
@@ -60,7 +67,11 @@ export class UserComponent implements OnInit {
     this.createUserForm.valueChanges.subscribe(() => {
       this.onUserFormValuesChanged();
     });
+<<<<<<< HEAD
     this.getUserDetail();
+=======
+    this. userList()
+>>>>>>> 467dbac61924ffafb320f22ea079d794026b457e
   }
   /******************************IT CATCHES ALL CHANGES IN FORM******************/
   onUserFormValuesChanged() {
@@ -126,16 +137,18 @@ export class UserComponent implements OnInit {
         // this.SharedService.abc('accountdetail');
       },
         err => {
+          console.log(err)
           this.submitted = false;
           this.loader = false;
           this.toastr.error('Error!', 'Server Error')
           this.createUserForm.reset();
-          // $('#userModal').modal('hide');
+          $('#userModal').modal('hide');
           //initialize all modals
           // $('#userModal').closeModal();
         });
     }
   }
+<<<<<<< HEAD
 
 
   delete(id){
@@ -151,4 +164,20 @@ export class UserComponent implements OnInit {
     });
     
   }
+=======
+  /***************************** GET USERLIST BY SUPERADMIN ****************** */
+  userList(){
+    this.userService.userlist( this.adminId).subscribe(data=>{
+      let result:any={}
+      result=data
+      this.allUserList=result.result;
+      console.log('alluserlist',this.allUserList)
+    },err=>{
+      console.log(err)
+    })
+  }
+  /********************************END**************************************/
+
+
+>>>>>>> 467dbac61924ffafb320f22ea079d794026b457e
 }
