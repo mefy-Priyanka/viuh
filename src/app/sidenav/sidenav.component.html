@@ -76,7 +76,7 @@
                </li>
             </ul>
          </div>
-         <div class="row leftCet" (click)="abc('contractordetail')">
+         <div class="row leftCet" (click)="abc('contractordetail')" *ngIf='role=="superAdmin" || "admin"'>
             <ul>
                <li><i class="fa fa-sliders" aria-hidden="true"></i></li>
                <li class="order">Contractors</li>

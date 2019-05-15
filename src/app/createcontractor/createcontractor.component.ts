@@ -34,13 +34,16 @@ export class CreatecontractorComponent implements OnInit {
   invoice: any;
   pan: any;
   reg: any;
+  superadminid: string;
 
   constructor(private formBuilder: FormBuilder,
     private router: Router, private companyService:
       CompanyService, private toastr: ToastrService) {
 
+        this.superadminid=localStorage.getItem('SuperAdmin');
+        
     this.userId = localStorage.getItem('userId');
-
+    console.log(this.superadminid,this.userId)
     this.contractorFormErrors = {
       email: {},
       contactPersonName: {},
@@ -103,6 +106,7 @@ export class CreatecontractorComponent implements OnInit {
     this.loader = true;
     if (this.contractorForm.valid) {
       let data = {
+        contactPersonName:this.contractorForm.value.contactPersonName,
         email: this.contractorForm.value.email,
         companyName: this.contractorForm.value.companyName,
         regNo: this.contractorForm.value.regNo,
@@ -119,7 +123,8 @@ export class CreatecontractorComponent implements OnInit {
         companyLogo: this.companyId,
         currency: this.contractorForm.value.currency,
         phoneNumber: this.contractorForm.value.phoneNumber,
-        userId: this.userId
+        userId: this.userId,
+        superAdminId:this.superadminid
 
       }
       console.log('let data be', data);

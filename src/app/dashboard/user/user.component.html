@@ -23,7 +23,7 @@
         </a>
     <div class="ft">
       <h1>Users
-        <button  class="addItema" data-toggle="modal" data-target="#userModal"><i class="fa fa-plus-circle" aria-hidden="true"></i>Add</button>
+        <button *ngIf='role=="superAdmin"' class="addItema" data-toggle="modal" data-target="#userModal"><i class="fa fa-plus-circle" aria-hidden="true"></i>Add</button>
       </h1>
     </div>
     <div class="card margina">
@@ -43,13 +43,16 @@
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td class="thno" data-title="NO.">{{i+1}}.</td>
-                        <td class="thname" data-title="NAME">{{list?.email}}</td>
-                        <td class="thname" data-title="VAT ID">{{ list?.is_active}}</td>
-                        <td data-title="ADDRESS" class="numeric">{{list?.createdDate}}</td>
-                        <td data-title="VAT ID" class="numeric"></td>
+                      <tr *ngFor="let user of userDetail; index as i" >
+                      
+                        <td class="thno" data-title="NO.">  {{i}}.</td>
+                        <td class="thname" data-title="NAME">{{user.email}}</td>
+                        <td class="thname" data-title="VAT ID">{{user.is_active}}</td>
+                        <td data-title="ADDRESS" class="numeric">{{user.createdDate | date}}</td>
+                        <td data-title="VAT ID" class="numeric" *ngIf='role=="superAdmin"'> <i class="fa fa-trash" aria-hidden="true" (click)="delete(user._id)" ></i>
+                        </td>
                       </tr>
+                     
                     </tbody>
                   </table>
                 </div>
@@ -109,8 +112,8 @@
                     <div class="input-field col s7">
                       <select formControlName="organisation">
                         <option value="" disabled selected>Choose your option</option>
-                        <option value="lalbaba">Lalbaba</option>
-                        <option value="patro">Patro</option>
+                        <option [value]=organisation>{{organisation}}</option>
+                        <!-- <option value="patro">Patro</option> -->
                       </select>
                       <p class="errormessage" *ngIf="createuserFormErrors.organisation.required || (createUserForm.controls.organisation.pristine && submitted)">Organisation can not be empty</p>
                     </div>
