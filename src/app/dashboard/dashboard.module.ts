@@ -11,6 +11,8 @@ import { OrderComponent } from './order/order.component';
 import { CompanycreateComponent } from './companycreate/companycreate.component';
 import { SidenavComponent } from '../sidenav/sidenav.component';
 import { CreatecontractorComponent } from '../createcontractor/createcontractor.component';
+import { ContactComponent } from '../dashboard/contact/contact.component';
+import { MaprouteComponent } from './maproute/maproute.component';
 
 const routes: Routes = [
     {
@@ -24,6 +26,7 @@ const routes: Routes = [
             { path: "order", component: OrderComponent },
             { path: "contractor", component: CreatecontractorComponent },
             { path: "company", component: CompanycreateComponent },
+            { path: "contact", component: ContactComponent }
 
 
 
@@ -47,7 +50,9 @@ const routes: Routes = [
         CreatecontractorComponent,
         // ContractorcreateComponent,
         CompanycreateComponent,
-        SidenavComponent
+        ContactComponent,
+        SidenavComponent,
+        MaprouteComponent
 
     ]
 })

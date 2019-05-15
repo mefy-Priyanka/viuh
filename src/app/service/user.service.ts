@@ -9,7 +9,7 @@ export class UserService {
   constructor(private httpClient: HttpClient) { }
 
   /*********************LOGIN API*****************************/
-  login(data) {
+  login(data: any) {
     return this.httpClient.post(APIURL + 'user/login', data);
   }
   /********************************END**************************************/
@@ -19,14 +19,19 @@ export class UserService {
     return this.httpClient.get(APIURL + 'user/userById?userId=' + userId)
   }
   /********************************END**************************************/
+  
   /***************************** CREATE USER BY SUPERADMIN  ****************** */
-  createUser(data) {
+  createUser(data: any) {
     return this.httpClient.post(APIURL + 'user/userCreate', data)
   }
   /********************************END**************************************/
-  /* *******************************Get user list**************************/
-  userList(superadminId) {
-    console.log("superAdminId",superadminId)
-    return this.httpClient.get(APIURL + 'user/userBySuperAdmin')
+
+  /***************************** GET USERLIST BY SUPERADMIN ****************** */
+  userlist(superAdminId: any) {
+    return this.httpClient.get(APIURL + 'user/userBySuperAdmin?superAdminId=' + superAdminId)
   }
+  /********************************END**************************************/
+
+
+
 }

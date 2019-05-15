@@ -4,7 +4,7 @@ import { UserService } from '../../service/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { SharedService } from '../../service/shared.service';
 
-declare var $: any;
+declare var $ :any;
 
 @Component({
   selector: 'app-user',
@@ -14,15 +14,13 @@ declare var $: any;
 export class UserComponent implements OnInit {
   createUserForm: FormGroup;
   createuserFormErrors: any;
+  public allUserList:any=[];
   public loader: boolean = false;
   public adminId: any = {};
   public superadminId: any = {};
-  // public uModal: boolean = false;
-  submitted: boolean = false; //SHOW ERROR,IF INVALID FORM IS SUBMITTED
-  pass: any;
-  userlistDetail: any = [];
-
-  constructor(private formBuilder: FormBuilder, private SharedService: SharedService, private userService: UserService, private toastr: ToastrService) {
+   public submitted: boolean = false; //SHOW ERROR,IF INVALID FORM IS SUBMITTED
+   public pass: any;
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private toastr: ToastrService, private SharedService: SharedService, ) {
     this.adminId = localStorage.getItem('userId');
     this.superadminId = localStorage.getItem('superadminId');
 
@@ -37,29 +35,17 @@ export class UserComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.userList();
+    // this.userList();
 
     this.createUserForm = this.createpersonForm()
 
     this.createUserForm.valueChanges.subscribe(() => {
       this.onUserFormValuesChanged();
     });
+    this. userList()
   }
   // *****UserInfo***********
-  userList() {
-    this.userService.userList(this.superadminId).subscribe(data => {
-      console.log(data)
-      let result: any = {}
-      result = data;
-      this.userlistDetail = result.result
-      console.log(this.userlistDetail)
 
-    },
-      error => {
-        console.log(error)
-      })
-  }
-  /********************END*******************************/
   /******************************IT CATCHES ALL CHANGES IN FORM******************/
   onUserFormValuesChanged() {
     for (const field in this.createuserFormErrors) {
@@ -122,14 +108,29 @@ export class UserComponent implements OnInit {
         this.SharedService.abc('accountdetail');
       },
         err => {
+          console.log(err)
           this.submitted = false;
           this.loader = false;
           this.toastr.error('Error!', 'Server Error')
           this.createUserForm.reset();
-          // $('#userModal').modal('hide');
+          $('#userModal').modal('hide');
           //initialize all modals
           // $('#userModal').closeModal();
         })
     }
   }
+  /***************************** GET USERLIST BY SUPERADMIN ****************** */
+  userList(){
+    this.userService.userlist( this.adminId).subscribe(data=>{
+      let result:any={}
+      result=data
+      this.allUserList=result.result;
+      console.log('alluserlist',this.allUserList)
+    },err=>{
+      console.log(err)
+    })
+  }
+  /********************************END**************************************/
+
+
 }

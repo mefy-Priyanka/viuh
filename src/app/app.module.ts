@@ -24,7 +24,7 @@ import { RouterModule, Routes } from '@angular/router';
 /*****************************SERVICE****************/
 import { UserService } from './service/user.service';
 import { SharedService } from './service/shared.service';
-import { ContactComponent } from './dashboard/contact/contact.component';
+// import { ContactComponent } from './dashboard/contact/contact.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -51,7 +51,7 @@ const routes: Routes = [
     // OrderComponent,
     // ContractorcreateComponent,
     InviteComponent,
-    ContactComponent,
+    // ContactComponent,
     // AccountComponent,
     // CreatecontractorComponent,
     // CompanycreateComponent,
