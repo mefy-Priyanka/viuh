@@ -36,8 +36,7 @@ getUserDetail(){
     let result :any={}
     result=data;
     this.userDetail=result.result
-        localStorage.setItem('superadminId',result.result.superAdminId);
-        console.log("superadminId",result.result.superAdminId)
+    
 
   },
   error=>{
