@@ -13,6 +13,8 @@ import { SidenavComponent } from '../sidenav/sidenav.component';
 import { CreatecontractorComponent } from '../createcontractor/createcontractor.component';
 import { ContactComponent } from '../dashboard/contact/contact.component';
 import { MaprouteComponent } from './maproute/maproute.component';
+import { ContractorListComponent } from './contractor-list/contractor-list.component';
+import { CompanyListComponent } from './company-list/company-list.component';
 
 const routes: Routes = [
     {
@@ -52,7 +54,9 @@ const routes: Routes = [
         CompanycreateComponent,
         ContactComponent,
         SidenavComponent,
-        MaprouteComponent
+        MaprouteComponent,
+        ContractorListComponent,
+        CompanyListComponent
 
     ]
 })

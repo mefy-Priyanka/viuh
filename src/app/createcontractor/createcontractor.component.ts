@@ -3,6 +3,8 @@ import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { CompanyService } from '../service/company.service';
 import { ToastrService } from 'ngx-toastr';
+import { SharedService } from '../service/shared.service';
+
 
 @Component({
   selector: 'app-createcontractor',
@@ -38,7 +40,7 @@ export class CreatecontractorComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     private router: Router, private companyService:
-      CompanyService, private toastr: ToastrService) {
+      CompanyService, private toastr: ToastrService,private SharedService: SharedService) {
 
         this.superadminid=localStorage.getItem('SuperAdmin');
         
@@ -136,6 +138,7 @@ export class CreatecontractorComponent implements OnInit {
         result = value
         this.contractorForm.reset();
         this.loader = false;
+        this.SharedService.abc('contractorlist');
       },
         err => {
           console.log(err)

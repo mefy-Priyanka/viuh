@@ -31,4 +31,14 @@ fleetcreation(data){
   return this.httpClient.post(APIURL+ 'fleet/create', data)
 }
 
+  /***************************** GETTING LOGIN USER DETAIL ****************** */
+  companyList(superAdmin) {
+    return this.httpClient.get(APIURL + 'company/companyBySuperAdminId' ,superAdmin)
+  }
+  /********************************END**************************************/
+    /***************************** GETTING LOGIN USER DETAIL ****************** */
+    contractorList(userId) {
+      return this.httpClient.get(APIURL + 'contractor/contractByUserId' ,userId)
+    }
+    /********************************END**************************************/
 }
