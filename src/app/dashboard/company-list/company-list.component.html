@@ -1,0 +1,61 @@
+<!-- companyList-->
+<section class="corder" *ngIf="listCompany">
+      <!-- Loader -->
+<div class="loading" *ngIf="loader">
+    <div class="sk-circle">
+      <div class="sk-circle1 sk-child"></div>
+      <div class="sk-circle2 sk-child"></div>
+      <div class="sk-circle3 sk-child"></div>
+      <div class="sk-circle4 sk-child"></div>
+      <div class="sk-circle5 sk-child"></div>
+      <div class="sk-circle6 sk-child"></div>
+      <div class="sk-circle7 sk-child"></div>
+      <div class="sk-circle8 sk-child"></div>
+      <div class="sk-circle9 sk-child"></div>
+      <div class="sk-circle10 sk-child"></div>
+      <div class="sk-circle11 sk-child"></div>
+      <div class="sk-circle12 sk-child"></div>
+    </div>
+  </div>
+<!-- Loader -->
+  <a href="#" class="floatEa">
+      <i class="fa fa-envelope-o my-float"></i>
+      </a>
+  <div class="ft">
+    <h1>Company
+      <button class="addItema" (click)="companyCreate()"><i class="fa fa-plus-circle" aria-hidden="true"></i>Add</button>
+    </h1>
+  </div>
+  <div class="card margina">
+      <div class="tableide">
+          <div class="row">
+              <div id="no-more-tables">
+                  <table class="col-md-12 table-bordered table-striped table-condensed cf">
+                  <thead class="cf">
+                    <tr>
+                  
+                      <th>EMAIL</th>
+                      <th>COMPANY NAME</th>
+                      <th>PHONE NUMBER</th>
+                      <th>CURRENCY</th>
+                      <th>PAN NO.</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let company of companyDetail; index as i" >
+                      <td class="thno" data-title="NO.">{{company.email}}</td>
+                      <td class="thname" data-title="NAME"> {{company.companyName}} </td>
+                      <td class="thname" data-title="VAT ID">{{company.phoneNumber}}</td>
+                      <td data-title="ADDRESS" class="numeric">{{company.currency}}</td>
+                      <td data-title="VAT ID" class="numeric">{{company.panCard}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+          </div>
+      </div>
+
+  </div>
+  </section>
+  <!-- companyList -->
+

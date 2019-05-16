@@ -76,13 +76,13 @@
                </li>
             </ul>
          </div>
-         <div class="row leftCet" (click)="abc('contractordetail')" *ngIf='role=="superAdmin" || "admin"'>
+         <div class="row leftCet" (click)="abc('contractorlist')" *ngIf='role=="superAdmin" || "admin"'>
             <ul>
                <li><i class="fa fa-sliders" aria-hidden="true"></i></li>
                <li class="order">Contractors</li>
                <li class="dropdown flRight">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
-                     <button class="addItem" ><i class="fa fa-plus-circle" aria-hidden="true"></i>Add</button></a>
+                     <button class="addItem" (click)="abc('contractordetail')" ><i class="fa fa-plus-circle" aria-hidden="true"></i>Add</button></a>
                   <!-- <ul class="dropdown-menu">
                      <li><a href="#">Table 1</a></li>
                      <li><a href="#">Table 2</a></li>
@@ -123,11 +123,16 @@
                </li>
             </ul>
          </div>
-         <div class="row leftCet" (click)="abc('companydetail')">
+         <div class="row leftCet" (click)="abc('companylist')">
             <ul>
                <li><i class="fa fa-id-card-o" aria-hidden="true"></i></li>
                <li class="order">Company</li>
+               <li class="dropdown flRight">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
+                     <button class="addItem" (click)="abc('companydetail')" ><i class="fa fa-plus-circle" aria-hidden="true"></i>Add</button></a>
+                  </li>
             </ul>
+
          </div>
          <div class="row leftCet" (click)="abc('accountdetail')">
             <ul>
