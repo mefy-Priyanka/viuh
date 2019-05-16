@@ -19,7 +19,7 @@ export class UserService {
     return this.httpClient.get(APIURL + 'user/userById?userId=' + userId)
   }
   /********************************END**************************************/
-  
+
   /***************************** CREATE USER BY SUPERADMIN  ****************** */
   createUser(data: any) {
     return this.httpClient.post(APIURL + 'user/userCreate', data)
@@ -28,11 +28,26 @@ export class UserService {
 
 
 
-  userlist(id){
-    return this.httpClient.get(APIURL + 'user/userBySuperAdmin?superAdminId='+id)
+  userlist(id) {
+    return this.httpClient.get(APIURL + 'user/userBySuperAdmin?superAdminId=' + id)
 
   }
-  delete(id){
-    return this.httpClient.delete(APIURL+'user/delete?userId='+id)
+
+  accounttypelist() {
+    return this.httpClient.get(APIURL + 'account/accountType')
+
+  }
+
+  getaccountlist(id) {
+    return this.httpClient.get(APIURL + 'account/accountByUserId?userId='+id)
+
+  }
+  creataccount(data) {
+    return this.httpClient.post(APIURL + 'account/create', data)
+
+  }
+
+  delete(id) {
+    return this.httpClient.delete(APIURL + 'user/delete?userId=' + id)
   }
 }
