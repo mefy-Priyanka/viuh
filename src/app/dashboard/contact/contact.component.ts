@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { UserService } from 'src/app/service/user.service';
 import { ToastrService } from 'ngx-toastr';
+import { SharedService } from '../../service/shared.service';
+
 
 @Component({
   selector: 'app-contact',
@@ -20,7 +22,7 @@ export class ContactComponent implements OnInit {
   loader: boolean;
   contactlist=[];
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService, private toastr: ToastrService) {
+  constructor(private SharedService:SharedService,private formBuilder: FormBuilder, private userService: UserService, private toastr: ToastrService) {
     this.userId = localStorage.getItem('userId');
     this.role = localStorage.getItem('role');
     this.organisation = localStorage.getItem('organisation');
@@ -62,30 +64,21 @@ export class ContactComponent implements OnInit {
   }
 
 
-  getcontactlist() {
-    console.log('ggggggggggggggggggggggggggggggggggggggggggggggggggg')
-    let something: any;
-    this.userService.getcontactlist(this.userId).subscribe(result => {
-      console.log(result);
-      something = result
-      this.contactlist = (something.result);
-      console.log(this.contactlist)
-    },
-      err => {
-        console.log(err)
-      })
-  }
+
 
 
   ngOnInit() {
-    this.getcontactlist();
+   
     this.contactForm = this.createcontactForm()
     this.contactForm.valueChanges.subscribe(() => {
       this.oncontactFormValuesChanged();
     });
   }
 
+cancel(){
+  this.SharedService.abc('contact');
 
+}
   submit() {
   
     this.submitted = true;
@@ -108,6 +101,7 @@ export class ContactComponent implements OnInit {
         result = value
         this.contactForm.reset();
         this.loader = false;
+        this.SharedService.abc('contact');
       },
         err => {
           console.log(err)
@@ -118,8 +112,9 @@ export class ContactComponent implements OnInit {
         })
      
     }
-    this.getcontactlist();
+   
   }
+
 
 
 }

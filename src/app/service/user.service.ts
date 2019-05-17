@@ -60,4 +60,10 @@ export class UserService {
   delete(id) {
     return this.httpClient.delete(APIURL + 'user/delete?userId=' + id)
   }
+
+
+
+  contactdelete(id){
+    return this.httpClient.delete(APIURL+'contact/delete?contactId='+id)
+  }
 }
