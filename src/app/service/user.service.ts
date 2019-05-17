@@ -37,16 +37,26 @@ export class UserService {
     return this.httpClient.get(APIURL + 'account/accountType')
 
   }
-
-  getaccountlist(id) {
-    return this.httpClient.get(APIURL + 'account/accountByUserId?userId='+id)
-
-  }
   creataccount(data) {
     return this.httpClient.post(APIURL + 'account/create', data)
 
   }
 
+  getaccountlist(id) {
+    return this.httpClient.get(APIURL + 'account/accountByUserId?userId='+id)
+
+  }
+  getcontactlist(id) {
+    return this.httpClient.get(APIURL + 'contact/contactByAdminId?adminId='+id)
+
+  }
+  
+  creatcontact(data) {
+    return this.httpClient.post(APIURL + 'contact/create', data)
+
+  }
+
+ 
   delete(id) {
     return this.httpClient.delete(APIURL + 'user/delete?userId=' + id)
   }

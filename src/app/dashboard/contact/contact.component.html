@@ -4,7 +4,7 @@
     <h1>Contact | Create
     </h1>
   </div>
-  <form class="createContractorForm">
+  <form class="createContractorForm" [formGroup]="contactForm">
     <div class="row">
       <div class="col-md-12">
         <!-- input type -->
@@ -21,17 +21,22 @@
                             Contact Type
                           </label>
                         </p>
-                    <select class="orga">
-                      <option value="" disabled selected>Contact</option>
-                      <option value="'customer'">Customer</option>
-                      <option value="'vendor'">Vendor</option>
-                      <option value="'employee'">Employee</option>
+                    <select class="orga" formControlName="contactType">
+
+                      <option value="" disabled selected>Contact type</option>
+                      <option value="customer">Customer</option>
+                      <option value="vendor">Vendor</option>
+                      <option value="employee">Employee</option>
                     </select>
+                    <p class="errormessage" *ngIf="contactFormErrors.contactType.required || (contactForm.controls.contactType.pristine && submitted)">Please choose contact type</p>
+
                   </div>
 
                   <div class="input-field col s6">
                       <p><label>Email <span class="blue_star">*</span></label></p>
-                      <input type="text" class="validate">
+                      <input type="text" class="validate" formControlName="email">
+                      <p class="errormessage" *ngIf="contactFormErrors.email.required || contactFormErrors.email.email || (contactForm.controls.email.pristine && submitted)">Enter Valid Email</p>
+
                     </div>
 
                 </div>
@@ -44,11 +49,15 @@
                   </div> -->
                   <div class="input-field col s6">
                       <p><label>Company Name</label></p>
-                      <input type="text" class="validate">
+                      <input type="text" class="validate" formControlName="company_name">
+                      <p class="errormessage" *ngIf="contactFormErrors.company_name.required || (contactForm.controls.company_name.pristine && submitted)">Company name can't be empty</p>
+
                     </div>
                   <div class="input-field col s6">
                     <p><label>Phone Number</label></p>
-                    <input type="text" class="validate">
+                    <input type="text" class="validate" formControlName="phoneNumber">
+                    <p class="errormessage" *ngIf="contactFormErrors.phoneNumber.required || (contactForm.controls.phoneNumber.pristine && submitted)">Phone Number can't be empty</p>
+
                   </div>
 
                 </div>
@@ -56,7 +65,9 @@
               
                   <div class="input-field col s6">
                     <p><label>Website<span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate">
+                    <input type="text" class="validate" formControlName="website">
+                    <p class="errormessage" *ngIf="contactFormErrors.website.required || (contactForm.controls.website.pristine && submitted)">Website can't be empty</p>
+
                   </div>
                   <!-- <div class="input-field col s4">
                     <p><label>Phone Number</label></p>
@@ -71,7 +82,7 @@
           </div>
           <div class="row">
             <div class="contractorButton">
-              <button class="submitBtn" (click)="showContent()">Next</button>
+              <button class="submitBtn" (click)="submit()">Next</button>
               <button class="cancelBtn">Cancel</button>
             </div>
           </div>
