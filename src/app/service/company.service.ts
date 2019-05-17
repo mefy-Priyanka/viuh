@@ -38,7 +38,7 @@ fleetcreation(data){
   /********************************END**************************************/
     /***************************** GETTING LOGIN USER DETAIL ****************** */
     contractorList(userId) {
-      return this.httpClient.get(APIURL + 'contractor/contractByUserId' ,userId)
+      return this.httpClient.get(APIURL + 'contractor/contractByUserId?userId='+userId)
     }
     /********************************END**************************************/
 }

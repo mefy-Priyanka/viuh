@@ -16,13 +16,13 @@ export class FleetComponent implements OnInit {
   vardata = [];
   data = {
     rc: {
-      rc_number: '',
-      rc_doc: '',
+      number: '',
+      doc: '',
       valid_upto: ''
     },
     insurance: {
-      insurance_number: '',
-      insurance_doc: '',
+      number: '',
+      doc: '',
       valid_upto: ''
     }
   }
@@ -38,8 +38,6 @@ export class FleetComponent implements OnInit {
   trucknumber = "";
   ownership = ""
 
-
-
   constructor(private formBuilder: FormBuilder,
     private router: Router, private companyService:
       CompanyService, private toastr: ToastrService) {
@@ -54,16 +52,15 @@ export class FleetComponent implements OnInit {
 
 
   add(x, y) {
-
     console.log(x, y)
     if (y == "Rc") {
       console.log("rc")
-      this.data.rc.rc_number = x.docnumber;
+      this.data.rc.number = x.docnumber;
       this.data.rc.valid_upto = x.valid;
 
     }
     else if (y == "Insurance") {
-      this.data.insurance.insurance_number = x.docnumber;
+      this.data.insurance.number = x.docnumber;
       this.data.insurance.valid_upto = x.valid;
     }
     console.log('ssss', this.data);
@@ -83,9 +80,6 @@ export class FleetComponent implements OnInit {
     this.mydoc.nativeElement.value = "";
   }
 
-
-
-
   upload(event, type) {
     console.log(this.userId)
     console.log(event + 'file upload' + type)
@@ -104,10 +98,10 @@ export class FleetComponent implements OnInit {
       let result: any = {};
       result = response;
       if (type == "Rc") {
-        this.data.rc.rc_doc = result.upload._id;
+        this.data.rc.doc = result.upload._id;
       }
       else if (type == "Insurance") {
-        this.data.insurance.insurance_doc = result.upload._id;
+        this.data.insurance.doc = result.upload._id;
       }
       console.log('ssss', this.data);
     }, err => {
@@ -120,7 +114,7 @@ export class FleetComponent implements OnInit {
 
   submit() {
     let data = {
-      rac: this.data.rc,
+      rc: this.data.rc,
       insurance: this.data.insurance,
       truck_number: this.trucknumber,
       Ownership: this.ownership,
@@ -130,7 +124,6 @@ export class FleetComponent implements OnInit {
     console.log(data);
     this.companyService.fleetcreation(data).subscribe(result=>{
       console.log(result);
-
     },
     err=>{
       console.log(err)
