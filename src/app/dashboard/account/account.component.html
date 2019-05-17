@@ -62,11 +62,11 @@
               <div class="input-field col s7">
                 <select formControlName="accountTypeId">
                   <option value="" disabled selected>Choose your option</option>
-                  <option *ngFor="let list of accountypelist" [value]='list._id'>{{list.accountName}}</option>
-                  <!-- <option value="2">Expenses</option>
+                  <!-- <option *ngFor="let list of accountypelist" [value]='list._id'>{{list.accountName}}</option> -->
+                  <option value="2">Expenses</option>
                   <option value="3">Income</option>
                   <option value="3">Liability</option>
-                  <option value="3">Revenue</option> -->
+                  <option value="3">Revenue</option>
                 </select>
                 <p class="errormessage" *ngIf="accountFormErrors.accountTypeId.required || (accountForm.controls.accountTypeId.pristine && submitted)">Please choose one option</p>
 

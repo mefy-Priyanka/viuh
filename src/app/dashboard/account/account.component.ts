@@ -62,6 +62,7 @@ export class AccountComponent implements OnInit {
 
 
   getaccountlist() {
+console.log('getting all account')
     let something: any;
     this.userService.getaccountlist(this.userId).subscribe(result => {
       console.log(result);
@@ -108,7 +109,9 @@ export class AccountComponent implements OnInit {
         let result: any = {}
         result = value
         this.accountForm.reset();
-        this.loader = false;
+        this.loader = false;;
+        this.getaccountlist();
+        location.reload();
       },
         err => {
           console.log(err)
