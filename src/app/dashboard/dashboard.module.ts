@@ -15,6 +15,7 @@ import { ContactComponent } from '../dashboard/contact/contact.component';
 import { MaprouteComponent } from './maproute/maproute.component';
 import { ContractorListComponent } from './contractor-list/contractor-list.component';
 import { CompanyListComponent } from './company-list/company-list.component';
+import { ContactlistComponent } from '../contactlist/contactlist.component';
 
 const routes: Routes = [
     {
@@ -56,7 +57,8 @@ const routes: Routes = [
         SidenavComponent,
         MaprouteComponent,
         ContractorListComponent,
-        CompanyListComponent
+        CompanyListComponent,
+        ContactlistComponent
 
     ]
 })
