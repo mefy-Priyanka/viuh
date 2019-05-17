@@ -30,7 +30,10 @@ export class FleetComponent implements OnInit {
   truckerr: boolean;
   selectedOption = ''
   doccuments = ['Rc', 'Insurance'];
-  selected = {};
+  selected = {
+    docnumber:'',
+    valid:''
+  };
   showdata = [];
   superadminid: string;
   userId: string;
@@ -38,6 +41,10 @@ export class FleetComponent implements OnInit {
   trucknumber = "";
   ownership = ""
   selecterr: boolean;
+  ownererr: boolean;
+
+  validerr:boolean;
+  docuerr:boolean;
 
   constructor(private formBuilder: FormBuilder,
     private router: Router, private companyService:
@@ -51,8 +58,51 @@ export class FleetComponent implements OnInit {
   ngOnInit() {
   }
 
+  check1(xy) {
+    if (xy == "selectedOption") {
+      if (this.selectedOption=='') {
+        this.selecterr = true;
+      }
+      else {
+        this.selecterr = false;
+      }
+    }
+
+    if (xy == "docnumbers") {
+      if (this.selected.docnumber=='') {
+        this.docuerr = true;
+      }
+      else {
+        this.docuerr = false;
+      }
+    }
+
+
+    if (xy == "valid") {
+      if (this.selected.valid=='') {
+        this.validerr = true;
+      }
+      else {
+        this.validerr = false;
+      }
+    }
+
+  }
 
   add(x, y) {
+
+    if (this.selectedOption == '') {
+      this.selecterr = true;
+      return;
+    }
+    if (this.selected.docnumber == '') {
+      this.docuerr = true;
+      return;
+    }
+    if (this.selected.valid == '') {
+      this.validerr = true;
+      return;
+    }
     console.log(x, y)
     if (y == "Rc") {
       console.log("rc")
@@ -76,7 +126,10 @@ export class FleetComponent implements OnInit {
       name: y
     }
     this.vardata.push(data);
-    this.selected = {};
+    this.selected = {
+      docnumber:'',
+      valid:''
+    };
     this.selectedOption = '';
     this.mydoc.nativeElement.value = "";
   }
@@ -113,28 +166,37 @@ export class FleetComponent implements OnInit {
     });
   }
 
-  check(){
-    console.log('shhg')
-    if(this.trucknumber==''){
-      this.truckerr=true;
+  check(xy) {
+    if (xy == 'trucknumber') {
+      if (this.trucknumber == '') {
+        this.truckerr = true;
+      }
+      else {
+        this.truckerr = false;
+      }
     }
-    else{
-      this.truckerr=false;
+
+    if (xy == 'ownership') {
+      if (this.ownership == '') {
+        this.ownererr = true;
+      }
+      else {
+        this.ownererr = false;
+      }
     }
-    if(this.selectedOption=''){
-      this.selecterr=true;
-    }
-    else{
-      this.selecterr=false;
-    }
+
   }
   submit() {
-    if(this.trucknumber==''){
-      this.truckerr=true;
+    if (this.trucknumber == '') {
+      this.truckerr = true;
       return;
     }
-    else if(this.selectedOption==''){
-      this.selecterr=true;
+    else if (this.ownership == '') {
+      this.ownererr = true;
+      return;
+    }
+    else if (this.doccuments.length != 0) {
+      alert('please provide all doccuments');
       return;
     }
     let data = {

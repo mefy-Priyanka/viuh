@@ -11,75 +11,82 @@
             <div class="row">
               <div class="input-field col s6">
                 <p><label>Truck Number</label></p>
-                <input type="text" class="validate" [(ngModel)]="trucknumber" [ngModelOptions]="{standalone: true}" (keyup)="check()">
-                <p *ngIf="truckerr">truck number can't be emplty</p>
+                <input type="text" class="validate" [(ngModel)]="trucknumber" [ngModelOptions]="{standalone: true}"
+                  (keyup)="check('trucknumber')">
+                <p class="errormessage" *ngIf="truckerr">Truck number can't be empty</p>
               </div>
               <div class="input-field col s6">
                 <p><label>Ownership <span class="blue_star">*</span></label></p>
-                <select [(ngModel)]="ownership" [ngModelOptions]="{standalone: true}" >
+                <select [(ngModel)]="ownership" [ngModelOptions]="{standalone: true}" (change)="check('ownership')">
                   <option value="" disabled selected>Ownership</option>
                   <option value="1">Owned</option>
                   <option value="2">Contract</option>
                 </select>
+                <p class="errormessage" *ngIf="ownererr">please choose ownership</p>
               </div>
             </div>
             <p><span class="blue_star">******Upload Files</span></p>
             <div class="row">
               <div class="input-field col s3">
                 <p><label>Document <span class="blue_star">*</span></label></p>
-                <select [(ngModel)]="selectedOption" [ngModelOptions]="{standalone: true}" (change)=check() >
+                <select [(ngModel)]="selectedOption" [ngModelOptions]="{standalone: true}"
+                  (change)="check1('selectedOption')">
                   <option value="" disabled selected>Document</option>
-                    <option *ngFor="let title of doccuments" [value]='title'>{{title}}</option>
+                  <option *ngFor="let title of doccuments" [value]='title'>{{title}}</option>
                 </select>
-            <p *ngIf="selecterr">please choose type</p>
-
+                <p *ngIf="selecterr">please choose doccument</p>
               </div>
               <div class="input-field col s3">
                 <p><label>Company Logo</label></p>
-                <div class="input-field myFilet aeto"><input type="file" class="validate" class="fileType" #mydoc (change)="upload($event,selectedOption)" >
+                <div class="input-field myFilet aeto"><input type="file" class="validate" class="fileType" #mydoc
+                    (change)="upload($event,selectedOption)">
                 </div>
               </div>
               <div class="input-field col s3">
-                  <p><label>Doc Number</label></p>
-                  <input placeholder="Enter Number" id="first_name" type="text" [(ngModel)]="selected.docnumber" class="validate" [ngModelOptions]="{standalone: true}"> 
-                </div>
+                <p><label>Doc Number</label></p>
+                <input (keyup)="check1('docnumbers')" placeholder="Enter Number" id="first_name" type="text"
+                  [(ngModel)]="selected.docnumber" class="validate" [ngModelOptions]="{standalone: true}">
+                  <p *ngIf="docuerr">can't be empty</p>
+              </div>
               <div class="input-field col s2">
                 <p><label>Valid Upto</label></p>
-                <input placeholder="dd/mm/yyyy" id="first_name" type="text" [(ngModel)]="selected.valid" class="validate" [ngModelOptions]="{standalone: true}"> 
+                <input (keyup)="check1('valid')" placeholder="dd/mm/yyyy" id="first_name" type="text"
+                  [(ngModel)]="selected.valid" class="validate" [ngModelOptions]="{standalone: true}">
+                  <p *ngIf="validerr">can't be empty</p>
               </div>
               <div class="input-field col s1">
                 <button class="addBtn" (click)="add(selected,selectedOption)">+</button>
               </div>
 
             </div>
-            
+
 
             <div class="row at">
               <div class="col-md-4">
                 <p class="docType">DOC Type</p>
-                
+
               </div>
               <div class="col-md-4">
                 <p class="docType">DOC Name</p>
-               
+
               </div>
               <div class="col-md-4">
                 <p class="docType">VALID UPTO</p>
-              
+
               </div>
             </div>
             <div class="row at" *ngFor='let x of vardata'>
               <div class="col-md-4">
                 <p class="docType ae">{{x.name}}</p>
-                
+
               </div>
               <div class="col-md-4">
                 <p class="docType ae">{{x.number}}</p>
-               
+
               </div>
               <div class="col-md-4">
                 <p class="docType ae">{{x.valid}}</p>
-              
+
               </div>
             </div>
 
