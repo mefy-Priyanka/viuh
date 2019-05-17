@@ -17,7 +17,9 @@
     
         <app-createcontractor *ngIf="sharenav=='contractordetail'"></app-createcontractor>
         <app-contractor-list *ngIf="sharenav=='contractorlist'"></app-contractor-list>
-        <app-contact *ngIf="sharenav=='contact'"></app-contact>
+
+        <app-contactlist *ngIf="sharenav=='contact'"></app-contactlist>
+        <app-contact *ngIf="sharenav=='contactdetail'"></app-contact>
         <app-maproute *ngIf="sharenav=='map'"></app-maproute>
         <!-- <app-contractor-list *ngIf="sharenav=='contractlist'"></app-contractor-list> -->
                 <!-- <app-contractor *ngIf="contractor"></app-contractor> -->
