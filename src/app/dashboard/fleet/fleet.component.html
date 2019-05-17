@@ -11,7 +11,8 @@
             <div class="row">
               <div class="input-field col s6">
                 <p><label>Truck Number</label></p>
-                <input type="text" class="validate" [(ngModel)]="trucknumber" [ngModelOptions]="{standalone: true}">
+                <input type="text" class="validate" [(ngModel)]="trucknumber" [ngModelOptions]="{standalone: true}" (keyup)="check()">
+                <p *ngIf="truckerr">truck number can't be emplty</p>
               </div>
               <div class="input-field col s6">
                 <p><label>Ownership <span class="blue_star">*</span></label></p>
@@ -26,16 +27,11 @@
             <div class="row">
               <div class="input-field col s3">
                 <p><label>Document <span class="blue_star">*</span></label></p>
-                <select [(ngModel)]="selectedOption" [ngModelOptions]="{standalone: true}" >
+                <select [(ngModel)]="selectedOption" [ngModelOptions]="{standalone: true}" (change)=check() >
                   <option value="" disabled selected>Document</option>
-                 
                     <option *ngFor="let title of doccuments" [value]='title'>{{title}}</option>
-                  
-
-                  
-
                 </select>
-            
+            <p *ngIf="selecterr">please choose type</p>
 
               </div>
               <div class="input-field col s3">

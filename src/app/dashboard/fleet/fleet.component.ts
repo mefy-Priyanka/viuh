@@ -27,7 +27,7 @@ export class FleetComponent implements OnInit {
     }
   }
 
-
+  truckerr: boolean;
   selectedOption = ''
   doccuments = ['Rc', 'Insurance'];
   selected = {};
@@ -37,6 +37,7 @@ export class FleetComponent implements OnInit {
   loader: boolean = false;
   trucknumber = "";
   ownership = ""
+  selecterr: boolean;
 
   constructor(private formBuilder: FormBuilder,
     private router: Router, private companyService:
@@ -112,7 +113,30 @@ export class FleetComponent implements OnInit {
     });
   }
 
+  check(){
+    console.log('shhg')
+    if(this.trucknumber==''){
+      this.truckerr=true;
+    }
+    else{
+      this.truckerr=false;
+    }
+    if(this.selectedOption=''){
+      this.selecterr=true;
+    }
+    else{
+      this.selecterr=false;
+    }
+  }
   submit() {
+    if(this.trucknumber==''){
+      this.truckerr=true;
+      return;
+    }
+    else if(this.selectedOption==''){
+      this.selecterr=true;
+      return;
+    }
     let data = {
       rc: this.data.rc,
       insurance: this.data.insurance,
@@ -122,11 +146,11 @@ export class FleetComponent implements OnInit {
       superAdminId: this.superadminid
     }
     console.log(data);
-    this.companyService.fleetcreation(data).subscribe(result=>{
+    this.companyService.fleetcreation(data).subscribe(result => {
       console.log(result);
     },
-    err=>{
-      console.log(err)
-    })
+      err => {
+        console.log(err)
+      })
   }
 }
