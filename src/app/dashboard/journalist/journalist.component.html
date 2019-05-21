@@ -1,0 +1,44 @@
+<!-- journalist-->
+<section class="corder" *ngIf="journalist">
+  <a href="#" class="floatEa">
+    <i class="fa fa-envelope-o my-float"></i>
+  </a>
+  <div class="ft">
+    <h1>Journal
+      <button class="addItema" (click)="addjournal()"><i class="fa fa-plus-circle" aria-hidden="true"></i>Add</button>
+    </h1>
+  </div>
+  <div class="card margina">
+    <div class="tableide">
+      <div class="row">
+        <div id="no-more-tables">
+          <table class="col-md-12 table-bordered table-striped table-condensed cf">
+            <thead class="cf">
+              <tr>
+                <th class="numeric">CONTACT TYPE</th>
+                <th>EMAIL</th>
+                <th>COMPANY NAME</th>
+                <th>PHONE NUMBER</th>
+                <th>WEBSITE</th>
+                <th>ACTION</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let contact of contactlist; index as i">
+                <td class="thno" data-title="NO.">a</td>
+                <td class="thname" data-title="NAME">a</td>
+                <td class="thname" data-title="VAT ID">a</td>
+                <td data-title="ADDRESS" class="numeric">a</td>
+                <td data-title="VAT ID" class="numeric">a</td>
+                <td><i class="fa fa-trash" aria-hidden="true" (click)="delete(contact._id)"></i>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- journalist -->

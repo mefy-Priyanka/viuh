@@ -16,6 +16,8 @@ import { MaprouteComponent } from './maproute/maproute.component';
 import { ContractorListComponent } from './contractor-list/contractor-list.component';
 import { CompanyListComponent } from './company-list/company-list.component';
 import { ContactlistComponent } from '../contactlist/contactlist.component';
+import { JournalComponent } from '../journal/journal.component';
+import { JournalistComponent } from './journalist/journalist.component';
 
 const routes: Routes = [
     {
@@ -58,7 +60,9 @@ const routes: Routes = [
         MaprouteComponent,
         ContractorListComponent,
         CompanyListComponent,
-        ContactlistComponent
+        ContactlistComponent,
+        JournalComponent,
+        JournalistComponent
 
     ]
 })

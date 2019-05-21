@@ -22,14 +22,14 @@
                   </li>
                   <!-- <li class="rightArrow"><i class="fa fa-chevron-down" aria-hidden="true"></i></li> -->
                   <li class="dropdown rightArrow">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
-                              <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
-                        <ul class="dropdown-menu sitetting">
-                           <li><a href="#"><i class="fa fa-cog"></i>User Settings</a></li>
-                           <li><a href="#"><i class="fa fa-lock" aria-hidden="true"></i>Password change</a></li>
-                           <li (click)="logout()"><a><i class="fa fa-sign-out"></i>Logout</a></li>
-                        </ul>
-                     </li>
+                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
+                        <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+                     <ul class="dropdown-menu sitetting">
+                        <li><a href="#"><i class="fa fa-cog"></i>User Settings</a></li>
+                        <li><a href="#"><i class="fa fa-lock" aria-hidden="true"></i>Password change</a></li>
+                        <li (click)="logout()"><a><i class="fa fa-sign-out"></i>Logout</a></li>
+                     </ul>
+                  </li>
                </ul>
             </div>
          </div>
@@ -41,8 +41,9 @@
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
                      <i class="fa fa-cog" aria-hidden="true"></i></a>
                   <ul class="dropdown-menu sitetting">
-                     <li (click)="abc('user')"><a ><i class="fa fa-user" aria-hidden="true"></i>Users</a></li>
-                     <li><a href="#"><i class="fa fa-sticky-note" aria-hidden="true"></i>Terms</a></li>
+                     <li (click)="abc('user')"><a><i class="fa fa-user" aria-hidden="true"></i>Users</a></li>
+                     <li (click)="abc('journal','journalcreate')"><a><i class="fa fa-sticky-note"
+                              aria-hidden="true"></i>Journal</a></li>
                      <li><a href="#"><i class="fa fa-truck" aria-hidden="true"></i>Vehicle Kind</a></li>
                      <li><a href="#"><i class="fa fa-tags"></i>VAT rates</a></li>
                      <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i>System Settings</a></li>
@@ -61,18 +62,18 @@
                <li class="dropdown flRight">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
                      <button class="addItem"><i class="fa fa-plus-circle" aria-hidden="true"></i>Add</button></a>
-                     <ul class="dropdown-menu sitetting colori">
-                           <li><a href="#"><i class="fa fa-globe" aria-hidden="true"></i>Multimodal</a></li>
-                           <li><a href="#"><i class="fa fa-truck" aria-hidden="true"></i>Road</a></li>
-                           <li><a href="#"><i class="fa fa-ship" aria-hidden="true"></i>Sea</a></li>
-                           <li><a href="#"><i class="fa fa-plane"></i>Air</a></li>
-                           <li><a href="#"><i class="fa fa-train" aria-hidden="true"></i>Train</a></li>
-                           <li><a href="#"><i class="fa fa-usd" aria-hidden="true"></i>Customs</a></li>
-                           <li><a href="#"><i class="fa fa-shield" aria-hidden="true"></i>Insurance</a></li>
-                           <li><a href="#"><i class="fa fa-ellipsis-h" aria-hidden="true"></i>Other</a></li>
+                  <ul class="dropdown-menu sitetting colori">
+                     <li><a href="#"><i class="fa fa-globe" aria-hidden="true"></i>Multimodal</a></li>
+                     <li><a href="#"><i class="fa fa-truck" aria-hidden="true"></i>Road</a></li>
+                     <li><a href="#"><i class="fa fa-ship" aria-hidden="true"></i>Sea</a></li>
+                     <li><a href="#"><i class="fa fa-plane"></i>Air</a></li>
+                     <li><a href="#"><i class="fa fa-train" aria-hidden="true"></i>Train</a></li>
+                     <li><a href="#"><i class="fa fa-usd" aria-hidden="true"></i>Customs</a></li>
+                     <li><a href="#"><i class="fa fa-shield" aria-hidden="true"></i>Insurance</a></li>
+                     <li><a href="#"><i class="fa fa-ellipsis-h" aria-hidden="true"></i>Other</a></li>
 
-      
-                        </ul>
+
+                  </ul>
                </li>
             </ul>
          </div>
@@ -82,7 +83,8 @@
                <li class="order">Contractors</li>
                <li class="dropdown flRight">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
-                     <button class="addItem" (click)="abc('contractordetail')" ><i class="fa fa-plus-circle" aria-hidden="true"></i>Add</button></a>
+                     <button class="addItem" (click)="abc('contractordetail')"><i class="fa fa-plus-circle"
+                           aria-hidden="true"></i>Add</button></a>
                   <!-- <ul class="dropdown-menu">
                      <li><a href="#">Table 1</a></li>
                      <li><a href="#">Table 2</a></li>
@@ -123,17 +125,46 @@
                </li>
             </ul>
          </div>
+         <div class="row leftCet" (click)="abc('contact')">
+            <ul>
+               <li><i class="fa fa-money" aria-hidden="true"></i></li>
+               <li class="order">Contact</li>
+
+
+
+
+
+
+               <li class="dropdown flRight">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
+                     <button class="addItem" (click)="abc('contactdetail')"><i class="fa fa-plus-circle"
+                           aria-hidden="true"></i>Add</button></a>
+
+                  <ul class="dropdown-menu sitetting colori atea">
+                     <li><a href="#"><i class="fa fa-globe" aria-hidden="true"></i>Customer</a></li>
+                     <li><a href="#"><i class="fa fa-truck" aria-hidden="true"></i>Vendor</a></li>
+                     <li><a href="#"><i class="fa fa-ship" aria-hidden="true"></i>Employee</a></li>
+                     <li><a href="#"><i class="fa fa-plane"></i>Driver</a></li>
+
+
+
+                  </ul>
+               </li>
+            </ul>
+         </div>
          <div class="row leftCet" (click)="abc('companylist')">
             <ul>
                <li><i class="fa fa-id-card-o" aria-hidden="true"></i></li>
                <li class="order">Company</li>
                <li class="dropdown flRight">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
-                     <button class="addItem" (click)="abc('companydetail')" ><i class="fa fa-plus-circle" aria-hidden="true"></i>Add</button></a>
-                  </li>
+                     <button class="addItem" (click)="abc('companydetail')"><i class="fa fa-plus-circle"
+                           aria-hidden="true"></i>Add</button></a>
+               </li>
             </ul>
 
          </div>
+         
          <div class="row leftCet" (click)="abc('accountdetail')">
             <ul>
                <li><i class="fa fa-money" aria-hidden="true"></i></li>
@@ -141,16 +172,7 @@
             </ul>
          </div>
          <hr class="mHrLine">
-         <div class="row leftCet" (click)="abc('contact')">
-            <ul>
-               <li><i class="fa fa-money" aria-hidden="true"></i></li>
-               <li class="order">Contact</li>
-               <li class="dropdown flRight">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
-                     <button class="addItem" (click)="abc('contactdetail')" ><i class="fa fa-plus-circle" aria-hidden="true"></i>Add</button></a>
-                  </li>
-            </ul>
-         </div>
+      
       </div>
    </div>
 </nav>
