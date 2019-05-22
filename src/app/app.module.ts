@@ -24,7 +24,7 @@ import { RouterModule, Routes } from '@angular/router';
 /*****************************SERVICE****************/
 import { UserService } from './service/user.service';
 import { SharedService } from './service/shared.service';
-import { JournalComponent } from './journal/journal.component';
+// import { JournalComponent } from './journal/journal.component';
 // import { ContactlistComponent } from './contactlist/contactlist.component';
 // import { ContactComponent } from './dashboard/contact/contact.component';
 import { TreeViewComponent } from '@syncfusion/ej2-angular-navigations';
@@ -55,7 +55,7 @@ const routes: Routes = [
     // OrderComponent,
     // ContractorcreateComponent,
     InviteComponent,
-    JournalComponent,
+    // JournalComponent,
     // ContactlistComponent,
     // ContactComponent,
     // AccountComponent,

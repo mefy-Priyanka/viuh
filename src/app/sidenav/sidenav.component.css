@@ -465,6 +465,9 @@ ul.dropdown-menu.sitetting {
 ul.dropdown-menu.sitetting.colori li a i {
   color: #32b1f8 !important;
 }
+ul.dropdown-menu.sitetting.colori.atea {
+  top: -2em;
+}
 /* sidenav css */
 
 
