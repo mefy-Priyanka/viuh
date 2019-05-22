@@ -43,7 +43,8 @@ export class UserService {
   }
 
   getaccountlist(id) {
-    return this.httpClient.get(APIURL + 'account/accountByUserId?userId='+id)
+    // return this.httpClient.get(APIURL + 'account/accountByUserId?userId='+id);
+    return this.httpClient.get(APIURL + 'account/accountType?parentAccount='+'')
 
   }
   getcontactlist(id) {
@@ -65,5 +66,10 @@ export class UserService {
 
   contactdelete(id){
     return this.httpClient.delete(APIURL+'contact/delete?contactId='+id)
+  }
+
+  getlistbyparent(id){
+    return this.httpClient.get(APIURL + 'account/accountType?parentAccount='+id)
+
   }
 }

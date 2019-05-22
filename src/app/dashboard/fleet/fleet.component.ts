@@ -29,7 +29,7 @@ export class FleetComponent implements OnInit {
 
   truckerr: boolean;
   selectedOption = ''
-  doccuments = ['Rc', 'Insurance'];
+  doccuments = ['Rc', 'Insurance','explosive','abcd'];
   selected = {
     docnumber:'',
     valid:''
@@ -210,9 +210,13 @@ export class FleetComponent implements OnInit {
     console.log(data);
     this.companyService.fleetcreation(data).subscribe(result => {
       console.log(result);
+      this.toastr.success('Awesome!', 'fleet created successfully')
+
     },
       err => {
         console.log(err)
+        this.toastr.error('Error!', 'Server Error')
+
       })
   }
 }
