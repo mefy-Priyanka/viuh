@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bank.component.css']
 })
 export class BankComponent implements OnInit {
+  public bank: boolean = true;
 
   constructor() { }
 
   ngOnInit() {
   }
-
+  submit(){
+    this.bank=!this.bank;
+  }
 }
