@@ -27,6 +27,7 @@ import { SharedService } from './service/shared.service';
 // import { JournalComponent } from './journal/journal.component';
 // import { ContactlistComponent } from './contactlist/contactlist.component';
 // import { ContactComponent } from './dashboard/contact/contact.component';
+import { TreeViewComponent } from '@syncfusion/ej2-angular-navigations';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -45,6 +46,7 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     LoginComponent,
+    TreeViewComponent,
     // SidenavComponent,
     // DashboardComponent,
     // FleetComponent,

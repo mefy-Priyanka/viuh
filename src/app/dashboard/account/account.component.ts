@@ -10,6 +10,8 @@ import { resource } from 'selenium-webdriver/http';
   styleUrls: ['./account.component.css']
 })
 export class AccountComponent implements OnInit {
+
+  
   userId: string;
   role: string;
   organisation: string;
@@ -18,7 +20,21 @@ export class AccountComponent implements OnInit {
   accountForm: FormGroup;
   submitted: boolean;
   loader: boolean;
-  accountlist=[];
+  accountlist = [];
+
+  parent = '';
+
+  assets = [];
+  liabilities = [];
+  equity = [];
+  revenue = [];
+  expenses = [];
+  parentbool: boolean = false;
+  childbool: boolean = false;
+  acnttype: any;
+  levelteoacnt = [];
+
+
   constructor(private formBuilder: FormBuilder, private userService: UserService, private toastr: ToastrService) {
     this.userId = localStorage.getItem('userId');
     this.role = localStorage.getItem('role');
@@ -26,19 +42,17 @@ export class AccountComponent implements OnInit {
 
     this.accountFormErrors = {
       accountName: {},
-      accountTypeId: {},
-      name: {},
+      parent: {},
+
       description: {},
       accountCode: {},
     };
   }
 
-
   createAccountForm() {
     return this.formBuilder.group({
       accountName: ['', Validators.required],
-      accountTypeId: ['', Validators.required],
-      name: ['', Validators.required],
+      parent: ['', Validators.required],
       description: ['', Validators.required],
       accountCode: ['', Validators.required],
     });
@@ -60,14 +74,42 @@ export class AccountComponent implements OnInit {
     }
   }
 
-
+  empty() {
+    this.equity = [];
+    this.expenses = [];
+    this.assets = [];
+    this.revenue = [];
+    this.liabilities = [];
+  }
   getaccountlist() {
+    let i = 0;
+    this.empty()
+    console.log('getting all account')
     let something: any;
     this.userService.getaccountlist(this.userId).subscribe(result => {
       console.log(result);
       something = result
       this.accountlist = (something.result);
-      console.log(this.accountlist)
+
+      console.log(this.accountlist);
+      for (i = 0; i < this.accountlist.length; i++) {
+        if (this.accountlist[i].accountType == "Asset") {
+          this.assets.push(this.accountlist[i].accountName)
+        }
+        if (this.accountlist[i].accountType == "Equity") {
+          this.equity.push(this.accountlist[i].accountName)
+        }
+        if (this.accountlist[i].accountType == "Expense") {
+          this.expenses.push(this.accountlist[i].accountName)
+        }
+        if (this.accountlist[i].accountType == "Revenue") {
+          this.revenue.push(this.accountlist[i].accountName)
+        }
+        if (this.accountlist[i].accountType == "Liability") {
+          this.liabilities.push(this.accountlist[i].accountName)
+        }
+      }
+      console.log(this.equity, this.expenses, this.assets, this.revenue, this.liabilities)
     },
       err => {
         console.log(err)
@@ -75,8 +117,62 @@ export class AccountComponent implements OnInit {
   }
 
 
+  inputcheck(event) {
+    this.accountForm.reset();
+    console.log(event);
+    this.parentbool = event.currentTarget.checked;
+    this.childbool=false;
+    this.accountForm.value.parent = ''
+  }
+
+
+  inputcheck1(event) {
+    
+    let something: any;
+    this.childbool = event.currentTarget.checked;
+    if (event.currentTarget.checked) {
+      console.log('parent account name', this.accountForm.value.parent);
+
+      if (this.accountForm.value.parent !== '') {
+        console.log(this.accountForm.value.parent);
+        this.userService.getlistbyparent(this.accountForm.value.parent).subscribe(value => {
+
+          this.toastr.success('Congo!', 'account get Successfully '),
+            console.log('list', value)
+          something = value;
+          this.levelteoacnt = something.result;
+        },
+          err => {
+            console.log(err)
+
+          })
+      }
+    }
+  }
+  isCherries(fruit) {
+    return fruit.name === 'cherries';
+  }
+  selecttype() {
+
+    console.log(this.accountForm.value.parent);
+    this.acnttype = this.accountlist.find(x => x.accountName == this.accountForm.value.parent).accountType;
+    console.log(this.acnttype)
+  }
+  getparent() {
+    // let something: any;
+    // this.userService.parentlist().subscribe(result => {
+    //   console.log(result);
+    //   something = result
+    //   this.accountypelist = (something.result);
+    //   console.log(this.accountypelist);
+    // },
+    //   err => {
+    //     console.log(err)
+    //   })
+  }
+
   ngOnInit() {
-    this.getaccounttype();
+    this.getparent();
     this.getaccountlist();
     this.accountForm = this.createAccountForm()
     this.accountForm.valueChanges.subscribe(() => {
@@ -89,51 +185,46 @@ export class AccountComponent implements OnInit {
     console.log(this.accountForm.value)
     this.submitted = true;
     this.loader = true;
+    var accounttype: any;
+    accounttype = this.acnttype;
     if (this.accountForm.valid) {
+      if (this.parentbool) {
+        accounttype = this.accountForm.value.parent;
+        this.accountForm.value.parent = ''
+      }
       let data = {
         accountName: this.accountForm.value.accountName,
-        accountTypeId: this.accountForm.value.accountTypeId,
-        name: this.accountForm.value.name,
+        accountType: accounttype,
         description: this.accountForm.value.description,
         accountCode: this.accountForm.value.accountCode,
         organisation: this.organisation,
-        userId: this.userId
-
+        userId: this.userId,
+        parentAccount: this.accountForm.value.parent
       }
       console.log('let data be', data);
-      this.userService.creataccount(data).subscribe(value => {
-        this.submitted = false;
-        this.toastr.success('Congo!', 'account Successfully Created'),
-          console.log('user', value)
-        let result: any = {}
-        result = value
-        this.accountForm.reset();
-        this.loader = false;
-      },
-        err => {
-          console.log(err)
-          this.submitted = false;
-          this.loader = false;
-          this.toastr.error('Error!', 'Server Error')
-          this.accountForm.reset();
-        })
-      console.log("data", data);
+      // this.userService.creataccount(data).subscribe(value => {
+      //   this.submitted = false;
+      //   this.toastr.success('Congo!', 'account Successfully Created'),
+      //     console.log('user', value)
+      //   let result: any = {}
+      //   result = value
+      //   this.accountForm.reset();
+      //   this.loader = false;;
+      //   this.getaccountlist();
+      //   this.toastr.success('Awesome!', 'Account created successfully')
+
+      // },
+      //   err => {
+      //     console.log(err)
+      //     this.submitted = false;
+      //     this.loader = false;
+      //     this.toastr.error('Error!', 'Server Error')
+      //     this.accountForm.reset();
+      //   })
     }
-    this.getaccountlist();
+    // this.getaccountlist();
   }
 
 
 
-  getaccounttype() {
-    let something: any;
-    this.userService.accounttypelist().subscribe(result => {
-      console.log(result);
-      something = result
-      this.accountypelist = (something.result);
-      console.log(this.accountypelist)
-    },
-      err => {
-        console.log(err)
-      })
-  }
 }
