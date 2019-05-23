@@ -18,6 +18,8 @@ import { CompanyListComponent } from './company-list/company-list.component';
 import { ContactlistComponent } from '../contactlist/contactlist.component';
 import { JournalComponent } from '../journal/journal.component';
 import { JournalistComponent } from './journalist/journalist.component';
+import { ContactDriverComponent } from './contact-driver/contact-driver.component';
+import { BankComponent } from './bank/bank.component';
 
 const routes: Routes = [
     {
@@ -62,7 +64,9 @@ const routes: Routes = [
         CompanyListComponent,
         ContactlistComponent,
         JournalComponent,
-        JournalistComponent
+        JournalistComponent,
+        ContactDriverComponent,
+        BankComponent
 
     ]
 })
