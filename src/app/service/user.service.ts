@@ -41,7 +41,11 @@ export class UserService {
     return this.httpClient.post(APIURL + 'account/create', data)
 
   }
+  getaccountlist1(id) {
+    return this.httpClient.get(APIURL + 'account/accountByUserId?userId='+id);
+    // return this.httpClient.get(APIURL + 'account/accountType?parentAccount='+'')
 
+  }
   getaccountlist(id) {
     // return this.httpClient.get(APIURL + 'account/accountByUserId?userId='+id);
     return this.httpClient.get(APIURL + 'account/accountType?parentAccount='+'')

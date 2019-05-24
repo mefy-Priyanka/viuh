@@ -33,7 +33,7 @@ export class AccountComponent implements OnInit {
   childbool: boolean = false;
   acnttype: any;
   levelteoacnt = [];
-
+  accountlist1=[];
 
   constructor(private formBuilder: FormBuilder, private userService: UserService, private toastr: ToastrService) {
     this.userId = localStorage.getItem('userId');
@@ -81,6 +81,26 @@ export class AccountComponent implements OnInit {
     this.revenue = [];
     this.liabilities = [];
   }
+
+  getaccountlist1() {
+    let i = 0;
+    this.empty()
+    console.log('getting all account')
+    let something: any;
+    this.userService.getaccountlist1(this.userId).subscribe(result => {
+      console.log(result);
+      something = result
+      this.accountlist1 = (something.result);
+
+      console.log(this.accountlist1);
+     
+    },
+      err => {
+        console.log(err)
+      })
+  }
+
+
   getaccountlist() {
     let i = 0;
     this.empty()
@@ -174,6 +194,7 @@ export class AccountComponent implements OnInit {
   ngOnInit() {
     this.getparent();
     this.getaccountlist();
+    this.getaccountlist1();
     this.accountForm = this.createAccountForm()
     this.accountForm.valueChanges.subscribe(() => {
       this.onaccountFormValuesChanged();
@@ -222,7 +243,8 @@ export class AccountComponent implements OnInit {
       //     this.accountForm.reset();
       //   })
     }
-    // this.getaccountlist();
+    this.getaccountlist();
+    this.getaccountlist1();
   }
 
 
