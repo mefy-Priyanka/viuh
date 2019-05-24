@@ -1,0 +1,150 @@
+<!-- consignment-->
+<section class="corder" *ngIf="cdata">
+  <a href="#" class="floatEa">
+      <i class="fa fa-envelope-o my-float"></i>
+      </a>
+  <div class="ft">
+    <h1>Consignment
+      <button class="addItema" (click)="at()"><i class="fa fa-plus-circle" aria-hidden="true"></i>Add</button>
+    </h1>
+  </div>
+  <div class="card margina">
+      <div class="tableide">
+          <div class="row">
+              <div id="no-more-tables">
+                  <table class="col-md-12 table-bordered table-striped table-condensed cf">
+                  <thead class="cf">
+                    <tr>
+                      <th class="numeric">TL.NO.</th>
+                      <th>LOCATION NO.</th>
+                      <th>CHALLAN NO.</th>
+                      <th>DATE</th>
+                      <th>PRODUCT</th>
+                      <th>QTY.(KL)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="thno" data-title="NO.">1</td>
+                      <td class="thname" data-title="NAME">Rajbandh</td>
+                      <td class="thname" data-title="VAT ID">1234</td>
+                      <td data-title="ADDRESS" class="numeric">4/05</td>
+                      <td data-title="VAT ID" class="numeric">adrt</td>
+                      <td data-title="VAT ID" class="numeric">4</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+          </div>
+      </div>
+
+  </div>
+  </section>
+  <!-- consignment -->
+
+
+
+
+
+<!-- consignment input -->
+<section class="createcontract" *ngIf="!cdata" >
+  <div class="ft">
+    <h1>Consignment | Create
+    </h1>
+  </div>
+  <form class="createContractorForm" >
+    <div class="row">
+      <div class="col-md-12">
+        <!-- input type -->
+        <div>
+          <div class="card corCard">
+            <div class="row">
+
+              <div class="nota">
+                <div class="row">
+                  <div class="input-field col s6">
+                    <p><label>Tl.No. <span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" formControlName="email">
+                    <!-- <p class="errormessage" *ngIf="contactFormErrors.email.required || contactFormErrors.email.email || (contactForm.controls.email.pristine && submitted)">Enter Valid Email</p> -->
+
+                  </div>
+
+                  <div class="input-field col s6">
+                      <p><label>Location No. <span class="blue_star">*</span></label></p>
+                      <input type="text" class="validate" formControlName="email">
+                      <!-- <p class="errormessage" *ngIf="contactFormErrors.email.required || contactFormErrors.email.email || (contactForm.controls.email.pristine && submitted)">Enter Valid Email</p> -->
+
+                    </div>
+
+                </div>
+                <div class="row">
+
+
+                  <!-- <div class="input-field col s4">
+                    <p><label>Primary Contact</label></p>
+                    <input type="text" class="validate">
+                  </div> -->
+                  <div class="input-field col s6">
+                      <p><label>Challan No.</label></p>
+                      <input type="text" class="validate" formControlName="company_name">
+                      <!-- <p class="errormessage" *ngIf="contactFormErrors.company_name.required || (contactForm.controls.company_name.pristine && submitted)">Company name can't be empty</p> -->
+
+                    </div>
+                  <div class="input-field col s6">
+                    <p><label>Date</label></p>
+                    <input type="text" class="validate" formControlName="phoneNumber">
+                    <!-- <p class="errormessage" *ngIf="contactFormErrors.phoneNumber.required || (contactForm.controls.phoneNumber.pristine && submitted)">Phone Number can't be empty</p> -->
+
+                  </div>
+
+                </div>
+                <div class="row">
+              
+                  <div class="input-field col s6">
+                    <p><label>Product<span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" formControlName="website">
+                    <!-- <p class="errormessage" *ngIf="contactFormErrors.website.required || (contactForm.controls.website.pristine && submitted)">Website can't be empty</p> -->
+
+                  </div>
+
+                  <div class="input-field col s6">
+                    <p><label>Qty.(KL)<span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" formControlName="website">
+                    <!-- <p class="errormessage" *ngIf="contactFormErrors.website.required || (contactForm.controls.website.pristine && submitted)">Website can't be empty</p> -->
+
+                  </div>
+                  <!-- <div class="input-field col s4">
+                    <p><label>Phone Number</label></p>
+                    <input type="text" class="validate">
+                  </div> -->
+
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="contractorButton">
+              <button class="submitBtn" (click)="submit()">Next</button>
+              <button class="cancelBtn" (click)="cancel()">Cancel</button>
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <!-- input type -->
+
+
+
+
+
+      </div>
+    </div>
+
+  </form>
+</section>
+
+<!-- consignment input -->
