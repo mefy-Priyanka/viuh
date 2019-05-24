@@ -1,0 +1,159 @@
+/* bank css */
+.ft h1 {
+    font-size: 34px;
+    padding: 19px 0;
+    padding-left: 20px;
+    margin:0;
+  }
+section.createcontract {
+    /* margin-left: -2em; */
+}
+.ft {
+    background: #fff;
+}
+.card.corCard{
+    margin-left: 1em;
+    margin-right: 1em;
+    border-left: 7px solid #32b1f8;
+    margin-top: 3em;
+    margin-bottom: 3em;
+    padding: 2em 2em;
+}
+span.blue_star {
+    color: #32b1f8;
+}
+button.submitBtn {
+    height: 44px;
+    width: 120px;
+    background: #32b1f8;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-right: 1em;
+}
+.contractorButton {
+    padding-left: 5em;
+}
+button.cancelBtn {
+    height: 44px;
+    width: 120px;
+    background: transparent;
+    border: 1px solid #7b839c;
+    outline: none;
+    color: #7b839c;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-right: 1em;
+}
+select {
+    display: block;
+}
+form.createContractorForm input {
+    border: 1px solid #f2f2f2 !important;
+    text-indent: 12px;
+    height: 2.5rem !important;
+}
+input.fileType {
+    /* width: 15vw; */
+    height: 8vh;
+    padding-top: 7px;
+    display: flex;
+    padding-left: 6px;
+}
+.input-field.myFilet.aeto {
+    margin-top: 0 !important;
+    padding-left: 0;
+}
+.input-field.myFilet {
+    outline:none;
+    margin: 0 !important;
+}
+form.createContractorForm .row {
+    margin: 0;
+}
+.card.corCard .input-field {
+    margin: 0;
+}
+.imgFile {
+    margin: 2em;
+}
+/* bank css */
+.tableide {
+    /* padding: 1em 2em; */
+}
+span.closT {
+    float: right;
+}
+.tableide .table-bordered>tbody>tr>td{
+    border: none;
+    /* padding: 1em; */
+    color: #000;
+    font-weight: 600;
+    text-align: center;
+}
+.tableide .table-bordered>thead>tr>th {
+    border: none;
+    padding: 1em;
+    background: #fafafa;
+    color:#7b95a1;
+    text-align: center;
+}
+.tableide tr {
+    border-bottom: none;
+    background: #fff;
+}
+.tableide .table-bordered {
+    border: none;
+}
+.card.margina {
+    margin: 2em;
+    box-shadow: none;
+    border-radius: 5px;
+}
+td.thname {
+    color: #2f65a1 !important;
+    font-weight: 600 !important;
+}
+td.thno {
+    color: #90979b !important;
+}
+button.caretn {
+    background: transparent;
+    color: #b1c0c7;
+    border: 2px solid #b1c0c7;
+    height: 29px;
+    width: 29px;
+    border-radius: 4px;
+}
+i.fa.fa-question-circle-o {
+    font-size: 27px;
+}
+table {
+    border-collapse: collapse !important;
+  }
+  
+  table, th, td {
+    border: 1px solid #5544442b !important;
+  }
+  .tableide.bankTable {
+    margin: 2em;
+}
+button.At {
+    border: 1px solid #32b1f8;
+    color: #32b1f8;
+    height: 29px;
+    font-size: 11px;
+    background: transparent;
+    border-radius: 5px;
+}
+/* table css */
+
+/* Responsive css */
+@media only screen and (min-width: 320px) and (max-width: 1024px){
+    .input-field.col.s4{
+        width: 100%;
+    }
+}
+/* Responsive css */

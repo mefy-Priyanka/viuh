@@ -39,6 +39,7 @@ getUserDetail(){
     
 
   },
+
   error=>{
     console.log(error)
   })
@@ -51,4 +52,8 @@ getUserDetail(){
      console.log("logout");
   }
     /* ************END**************/
+
+
+    //check
+
 }

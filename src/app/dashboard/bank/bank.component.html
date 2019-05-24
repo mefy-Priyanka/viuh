@@ -1,0 +1,141 @@
+<!-- bank -->
+<section class="createcontract">
+  <div class="ft">
+    <h1>Bank | Create
+    </h1>
+  </div>
+  <form class="createContractorForm" *ngIf="bank">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- input type -->
+        <div>
+          <div class="card corCard">
+            <div class="row">
+
+              <div class="nota">
+                <div class="row">
+
+
+                  <!-- <div class="input-field col s4">
+                    <p><label>Primary Contact</label></p>
+                    <input type="text" class="validate">
+                  </div> -->
+                  <div class="input-field col s6">
+                    <p><label>Bank Name</label></p>
+                    <input type="text" class="validate">
+                    <!-- <p class="errormessage" *ngIf="contactFormErrors.company_name.required || (contactForm.controls.company_name.pristine && submitted)">Company name can't be empty</p> -->
+
+                  </div>
+                  <div class="input-field col s6">
+                    <p><label>IFSC Code</label></p>
+                    <input type="text" class="validate">
+                    <!-- <p class="errormessage" *ngIf="contactFormErrors.phoneNumber.required || (contactForm.controls.phoneNumber.pristine && submitted)">Phone Number can't be empty</p> -->
+
+                  </div>
+
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <p><label>Account Holder Name<span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate">
+                  </div>
+                  <div class="input-field col s6">
+                    <p><label>Bank Branch<span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="input-field col s6">
+                    <p><label>Bank Address<span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate">
+                  </div>
+                  <div class="input-field col s6">
+                    <p><label>Account No<span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <p><label>Confirm Account No<span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate">
+                  </div>
+                </div>
+
+
+              </div>
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="contractorButton">
+              <button class="submitBtn" (click)="submit()">Next</button>
+              <button class="cancelBtn" (click)="cancel()">Cancel</button>
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <!-- input type -->
+
+
+
+
+
+      </div>
+    </div>
+
+  </form>
+  <form class="createContractorForm" *ngIf="!bank">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- input type -->
+        <div>
+          <div class="tableide bankTable">
+            <div class="row">
+              <div id="no-more-tables">
+                <table class="col-md-12 table-bordered table-striped table-condensed cf">
+                  <thead class="cf">
+                    <tr>
+                      <th>FIELD NAME</th>
+                      <th>FIELD TYPE</th>
+                      <th>DESCRIPTION</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="thname"><input type="text" style="border: none !important"></td>
+                      <td class="thname"><input type="text" style="border: none !important"></td>
+                      <td class="thname"><textarea style="border:none !important"></textarea></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="contractorButton">
+              <button class="submitBtn">Submit</button>
+              <button class="cancelBtn" (click)="cancel()">Cancel</button>
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <!-- input type -->
+
+
+
+
+
+      </div>
+    </div>
+
+  </form>
+</section>
+
+<!-- bank -->
