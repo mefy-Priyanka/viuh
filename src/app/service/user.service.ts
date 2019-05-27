@@ -76,4 +76,10 @@ export class UserService {
     return this.httpClient.get(APIURL + 'account/accountType?parentAccount='+id)
 
   }
+
+
+  bankcreat(data){
+    return this.httpClient.post(APIURL + 'bank/create', data)
+
+  }
 }

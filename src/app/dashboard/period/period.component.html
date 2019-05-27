@@ -4,7 +4,7 @@
     <h1>Period | Create
     </h1>
   </div>
-  <form class="createContractorForm" >
+  <form class="createContractorForm" [formGroup]="periodForm">
     <div class="row">
       <div class="col-md-12">
         <!-- input type -->
@@ -16,33 +16,18 @@
                 <div class="row">
                   <div class="input-field col s6">
                       <p><label>Period Name</label></p>
-                      <input type="text" class="validate" formControlName="">
+                      <input type="text" class="validate" formControlName="period_name">
+                      <p class="errormessage"
+                      *ngIf="periodFormErrors.period_name.required || (periodForm.controls.period_name.pristine && submitted)">
+                      Cannot be empty</p>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                      
                     </div>
                   <div class="input-field col s6">
                     <p><label>Period Status</label></p>
-                    <input type="text" class="validate" formControlName="">
+                    <input type="text" class="validate" formControlName="period_status">
+                    <p class="errormessage"
+                    *ngIf="periodFormErrors.period_status.required || (periodForm.controls.period_status.pristine && submitted)">
+                    Cannot be empty</p>
                   </div>
 
                 </div>
@@ -50,11 +35,17 @@
                 <div class="row">
                   <div class="input-field col s6">
                       <p><label>Period From</label></p>
-                      <input type="text" class="validate" formControlName="">
+                      <input type="text" class="validate" formControlName="from">
+                      <p class="errormessage"
+                      *ngIf="periodFormErrors.from.required || (periodForm.controls.from.pristine && submitted)">
+                      Cannot be empty</p>
                     </div>
                   <div class="input-field col s6">
                     <p><label>Period To</label></p>
-                    <input type="text" class="validate" formControlName="">
+                    <input type="text" class="validate" formControlName="to">
+                    <p class="errormessage"
+                    *ngIf="periodFormErrors.to.required || (periodForm.controls.to.pristine && submitted)">
+                   Cannot be empty</p>
                   </div>
                   
                 </div>

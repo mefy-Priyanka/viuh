@@ -16,23 +16,107 @@ export class FleetComponent implements OnInit {
   vardata = [];
   data = {
     rc: {
-      number: '',
-      doc: '',
-      valid_upto: ''
+      number: "",
+      doc: "",
+      valid_upto: ""
     },
-    insurance: {
-      number: '',
-      doc: '',
-      valid_upto: ''
-    }
+    vehicle_insurance: {
+      number: "",
+      doc: "",
+      valid_upto: ""
+    },
+    product_insurance: {
+      number: "",
+      doc: "",
+      valid_upto: ""
+    },
+    explosive: {
+      number: "",
+      doc: "",
+      valid_upto: ""
+    },
+
+    calibration_chart: {
+      number: "",
+      doc: "",
+      valid_upto: ""
+    },
+
+    national_permit: {
+      number: "",
+      doc: "",
+      valid_upto: ""
+    },
+
+    national_permit_A: {
+      number: "",
+      doc: "",
+      valid_upto: ""
+    },
+
+    national_permit_B: {
+      number: "",
+      doc: "",
+      valid_upto: ""
+    },
+
+    road_tax: {
+      number: "",
+      doc: "",
+      valid_upto: ""
+    },
+    pollution: {
+      number: "",
+      doc: "",
+      valid_upto: ""
+    },
+    sco: {
+      number: "",
+      doc: "",
+      valid_upto: ""
+    },
+    abs: {
+      number: "",
+      doc: "",
+      valid_upto: ""
+    },
+    hydro_testing: {
+      number: "",
+      doc: "",
+      valid_upto: ""
+    },
+    fitness: {
+      number: "",
+      doc: "",
+      valid_upto: ""
+    },
+    others:[{
+      name:'',
+      number: "",
+      doc: "",
+      valid_upto: ""
+    },
+    {
+      name:'',
+      number: "",
+      doc: "",
+      valid_upto: ""
+    },
+  ]
+
   }
 
   truckerr: boolean;
   selectedOption = ''
-  doccuments = ['Rc', 'Insurance','explosive','abcd'];
+  doccuments = ['Rc', 'vehicle_insurance', 'product_insurance', 'explosive',
+    'calibration_chart', 'national_permit', 'national_permit_A',
+    'national_permit_B', 'road_tax', 'pollution', 'sco', 'abs',
+    'hydro_testing', 'fitness', 'other1','other2'];
   selected = {
-    docnumber:'',
-    valid:''
+    number: '',
+    valid: '',
+    file: '',
+    fileid: ''
   };
   showdata = [];
   superadminid: string;
@@ -43,9 +127,13 @@ export class FleetComponent implements OnInit {
   selecterr: boolean;
   ownererr: boolean;
 
-  validerr:boolean;
-  docuerr:boolean;
-
+  validerr: boolean;
+  docuerr: boolean;
+  filerr: boolean;
+  othername=''
+  otherbool: boolean;
+  othername2=''
+  other2bool: boolean;
   constructor(private formBuilder: FormBuilder,
     private router: Router, private companyService:
       CompanyService, private toastr: ToastrService) {
@@ -58,9 +146,10 @@ export class FleetComponent implements OnInit {
   ngOnInit() {
   }
 
-  check1(xy) {
+  check1(xy,a) {
+    console.log(xy,a)
     if (xy == "selectedOption") {
-      if (this.selectedOption=='') {
+      if (this.selectedOption == '') {
         this.selecterr = true;
       }
       else {
@@ -68,8 +157,8 @@ export class FleetComponent implements OnInit {
       }
     }
 
-    if (xy == "docnumbers") {
-      if (this.selected.docnumber=='') {
+    if (xy == "numbers") {
+      if (this.selected.number == '') {
         this.docuerr = true;
       }
       else {
@@ -79,7 +168,15 @@ export class FleetComponent implements OnInit {
 
 
     if (xy == "valid") {
-      if (this.selected.valid=='') {
+      if (this.selected.valid == '') {
+        this.validerr = true;
+      }
+      else {
+        this.validerr = false;
+      }
+    }
+    if (xy == "file") {
+      if (this.selected.file == '') {
         this.validerr = true;
       }
       else {
@@ -87,6 +184,19 @@ export class FleetComponent implements OnInit {
       }
     }
 
+    if(a=='other1'){
+      this.otherbool=true;
+    }
+    else if(a!='other1'){
+            this.otherbool=false;
+    }
+   
+    if(a=='other2'){
+      this.other2bool=true;
+    }
+    else if(a!='other2'){
+            this.other2bool=false;
+    }
   }
 
   add(x, y) {
@@ -95,40 +205,222 @@ export class FleetComponent implements OnInit {
       this.selecterr = true;
       return;
     }
-    if (this.selected.docnumber == '') {
+    if (this.selected.number == '') {
       this.docuerr = true;
+      return;
+    }
+    if (this.selected.file == '') {
+      this.filerr = true;
       return;
     }
     if (this.selected.valid == '') {
       this.validerr = true;
       return;
     }
-    console.log(x, y)
+    console.log(y)
+    console.log(this.selected);
+
+    var data = {
+      number: this.selected.number,
+      valid_upto: this.selected.valid,
+      doc: this.selected.fileid,
+    }
+    var s = {}
     if (y == "Rc") {
       console.log("rc")
-      this.data.rc.number = x.docnumber;
-      this.data.rc.valid_upto = x.valid;
+      this.data.rc.doc=this.selected.fileid;
+      this.data.rc.number=this.selected.number;
+      this.data.rc.valid_upto=this.selected.valid
+      let some={
+        main:this.data.rc,
+        title:y
+      }
+      this.vardata.push(some);
+      
+    }
+    if (y == "vehicle_insurance") {
+      console.log("vehicle_insurance")
+      this.data.vehicle_insurance.doc=this.selected.fileid;
+      this.data.vehicle_insurance.number=this.selected.number;
+      this.data.vehicle_insurance.valid_upto=this.selected.valid;
+      let some={
+        main:this.data.vehicle_insurance,
+        title:y
+      }
+      this.vardata.push(some);
+    }
+    if (y == "product_insurance") {
+      console.log("product_insurance")
+      this.data.product_insurance.doc=this.selected.fileid;
+      this.data.product_insurance.number=this.selected.number;
+      this.data.product_insurance.valid_upto=this.selected.valid
+      let some={
+        main:this.data.product_insurance,
+        title:y
+      }
+      this.vardata.push(some);
+    }
+    if (y == "explosive") {
+      console.log("explosive")
+      this.data.explosive.doc=this.selected.fileid;
+      this.data.explosive.number=this.selected.number;
+      this.data.explosive.valid_upto=this.selected.valid
+      let some={
+        main:this.data.explosive,
+        title:y
+      }
+      this.vardata.push(some);
+    }
 
+    if (y == "calibration_chart") {
+      console.log("calibration_chart")
+      this.data.calibration_chart.doc=this.selected.fileid;
+      this.data.calibration_chart.number=this.selected.number;
+      this.data.calibration_chart.valid_upto=this.selected.valid;
+      let some={
+        main:this.data.calibration_chart,
+        title:y
+      }
+      this.vardata.push(some);
     }
-    else if (y == "Insurance") {
-      this.data.insurance.number = x.docnumber;
-      this.data.insurance.valid_upto = x.valid;
+    if (y == "national_permit") {
+      console.log("national_permit")
+      this.data.national_permit.doc=this.selected.fileid;
+      this.data.national_permit.number=this.selected.number;
+      this.data.national_permit.valid_upto=this.selected.valid;
+      let some={
+        main:this.data.national_permit,
+        title:y
+      }
+      this.vardata.push(some);
     }
-    console.log('ssss', this.data);
+    if (y == "national_permit_A") {
+      console.log("national_permit_A")
+      this.data.national_permit_A.doc=this.selected.fileid;
+      this.data.national_permit_A.number=this.selected.number;
+      this.data.national_permit_A.valid_upto=this.selected.valid;
+      let some={
+        main:this.data.national_permit_A,
+        title:y
+      }
+      this.vardata.push(some);
+    }
+    if (y == "national_permit_B") {
+      console.log("national_permit_B")
+      this.data.national_permit_B.doc=this.selected.fileid;
+      this.data.national_permit_B.number=this.selected.number;
+      this.data.national_permit_B.valid_upto=this.selected.valid;
+      let some={
+        main:this.data.national_permit_B,
+        title:y
+      }
+      this.vardata.push(some);
+    }
+    if (y == "road_tax") {
+      console.log("road_tax")
+      this.data.road_tax.doc=this.selected.fileid;
+      this.data.road_tax.number=this.selected.number;
+      this.data.road_tax.valid_upto=this.selected.valid;
+      let some={
+        main:this.data.road_tax,
+        title:y
+      }
+      this.vardata.push(some);
+    }
+    if (y == "pollution") {
+      console.log("pollution")
+      this.data.pollution.doc=this.selected.fileid;
+      this.data.pollution.number=this.selected.number;
+      this.data.pollution.valid_upto=this.selected.valid;
+      let some={
+        main:this.data.pollution,
+        title:y
+      }
+      this.vardata.push(some);
+    }
+    if (y == "sco") {
+      console.log("sco")
+      this.data.sco.doc=this.selected.fileid;
+      this.data.sco.number=this.selected.number;
+      this.data.sco.valid_upto=this.selected.valid;
+      let some={
+        main:this.data.sco,
+        title:y
+      }
+      this.vardata.push(some);
+    }
+    if (y == "abs") {
+      console.log("abs")
+      this.data.abs.doc=this.selected.fileid;
+      this.data.abs.number=this.selected.number;
+      this.data.abs.valid_upto=this.selected.valid;
+      let some={
+        main:this.data.abs,
+        title:y
+      }
+      this.vardata.push(some);
+    }
+      if (y == "hydro_testing") {
+      console.log("hydro_testing")
+      this.data.hydro_testing.doc=this.selected.fileid;
+      this.data.hydro_testing.number=this.selected.number;
+      this.data.hydro_testing.valid_upto=this.selected.valid;
+      let some={
+        main:this.data.hydro_testing,
+        title:y
+      }
+      this.vardata.push(some);
+    }
+      if (y == "fitness") {
+      console.log("fitness")
+      this.data.fitness.doc=this.selected.fileid;
+      this.data.fitness.number=this.selected.number;
+      this.data.fitness.valid_upto=this.selected.valid;
+      let some={
+        main:this.data.fitness,
+        title:y
+      }
+      this.vardata.push(some);
+    }
+    if (y == "other1") {
+      console.log("other1")
+      this.data.others[0].name=this.othername
+      this.data.others[0].doc=this.selected.fileid;
+      this.data.others[0].number=this.selected.number;
+      this.data.others[0].valid_upto=this.selected.valid;
+      let some={
+        main:this.data.others[0],
+        title:y
+      }
+      this.vardata.push(some);
+    }
+    if (y == "other2") {
+      console.log("other2")
+      this.data.others[1].name=this.othername
+      this.data.others[1].doc=this.selected.fileid;
+      this.data.others[1].number=this.selected.number;
+      this.data.others[1].valid_upto=this.selected.valid;
+      let some={
+        main:this.data.others[1],
+        title:y
+      }
+      this.vardata.push(some);
+    }
+
+
+console.log(this.vardata)
 
     var index = this.doccuments.indexOf(y);
     if (index > -1) {
       this.doccuments.splice(index, 1);
     }
-    var data = {
-      number: x.docnumber,
-      valid: x.valid,
-      name: y
-    }
-    this.vardata.push(data);
+
+console.log(this.data)
     this.selected = {
-      docnumber:'',
-      valid:''
+      number: '',
+      valid: '',
+      file: '',
+      fileid: ''
     };
     this.selectedOption = '';
     this.mydoc.nativeElement.value = "";
@@ -151,13 +443,11 @@ export class FleetComponent implements OnInit {
         console.log(response);
       let result: any = {};
       result = response;
-      if (type == "Rc") {
-        this.data.rc.doc = result.upload._id;
-      }
-      else if (type == "Insurance") {
-        this.data.insurance.doc = result.upload._id;
-      }
-      console.log('ssss', this.data);
+      this.selected.fileid = result.upload._id
+
+      // if (type == "Rc") {
+      // this.data.rc.doc = result.upload._id;
+      // }
     }, err => {
       console.log(err);
       // this.reset(type);
@@ -195,15 +485,27 @@ export class FleetComponent implements OnInit {
       this.ownererr = true;
       return;
     }
-    else if (this.doccuments.length != 0) {
-      alert('please provide all doccuments');
-      return;
-    }
+    // else if (this.doccuments.length != 0) {
+    //   alert('please provide all doccuments');
+    //   return;
+    // }
     let data = {
       rc: this.data.rc,
-      insurance: this.data.insurance,
-      truck_number: this.trucknumber,
-      Ownership: this.ownership,
+      vehicle_insurance: this.data.vehicle_insurance,
+      product_insurance: this.data.product_insurance,
+      explosive: this.data.explosive,
+      calibration_chart: this.data.calibration_chart,
+      national_permit: this.data.national_permit,
+      national_permit_A: this.data.national_permit_A,
+      national_permit_B: this.data.national_permit_B,
+      road_tax: this.data.road_tax,
+      pollution: this.data.pollution,
+      sco: this.data.sco,
+      abs: this.data.abs,
+      hydro_testing:this.data.hydro_testing,
+      fitness:this.data.fitness,
+      others: this.data.others,
+      
       userId: this.userId,
       superAdminId: this.superadminid
     }

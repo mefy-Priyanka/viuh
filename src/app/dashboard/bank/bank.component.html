@@ -4,7 +4,7 @@
     <h1>Bank | Create
     </h1>
   </div>
-  <form class="createContractorForm" *ngIf="bank">
+  <form class="createContractorForm" *ngIf="bank" [formGroup]="bankForm">
     <div class="row">
       <div class="col-md-12">
         <!-- input type -->
@@ -22,14 +22,18 @@
                   </div> -->
                   <div class="input-field col s6">
                     <p><label>Bank Name</label></p>
-                    <input type="text" class="validate">
-                    <!-- <p class="errormessage" *ngIf="contactFormErrors.company_name.required || (contactForm.controls.company_name.pristine && submitted)">Company name can't be empty</p> -->
+                    <input type="text" class="validate" formControlName="bank_name">
+                    <p class="errormessage"
+                    *ngIf="bankFormErrors.bank_name.required || (bankForm.controls.bank_name.pristine && submitted)">
+                    Cannot be empty</p>
 
                   </div>
                   <div class="input-field col s6">
                     <p><label>IFSC Code</label></p>
-                    <input type="text" class="validate">
-                    <!-- <p class="errormessage" *ngIf="contactFormErrors.phoneNumber.required || (contactForm.controls.phoneNumber.pristine && submitted)">Phone Number can't be empty</p> -->
+                    <input type="text" class="validate" formControlName="ifsc">
+                    <p class="errormessage"
+                    *ngIf="bankFormErrors.ifsc.required || (bankForm.controls.ifsc.pristine && submitted)">
+                    Cannot be empty</p>
 
                   </div>
 
@@ -37,29 +41,44 @@
                 <div class="row">
                   <div class="input-field col s6">
                     <p><label>Account Holder Name<span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate">
+                    <input type="text" class="validate" formControlName="account_holder_name">
+                    <p class="errormessage"
+                    *ngIf="bankFormErrors.account_holder_name.required || (bankForm.controls.account_holder_name.pristine && submitted)">
+                    Cannot be empty</p>
                   </div>
                   <div class="input-field col s6">
                     <p><label>Bank Branch<span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate">
+                    <input type="text" class="validate" formControlName="branch_name">
+                    <p class="errormessage"
+                    *ngIf="bankFormErrors.branch_name.required || (bankForm.controls.branch_name.pristine && submitted)">
+                    Cannot be empty</p>
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="input-field col s6">
                     <p><label>Bank Address<span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate">
+                    <input type="text" class="validate" formControlName="address">
+                    <p class="errormessage"
+                    *ngIf="bankFormErrors.address.required || (bankForm.controls.address.pristine && submitted)">
+                    Cannot be empty</p>
                   </div>
                   <div class="input-field col s6">
                     <p><label>Account No<span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate">
+                    <input type="text" class="validate" formControlName="account_number">
+                    <p class="errormessage"
+                      *ngIf="bankFormErrors.account_number.required || (bankForm.controls.account_number.pristine && submitted)">
+                      Cannot be empty</p>
                   </div>
                 </div>
                 <div class="row">
-                  <div class="input-field col s6">
+                  <!-- <div class="input-field col s6">
                     <p><label>Confirm Account No<span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate">
-                  </div>
+                    <input type="text" class="validate" formControlName="consirmacn">
+                    <p class="errormessage"
+                      *ngIf="bankFormErrors.consirmacn.required || (bankForm.controls.consirmacn.pristine && submitted)">
+                      Cannot be empty</p>
+                  </div> -->
                 </div>
 
 
@@ -69,7 +88,7 @@
           </div>
           <div class="row">
             <div class="contractorButton">
-              <button class="submitBtn" (click)="submit()">Next</button>
+              <button class="submitBtn" (click)="submit1()">Next</button>
               <button class="cancelBtn" (click)="cancel()">Cancel</button>
             </div>
           </div>
@@ -88,7 +107,7 @@
     </div>
 
   </form>
-  <form class="createContractorForm" *ngIf="!bank">
+  <div class="createContractorForm" *ngIf="!bank">
     <div class="row">
       <div class="col-md-12">
         <!-- input type -->
@@ -105,10 +124,12 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td class="thname"><input type="text" style="border: none !important"></td>
-                      <td class="thname"><input type="text" style="border: none !important"></td>
-                      <td class="thname"><textarea style="border:none !important"></textarea></td>
+                    <button (click)="add()">+</button>
+                    <tr *ngFor="let item of orders">
+                      <td class="thname"><input type="text" style="border: none !important" [(ngModel)]='item.field_name'></td>
+                      <td class="thname"><input type="text" style="border: none !important" [(ngModel)]='item.field_type'></td>
+                      <td class="thname"><textarea style="border:none !important" [(ngModel)]='item.description'></textarea></td>
+
                     </tr>
                   </tbody>
                 </table>
@@ -117,7 +138,7 @@
           </div>
           <div class="row">
             <div class="contractorButton">
-              <button class="submitBtn">Submit</button>
+              <button class="submitBtn" (click)="submit()">Submit</button>
               <button class="cancelBtn" (click)="cancel()">Cancel</button>
             </div>
           </div>
@@ -135,7 +156,7 @@
       </div>
     </div>
 
-  </form>
+  </div>
 </section>
 
 <!-- bank -->
