@@ -63,14 +63,14 @@
               <div class="nota">
                 <div class="row">
                   <div class="input-field col s6">
-                    <p><label>Tl.No. <span class="blue_star">*</span></label></p>
+                    <p><label>Consignor <span class="blue_star">*</span></label></p>
                     <input type="text" class="validate" formControlName="email">
                     <!-- <p class="errormessage" *ngIf="contactFormErrors.email.required || contactFormErrors.email.email || (contactForm.controls.email.pristine && submitted)">Enter Valid Email</p> -->
 
                   </div>
 
                   <div class="input-field col s6">
-                      <p><label>Location No. <span class="blue_star">*</span></label></p>
+                      <p><label>Consignee<span class="blue_star">*</span></label></p>
                       <input type="text" class="validate" formControlName="email">
                       <!-- <p class="errormessage" *ngIf="contactFormErrors.email.required || contactFormErrors.email.email || (contactForm.controls.email.pristine && submitted)">Enter Valid Email</p> -->
 
@@ -85,13 +85,13 @@
                     <input type="text" class="validate">
                   </div> -->
                   <div class="input-field col s6">
-                      <p><label>Challan No.</label></p>
+                      <p><label>Place Of Origin</label></p>
                       <input type="text" class="validate" formControlName="company_name">
                       <!-- <p class="errormessage" *ngIf="contactFormErrors.company_name.required || (contactForm.controls.company_name.pristine && submitted)">Company name can't be empty</p> -->
 
                     </div>
                   <div class="input-field col s6">
-                    <p><label>Date</label></p>
+                    <p><label>Destination</label></p>
                     <input type="text" class="validate" formControlName="phoneNumber">
                     <!-- <p class="errormessage" *ngIf="contactFormErrors.phoneNumber.required || (contactForm.controls.phoneNumber.pristine && submitted)">Phone Number can't be empty</p> -->
 
@@ -101,24 +101,75 @@
                 <div class="row">
               
                   <div class="input-field col s6">
-                    <p><label>Product<span class="blue_star">*</span></label></p>
+                    <p><label>Reference Number<span class="blue_star">*</span></label></p>
                     <input type="text" class="validate" formControlName="website">
                     <!-- <p class="errormessage" *ngIf="contactFormErrors.website.required || (contactForm.controls.website.pristine && submitted)">Website can't be empty</p> -->
 
                   </div>
 
                   <div class="input-field col s6">
-                    <p><label>Qty.(KL)<span class="blue_star">*</span></label></p>
+                    <p><label>Truck No.<span class="blue_star">*</span></label></p>
                     <input type="text" class="validate" formControlName="website">
                     <!-- <p class="errormessage" *ngIf="contactFormErrors.website.required || (contactForm.controls.website.pristine && submitted)">Website can't be empty</p> -->
 
                   </div>
-                  <!-- <div class="input-field col s4">
-                    <p><label>Phone Number</label></p>
-                    <input type="text" class="validate">
-                  </div> -->
-
                 </div>
+                <div class="row">
+              
+                  <div class="input-field col s6">
+                    <p><label>Consignment Date<span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" formControlName="website">
+                    <!-- <p class="errormessage" *ngIf="contactFormErrors.website.required || (contactForm.controls.website.pristine && submitted)">Website can't be empty</p> -->
+
+                  </div>
+
+                  <div class="input-field col s6">
+                    <p><label>Driving Lic. No<span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" formControlName="website">
+                    <!-- <p class="errormessage" *ngIf="contactFormErrors.website.required || (contactForm.controls.website.pristine && submitted)">Website can't be empty</p> -->
+
+                  </div>
+                </div>
+
+
+
+
+                <div class="tableide consignmentTable">
+                  <div class="row">
+                    <div id="no-more-tables">
+                      <table class="col-md-12 table-bordered table-striped table-condensed cf">
+                        <thead class="cf">
+                          <tr>
+                            <th class="numeric">TL.NO.</th>
+                            <th>LOCATION NO.</th>
+                            <th>CHALLAN NO.</th>
+                            <th>DATE</th>
+                            <th>PRODUCT</th>
+                            <th>QTY.(KL)</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td class="thname"><input type="text" style="border: none !important"></td>
+                            <td class="thname"><input type="text" style="border: none !important"></td>
+                            <td class="thname"><input type="text" style="border: none !important"></td>
+                            <td class="thname"><input type="text" style="border: none !important"></td>
+                            <td class="thname"><input type="text" style="border: none !important"></td>
+                            <td class="thname"><input type="text" style="border: none !important"></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+
+
+
+
+
+
+
+
 
               </div>
 

@@ -1,5 +1,54 @@
+<!-- banklist -->
+<section class="corder" *ngIf="bankList">
+  <a href="#" class="floatEa">
+      <i class="fa fa-envelope-o my-float"></i>
+      </a>
+  <div class="ft">
+    <h1>Bank
+      <button class="addItema" (click)="listBank()"><i class="fa fa-plus-circle" aria-hidden="true"></i>Add</button>
+    </h1>
+  </div>
+  <div class="card margina">
+      <div class="tableide">
+          <div class="row">
+              <div id="no-more-tables">
+                  <table class="col-md-12 table-bordered table-striped table-condensed cf">
+                  <thead class="cf">
+                    <tr>
+                      <th class="numeric">BANK NAME</th>
+                      <th>IFSC CODE</th>
+                      <th>ACCOUNT HOLDER NAME</th>
+                      <th>ACCOUNT NO.</th>
+                      <th>BANK BRANCH</th>
+                
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="thno" data-title="NO.">-</td>
+                      <td class="thname" data-title="NAME"></td>
+                      <td class="thname" data-title="VAT ID"></td>
+                      <td data-title="ADDRESS" class="numeric"></td>
+                      <td data-title="VAT ID" class="numeric"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+          </div>
+      </div>
+
+  </div>
+  </section>
+<!-- banklist -->
+
+
+
+
+
+
+
 <!-- bank -->
-<section class="createcontract">
+<section class="createcontract" *ngIf="!bankList">
   <div class="ft">
     <h1>Bank | Create
     </h1>
