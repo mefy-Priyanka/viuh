@@ -15,18 +15,14 @@
               <div class="nota">
                 <div class="row">
 
-
-
                   <div class="input-field col s6">
                     <p><label>Date <span class="blue_star">*</span></label></p>
                     <input type="text" class="validate">
-                    <!-- <p class="errormessage" *ngIf="contactFormErrors.email.required || contactFormErrors.email.email || (contactForm.controls.email.pristine && submitted)">Enter Valid Email</p> -->
 
                   </div>
                   <div class="input-field col s6">
                     <p><label>Journal# <span class="blue_star">*</span></label></p>
                     <input type="text" class="validate" [readonly]=true>
-                    <!-- <p class="errormessage" *ngIf="contactFormErrors.email.required || contactFormErrors.email.email || (contactForm.controls.email.pristine && submitted)">Enter Valid Email</p> -->
 
                   </div>
 
@@ -34,14 +30,9 @@
                 <div class="row">
 
 
-                  <!-- <div class="input-field col s4">
-                    <p><label>Primary Contact</label></p>
-                    <input type="text" class="validate">
-                  </div> -->
                   <div class="input-field col s6">
                     <p><label>Reference</label></p>
                     <input type="text" class="validate">
-                    <!-- <p class="errormessage" *ngIf="contactFormErrors.company_name.required || (contactForm.controls.company_name.pristine && submitted)">Company name can't be empty</p> -->
 
                   </div>
 
@@ -97,21 +88,19 @@
                               <th>DEBITS</th>
                             </tr>
                           </thead>
-                          <tbody formArrayName="items"
-                            *ngFor="let item of orderForm.get('items').controls; let i = index;">
-                            <tr [formGroupName]="i">
+                          <tbody>
+                            <tr>
 
                               <td class="thno">
-                                <select style="border: none !important" formControlName="name">
+                                <select style="border: none !important">
                                   <option value="" disabled selected>Select</option>
                                   <option *ngFor="let list of accountlist1" [value]='list._id'>{{list.accountName}}
                                   </option>
                                 </select>
                               </td>
-                              <td class="thname"><textarea style="border:none !important"
-                                  formControlName="description"></textarea></td>
+                              <td class="thname"><textarea style="border:none !important"></textarea></td>
                               <td class="thno">
-                                <select style="border: none !important" formControlName="price">
+                                <select style="border: none !important">
                                   <option value="" disabled selected>Select Contact</option>
                                   <option value="1">a</option>
                                 </select>
@@ -136,22 +125,22 @@
                             <div class="thno">
                               <button class="At" (click)="addItem()">+&nbsp;&nbsp;Add Another Line</button>
                             </div>
-                              <div class="thno" colspan="2">
-                                Total
-                              </div>
-                              <div class="thname"><input type="text" style="border: none !important"></div>
-
-
-                              <div class="thname"><input type="text" style="border: none !important"></div>
-                              <!-- <td class="thname"><input type="text" style="border: none !important"></td> -->
+                            <div class="thno" colspan="2">
+                              Total
                             </div>
+                            <div class="thname"><input type="text" style="border: none !important"></div>
+
+
+                            <div class="thname"><input type="text" style="border: none !important"></div>
+                            <!-- <td class="thname"><input type="text" style="border: none !important"></td> -->
                           </div>
-                          
                         </div>
 
-
                       </div>
+
+
                     </div>
+                  </div>
                 </form>
 
 

@@ -32,9 +32,10 @@ export class JournalComponent implements OnInit {
     this.orderForm = this.formBuilder.group({
       customerName: '',
       email: '',
-      items: this.formBuilder.array([ this.createItem() ])
+      items: this.formBuilder.array([this.createItem()])
     });
   }
+  
   createItem(): FormGroup {
     return this.formBuilder.group({
       accountId: '',
@@ -42,10 +43,11 @@ export class JournalComponent implements OnInit {
       credit: ''
     });
   }
+
   addItem(): void {
     this.items = this.orderForm.get('items') as FormArray;
     this.items.push(this.createItem());
-   
+
   }
 
   createAccountForm() {
@@ -60,6 +62,7 @@ export class JournalComponent implements OnInit {
 
     });
   }
+
   ngOnInit() {
     this.denomForm = this.createAccountForm()
     this.denomForm.valueChanges.subscribe(() => {
@@ -68,7 +71,6 @@ export class JournalComponent implements OnInit {
   }
 
   getaccountlist() {
-
     let something: any;
     this.userService.getaccountlist1(this.userId).subscribe(result => {
       something = result
@@ -89,23 +91,8 @@ export class JournalComponent implements OnInit {
       this.denomForm.value.note200 * 200 +
       this.denomForm.value.note500 * 500 +
       this.denomForm.value.note2000 * 2000;
-
-
-    // for (const field in this.accountFormErrors) {
-    //   if (!this.accountFormErrors.hasOwnProperty(field)) {
-    //     continue;
-    //   }
-    //   // Clear previous errors
-    //   this.accountFormErrors[field] = {};
-    //   // Get the control
-    //   const control = this.accountForm.get(field);
-
-    //   if (control && control.dirty && !control.valid) {
-    //     this.accountFormErrors[field] = control.errors;
-    //   }
-    // }
   }
-  submit(){
+  submit() {
     console.log(this.items.value);
   }
 }
