@@ -15,18 +15,14 @@
               <div class="nota">
                 <div class="row">
 
-
-
                   <div class="input-field col s6">
                     <p><label>Date <span class="blue_star">*</span></label></p>
                     <input type="text" class="validate">
-                    <!-- <p class="errormessage" *ngIf="contactFormErrors.email.required || contactFormErrors.email.email || (contactForm.controls.email.pristine && submitted)">Enter Valid Email</p> -->
 
                   </div>
                   <div class="input-field col s6">
                     <p><label>Journal# <span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate">
-                    <!-- <p class="errormessage" *ngIf="contactFormErrors.email.required || contactFormErrors.email.email || (contactForm.controls.email.pristine && submitted)">Enter Valid Email</p> -->
+                    <input type="text" class="validate" [readonly]=true>
 
                   </div>
 
@@ -34,14 +30,9 @@
                 <div class="row">
 
 
-                  <!-- <div class="input-field col s4">
-                    <p><label>Primary Contact</label></p>
-                    <input type="text" class="validate">
-                  </div> -->
                   <div class="input-field col s6">
                     <p><label>Reference</label></p>
                     <input type="text" class="validate">
-                    <!-- <p class="errormessage" *ngIf="contactFormErrors.company_name.required || (contactForm.controls.company_name.pristine && submitted)">Company name can't be empty</p> -->
 
                   </div>
 
@@ -82,7 +73,7 @@
 
                 </div>
 
-                <form>
+                <form [formGroup]="orderForm">
 
                   <div class="tableide journalTable">
                     <div class="row">
@@ -99,11 +90,13 @@
                           </thead>
                           <tbody>
                             <tr>
+
                               <td class="thno">
-                                  <select style="border: none !important">
-                                      <option value="" disabled selected>Select</option>
-                                      <option value="1">Advance Tax</option>
-                                    </select>
+                                <select style="border: none !important">
+                                  <option value="" disabled selected>Select</option>
+                                  <option *ngFor="let list of accountlist1" [value]='list._id'>{{list.accountName}}
+                                  </option>
+                                </select>
                               </td>
                               <td class="thname"><textarea style="border:none !important"></textarea></td>
                               <td class="thno">
@@ -116,37 +109,8 @@
                               <td class="thname"><input type="text" style="border: none !important"></td>
                               <td class="thname"><input type="text" style="border: none !important"></td>
                             </tr>
-                            <tr>
-                                <td class="thno">
-                                    <select style="border: none !important">
-                                        <option value="" disabled selected>Select</option>
-                                        <option value="1">Advance Tax</option>
-                                      </select>
-                                </td>
-                                <td class="thname"><textarea style="border:none !important"></textarea></td>
-                                <td class="thno">
-                                  <select style="border: none !important">
-                                    <option value="" disabled selected>Select Contact</option>
-                                    <option value="1">a</option>
-                                  </select>
-                                </td>
-  
-                                <td class="thname"><input type="text" style="border: none !important"></td>
-                                <td class="thname"><input type="text" style="border: none !important"></td>
-                              </tr>
-                            <tr>
-                                <td class="thno">
-                                    <button class="At">+&nbsp;&nbsp;Add Another Line</button>
-                                      </td>
-                                <td class="thno" colspan="2">
-                              Total
-                                </td>
-                                <td class="thname"><input type="text" style="border: none !important"></td>
-                            
-  
-                                <td class="thname"><input type="text" style="border: none !important"></td>
-                                <!-- <td class="thname"><input type="text" style="border: none !important"></td> -->
-                              </tr>
+
+
 
 
 
@@ -154,7 +118,27 @@
 
                           </tbody>
                         </table>
+
+
+                        <div>
+                          <div>
+                            <div class="thno">
+                              <button class="At" (click)="addItem()">+&nbsp;&nbsp;Add Another Line</button>
+                            </div>
+                            <div class="thno" colspan="2">
+                              Total
+                            </div>
+                            <div class="thname"><input type="text" style="border: none !important"></div>
+
+
+                            <div class="thname"><input type="text" style="border: none !important"></div>
+                            <!-- <td class="thname"><input type="text" style="border: none !important"></td> -->
+                          </div>
+                        </div>
+
                       </div>
+
+
                     </div>
                   </div>
                 </form>
@@ -205,7 +189,7 @@
 
         </div>
         <div class="modal-body">
-          <form>
+          <form [formGroup]="denomForm">
 
             <div class="tableide">
               <div class="row">
@@ -221,43 +205,45 @@
                     <tbody>
                       <tr>
                         <td class="thno">10<span class="closT">&times;</span></td>
-                        <td class="thname"><input type="text"></td>
-                        <td class="thname"><input type="text"></td>
+                        <td class="thname"><input type="number" formControlName="note10"></td>
+                        <td class="thname">
+                          {{denomForm.value.note10*10}}
+                        </td>
                       </tr>
                       <tr>
                         <td class="thno">20<span class="closT">&times;</span></td>
-                        <td class="thname"><input type="text"></td>
-                        <td class="thname"><input type="text"></td>
+                        <td class="thname"><input type="number" formControlName="note20"></td>
+                        <td class="thname">{{denomForm.value.note20*20}}</td>
                       </tr>
                       <tr>
                         <td class="thno">50<span class="closT">&times;</span></td>
-                        <td class="thname"><input type="text"></td>
-                        <td class="thname"><input type="text"></td>
+                        <td class="thname"><input type="number" formControlName="note50"></td>
+                        <td class="thname">{{denomForm.value.note50*50}}</td>
                       </tr>
                       <tr>
                         <td class="thno">100<span class="closT">&times;</span></td>
-                        <td class="thname"><input type="text"></td>
-                        <td class="thname"><input type="text"></td>
+                        <td class="thname"><input type="number" formControlName="note100"></td>
+                        <td class="thname">{{denomForm.value.note100*100}}</td>
                       </tr>
                       <tr>
                         <td class="thno">200<span class="closT">&times;</span></td>
-                        <td class="thname"><input type="text"></td>
-                        <td class="thname"><input type="text"></td>
+                        <td class="thname"><input type="number" formControlName="note200"></td>
+                        <td class="thname">{{denomForm.value.note200*200}}</td>
                       </tr>
                       <tr>
                         <td class="thno">500<span class="closT">&times;</span></td>
-                        <td class="thname"><input type="text"></td>
-                        <td class="thname"><input type="text"></td>
+                        <td class="thname"><input type="number" formControlName="note500"></td>
+                        <td class="thname">{{denomForm.value.note500*500}}</td>
                       </tr>
                       <tr>
                         <td class="thno">2000<span class="closT">&times;</span></td>
-                        <td class="thname"><input type="text"></td>
-                        <td class="thname"><input type="text"></td>
+                        <td class="thname"><input type="number" formControlName="note2000"></td>
+                        <td class="thname">{{denomForm.value.note2000*2000}}</td>
                       </tr>
                       <tr>
                         <td class="thno" colspan="2" style="background:#eee;text-align: center">Total</td>
 
-                        <td class="thname" style="background:#fff"><input type="text"></td>
+                        <td class="thname" style="background:#fff">{{total}}</td>
                       </tr>
                     </tbody>
                   </table>

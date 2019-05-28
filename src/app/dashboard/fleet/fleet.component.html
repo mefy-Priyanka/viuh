@@ -9,12 +9,18 @@
         <form class="col s12">
           <div class="fleetForm">
             <div class="row">
+
+
+
               <div class="input-field col s6">
                 <p><label>Truck Number</label></p>
                 <input type="text" class="validate" [(ngModel)]="trucknumber" [ngModelOptions]="{standalone: true}"
                   (keyup)="check('trucknumber')">
                 <p class="errormessage" *ngIf="truckerr">Truck number can't be empty</p>
               </div>
+
+
+
               <div class="input-field col s6">
                 <p><label>Ownership <span class="blue_star">*</span></label></p>
                 <select [(ngModel)]="ownership" [ngModelOptions]="{standalone: true}" (change)="check('ownership')">
@@ -25,37 +31,63 @@
                 <p class="errormessage" *ngIf="ownererr">please choose ownership</p>
               </div>
             </div>
+
             <p><span class="blue_star">******Upload Files</span></p>
             <div class="row">
+
+
               <div class="input-field col s3">
                 <p><label>Document <span class="blue_star">*</span></label></p>
                 <select [(ngModel)]="selectedOption" [ngModelOptions]="{standalone: true}"
-                  (change)="check1('selectedOption')">
+                  (change)="check1('selectedOption' ,selectedOption)">
                   <option value="" disabled selected>Document</option>
                   <option *ngFor="let title of doccuments" [value]='title'>{{title}}</option>
                 </select>
                 <p *ngIf="selecterr">please choose document</p>
               </div>
+
+
               <div class="input-field col s3">
                 <p><label>Company Logo</label></p>
                 <div class="input-field myFilet aeto"><input type="file" class="validate" class="fileType" #mydoc
-                    (change)="upload($event,selectedOption)">
+                    (change)="upload($event,selectedOption)" [(ngModel)]="selected.file" (keyup)="check1('file')"
+                    [ngModelOptions]="{standalone: true}">
                 </div>
               </div>
+
+
               <div class="input-field col s3">
                 <p><label>Doc Number</label></p>
-                <input (keyup)="check1('docnumbers')" placeholder="Enter Number" id="first_name" type="text"
-                  [(ngModel)]="selected.docnumber" class="validate" [ngModelOptions]="{standalone: true}">
-                  <p *ngIf="docuerr">can't be empty</p>
+                <input (keyup)="check1('numbers',selectedOption)" placeholder="Enter Number" id="first_name" type="text"
+                  [(ngModel)]="selected.number" class="validate" [ngModelOptions]="{standalone: true}">
+                <p *ngIf="docuerr">can't be empty</p>
               </div>
+
+
               <div class="input-field col s2">
                 <p><label>Valid Upto</label></p>
-                <input (keyup)="check1('valid')" placeholder="dd/mm/yyyy" id="first_name" type="text"
+                <input (keyup)="check1('valid',selectedOption)" placeholder="dd/mm/yyyy" id="first_name" type="text"
                   [(ngModel)]="selected.valid" class="validate" [ngModelOptions]="{standalone: true}">
-                  <p *ngIf="validerr">can't be empty</p>
+                <p *ngIf="validerr">can't be empty</p>
               </div>
+
+
               <div class="input-field col s1">
                 <button class="addBtn" (click)="add(selected,selectedOption)">+</button>
+              </div>
+
+
+              <div class="input-field col s3" *ngIf='otherbool'>
+                <p><label>Name</label></p>
+                <input (keyup)="check1('other1',selectedOption)" placeholder="Enter Number" type="text"
+                  [(ngModel)]="othername" class="validate" [ngModelOptions]="{standalone: true}">
+              </div>
+
+
+              <div class="input-field col s3" *ngIf='other2bool'>
+                <p><label> Name</label></p>
+                <input (keyup)="check1('other2',selectedOption)" placeholder="Enter Number" type="text"
+                  [(ngModel)]="othername2" class="validate" [ngModelOptions]="{standalone: true}">
               </div>
 
             </div>
@@ -77,15 +109,15 @@
             </div>
             <div class="row at" *ngFor='let x of vardata'>
               <div class="col-md-4">
-                <p class="docType ae">{{x.name}}</p>
+                <p class="docType ae">{{x.title}}</p>
 
               </div>
               <div class="col-md-4">
-                <p class="docType ae">{{x.number}}</p>
+                <p class="docType ae">{{x.main.number}}</p>
 
               </div>
               <div class="col-md-4">
-                <p class="docType ae">{{x.valid}}</p>
+                <p class="docType ae">{{x.main.valid_upto}}</p>
 
               </div>
             </div>

@@ -41,4 +41,19 @@ fleetcreation(data){
       return this.httpClient.get(APIURL + 'contractor/contractByUserId?userId='+userId)
     }
     /********************************END**************************************/
+
+
+
+
+    periodList(superAdmin) {
+      
+      
+      return this.httpClient.get(APIURL + 'period/periodList?superAdminId=' +superAdmin)
+
+    }
+
+    creatperiod(data){
+      return this.httpClient.post(APIURL+ 'period/create', data)
+
+    }
 }

@@ -249,7 +249,7 @@ nav.navbar.navbar-inverse.navbar-fixed-left .row {
   margin: 0px;
 }
 p.navMain {
-  margin: 18px 0 13px 0px;
+  margin: 18px 0 13px 14px;
   color: #ffffff87;
   font-weight: 600;
   font-size: 12px;
@@ -478,8 +478,27 @@ ul.dropdown-menu.sitetting.colori.atea {
 span.lalbabat {
   display: none;
 }
-
-
+nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons {
+  height: 47px;
+}
+i.fa.fa-sticky-note {
+  font-size: 19px;
+  margin-right: 1em;
+}
+.panel.panel-default {
+  margin: 0;
+}
+.row.leftCet.alit {
+  padding-top: 1em;
+}
+i.fa.fa-money {
+  font-size: 19px;
+  margin-right: 16px;
+}
+i.fa.fa-credit-card-alt {
+  font-size: 15px;
+  margin-right: 16px;
+}
 /* Responsive css */
 @media only screen and (min-width: 768px) and (max-width: 1023px){
   p.headernav {
@@ -532,3 +551,98 @@ p.headernav {
 }
 }
 /* Responsive css */
+/* accordion css */
+div#headingTwo {
+  position: relative;
+  background: #314662;
+  color: #fff;
+  /* padding: 2em 2em 1em 2em; */
+  border: none;
+height: 42px;
+} 
+div#headingThree {
+position: relative;
+background: #314662;
+color: #fff;
+/* padding: 2em 2em 1em 2em; */
+border: none;
+height: 42px;
+}
+div#headingfour {
+position: relative;
+background: #314662;
+color: #fff;
+padding: 2em 2em 1em 2em;
+}
+div#headingfive {
+position: relative;
+background: #314662;
+color: #fff;
+padding: 2em 2em 1em 2em;
+}
+
+
+.panel.panel-default {
+border: none;
+/* border-bottom: 1px solid #142333 !important; */
+}
+h4.panel-title a:hover {
+text-decoration: none !important;
+}
+div#accordionMenu i.fa.fa-user-o {
+height: 0;
+margin-right: 9px;
+vertical-align: top;
+margin-top: 0px !important;
+}
+.panel-default>.panel-heading a:after {
+content: "";
+/* position: relative; */
+/* top: 1px; */
+position: absolute;
+top: 4px;
+right: 2em;
+display: inline-block;
+font-family: 'Glyphicons Halflings';
+font-style: normal;
+font-weight: 400;
+line-height: 1;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+float: right;
+transition: transform .25s linear;
+-webkit-transition: -webkit-transform .25s linear;
+}
+
+.panel-default>.panel-heading a[aria-expanded="true"] {
+/* background-color: red; */
+}
+
+.panel-default>.panel-heading a[aria-expanded="true"]:after {
+content: "\e113";
+}
+
+.panel-default>.panel-heading a[aria-expanded="false"]:after {
+content: "\e114";
+}
+.panel-body {
+background: #25364b;
+}
+ul.nav.accordionae li {
+width: 100%;
+}
+a.collapsed:hover {
+text-decoration: none !important;
+}
+span.accordionName {
+margin-left: 2em;
+}
+.panel-heading {
+  padding: 4px 15px;
+}
+ul.nav.accordionae i.fa {
+  font-size: 19px;
+  margin-right: 10px;
+  height: 0;
+}
+/* accordion css */
