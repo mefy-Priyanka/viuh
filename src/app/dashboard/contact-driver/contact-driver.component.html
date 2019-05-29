@@ -4,7 +4,7 @@
     <h1>Driver | Create
     </h1>
   </div>
-  <form class="createContractorForm" >
+  <form class="createContractorForm" [formGroup]="driverForm">
     <div class="row">
       <div class="col-md-12">
         <!-- input type -->
@@ -21,7 +21,7 @@
   <div class="row">
     <div class="input-field col s12">
         <p><label>Name</label></p>
-        <input type="text" class="validate" formControlName="company_name">
+        <input type="text" class="validate" formControlName="name">
         <!-- <p class="errormessage" *ngIf="contactFormErrors.company_name.required || (contactForm.controls.company_name.pristine && submitted)">Company name can't be empty</p> -->
 
       </div>
@@ -73,12 +73,12 @@
                 <div class="row">
                   <div class="input-field col s3">
                     <p><label>License <span class="blue_star">*</span></label></p>
-                    <select>
+                    <select (change)='selectedValue($event.target.value)'>
                       <option value="" disabled selected>Document</option>
-                      <option>Aadhar</option>
-                      <option>Training Certificate</option>
-                      <option>Police Verification</option>
-                      <option>Others</option>
+                      <option *ngFor="let name of document" [value]="name">{{name}}</option>
+                      <option >others</option>
+                      <!-- <option>Police Verification</option>
+                      <option>Others</option> -->
                     </select>
                     <!-- <p *ngIf="selecterr">please choose document</p> -->
                   </div>
@@ -89,12 +89,12 @@
                   </div>
                   <div class="input-field col s3">
                     <p><label>Doc Number</label></p>
-                    <input placeholder="Enter Number" id="first_name" type="text" class="cote validate">
+                    <input placeholder="Enter Number" id="first_name" type="text" class="cote validate" formControlName="number">
                       <!-- <p *ngIf="docuerr">can't be empty</p> -->
                   </div>
                   <div class="input-field col s2">
                     <p><label>Valid Upto</label></p>
-                    <input placeholder="dd/mm/yyyy" id="first_name" type="text" class="cote validate">
+                    <input placeholder="dd/mm/yyyy" id="first_name" type="text" class="cote validate" formControlName="valid_upto">
                       <!-- <p *ngIf="validerr">can't be empty</p> -->
                   </div>
                   <div class="input-field col s1">
