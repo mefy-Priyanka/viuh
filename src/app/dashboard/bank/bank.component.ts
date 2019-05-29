@@ -17,6 +17,7 @@ export class BankComponent implements OnInit {
   submitted: boolean;
   orders=[]
   userId: string;
+  banklist=[]
   constructor(private formBuilder: FormBuilder,private userService: UserService, private toastr: ToastrService ) {
     this.userId = localStorage.getItem('userId');
 
@@ -38,6 +39,22 @@ export class BankComponent implements OnInit {
     this.bankForm.valueChanges.subscribe(() => {
       this.onbankFormValuesChanged();
     });
+    this.getbanklist()
+  }
+
+  getbanklist(){
+    let something:any;
+    this.userService.banklist(this.userId).subscribe(value => {
+
+      // this.toastr.success('Congo!', 'account get Successfully '),
+        console.log('list', value)
+        something= value;
+      this.banklist=something.result
+    },
+      err => {
+        console.log(err)
+
+      })
   }
   createbankForm() {
     return this.formBuilder.group({
@@ -93,9 +110,11 @@ export class BankComponent implements OnInit {
       console.log(data);
       this.userService.bankcreat(data).subscribe(value => {
 
-        this.toastr.success('Congo!', 'account get Successfully '),
-          console.log('list', value)
+        this.toastr.success('Congo!', 'Bank created Successfully '),
+          console.log('', value)
         something = value;
+        this.getbanklist()
+        this.listBank();
       },
         err => {
           console.log(err)
@@ -114,6 +133,7 @@ export class BankComponent implements OnInit {
     };
     this.orders.push(temp)
   }
+  
   listBank(){
     this.bankList=!this.bankList;
   }

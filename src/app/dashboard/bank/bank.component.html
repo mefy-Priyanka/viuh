@@ -17,19 +17,19 @@
                     <tr>
                       <th class="numeric">BANK NAME</th>
                       <th>IFSC CODE</th>
-                      <th>ACCOUNT HOLDER NAME</th>
+                      <th>BANK ADDRESS</th>
                       <th>ACCOUNT NO.</th>
                       <th>BANK BRANCH</th>
                 
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
-                      <td class="thno" data-title="NO.">-</td>
-                      <td class="thname" data-title="NAME"></td>
-                      <td class="thname" data-title="VAT ID"></td>
-                      <td data-title="ADDRESS" class="numeric"></td>
-                      <td data-title="VAT ID" class="numeric"></td>
+                    <tr *ngFor="let bank of banklist">
+                      <td class="thno" data-title="NO.">{{bank.bank_name}}</td>
+                      <td class="thname" data-title="NAME">{{bank.ifsc}}</td>
+                      <td class="thname" data-title="VAT ID">{{bank.address}}</td>
+                      <td data-title="ADDRESS" class="numeric">{{bank.account_number}}</td>
+                      <td data-title="VAT ID" class="numeric">{{bank.bank_name}}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -138,7 +138,7 @@
           <div class="row">
             <div class="contractorButton">
               <button class="submitBtn" (click)="submit1()">Next</button>
-              <button class="cancelBtn" (click)="cancel()">Cancel</button>
+              <button class="cancelBtn" (click)="listBank()">Cancel</button>
             </div>
           </div>
         </div>

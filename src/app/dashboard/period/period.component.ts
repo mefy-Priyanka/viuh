@@ -12,8 +12,9 @@ export class PeriodComponent implements OnInit {
   periodFormErrors: {};
   periodForm: FormGroup;
   submitted: boolean;
-
-  constructor(private formBuilder: FormBuilder,private CompanyService :CompanyService,private toastr: ToastrService) { 
+  periods=[];
+  openbool: boolean;
+  constructor(private formBuilder: FormBuilder, private CompanyService: CompanyService, private toastr: ToastrService) {
     this.periodFormErrors = {
       period_name: {},
       period_status: {},
@@ -30,17 +31,31 @@ export class PeriodComponent implements OnInit {
     });
     this.getperiodList()
   }
-  getperiodList(){
-    this.CompanyService.periodList(localStorage.getItem('userId')).subscribe(data=>{
-    console.log(data)
-    let result :any={}
-    result=data;
+  getperiodList() {
+    this.CompanyService.periodList(localStorage.getItem('userId')).subscribe(data => {
+      console.log(data)
+      let result: any = {}
+      result = data;
+      this.periods=result.result
     },
-    error=>{
-    console.log(error);
-    
-    })
+      error => {
+        console.log(error);
+
+      })
+  }
+  checkopen(){
+    let i=0;
+    for(i=0;i<this.periods.length;i++){
+      if(this.periods[i].period_status=='open'){
+        this.openbool=true;
+        return;
+      }
+      else{
+        this.openbool=false
+      }
     }
+    console.log(this.openbool)
+  }
   createAccountForm() {
     return this.formBuilder.group({
       period_name: ['', Validators.required],
@@ -66,11 +81,16 @@ export class PeriodComponent implements OnInit {
     }
   }
   submit() {
+    this.checkopen();
+    if(this.openbool){
+      alert('you already have one period open please close it')
+      return;
+    }
     console.log(this.periodForm.value)
     this.submitted = true;
     var accounttype: any;
     if (this.periodForm.valid) {
-      
+
       let data = {
         period_name: this.periodForm.value.period_name,
         period_status: this.periodForm.value.period_status,
@@ -90,11 +110,11 @@ export class PeriodComponent implements OnInit {
         err => {
           console.log(err)
           this.submitted = false;
-         
+
           this.toastr.error('Error!', 'Server Error')
         })
     }
-    
+
   }
 
 }
