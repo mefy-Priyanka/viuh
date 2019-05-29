@@ -22,16 +22,15 @@
     <div class="input-field col s12">
         <p><label>Name</label></p>
         <input type="text" class="validate" formControlName="name">
-        <!-- <p class="errormessage" *ngIf="contactFormErrors.company_name.required || (contactForm.controls.company_name.pristine && submitted)">Company name can't be empty</p> -->
-
+        <p class="error" [ngStyle]="{'font-size':'12px'}" *ngIf="driverFormErrors.name.required || (driverForm.controls.name.pristine && submitted)">PLease enter name</p>
       </div>
     </div>
-    <div class="row">
-                
+    <div class="row">              
         <div class="input-field col s12">
           <p><label>Phone Number</label></p>
           <input type="text" class="validate" formControlName="phoneNumber">
-          <!-- <p class="errormessage" *ngIf="contactFormErrors.phoneNumber.required || (contactForm.controls.phoneNumber.pristine && submitted)">Phone Number can't be empty</p> -->
+        <p class="error" [ngStyle]="{'font-size':'12px'}" *ngIf="driverFormErrors.phoneNumber.required || (driverForm.controls.phoneNumber.pristine && submitted)">PLease enter valid phone number</p>
+
 
         </div>
 
@@ -48,7 +47,7 @@
   <div class="container">
       <div class="avatar-upload">
           <div class="avatar-edit">
-              <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+              <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" (change)="upload($event)" />
               <label for="imageUpload"></label>
           </div>
           <div class="avatar-preview">
@@ -73,7 +72,7 @@
                 <div class="row">
                   <div class="input-field col s3">
                     <p><label>License <span class="blue_star">*</span></label></p>
-                    <select (change)='selectedValue($event.target.value)'>
+                    <select (change)='selectedValue($event.target.value)' >
                       <option value="" disabled selected>Document</option>
                       <option *ngFor="let name of document" [value]="name">{{name}}</option>
                       <option >others</option>
@@ -82,24 +81,34 @@
                     </select>
                     <!-- <p *ngIf="selecterr">please choose document</p> -->
                   </div>
+                  <div class="input-field col s2" *ngIf='inputField'>
+                    <p><label>name</label></p>
+                    <input placeholder="Enter Number" id="first_name" type="text" class="cote validate" formControlName="doc_name">
+
+                      <!-- <p *ngIf="validerr">can't be empty</p> -->
+                  </div>
                   <div class="input-field col s3">
                     <p><label>Doc Upload</label></p>
-                    <div class="input-field myFilet aeto"><input type="file" class="validate" class="fileType">
+                    <div class="input-field myFilet aeto" ><input type="file" class="validate" class="fileType" (change)="upload($event)" >
                     </div>
                   </div>
                   <div class="input-field col s3">
                     <p><label>Doc Number</label></p>
-                    <input placeholder="Enter Number" id="first_name" type="text" class="cote validate" formControlName="number">
+                    <input placeholder="Enter Number" id="first_name" type="text"  class="cote validate" formControlName="number">
                       <!-- <p *ngIf="docuerr">can't be empty</p> -->
                   </div>
-                  <div class="input-field col s2">
+                  <div class="input-field col s2" >
                     <p><label>Valid Upto</label></p>
-                    <input placeholder="dd/mm/yyyy" id="first_name" type="text" class="cote validate" formControlName="valid_upto">
+                    <input placeholder="dd/mm/yyyy" id="first_name" type="text"   class="cote validate" formControlName="valid_upto">
                       <!-- <p *ngIf="validerr">can't be empty</p> -->
                   </div>
-                  <div class="input-field col s1">
-                    <button class="addBtn">+</button>
+                  
+                  <div class="submitBtn">
+                    <button class="addBtn" (click)="add()">add</button>
                   </div>
+                  <!-- <div class="input-field col s1">
+                    <button class="addBtn">+</button>
+                  </div> -->
     
                 </div>
               </div>
@@ -108,7 +117,7 @@
           </div>
           <div class="row">
             <div class="contractorButton">
-              <button class="submitBtn" (click)="submit()">Next</button>
+              <button class="submitBtn" (click)="createDriver()">Next</button>
               <button class="cancelBtn" (click)="cancel()">Cancel</button>
             </div>
           </div>

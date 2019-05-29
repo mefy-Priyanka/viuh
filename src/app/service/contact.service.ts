@@ -9,7 +9,7 @@ export class ContactService {
   constructor(private httpClient: HttpClient) { }
   /***************************************CREATE DRIVER*************************/
   driver(data){
-    this.httpClient.post(APIURL+'driver/create',data)
+    return this.httpClient.post(APIURL+'driver/create',data)
   }
   /********************************END**************************************/
 
