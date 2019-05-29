@@ -22,6 +22,11 @@ import { ContactDriverComponent } from './contact-driver/contact-driver.componen
 import { BankComponent } from './bank/bank.component';
 import { ConsignmentComponent } from './consignment/consignment.component';
 import { PeriodComponent } from './period/period.component';
+import { InvoiceComponent } from './invoice/invoice.component';
+import { ContactemployeeComponent } from './contactemployee/contactemployee.component';
+import { ContactvendorComponent } from './contactvendor/contactvendor.component';
+import { ContactcustomerComponent } from './contactcustomer/contactcustomer.component';
+// import { EmployeeComponent } from './employee/employee.component';
 
 const routes: Routes = [
     {
@@ -70,7 +75,12 @@ const routes: Routes = [
         ContactDriverComponent,
         BankComponent,
         ConsignmentComponent,
-        PeriodComponent
+        PeriodComponent,
+        InvoiceComponent,
+        ContactemployeeComponent,
+        ContactvendorComponent,
+        ContactcustomerComponent,
+        // EmployeeComponent
 
     ]
 })

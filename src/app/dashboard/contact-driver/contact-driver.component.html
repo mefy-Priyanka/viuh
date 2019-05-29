@@ -1,7 +1,7 @@
 <!-- contact -->
 <section class="createcontract" >
   <div class="ft">
-    <h1>Contact | Create
+    <h1>Driver | Create
     </h1>
   </div>
   <form class="createContractorForm" >
@@ -13,27 +13,63 @@
             <div class="row">
 
               <div class="nota">
-                <div class="row">
+
+<div class="row">
 
 
-                  <!-- <div class="input-field col s4">
-                    <p><label>Primary Contact</label></p>
-                    <input type="text" class="validate">
-                  </div> -->
-                  <div class="input-field col s6">
-                      <p><label>Name</label></p>
-                      <input type="text" class="validate" formControlName="company_name">
-                      <!-- <p class="errormessage" *ngIf="contactFormErrors.company_name.required || (contactForm.controls.company_name.pristine && submitted)">Company name can't be empty</p> -->
+<div class="col-md-6">
+  <div class="row">
+    <div class="input-field col s12">
+        <p><label>Name</label></p>
+        <input type="text" class="validate" formControlName="company_name">
+        <!-- <p class="errormessage" *ngIf="contactFormErrors.company_name.required || (contactForm.controls.company_name.pristine && submitted)">Company name can't be empty</p> -->
 
-                    </div>
-                  <div class="input-field col s6">
-                    <p><label>Phone Number</label></p>
-                    <input type="text" class="validate" formControlName="phoneNumber">
-                    <!-- <p class="errormessage" *ngIf="contactFormErrors.phoneNumber.required || (contactForm.controls.phoneNumber.pristine && submitted)">Phone Number can't be empty</p> -->
+      </div>
+    </div>
+    <div class="row">
+                
+        <div class="input-field col s12">
+          <p><label>Phone Number</label></p>
+          <input type="text" class="validate" formControlName="phoneNumber">
+          <!-- <p class="errormessage" *ngIf="contactFormErrors.phoneNumber.required || (contactForm.controls.phoneNumber.pristine && submitted)">Phone Number can't be empty</p> -->
 
-                  </div>
+        </div>
 
-                </div>
+      </div>
+
+</div>
+<div class="col-md-6">
+    <!-- <img src="../../../assets/p4.png">
+  <button>
+    <input type="file">
+  </button> -->
+  
+  
+  <div class="container">
+      <div class="avatar-upload">
+          <div class="avatar-edit">
+              <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+              <label for="imageUpload"></label>
+          </div>
+          <div class="avatar-preview">
+              <div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);">
+              </div>
+          </div>
+      </div>
+  </div>
+  
+  
+  
+  </div>
+</div>
+
+
+
+
+
+
+
+              
                 <div class="row">
                   <div class="input-field col s3">
                     <p><label>License <span class="blue_star">*</span></label></p>
