@@ -82,4 +82,23 @@ export class UserService {
     return this.httpClient.post(APIURL + 'bank/create', data)
 
   }
+  banklist(id){
+    return this.httpClient.get(APIURL + 'bank/banklist?superAdminId='+id)
+
+  }
+
+
+
+
+  journalcreat(data){
+    return this.httpClient.post(APIURL + 'journal/create',data)
+  }
+  journaldraft(data){
+    return this.httpClient.post(APIURL + 'journal/draft',data);
+
+  }
+  journalList(id){
+    return this.httpClient.get(APIURL + 'journal/journalList?superAdminId='+id)
+
+  }
 }
