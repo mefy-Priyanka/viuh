@@ -1,3 +1,281 @@
-<p>
-  invoice works!
-</p>
+<!-- journal -->
+<section class="createcontract">
+  <div class="ft">
+    <h1>Invoice | Create
+    </h1>
+  </div>
+  <form class="createContractorForm">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- input type -->
+        <div>
+          <div class="card corCard">
+            <div class="row">
+
+              <div class="nota">
+                <div class="row">
+
+                  <div class="input-field col s6">
+                    <p><label>Customer Name <span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate">
+
+                  </div>
+                  <div class="input-field col s6">
+                    <p><label>Invoice #<span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" [readonly]=true>
+
+                  </div>
+
+                </div>
+                <div class="row">
+
+
+                  <div class="input-field col s6">
+                    <p><label>Order Number</label></p>
+                    <input type="text" class="validate">
+
+                  </div>
+
+                  <div class="input-field col s6">
+                    <p><label>Invoice Date<span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate">
+                  </div>
+
+
+
+
+
+                </div>
+                <div class="row">
+
+                  <div class="input-field col s6">
+                    <p><label>Terms</label></p>
+                    <select class="orga">
+                      <option value="" disabled selected>Due On Receipt</option>
+                      <option value="rupees">NET 15</option>
+                      <option value="rupees">NET 30</option>
+                      <option value="rupees">NET 45</option>
+                      <option value="rupees">NET 60</option>
+                      <option value="rupees">Due end of the month</option>
+                      <option value="rupees">Due end of next month</option>
+                      <option value="rupees">Due on receipt</option>
+                      <option value="rupees">Custom</option>
+
+                    </select>
+                  </div>
+                  <div class="input-field col s6">
+                    <p><label>Due Date<span class="blue_star">*</span></label></p>
+                    <input type="date" class="validate">
+                  </div>
+
+                </div>
+
+
+                <form [formGroup]="orderForm">
+
+                  <div class="tableide journalTable">
+                    <div class="row">
+                      <div id="no-more-tables">
+                        <table class="col-md-12 table-bordered table-striped table-condensed cf">
+                          <thead class="cf">
+                            <tr>
+                              <th>S NO.</th>
+                              <th>VEHICLE NO.</th>
+                              <th>INVOICE NO.</th>
+                              <th>ITEM</th>
+                              <th>DATE</th>
+                              <th>SHIP-TO-PARTY</th>
+                              <th>MATERIAL</th>
+                              <th>QUANTITY</th>
+                              <th>STORAGE</th>
+                              <th style="padding:0">RTD
+                            <tr style="background: #fafafa;">
+                              <td>P</td>
+                              <td>H</td>
+                              <td>HH</td>
+                            </tr>
+
+                            </th>
+                            <th style="padding:0">RATE
+                                <tr style="background: #fafafa;">
+                                    <td>P</td>
+                                    <td>H</td>
+                                    <td>HH</td>
+                                  </tr>
+                            </th>
+                            <th>GROSS AMT.</th>
+                            <th>PENALTY AMT.</th>
+                            <th>IGST</th>
+                            <th>CGST</th>
+                            <th>S/UGST</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+
+                              <td class="thname"><input type="text" style="border: none !important"></td>
+                              <td class="thname"><input type="text" style="border: none !important"></td>
+                              <td class="thname"><input type="text" style="border: none !important"></td>
+                              <td class="thname"><input type="text" style="border: none !important"></td>
+                              <td class="thname"><input type="text" style="border: none !important"></td>
+                              <td class="thname"><input type="text" style="border: none !important"></td>
+
+                              <td class="thname"><input type="text" style="border: none !important"></td>
+
+                              <td class="thname"><input type="text" style="border: none !important"></td>
+
+                              <td class="thname"><input type="text" style="border: none !important"></td>
+                              <td class="thname" style="padding:0">
+                            <tr>
+                              <td class="thname"><input type="text" style="border: none !important">
+                              <td class="thname"><input type="text" style="border: none !important">
+                              <td class="thname"><input type="text" style="border: none !important">
+
+                            </tr>
+                            </td>
+                            <td class="thname" style="padding:0">
+                              <tr>
+                                <td class="thname"><input type="text" style="border: none !important">
+                                <td class="thname"><input type="text" style="border: none !important">
+                                <td class="thname"><input type="text" style="border: none !important">
+
+                              </tr>
+                            </td>
+                            <td class="thname"><input type="text" style="border: none !important"></td>
+                            <td class="thname"><input type="text" style="border: none !important"></td>
+                            <td class="thname"><input type="text" style="border: none !important"></td>
+                            <td class="thname"><input type="text" style="border: none !important"></td>
+                            <td class="thname"><input type="text" style="border: none !important"></td>
+
+                            </tr>
+                          </tbody>
+                        </table>
+
+
+
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="thno">
+                              <button class="At">+&nbsp;&nbsp;Add Another Line</button>
+                            </div>
+                          </div>
+                          <div>
+                            <div class="col-md-6 hrTag">
+                              <div class="row total">
+                                <div class="col-md-6">
+                                  <div class="thno">
+                                    Sub Total
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="thno">
+                                    0
+                                  </div>
+                                </div>
+                              </div>
+                              <hr>
+                              <div class="row a_t">
+                                <div class="col-md-6">
+                                  <div class="thno" style="margin-top:9px">
+                                    Adjustment
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="thno">
+                                    <input type="text" placeholder="amount" style="margin:0">
+                                  </div>
+                                </div>
+                              </div>
+                              <hr>
+                              <div class="row a_t">
+                                <div class="col-md-6">
+                                  <div class="thno" style="margin-top:9px">
+                                    GST
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="row">
+                                    <div class="col-md-6" style="padding:0">
+                                      <div class="thno">
+                                        <input type="text" placeholder="rate" style="margin:0">
+                                      </div>
+                                    </div>
+                                    <div class="col-md-6" style="padding-right:0">
+                                      <div class="thno">
+                                        <input type="text" placeholder="amount" style="margin:0">
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                </div>
+                              </div>
+                              <hr>
+                              <div class="row" style="padding-top:1em">
+                                <div class="col-md-6">
+                                  <div class="thno">
+                                    Total ( ₹ )
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="thno">
+                                    0
+                                  </div>
+                                </div>
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+
+                        <hr style="border-top:1px dotted ">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <label>Customer Notes</label>
+                            <textarea rows="4" cols="50" style="height:6em"
+                              placeholder="Thanks for your business."></textarea>
+                          </div>
+                          <div class="col-md-6">
+                            <label>Terms & Conditions</label>
+                            <textarea rows="6" cols="50" style="height: 6em"
+                              placeholder="Mention your company's Terms and conditions"></textarea>
+                          </div>
+                        </div>
+
+
+                      </div>
+
+
+                    </div>
+                  </div>
+                </form>
+
+
+              </div>
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="contractorButton">
+              <button class="submitBtn" (click)="submit()">Save as Draft</button>
+              <button class="submitBtn" (click)="submit()">Save and Send</button>
+              <button class="cancelBtn" (click)="cancel()">Cancel</button>
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <!-- input type -->
+
+
+
+
+
+      </div>
+    </div>
+
+  </form>
+</section>
+
+<!-- journal -->
