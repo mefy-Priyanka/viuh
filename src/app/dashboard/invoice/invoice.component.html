@@ -79,28 +79,74 @@
                         <table class="col-md-12 table-bordered table-striped table-condensed cf">
                           <thead class="cf">
                             <tr>
-                              <th>ITEM DETAILS</th>
+                              <th>S NO.</th>
+                              <th>VEHICLE NO.</th>
+                              <th>INVOICE NO.</th>
+                              <th>ITEM</th>
+                              <th>DATE</th>
+                              <th>SHIP-TO-PARTY</th>
+                              <th>MATERIAL</th>
                               <th>QUANTITY</th>
-                              <th>RATE</th>
-                              <th>DISCOUNT</th>
-                              <th>AMOUNT</th>
+                              <th>STORAGE</th>
+                              <th style="padding:0">RTD
+                            <tr style="background: #fafafa;">
+                              <td>P</td>
+                              <td>H</td>
+                              <td>HH</td>
+                            </tr>
+
+                            </th>
+                            <th style="padding:0">RATE
+                                <tr style="background: #fafafa;">
+                                    <td>P</td>
+                                    <td>H</td>
+                                    <td>HH</td>
+                                  </tr>
+                            </th>
+                            <th>GROSS AMT.</th>
+                            <th>PENALTY AMT.</th>
+                            <th>IGST</th>
+                            <th>CGST</th>
+                            <th>S/UGST</th>
                             </tr>
                           </thead>
                           <tbody>
                             <tr>
 
-                              <td class="thno">
-                                <select style="border: none !important">
-                                  <option value="" disabled selected>Select</option>
-                                  <option>a</option>
-                                </select>
-                              </td>
+                              <td class="thname"><input type="text" style="border: none !important"></td>
+                              <td class="thname"><input type="text" style="border: none !important"></td>
+                              <td class="thname"><input type="text" style="border: none !important"></td>
+                              <td class="thname"><input type="text" style="border: none !important"></td>
                               <td class="thname"><input type="text" style="border: none !important"></td>
                               <td class="thname"><input type="text" style="border: none !important"></td>
 
+                              <td class="thname"><input type="text" style="border: none !important"></td>
 
                               <td class="thname"><input type="text" style="border: none !important"></td>
+
                               <td class="thname"><input type="text" style="border: none !important"></td>
+                              <td class="thname" style="padding:0">
+                            <tr>
+                              <td class="thname"><input type="text" style="border: none !important">
+                              <td class="thname"><input type="text" style="border: none !important">
+                              <td class="thname"><input type="text" style="border: none !important">
+
+                            </tr>
+                            </td>
+                            <td class="thname" style="padding:0">
+                              <tr>
+                                <td class="thname"><input type="text" style="border: none !important">
+                                <td class="thname"><input type="text" style="border: none !important">
+                                <td class="thname"><input type="text" style="border: none !important">
+
+                              </tr>
+                            </td>
+                            <td class="thname"><input type="text" style="border: none !important"></td>
+                            <td class="thname"><input type="text" style="border: none !important"></td>
+                            <td class="thname"><input type="text" style="border: none !important"></td>
+                            <td class="thname"><input type="text" style="border: none !important"></td>
+                            <td class="thname"><input type="text" style="border: none !important"></td>
+
                             </tr>
                           </tbody>
                         </table>
@@ -114,7 +160,7 @@
                             </div>
                           </div>
                           <div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 hrTag">
                               <div class="row total">
                                 <div class="col-md-6">
                                   <div class="thno">
@@ -128,22 +174,22 @@
                                 </div>
                               </div>
                               <hr>
-                              <div class="row">
+                              <div class="row a_t">
                                 <div class="col-md-6">
-                                  <div class="thno" style="margin-top:1em">
+                                  <div class="thno" style="margin-top:9px">
                                     Adjustment
                                   </div>
                                 </div>
                                 <div class="col-md-6">
                                   <div class="thno">
-                                    <input type="text" placeholder="amount">
+                                    <input type="text" placeholder="amount" style="margin:0">
                                   </div>
                                 </div>
                               </div>
                               <hr>
-                              <div class="row">
+                              <div class="row a_t">
                                 <div class="col-md-6">
-                                  <div class="thno" style="margin-top:1em">
+                                  <div class="thno" style="margin-top:9px">
                                     GST
                                   </div>
                                 </div>
@@ -151,12 +197,12 @@
                                   <div class="row">
                                     <div class="col-md-6" style="padding:0">
                                       <div class="thno">
-                                        <input type="text" placeholder="rate">
+                                        <input type="text" placeholder="rate" style="margin:0">
                                       </div>
                                     </div>
                                     <div class="col-md-6" style="padding-right:0">
                                       <div class="thno">
-                                        <input type="text" placeholder="amount">
+                                        <input type="text" placeholder="amount" style="margin:0">
                                       </div>
                                     </div>
                                   </div>
@@ -164,7 +210,7 @@
                                 </div>
                               </div>
                               <hr>
-                              <div class="row">
+                              <div class="row" style="padding-top:1em">
                                 <div class="col-md-6">
                                   <div class="thno">
                                     Total ( ₹ )
@@ -184,12 +230,14 @@
                         <hr style="border-top:1px dotted ">
                         <div class="row">
                           <div class="col-md-6">
-                              <label>Customer Notes</label>
-                              <textarea rows="4" cols="50"></textarea>
+                            <label>Customer Notes</label>
+                            <textarea rows="4" cols="50" style="height:6em"
+                              placeholder="Thanks for your business."></textarea>
                           </div>
                           <div class="col-md-6">
-                              <label>Terms & Conditions</label>
-                              <textarea rows="6" cols="50"></textarea>
+                            <label>Terms & Conditions</label>
+                            <textarea rows="6" cols="50" style="height: 6em"
+                              placeholder="Mention your company's Terms and conditions"></textarea>
                           </div>
                         </div>
 

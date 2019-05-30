@@ -173,9 +173,22 @@ button.At {
 }
 .row.total {
     padding-top: 2em;
+    padding-bottom: 1em;
 }
-/* table css */
+.hrTag hr {
+    margin: 0 !important;
+}
+.row.a_t {
+    padding: 9px 0;
+}
 
+/* table css */
+table.col-md-12.table-bordered.table-striped.table-condensed.cf {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding-left:0;
+}
 /* Responsive css */
 @media only screen and (min-width: 320px) and (max-width: 1024px){
     .input-field.col.s4{
