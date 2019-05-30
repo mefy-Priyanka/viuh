@@ -4,6 +4,9 @@ import { Router } from '@angular/router';
 import { SharedService } from '../.././service/shared.service';
 import { ContactService } from '../.././service/contact.service';
 import { CompanyService } from '../.././service/company.service';
+import { ToastrService } from 'ngx-toastr';
+import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
+
 
 
 
@@ -24,19 +27,25 @@ export class ContactDriverComponent implements OnInit {
   public licenceData: any = {};
   public othersData: any = [];
   public inputField: Boolean = false;
+  public show:Boolean=true
   public imageUpload:any={};
+  public pictureUpload={};
   public searchValue:any;
+  public error:any;
+  public imgUrlPrefix:any;
   public userId = localStorage.getItem('userId');
+public mask = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/] // Account number validation 
+
 
   document = ['aadhar', 'licence', 'training_certificate', 'police_verification']
-  constructor(private formBuilder: FormBuilder, private router: Router, private contactService: ContactService, private companyService: CompanyService,private SharedService: SharedService) {
+
+  constructor(private formBuilder: FormBuilder, private router: Router, private contactService: ContactService, private companyService: CompanyService,private SharedService: SharedService,private toastr: ToastrService,private sanitizer: DomSanitizer) {
     /*******ERRORS OF userForm ********* */
     this.driverFormErrors = {
       name: {},
       phoneNumber: {}
     };
     /********** ENDS ************** */
-    this.searchValue = ' '
   }
 
   ngOnInit() {
@@ -69,9 +78,10 @@ export class ContactDriverComponent implements OnInit {
       phoneNumber: ['', Validators.required],
       valid_upto: [''],
       number: [''],
-      doc_name:['']
-
-
+      doc_name:[''],
+      doc:[''],
+      list:[''],
+      picture:['']
     });
   }
   /********** ENDS ************** */
@@ -79,6 +89,7 @@ export class ContactDriverComponent implements OnInit {
   selectedValue(value) {
     this.selecteValue = value
     console.log('selectes value', this.selecteValue)
+    this.error=''
     console.log('field value', this.inputField)
     if (this.selecteValue == 'others') {
       this.inputField = true;
@@ -143,7 +154,7 @@ export class ContactDriverComponent implements OnInit {
     else if (this.selecteValue == 'others') {
       let data = {
         others: {
-          name: this.driverForm.value.name,
+          doc_name: this.driverForm.value.name,
           number: this.driverForm.value.number,
           valid_upto: this.driverForm.value.valid_upto,
           doc: this.imageUpload,
@@ -151,15 +162,23 @@ export class ContactDriverComponent implements OnInit {
       }
       this.othersData.push(data.others)
       console.log('push', this.othersData)
+    } 
+    else {
+      console.log('hey',this.selecteValue)
+this.error='Document Type can not be empty'
 
     }
-    this.searchValue = ' ';
+    this.driverForm.controls['doc_name'].reset()
+    this.driverForm.controls['doc'].reset()            //empty these fied after add
+    this.driverForm.controls['number'].reset()
+    this.driverForm.controls['valid_upto'].reset()
+    this.driverForm.controls['list'].reset()
   }
 
   /********** END ************** */
 
   /************************ *Preview  DOCTOR"S Profile Picture***********************************/
-  upload(event) {
+  uploadDoc(event) {
     this.loader=true;
     let fileList: FileList = event.target.files;
     let fileTarget = fileList;
@@ -170,25 +189,50 @@ export class ContactDriverComponent implements OnInit {
     console.log("File information :", formData);
     this.companyService.fileUpload(formData).subscribe(result => {
       console.log('file uploaded', result)
+      this.toastr.success('Document upload')
       let value:any={}
       value=result
-      this.imageUpload=value.upload._id;
-      // this.imageUpload=value.imageId
-      // let data = {
-      //   profileImage: this.imageUpload
-      // }
+      this.loader=false;
+      this.imageUpload=value.upload._id;  
       }, err => {
-        
-        console.log(err)
+        this.loader=false;
+      this.toastr.error('Error!', ' failed')        
+        console.log('err doc',err)
       })
  
   }
+   
+  
+
+
 
   /**************************************** ENDS *************************************************************** */
-
+uploadImage(event){
+  let fileList: FileList = event.target.files;
+  let fileTarget = fileList;
+  let file: File = fileTarget[0];
+  console.log("File information :", file.name);
+  let formData: FormData = new FormData();
+  formData.append('file', file, file.name);
+  console.log("File information :", formData);
+  this.companyService.fileUpload(formData).subscribe(result => {
+    console.log('file uploaded', result)
+    let value:any={}
+    value=result
+    this.pictureUpload=value.upload._id;
+    this.show=false;  
+    this.imgUrlPrefix = this.sanitizer.bypassSecurityTrustResourceUrl("http://ec2-52-66-250-48.ap-south-1.compute.amazonaws.com:4052/file/getImage?imageId="+this.pictureUpload);
+     console.log(' this.previewImage', this.imgUrlPrefix)
+    }, err => {
+      this.loader=false;
+    this.toastr.error('Error!', ' failed')        
+      console.log('err preview',err)
+    })
+}
 
   /*********************CREATE DRIVER ****************** */
   createDriver() {
+    this.loader=true;
     if(this.driverForm.valid){
     console.log('valid')
     let data = {
@@ -199,16 +243,27 @@ export class ContactDriverComponent implements OnInit {
       training_certificate: this.trainingData.training_certificate,
       police_verification: this.policeData.police_verification,
       others: this.othersData,
-      picture:this.imageUpload,
+      picture:this.pictureUpload?this.pictureUpload:null,
       userId: this.userId
     }
     console.log(data)
     this.contactService.driver(data).subscribe(value => {
       console.log('value', value)
+      this.loader=false;
+      this.toastr.success('Driver created')
+      this.router.navigate(['/dashboard'])
+    },
+    err=>{
+      this.loader=false;
+      console.log(err)
+      this.toastr.error('Error!', 'Creation  failed')
     })
   }
     else{
+      this.loader=false;
+      this.submitted=true
       console.log('not valid')
+      this.toastr.warning( 'Not Valid')
     }
   }
   /********** ENDS ************** */

@@ -2,6 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule, Routes, RouterLink } from "@angular/router";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { TextMaskModule } from 'angular2-text-mask';
 import { DashboardComponent } from "./dashboard.component";
 import { AccountComponent } from './account/account.component';
 import { FleetComponent } from './fleet/fleet.component';
@@ -53,6 +54,7 @@ const routes: Routes = [
         FormsModule,
         ReactiveFormsModule,
         RouterModule.forChild(routes),
+        TextMaskModule
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     declarations: [
