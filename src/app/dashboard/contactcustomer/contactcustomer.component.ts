@@ -76,7 +76,7 @@ public mask = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\
     return this.formBuilder.group({
       name: ['', Validators.required],
       phoneNumber: ['', Validators.required],
-      email:['',[Validators.required]],
+      email:['',[Validators.required,Validators.email]],
       website:[''],
       company_name:['',[Validators.required]],
       valid_upto: [''],
@@ -234,7 +234,7 @@ uploadImage(event){
 }
 
   /*********************CREATE CUSTOMER***************** */
-  createDriver() {
+  createCustomer() {
     this.loader=true;
     if(this.customerForm.valid){
     console.log('valid')

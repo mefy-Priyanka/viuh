@@ -201,7 +201,7 @@ uploadImage(event){
 }
 
   /*********************CREATE EMPLOYEE ****************** */
-  createDriver() {
+  createEmployee() {
     this.loader=true;
     if(this.employForm.valid){
     console.log('valid')
