@@ -1,58 +1,58 @@
 <!-- consignment-->
 <section class="corder" *ngIf="cdata">
   <a href="#" class="floatEa">
-      <i class="fa fa-envelope-o my-float"></i>
-      </a>
+    <i class="fa fa-envelope-o my-float"></i>
+  </a>
   <div class="ft">
     <h1>Consignment
       <button class="addItema" (click)="at()"><i class="fa fa-plus-circle" aria-hidden="true"></i>Add</button>
     </h1>
   </div>
   <div class="card margina">
-      <div class="tableide">
-          <div class="row">
-              <div id="no-more-tables">
-                  <table class="col-md-12 table-bordered table-striped table-condensed cf">
-                  <thead class="cf">
-                    <tr>
-                      <th class="numeric">TL.NO.</th>
-                      <th>LOCATION NO.</th>
-                      <th>CHALLAN NO.</th>
-                      <th>DATE</th>
-                      <th>PRODUCT</th>
-                      <th>QTY.(KL)</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td class="thno" data-title="NO.">1</td>
-                      <td class="thname" data-title="NAME">Rajbandh</td>
-                      <td class="thname" data-title="VAT ID">1234</td>
-                      <td data-title="ADDRESS" class="numeric">4/05</td>
-                      <td data-title="VAT ID" class="numeric">adrt</td>
-                      <td data-title="VAT ID" class="numeric">4</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-          </div>
+    <div class="tableide">
+      <div class="row">
+        <div id="no-more-tables">
+          <table class="col-md-12 table-bordered table-striped table-condensed cf">
+            <thead class="cf">
+              <tr >
+                <th class="numeric">TL.NO.</th>
+                <th>LOCATION NO.</th>
+                <th>CHALLAN NO.</th>
+                <th>CONSIGNMENT DATE</th>
+                <th>PRODUCT</th>
+                <th>NET WT.</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let consigment of consigmentDetail">
+                <td class="thno" data-title="NO.">{{consigment.tl_number}}</td>
+                <td class="thname" data-title="NAME">{{consigment.location_number}}</td>
+                <td class="thname" data-title="VAT ID">{{consigment.challan_number}}</td>
+                <td data-title="ADDRESS" class="numeric">{{consigment.consignment_date}}</td>
+                <td data-title="VAT ID" class="numeric">{{consigment.product}}</td>
+                <td data-title="VAT ID" class="numeric">{{consigment.qantity.net_wt}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
+    </div>
 
   </div>
-  </section>
-  <!-- consignment -->
+</section>
+<!-- consignment -->
 
 
 
 
 
 <!-- consignment input -->
-<section class="createcontract" *ngIf="!cdata" >
+<section class="createcontract" *ngIf="!cdata">
   <div class="ft">
     <h1>Consignment | Create
     </h1>
   </div>
-  <form class="createContractorForm" >
+  <form class="createContractorForm" [formGroup]="consignmentForm">
     <div class="row">
       <div class="col-md-12">
         <!-- input type -->
@@ -64,17 +64,21 @@
                 <div class="row">
                   <div class="input-field col s6">
                     <p><label>Consignor <span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate" formControlName="email">
-                    <!-- <p class="errormessage" *ngIf="contactFormErrors.email.required || contactFormErrors.email.email || (contactForm.controls.email.pristine && submitted)">Enter Valid Email</p> -->
+                    <input type="text" class="validate" formControlName="consignor">
+                    <p class="errormessage"
+                      *ngIf="consignmentFormErrors.consignor.required || (consignmentForm.controls.consignor.pristine && submitted)">
+                      consignor can't be empty</p>
 
                   </div>
 
                   <div class="input-field col s6">
-                      <p><label>Consignee<span class="blue_star">*</span></label></p>
-                      <input type="text" class="validate" formControlName="email">
-                      <!-- <p class="errormessage" *ngIf="contactFormErrors.email.required || contactFormErrors.email.email || (contactForm.controls.email.pristine && submitted)">Enter Valid Email</p> -->
+                    <p><label>Consignee<span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" formControlName="consignee">
+                    <p class="errormessage"
+                      *ngIf="consignmentFormErrors.consignee.required || (consignmentForm.controls.consignee.pristine && submitted)">
+                      consignee can't be empty</p>
 
-                    </div>
+                  </div>
 
                 </div>
                 <div class="row">
@@ -85,50 +89,86 @@
                     <input type="text" class="validate">
                   </div> -->
                   <div class="input-field col s6">
-                      <p><label>Place Of Origin</label></p>
-                      <input type="text" class="validate" formControlName="company_name">
-                      <!-- <p class="errormessage" *ngIf="contactFormErrors.company_name.required || (contactForm.controls.company_name.pristine && submitted)">Company name can't be empty</p> -->
+                    <p><label>Place Of Origin</label></p>
+                    <input type="text" class="validate" formControlName="origin_place">
+                    <p class="errormessage"
+                      *ngIf="consignmentFormErrors.origin_place.required || (consignmentForm.controls.origin_place.pristine && submitted)">
+                      origin_place name can't be empty</p>
 
-                    </div>
+                  </div>
                   <div class="input-field col s6">
                     <p><label>Destination</label></p>
-                    <input type="text" class="validate" formControlName="phoneNumber">
-                    <!-- <p class="errormessage" *ngIf="contactFormErrors.phoneNumber.required || (contactForm.controls.phoneNumber.pristine && submitted)">Phone Number can't be empty</p> -->
+                    <input type="text" class="validate" formControlName="destination">
+                    <p class="errormessage"
+                      *ngIf="consignmentFormErrors.destination.required || (consignmentForm.controls.destination.pristine && submitted)">
+                      destination can't be empty</p>
 
                   </div>
 
                 </div>
                 <div class="row">
-              
+
                   <div class="input-field col s6">
                     <p><label>Reference Number<span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate" formControlName="website">
-                    <!-- <p class="errormessage" *ngIf="contactFormErrors.website.required || (contactForm.controls.website.pristine && submitted)">Website can't be empty</p> -->
+                    <input type="text" class="validate" formControlName="reference_number">
+                    <p class="errormessage"
+                      *ngIf="consignmentFormErrors.reference_number.required || (consignmentForm.controls.reference_number.pristine && submitted)">
+                      reference_number can't be empty</p>
 
                   </div>
 
                   <div class="input-field col s6">
                     <p><label>Truck No.<span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate" formControlName="website">
-                    <!-- <p class="errormessage" *ngIf="contactFormErrors.website.required || (contactForm.controls.website.pristine && submitted)">Website can't be empty</p> -->
+                    <input type="text" class="validate" formControlName="truck_number">
+                    <p class="errormessage"
+                      *ngIf="consignmentFormErrors.truck_number.required || (consignmentForm.controls.truck_number.pristine && submitted)">
+                      truck_number can't be empty</p>
 
                   </div>
                 </div>
                 <div class="row">
-              
+
                   <div class="input-field col s6">
                     <p><label>Consignment Date<span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate" formControlName="website">
-                    <!-- <p class="errormessage" *ngIf="contactFormErrors.website.required || (contactForm.controls.website.pristine && submitted)">Website can't be empty</p> -->
+                    <input type="text" class="validate" formControlName="consignment_date">
+                    <p class="errormessage"
+                      *ngIf="consignmentFormErrors.consignment_date.required || (consignmentForm.controls.consignment_date.pristine && submitted)">
+                      consignment_date can't be empty</p>
+
+                  </div>
+
+                  <div class="input-field col s6">
+                    <p><label>Consignment Date<span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" formControlName="authorize_person">
+                    <p class="errormessage"
+                      *ngIf="consignmentFormErrors.authorize_person.required || (consignmentForm.controls.authorize_person.pristine && submitted)">
+                      authorize_person can't be empty</p>
+
+                  </div>
+
+
+                </div>
+                <div class="row">
+
+                  <div class="input-field col s6">
+                    <p><label>Driving Lic. No<span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" formControlName="driver_license_number">
+                    <p class="errormessage"
+                      *ngIf="consignmentFormErrors.driver_license_number.required || (consignmentForm.controls.driver_license_number.pristine && submitted)">
+                      driver_license_number can't be empty</p>
 
                   </div>
 
                   <div class="input-field col s6">
                     <p><label>Driving Lic. No<span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate" formControlName="website">
-                    <!-- <p class="errormessage" *ngIf="contactFormErrors.website.required || (contactForm.controls.website.pristine && submitted)">Website can't be empty</p> -->
+                    <input type="text" class="validate" formControlName="driver_name">
+                    <p class="errormessage"
+                      *ngIf="consignmentFormErrors.driver_name.required || (consignmentForm.controls.driver_name.pristine && submitted)">
+                      driver_name can't be empty</p>
 
                   </div>
+
+
                 </div>
 
 
@@ -145,17 +185,91 @@
                             <th>CHALLAN NO.</th>
                             <th>DATE</th>
                             <th>PRODUCT</th>
-                            <th>QTY.(KL)</th>
+                            <th>QTY.(KL)
+                          <tr>
+                            <th>tare</th>
+                            <th>gross</th>
+                            <th>net</th>
+                          </tr>
+                          </th>
+
+                          <th>ADVANCE PAYMENT
+                            <tr>
+                              <th>DIESEL</th>
+                              <th>DRIVER</th>
+                              <th>TOLL</th>
+                            </tr>
+                          </th>
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
-                            <td class="thname"><input type="text" style="border: none !important"></td>
-                            <td class="thname"><input type="text" style="border: none !important"></td>
-                            <td class="thname"><input type="text" style="border: none !important"></td>
-                            <td class="thname"><input type="text" style="border: none !important"></td>
-                            <td class="thname"><input type="text" style="border: none !important"></td>
-                            <td class="thname"><input type="text" style="border: none !important"></td>
+                            <td class="thname"><input type="text" style="border: none !important"
+                                formControlName="tl_number"></td>
+                            <p class="errormessage"
+                              *ngIf="consignmentFormErrors.tl_number.required || (consignmentForm.controls.tl_number.pristine && submitted)">
+                              tl_number can't be empty</p>
+
+                            <td class="thname"><input type="text" style="border: none !important"
+                                formControlName="location_number"></td>
+                            <p class="errormessage"
+                              *ngIf="consignmentFormErrors.location_number.required || (consignmentForm.controls.location_number.pristine && submitted)">
+                              location_number can't be empty</p>
+
+
+
+                            <td class="thname"> 
+                              <tr>
+                                  <input type="file" class="validate" class="fileType" #mydoc
+                                  (change)="upload($event,selectedOption)" 
+                                 >
+                               </tr>
+                          <tr>
+                            <input type="text" style="border: none !important" formControlName="challan_number">
+                            <p class="errormessage"
+                              *ngIf="consignmentFormErrors.challan_number.required || (consignmentForm.controls.challan_number.pristine && submitted)">
+                              challan_number can't be empty</p>
+
+                          </tr>
+                          </td>
+
+
+
+
+                          <td class="thname"><input type="text" style="border: none !important"
+                              formControlName="challan_date"></td>
+                          <p class="errormessage"
+                            *ngIf="consignmentFormErrors.challan_date.required || (consignmentForm.controls.challan_date.pristine && submitted)">
+                            challan_date can't be empty</p>
+
+                          <td class="thname"><input type="text" style="border: none !important"
+                              formControlName="product"></td>
+                          <p class="errormessage"
+                            *ngIf="consignmentFormErrors.product.required || (consignmentForm.controls.product.pristine && submitted)">
+                            product can't be empty</p>
+
+                          <td class="thname">
+                            <tr>
+                              <td> <input type="text" style="border: none !important" formControlName="tare_wt">
+                              </td>
+                              <td> <input type="text" style="border: none !important" formControlName="gross_wt">
+                              </td>
+                              <td> <input type="text" style="border: none !important" formControlName="net_wt">
+                              </td>
+                            </tr>
+
+
+                          </td>
+                          <td>
+                            <tr>
+                              <td> <input type="text" style="border: none !important" formControlName="diesel_expenses">
+                              </td>
+                              <td> <input type="text" style="border: none !important" formControlName="driver_expenses">
+                              </td>
+                              <td> <input type="text" style="border: none !important" formControlName="toll_expenses">
+                              </td>
+                            </tr>
+                          </td>
                           </tr>
                         </tbody>
                       </table>
@@ -178,7 +292,7 @@
           <div class="row">
             <div class="contractorButton">
               <button class="submitBtn" (click)="submit()">Next</button>
-              <button class="cancelBtn" (click)="cancel()">Cancel</button>
+              <button class="cancelBtn" (click)="at()">Cancel</button>
             </div>
           </div>
         </div>

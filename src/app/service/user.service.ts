@@ -101,4 +101,16 @@ export class UserService {
     return this.httpClient.get(APIURL + 'journal/journalList?superAdminId='+id)
 
   }
+
+
+
+
+  consignmentcreat(data){
+    return this.httpClient.post(APIURL+'consignment/create',data);
+  }
+
+  consignmentList(id){
+    return this.httpClient.get(APIURL + 'consignment/consignmentList?superAdminId='+id)
+
+  }
 }
