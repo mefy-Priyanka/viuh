@@ -14,7 +14,7 @@ export class FleetComponent implements OnInit {
   @ViewChild('mydoc') mydoc: ElementRef;
 
   vardata = [];
-
+public fleet:boolean=true;
 
   truckerr: boolean;
   selectedOption = ''
@@ -468,5 +468,8 @@ export class FleetComponent implements OnInit {
         this.toastr.error('Error!', 'Server Error')
 
       })
+  }
+  createFleet(){
+    this.fleet=!this.fleet
   }
 }
