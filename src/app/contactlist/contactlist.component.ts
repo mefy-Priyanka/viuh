@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from '../service/shared.service';
-import { UserService } from '../service/user.service';
+import { ContactService } from '../service/contact.service';
 
 
 
@@ -12,43 +12,80 @@ import { UserService } from '../service/user.service';
 })
 export class ContactlistComponent implements OnInit {
   listContact: boolean = true;
-  userId: string;
-  contactlist: any = [];
-
-  constructor(private SharedService: SharedService, private userService: UserService, ) {
-    this.userId = localStorage.getItem('userId');
+  
+  public driverList: any = [];
+  public employeeList: any = [];
+  public vendorList: any = [];
+  public customerList: any = [];
+  public superAdminId = localStorage.getItem('SuperAdmin');
+  constructor(private SharedService: SharedService, private contactService: ContactService, ) {
 
   }
   addContact() {
     this.listContact = false;
     this.SharedService.abc('contactdetail');
     // this.SharedService.abc('contractordetail');
-
-    console.log("hi t");
   }
   ngOnInit() {
-    this.getcontactlist();
+this.getCustomerlist();
+this.getEmployeelist();
+this.getVendorlist();
+this.getDriverlist();
   }
-
-  getcontactlist() {
-
-    let something: any;
-    this.userService.getcontactlist(this.userId).subscribe(result => {
-      console.log(result);
-      something = result
-      this.contactlist = (something.result);
-      console.log(this.contactlist)
+/**********************DRIVER LIST BY SUPERADMIN*****************/
+  getDriverlist() {
+    this.contactService.driverList(this.superAdminId).subscribe(result => {
+      console.log('driverlist',result);
+      let value:any={}
+      value = result
+      this.driverList = (value.result);
+      console.log(this.driverList)
     },
       err => {
-        console.log(err)
+        console.log('driver err',err)
       })
   }
-  delete(id) {
-    this.userService.contactdelete(id).subscribe(result => {
-      console.log(result);
-      this.getcontactlist();
-    }, err => {
-      console.log(err);
+/**********************END*****************/
+/**********************CUSTOMER LIST BY SUPERADMIN*****************/
+getCustomerlist() {
+  this.contactService.driverList(this.superAdminId).subscribe(result => {
+    console.log('customerList',result);
+    let value:any={}
+    value = result
+    this.customerList =value;
+    console.log(this.customerList)
+  },
+    err => {
+      console.log('customerList err',err)
     })
-  }
+}
+/**********************END*****************/
+/**********************EMPLOYEELIST LIST BY SUPERADMIN*****************/
+getEmployeelist() {
+  this.contactService.employeeList(this.superAdminId).subscribe(result => {
+    console.log('employeeList',result);
+    let value:any={}
+    value = result
+    this.employeeList= (value.result);
+    console.log(this.employeeList)
+  },
+    err => {
+      console.log('employeeList err',err)
+    })
+}
+/**********************END*****************/
+/**********************VENDOR LIST BY SUPERADMIN*****************/
+getVendorlist() {
+  this.contactService.vendorList(this.superAdminId).subscribe(result => {
+    console.log('vendorList',result);
+    let value:any={}
+    value = result
+    this.vendorList = (value.result);
+    console.log(this.vendorList)
+  },
+    err => {
+      console.log('vendor err',err)
+    })
+}
+/**********************END*****************/
 }

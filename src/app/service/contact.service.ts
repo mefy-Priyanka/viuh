@@ -31,5 +31,16 @@ vendor(data){
   return this.httpClient.post(APIURL+'vendor/create',data)
 }
 /********************************END**************************************/
+driverList(superAdmin){
+  return this.httpClient.get(APIURL+'driver/driverlist?superAdminId='+superAdmin)
 }
-
+customerList(superAdmin){
+  return this.httpClient.get(APIURL+'customer/customerlist?superAdminId='+superAdmin)
+}
+employeeList(superAdmin){
+  return this.httpClient.get(APIURL+'employee/employeelist?superAdminId='+superAdmin)
+}
+vendorList(superAdmin){
+  return this.httpClient.get(APIURL+'vendor/vendorlist?superAdminId='+superAdmin)
+}
+}

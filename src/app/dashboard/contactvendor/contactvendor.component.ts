@@ -74,9 +74,9 @@ public mask = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\
       name: ['', Validators.required],
       phoneNumber: ['', Validators.required],
       valid_upto: [''],
-      number: [''],
+      number: ['',[Validators.required]],
       doc_name:[''],
-      doc:[''],
+      doc:['',[Validators.required]],
       list:[''],
       picture:['']
     });
@@ -99,6 +99,7 @@ public mask = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\
   /********** ENDS ************** */
   /*********************STORE DOCUMENT DATA **************/
   add() {
+    if(this.vendorForm.valid){
     if (this.selecteValue == 'aadhar') {
       let data = {
         aadhar: {
@@ -170,7 +171,12 @@ this.error='Document Type can not be empty'
     this.vendorForm.controls['number'].reset()
     this.vendorForm.controls['valid_upto'].reset()
     this.vendorForm.controls['list'].reset()
+   } else{
+      console.log('empty')
+      this.toastr.warning( "Document or Doc number can't be empty")
+    }
   }
+  
 
   /********** END ************** */
 

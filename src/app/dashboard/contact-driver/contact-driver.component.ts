@@ -77,9 +77,9 @@ public mask = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\
       name: ['', Validators.required],
       phoneNumber: ['', Validators.required],
       valid_upto: [''],
-      number: [''],
+      number: ['',Validators.required],
       doc_name:[''],
-      doc:[''],
+      doc:['',Validators.required],
       list:[''],
       picture:['']
     });
@@ -101,13 +101,15 @@ public mask = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\
   }
   /********** ENDS ************** */
   /*********************STORE DOCUMENT DATA **************/
-  add() {
+  add() { 
+    // console.log('valid',this.driverForm.valid)
+    if(this.driverForm.valid){
     if (this.selecteValue == 'aadhar') {
       let data = {
         aadhar: {
           number: this.driverForm.value.number,
           doc: this.imageUpload,
-        }
+        }      
       }
       console.log(data)
       this.aadharData = data
@@ -174,11 +176,19 @@ this.error='Document Type can not be empty'
     this.driverForm.controls['valid_upto'].reset()
     this.driverForm.controls['list'].reset()
   }
+  else{
+    console.log('empty')
+    this.toastr.warning( "Document or Doc number can't be empty")
+  }
+}
+
+
 
   /********** END ************** */
 
   /************************ *Preview  DOCTOR"S Profile Picture***********************************/
   uploadDoc(event) {
+    console.log(this.driverForm.value.doc)
     this.loader=true;
     let fileList: FileList = event.target.files;
     let fileTarget = fileList;
