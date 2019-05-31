@@ -1,0 +1,99 @@
+<!-- paymentmade-->
+<section class="corder">
+  <a href="#" class="floatEa">
+      <i class="fa fa-envelope-o my-float"></i>
+      </a>
+  <div class="ft">
+    <h1>Payment Made
+      <!-- <button class="addItema"><i class="fa fa-plus-circle" aria-hidden="true"></i>Add</button> -->
+    </h1>
+  </div>
+  <div class="card margina">
+      <div class="tableide">
+          <div class="row">
+              <div id="no-more-tables">
+                  <table class="col-md-12 table-bordered table-striped table-condensed cf">
+                  <thead class="cf">
+                    <tr>
+                      <th>DATE</th>
+                      <th>BILL #</th>
+                      <th>REFERENCE NUMBER</th>
+                      <th>VENDOR NAME</th>
+                      <th>STATUS</th>
+                      <th>DUE DATE</th>
+                      <th>AMOUNT</th>
+                      <th>BALANCE DUE</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr data-toggle="modal" data-target="#paymentModal">
+                      <td class="thno" data-title="NO.">-</td>
+                      <td class="thname" data-title="NAME"></td>
+                      <td class="thname" data-title="VAT ID"></td>
+                      <td data-title="ADDRESS" class="numeric"></td>
+                      <td data-title="VAT ID" class="numeric"></td>
+                      <td data-title="VAT ID" class="numeric"></td>
+                      <td data-title="VAT ID" class="numeric"></td>
+                      <td data-title="VAT ID" class="numeric"></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+          </div>
+      </div>
+
+  </div>
+  </section>
+  <!-- paymentmade -->
+<!-- Modal -->
+<div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="vertical-alignment-helper">
+    <div class="modal-dialog modal-lg vertical-align-center">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+              class="sr-only">Close</span>
+
+          </button>
+          <h4 class="modal-title accountTitle">Payment Received</h4>
+
+        </div>
+        <div class="modal-body">
+          <form >
+   
+
+
+         
+
+
+            <div class="row">
+              <div class="input-field col s3">
+                <label>Pay Amount<span class="blue_star">*</span></label>
+              </div>
+              <div class="input-field col s7">
+                <input type="text" class="validate" >
+
+
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s3">
+                <label>Description</label>
+              </div>
+              <div class="input-field col s7">
+                <textarea cols="8" rows="4" placeholder="Max 500 characters"></textarea>
+
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button"  class="saveBtn" (click)="submit()">Save</button>
+              <button type="button" class="cancelBtn">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
