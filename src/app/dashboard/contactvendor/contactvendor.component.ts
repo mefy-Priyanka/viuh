@@ -211,6 +211,7 @@ this.error='Document Type can not be empty'
 
   /**************************************** ENDS *************************************************************** */
 uploadImage(event){
+  this.loader=true;
   let fileList: FileList = event.target.files;
   let fileTarget = fileList;
   let file: File = fileTarget[0];
@@ -226,6 +227,7 @@ uploadImage(event){
     this.show=false;  
     this.imgUrlPrefix = this.sanitizer.bypassSecurityTrustResourceUrl("http://ec2-52-66-250-48.ap-south-1.compute.amazonaws.com:4052/file/getImage?imageId="+this.pictureUpload);
      console.log(' this.previewImage', this.imgUrlPrefix)
+     this.loader=false;
     }, err => {
       this.loader=false;
     this.toastr.error('Error!', ' failed')        
@@ -237,6 +239,7 @@ uploadImage(event){
   createVendor() {
     this.loader=true;
     if(this.vendorForm.valid){
+      if(Object.keys(this.pictureUpload).length != 0 && this.pictureUpload.constructor != Object){
     console.log('valid')
     let data = {
       name: this.vendorForm.value.name,
@@ -254,14 +257,40 @@ uploadImage(event){
     this.contactService.contactCreate(data).subscribe(value => {
       console.log('value', value)
       this.loader=false;
-      this.toastr.success('Driver created')
-      this.router.navigate(['dashboard'])
+      this.toastr.success('Vendor created')
+      this.SharedService.abc('contact')
     },
     err=>{
       this.loader=false;
       console.log(err)
       this.toastr.error('Error!', 'Creation  failed')
     })
+  }
+    else{
+      let data = {
+        name: this.vendorForm.value.name,
+        phoneNumber: this.vendorForm.value.phoneNumber,
+        aadhar: this.aadharData.aadhar,
+        gst: this.gstData.gst,
+        pan: this.panData.pan,
+        tan: this.tanData.tan,
+        others: this.othersData,
+        contact_type: "vendor",
+        userId: this.userId
+      }
+      console.log(data)
+      this.contactService.contactCreate(data).subscribe(value => {
+        console.log('value', value)
+        this.loader=false;
+        this.toastr.success('Vendor created')
+        this.SharedService.abc('contact')
+      },
+      err=>{
+        this.loader=false;
+        console.log(err)
+        this.toastr.error('Error!', 'Creation  failed')
+      })
+    }
   }
     else{
       this.loader=false;
@@ -271,5 +300,7 @@ uploadImage(event){
     }
   }
   /********** ENDS ************** */
-
+  cancel(){
+    this.SharedService.abc('contact')
+  }
 }

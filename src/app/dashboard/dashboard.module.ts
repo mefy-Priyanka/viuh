@@ -37,10 +37,6 @@ const routes: Routes = [
         children: [
             { path: "", redirectTo: "", pathMatch: "full" },
             { path: "account", component: AccountComponent },
-            { path: "account/period", component: PeriodComponent },
-            { path: "account/consignment", component: ConsignmentComponent },
-            { path: "account/bank", component: BankComponent },
-            { path: "account/journal", component: JournalComponent },
             { path: "fleet", component: FleetComponent },
             { path: "user", component: UserComponent },
             { path: "order", component: OrderComponent },
@@ -48,10 +44,6 @@ const routes: Routes = [
             { path: "company", component: CompanycreateComponent },
             // { path: "contact", component: ContactComponent }
             { path: "contact", component: CompanyListComponent },
-            { path: "contact/driver", component: ContactDriverComponent },
-            { path: "contact/customer", component: ContactcustomerComponent },
-            { path: "contact/vendor", component: ContactvendorComponent },
-            { path: "contact/employee", component: ContactemployeeComponent },
             { path: "route", component: MaprouteComponent },
             { path: "expensses", component: InvoiceComponent },
 

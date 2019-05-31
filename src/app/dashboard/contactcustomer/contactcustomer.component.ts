@@ -217,6 +217,7 @@ this.error='Document Type can not be empty'
 
   /**************************************** ENDS *************************************************************** */
 uploadImage(event){
+  this.loader=true;
   let fileList: FileList = event.target.files;
   let fileTarget = fileList;
   let file: File = fileTarget[0];
@@ -232,6 +233,7 @@ uploadImage(event){
     this.show=false;  
     this.imgUrlPrefix = this.sanitizer.bypassSecurityTrustResourceUrl("http://ec2-52-66-250-48.ap-south-1.compute.amazonaws.com:4052/file/getImage?imageId="+this.pictureUpload);
      console.log(' this.previewImage', this.imgUrlPrefix)
+     this.loader=false;
     }, err => {
       this.loader=false;
     this.toastr.error('Error!', ' failed')        
@@ -244,6 +246,7 @@ uploadImage(event){
     this.loader=true;
     if(this.customerForm.valid){
     console.log('valid')
+    if(Object.keys(this.pictureUpload).length != 0 && this.pictureUpload.constructor != Object){
     let data = {
       name: this.customerForm.value.name,
       phoneNumber: this.customerForm.value.phoneNumber,
@@ -264,7 +267,7 @@ uploadImage(event){
       console.log('value', value)
       this.loader=false;
       this.toastr.success('Customer created')
-      this.router.navigate(['dashboard/contact'])
+      this.SharedService.abc('contact')
     },
     err=>{
       this.loader=false;
@@ -272,6 +275,35 @@ uploadImage(event){
       this.toastr.error('Error!', 'Creation  failed')
     })
   }
+  else{
+    let data = {
+      name: this.customerForm.value.name,
+      phoneNumber: this.customerForm.value.phoneNumber,
+      website:this.customerForm.value.website,
+      company_name:this.customerForm.value.company_name,
+      email:this.customerForm.value.email,
+      aadhar: this.aadharData.aadhar,
+      gst: this.gstData.gst,
+      pan: this.panData.pan,
+      tan: this.tanData.tan,
+      others: this.othersData,
+      contact_type: "customer",
+      userId: this.userId
+    }
+    console.log(data)
+    this.contactService.contactCreate(data).subscribe(value => {
+      console.log('value', value)
+      this.loader=false;
+      this.toastr.success('Customer created')
+      this.SharedService.abc('contact')
+    },
+    err=>{
+      this.loader=false;
+      console.log(err)
+      this.toastr.error('Error!', 'Creation  failed')
+    })
+  }
+}
     else{
       this.loader=false;
       this.submitted=true
@@ -280,5 +312,7 @@ uploadImage(event){
     }
   }
   /********** ENDS ************** */
-
+  cancel(){
+    this.SharedService.abc('contact')
+  }
 }
