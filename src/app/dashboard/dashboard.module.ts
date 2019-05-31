@@ -26,6 +26,9 @@ import { InvoiceComponent } from './invoice/invoice.component';
 import { ContactemployeeComponent } from './contactemployee/contactemployee.component';
 import { ContactvendorComponent } from './contactvendor/contactvendor.component';
 import { ContactcustomerComponent } from './contactcustomer/contactcustomer.component';
+import { PaymentreceivedComponent } from './paymentreceived/paymentreceived.component';
+import { BillComponent } from './bill/bill.component';
+import { PaymentmadeComponent } from './paymentmade/paymentmade.component';
 // import { EmployeeComponent } from './employee/employee.component';
 
 const routes: Routes = [
@@ -80,6 +83,9 @@ const routes: Routes = [
         ContactemployeeComponent,
         ContactvendorComponent,
         ContactcustomerComponent,
+        PaymentreceivedComponent,
+        BillComponent,
+        PaymentmadeComponent,
         // EmployeeComponent
 
     ]
