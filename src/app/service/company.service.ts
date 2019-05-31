@@ -30,6 +30,13 @@ fleetcreation(data){
   console.log(data);
   return this.httpClient.post(APIURL+ 'fleet/create', data)
 }
+getfleetlist(id){
+  return this.httpClient.get(APIURL + 'fleet/fleetlist?superAdminId='+id)
+
+}
+deletefleet(id){
+return this.httpClient.delete(APIURL+'fleet/delete?fleetId='+id)
+}
 
   /***************************** GETTING LOGIN USER DETAIL ****************** */
   companyList(superAdmin) {
