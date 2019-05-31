@@ -51,26 +51,11 @@ export class UserService {
     return this.httpClient.get(APIURL + 'account/accountType?parentAccount='+'')
 
   }
-  getcontactlist(id) {
-    return this.httpClient.get(APIURL + 'contact/contactByAdminId?adminId='+id)
 
-  }
-  
-  creatcontact(data) {
-    return this.httpClient.post(APIURL + 'contact/create', data)
-
-  }
-
- 
   delete(id) {
     return this.httpClient.delete(APIURL + 'user/delete?userId=' + id)
   }
 
-
-
-  contactdelete(id){
-    return this.httpClient.delete(APIURL+'contact/delete?contactId='+id)
-  }
 
   getlistbyparent(id){
     return this.httpClient.get(APIURL + 'account/accountType?parentAccount='+id)

@@ -240,9 +240,19 @@ button.addItema i {
     background: #fff;
     color:#7b95a1;
 }
+table, th, td {
+    border: 1px solid #5544442b !important;
+}
+.tableide .table-bordered > thead > tr > th {
+    border: none;
+    padding: 1em;
+    background: #fafafa;
+    color: #7b95a1;
+    text-align: center;
+}
 .tableide tr {
     border-bottom: 1px solid #eee;
-    background: #f6fbfc;
+    /* background: #f6fbfc; */
 }
 .tableide .table-bordered {
     border: none;

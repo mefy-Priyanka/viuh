@@ -2,6 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule, Routes, RouterLink } from "@angular/router";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { TextMaskModule } from 'angular2-text-mask';
 import { DashboardComponent } from "./dashboard.component";
 import { AccountComponent } from './account/account.component';
 import { FleetComponent } from './fleet/fleet.component';
@@ -11,10 +12,11 @@ import { OrderComponent } from './order/order.component';
 import { CompanycreateComponent } from './companycreate/companycreate.component';
 import { SidenavComponent } from '../sidenav/sidenav.component';
 import { CreatecontractorComponent } from '../createcontractor/createcontractor.component';
-import { ContactComponent } from '../dashboard/contact/contact.component';
+// import { ContactComponent } from '../dashboard/contact/contact.component';
 import { MaprouteComponent } from './maproute/maproute.component';
 import { ContractorListComponent } from './contractor-list/contractor-list.component';
 import { CompanyListComponent } from './company-list/company-list.component';
+            // { path: "contact", component: ContactComponent }
 import { ContactlistComponent } from '../contactlist/contactlist.component';
 import { JournalComponent } from '../journal/journal.component';
 import { JournalistComponent } from './journalist/journalist.component';
@@ -26,6 +28,9 @@ import { InvoiceComponent } from './invoice/invoice.component';
 import { ContactemployeeComponent } from './contactemployee/contactemployee.component';
 import { ContactvendorComponent } from './contactvendor/contactvendor.component';
 import { ContactcustomerComponent } from './contactcustomer/contactcustomer.component';
+import { PaymentreceivedComponent } from './paymentreceived/paymentreceived.component';
+import { BillComponent } from './bill/bill.component';
+import { PaymentmadeComponent } from './paymentmade/paymentmade.component';
 // import { EmployeeComponent } from './employee/employee.component';
 
 const routes: Routes = [
@@ -40,7 +45,11 @@ const routes: Routes = [
             { path: "order", component: OrderComponent },
             { path: "contractor", component: CreatecontractorComponent },
             { path: "company", component: CompanycreateComponent },
-            { path: "contact", component: ContactComponent }
+            // { path: "contact", component: ContactComponent }
+            { path: "contact", component: CompanyListComponent },
+            { path: "route", component: MaprouteComponent },
+            { path: "expensses", component: InvoiceComponent },
+
 
 
 
@@ -53,6 +62,7 @@ const routes: Routes = [
         FormsModule,
         ReactiveFormsModule,
         RouterModule.forChild(routes),
+        TextMaskModule
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     declarations: [
@@ -64,7 +74,7 @@ const routes: Routes = [
         CreatecontractorComponent,
         // ContractorcreateComponent,
         CompanycreateComponent,
-        ContactComponent,
+        // ContactComponent,
         SidenavComponent,
         MaprouteComponent,
         ContractorListComponent,
@@ -80,6 +90,9 @@ const routes: Routes = [
         ContactemployeeComponent,
         ContactvendorComponent,
         ContactcustomerComponent,
+        PaymentreceivedComponent,
+        BillComponent,
+        PaymentmadeComponent,
         // EmployeeComponent
 
     ]

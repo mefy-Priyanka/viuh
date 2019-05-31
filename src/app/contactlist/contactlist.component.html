@@ -1,8 +1,26 @@
 <!-- order-->
-<section class="corder" *ngIf="listContact">
+<section class="corder">
   <a href="#" class="floatEa">
     <i class="fa fa-envelope-o my-float"></i>
   </a>
+    <!-- Loader -->
+<div class="loading" *ngIf="loader">
+    <div class="sk-circle">
+      <div class="sk-circle1 sk-child"></div>
+      <div class="sk-circle2 sk-child"></div>
+      <div class="sk-circle3 sk-child"></div>
+      <div class="sk-circle4 sk-child"></div>
+      <div class="sk-circle5 sk-child"></div>
+      <div class="sk-circle6 sk-child"></div>
+      <div class="sk-circle7 sk-child"></div>
+      <div class="sk-circle8 sk-child"></div>
+      <div class="sk-circle9 sk-child"></div>
+      <div class="sk-circle10 sk-child"></div>
+      <div class="sk-circle11 sk-child"></div>
+      <div class="sk-circle12 sk-child"></div>
+    </div>
+  </div>
+  <!-- Loader -->
   <div class="ft">
     <h1>Contact
       <!-- <button class="addItema" (click)="addContact()"><i class="fa fa-plus-circle" aria-hidden="true"></i>Add</button> -->
@@ -16,6 +34,7 @@
             <thead class="cf">
               <tr>
                 <th class="numeric">CONTACT TYPE</th>
+                <th>NAME</th>
                 <th>EMAIL</th>
                 <th>COMPANY NAME</th>
                 <th>PHONE NUMBER</th>
@@ -24,13 +43,14 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let contact of contactlist; index as i">
-                <td class="thno" data-title="NO.">{{contact.contactType}}</td>
-                <td class="thname" data-title="NAME">{{contact.email}}</td>
-                <td class="thname" data-title="VAT ID">{{contact.company_name}}</td>
-                <td data-title="ADDRESS" class="numeric">{{contact.phoneNumber}}</td>
+              <tr *ngFor="let contact of contactList; index as i">
+                <td class="thno" data-title="NO.">{{contact?.contact_type}}</td>
+                <td class="thname" data-title="NAME">{{contact?.name}}</td>
+                <td class="thname" data-title="NAME">{{contact?.email}}</td>
+                <td class="thname" data-title="VAT ID">{{contact?.company_name}}</td>
+                <td data-title="ADDRESS" class="numeric">{{contact?.phoneNumber}}</td>
                 <td data-title="VAT ID" class="numeric">{{contact.website}}</td>
-                <td><i class="fa fa-trash" aria-hidden="true" (click)="delete(contact._id)"></i>
+                <td><i class="fa fa-trash" aria-hidden="true" ></i>
                 </td>
               </tr>
             </tbody>

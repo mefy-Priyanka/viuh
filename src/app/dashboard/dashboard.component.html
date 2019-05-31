@@ -6,6 +6,7 @@
       <div class="col-md-3" id="padding-o">
         <app-sidenav></app-sidenav>
       </div>
+      <!-- <p>hiiiii</p> -->
       <div class="col-md-9 ipadwidth" id="padding-o">
         <app-fleet *ngIf="sharenav=='fleetdetail'"></app-fleet>
         <app-account *ngIf="sharenav=='accountdetail'"></app-account>
@@ -19,7 +20,7 @@
         <app-contractor-list *ngIf="sharenav=='contractorlist'"></app-contractor-list>
 
         <app-contactlist *ngIf="sharenav=='contact'"></app-contactlist>
-        <app-contact *ngIf="sharenav=='contactdetail'"></app-contact>
+        <!-- <app-contact *ngIf="sharenav=='contactdetail'"></app-contact> -->
         <app-maproute *ngIf="sharenav=='map'"></app-maproute>
         <app-journalist *ngIf="sharenav=='journal'"></app-journalist>
         <app-journal *ngIf="sharenav=='journalcreate'"></app-journal>
@@ -31,6 +32,9 @@
         <app-contactvendor *ngIf="sharenav=='Vendor'"></app-contactvendor>
         <app-contactcustomer *ngIf="sharenav=='Customer'"></app-contactcustomer>
         <app-invoice *ngIf="sharenav=='invoice'"></app-invoice>
+        <app-paymentreceived *ngIf="sharenav=='payment'"></app-paymentreceived>
+        <app-bill *ngIf="sharenav=='bill'"></app-bill>
+        <app-paymentmade *ngIf="sharenav=='paymentmade'"></app-paymentmade>
         <!-- <app-contractor-list *ngIf="sharenav=='contractlist'"></app-contractor-list> -->
                 <!-- <app-contractor *ngIf="contractor"></app-contractor> -->
         <!-- <app-invite></app-invite> -->

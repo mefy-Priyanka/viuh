@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedService } from '../service/shared.service';
-import { UserService } from '../service/user.service';
+import { ContactService } from '../service/contact.service';
 
 
 
@@ -11,44 +11,38 @@ import { UserService } from '../service/user.service';
   styleUrls: ['./contactlist.component.css']
 })
 export class ContactlistComponent implements OnInit {
+  public loader: boolean;
+  public currentURL:any;
   listContact: boolean = true;
-  userId: string;
-  contactlist: any = [];
-
-  constructor(private SharedService: SharedService, private userService: UserService, ) {
-    this.userId = localStorage.getItem('userId');
-
+  public contactList: any = [];
+  public superAdminId = localStorage.getItem('SuperAdmin');
+  constructor(private SharedService: SharedService, private contactService: ContactService, ) {
+    this.currentURL = window.location.pathname;
+    console.log('currentURL',this.currentURL)
   }
   addContact() {
     this.listContact = false;
     this.SharedService.abc('contactdetail');
     // this.SharedService.abc('contractordetail');
+  }  ngOnInit() {
 
-    console.log("hi t");
+this.getContactlist();
   }
-  ngOnInit() {
-    this.getcontactlist();
-  }
-
-  getcontactlist() {
-
-    let something: any;
-    this.userService.getcontactlist(this.userId).subscribe(result => {
-      console.log(result);
-      something = result
-      this.contactlist = (something.result);
-      console.log(this.contactlist)
+/**********************DRIVER LIST BY SUPERADMIN*****************/
+  getContactlist() {
+    this.loader=true
+    this.contactService.contactList(this.superAdminId).subscribe(result => {
+      console.log('driverlist',result);
+      this.loader=false;
+      let value:any={}
+      value = result
+      this.contactList = (value.result);
+      console.log(this.contactList)
     },
       err => {
-        console.log(err)
+      this.loader=false;
+        console.log('contactList err',err)
       })
   }
-  delete(id) {
-    this.userService.contactdelete(id).subscribe(result => {
-      console.log(result);
-      this.getcontactlist();
-    }, err => {
-      console.log(err);
-    })
-  }
+/**********************END*****************/
 }

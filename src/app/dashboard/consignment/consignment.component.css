@@ -233,6 +233,13 @@ span.closT {
     border-bottom: none;
     background: #fff;
 }
+.tableide .table-bordered > thead > tr > th {
+    border: none;
+    padding: 1em;
+    background: #fafafa;
+    color: #7b95a1;
+    text-align: center;
+}
 .consignmentTable.tableide .table-bordered {
     border: none;
 }
