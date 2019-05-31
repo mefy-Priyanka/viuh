@@ -2,6 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule, Routes, RouterLink } from "@angular/router";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { TextMaskModule } from 'angular2-text-mask';
 import { DashboardComponent } from "./dashboard.component";
 import { AccountComponent } from './account/account.component';
 import { FleetComponent } from './fleet/fleet.component';
@@ -11,10 +12,11 @@ import { OrderComponent } from './order/order.component';
 import { CompanycreateComponent } from './companycreate/companycreate.component';
 import { SidenavComponent } from '../sidenav/sidenav.component';
 import { CreatecontractorComponent } from '../createcontractor/createcontractor.component';
-import { ContactComponent } from '../dashboard/contact/contact.component';
+// import { ContactComponent } from '../dashboard/contact/contact.component';
 import { MaprouteComponent } from './maproute/maproute.component';
 import { ContractorListComponent } from './contractor-list/contractor-list.component';
 import { CompanyListComponent } from './company-list/company-list.component';
+            // { path: "contact", component: ContactComponent }
 import { ContactlistComponent } from '../contactlist/contactlist.component';
 import { JournalComponent } from '../journal/journal.component';
 import { JournalistComponent } from './journalist/journalist.component';
@@ -38,12 +40,24 @@ const routes: Routes = [
         children: [
             { path: "", redirectTo: "", pathMatch: "full" },
             { path: "account", component: AccountComponent },
+            { path: "account/period", component: PeriodComponent },
+            { path: "account/consignment", component: ConsignmentComponent },
+            { path: "account/bank", component: BankComponent },
+            { path: "account/journal", component: JournalComponent },
             { path: "fleet", component: FleetComponent },
             { path: "user", component: UserComponent },
             { path: "order", component: OrderComponent },
             { path: "contractor", component: CreatecontractorComponent },
             { path: "company", component: CompanycreateComponent },
-            { path: "contact", component: ContactComponent }
+            // { path: "contact", component: ContactComponent }
+            { path: "contact", component: CompanyListComponent },
+            { path: "contact/driver", component: ContactDriverComponent },
+            { path: "contact/customer", component: ContactcustomerComponent },
+            { path: "contact/vendor", component: ContactvendorComponent },
+            { path: "contact/employee", component: ContactemployeeComponent },
+            { path: "route", component: MaprouteComponent },
+            { path: "expensses", component: InvoiceComponent },
+
 
 
 
@@ -56,6 +70,7 @@ const routes: Routes = [
         FormsModule,
         ReactiveFormsModule,
         RouterModule.forChild(routes),
+        TextMaskModule
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     declarations: [
@@ -67,7 +82,7 @@ const routes: Routes = [
         CreatecontractorComponent,
         // ContractorcreateComponent,
         CompanycreateComponent,
-        ContactComponent,
+        // ContactComponent,
         SidenavComponent,
         MaprouteComponent,
         ContractorListComponent,

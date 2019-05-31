@@ -199,4 +199,8 @@ input.cote {
     background-repeat: no-repeat;
     background-position: center;
   }
-  
+  img.imgContact {
+    height: 100%;
+    width: 207px;
+    border-radius: 50%;
+}
