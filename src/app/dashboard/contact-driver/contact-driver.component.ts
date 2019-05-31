@@ -171,8 +171,8 @@ this.error='Document Type can not be empty'
 
     }
     this.driverForm.controls['doc_name'].reset()
-    this.driverForm.controls['doc'].reset()            //empty these fied after add
-    this.driverForm.controls['number'].reset()
+    // this.driverForm.controls['doc'].reset()            //empty these fied after add
+    // this.driverForm.controls['number'].reset()
     this.driverForm.controls['valid_upto'].reset()
     this.driverForm.controls['list'].reset()
   }
@@ -254,10 +254,11 @@ uploadImage(event){
       police_verification: this.policeData.police_verification,
       others: this.othersData,
       picture:this.pictureUpload?this.pictureUpload:null,
+      contact_type: "driver",
       userId: this.userId
     }
     console.log(data)
-    this.contactService.driver(data).subscribe(value => {
+    this.contactService.contactCreate(data).subscribe(value => {
       console.log('value', value)
       this.loader=false;
       this.toastr.success('Driver created')

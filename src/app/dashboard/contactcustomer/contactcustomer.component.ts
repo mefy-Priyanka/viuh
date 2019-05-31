@@ -173,8 +173,8 @@ this.error='Document Type can not be empty'
 
     }
     this.customerForm.controls['doc_name'].reset()
-    this.customerForm.controls['doc'].reset()            //empty these fied after add
-    this.customerForm.controls['number'].reset()
+    // this.customerForm.controls['doc'].reset()            //empty these fied after add
+    // this.customerForm.controls['number'].reset()
     this.customerForm.controls['valid_upto'].reset()
     this.customerForm.controls['list'].reset()
   }
@@ -256,13 +256,14 @@ uploadImage(event){
       tan: this.tanData.tan,
       others: this.othersData,
       picture:this.pictureUpload?this.pictureUpload:null,
+      contact_type: "customer",
       userId: this.userId
     }
     console.log(data)
-    this.contactService.customer(data).subscribe(value => {
+    this.contactService.contactCreate(data).subscribe(value => {
       console.log('value', value)
       this.loader=false;
-      this.toastr.success('Driver created')
+      this.toastr.success('Customer created')
       this.router.navigate(['dashboard/contact'])
     },
     err=>{

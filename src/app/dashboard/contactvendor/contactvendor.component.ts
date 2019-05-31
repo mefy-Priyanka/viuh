@@ -167,8 +167,8 @@ this.error='Document Type can not be empty'
 
     }
     this.vendorForm.controls['doc_name'].reset()
-    this.vendorForm.controls['doc'].reset()            //empty these fied after add
-    this.vendorForm.controls['number'].reset()
+    // this.vendorForm.controls['doc'].reset()            //empty these fied after add
+    // this.vendorForm.controls['number'].reset()
     this.vendorForm.controls['valid_upto'].reset()
     this.vendorForm.controls['list'].reset()
    } else{
@@ -247,10 +247,11 @@ uploadImage(event){
       tan: this.tanData.tan,
       others: this.othersData,
       picture:this.pictureUpload?this.pictureUpload:null,
+      contact_type: "vendor",
       userId: this.userId
     }
     console.log(data)
-    this.contactService.vendor(data).subscribe(value => {
+    this.contactService.contactCreate(data).subscribe(value => {
       console.log('value', value)
       this.loader=false;
       this.toastr.success('Driver created')

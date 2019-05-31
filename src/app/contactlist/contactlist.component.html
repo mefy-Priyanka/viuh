@@ -16,6 +16,7 @@
             <thead class="cf">
               <tr>
                 <th class="numeric">CONTACT TYPE</th>
+                <th>NAME</th>
                 <th>EMAIL</th>
                 <th>COMPANY NAME</th>
                 <th>PHONE NUMBER</th>
@@ -24,13 +25,14 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let contact of contactlist; index as i">
-                <td class="thno" data-title="NO.">{{contact.contactType}}</td>
-                <td class="thname" data-title="NAME">{{contact.email}}</td>
-                <td class="thname" data-title="VAT ID">{{contact.company_name}}</td>
-                <td data-title="ADDRESS" class="numeric">{{contact.phoneNumber}}</td>
+              <tr *ngFor="let contact of contactList; index as i">
+                <td class="thno" data-title="NO.">{{contact?.contact_type}}</td>
+                <td class="thname" data-title="NAME">{{contact?.name}}</td>
+                <td class="thname" data-title="NAME">{{contact?.email}}</td>
+                <td class="thname" data-title="VAT ID">{{contact?.company_name}}</td>
+                <td data-title="ADDRESS" class="numeric">{{contact?.phoneNumber}}</td>
                 <td data-title="VAT ID" class="numeric">{{contact.website}}</td>
-                <td><i class="fa fa-trash" aria-hidden="true" (click)="delete(contact._id)"></i>
+                <td><i class="fa fa-trash" aria-hidden="true" ></i>
                 </td>
               </tr>
             </tbody>

@@ -140,8 +140,8 @@ export class ContactemployeeComponent implements OnInit {
 
       }
       this.employForm.controls['doc_name'].reset()
-      this.employForm.controls['doc'].reset()            //empty these fied after add
-      this.employForm.controls['number'].reset()
+      // this.employForm.controls['doc'].reset()            //empty these fied after add
+      // this.employForm.controls['number'].reset()
       this.employForm.controls['valid_upto'].reset()
       this.employForm.controls['list'].reset()
     }
@@ -218,10 +218,11 @@ export class ContactemployeeComponent implements OnInit {
         voterId: this.voterIdDate.voterId,
         others: this.othersData,
         picture: this.pictureUpload ? this.pictureUpload : null,
+        contact_type: "employee",
         userId: this.userId
       }
       console.log(data)
-      this.contactService.employee(data).subscribe(value => {
+      this.contactService.contactCreate(data).subscribe(value => {
         console.log('value', value)
         this.loader = false;
         this.toastr.success('Driver created')
