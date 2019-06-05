@@ -1,0 +1,77 @@
+<!-- destination -->
+<section class="createcontract">
+  <div class="ft">
+    <h1>Destination | Create
+    </h1>
+  </div>
+  <form class="destinationForm" [formGroup]="destinationForm">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- input type -->
+        <div>
+          <div class="card corCard">
+            <div class="row">
+
+              <div class="nota">
+                <div class="row">
+
+                  <div class="input-field col s6">
+                    <p><label>Customer ID <span class="blue_star">*</span></label></p>
+                    <select class="orga" formControlName="customerId">
+                      <option value="" disabled selected>Select</option>
+                      <option value="rupees">NET 15</option>
+
+                    </select>
+
+                  </div>
+               
+
+                </div>
+                
+                <div class="row" style="position:relative">
+                  <button class="addBtn">+</button>
+
+                  <div class="input-field col s4">
+                    <p><label>Location Name</label></p>
+                    <input type="text" class="validate" formControlName="location_name">
+
+                  </div>
+                  <div class="input-field col s4">
+                    <p><label>Location Code<span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" formControlName="location_code">
+
+                  </div>
+
+                  <div class="input-field col s4">
+                    <p><label>Address<span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" formControlName="address">
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="contractorButton">
+              <button class="submitBtn" [disabled]="!destinationForm.valid" (click)="saveForm()">Save</button>
+              <button class="cancelBtn" (click)="cancel()">Cancel</button>
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <!-- input type -->
+
+
+
+
+
+      </div>
+    </div>
+
+  </form>
+</section>
+
+<!-- destination -->

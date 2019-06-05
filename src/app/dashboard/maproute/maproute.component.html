@@ -1,43 +1,124 @@
 <!-- map -->
 <section class="createcontract">
   <div class="ft">
-    <h1>Routes
+    <h1>Route | Create
     </h1>
   </div>
- <div class="mapContent">
-<div class="row">
-  <div class="col-md-12" id="padding-0">
-    <div class="col-md-4" id="padding-0">
-<div class="sideMapc">
+  <form class="destinationForm">
     <div class="row">
+      <div class="col-md-12">
+        <!-- input type -->
+        <div>
+          <div class="card corCard">
+            <div class="row">
+
+              <div class="nota">
+                <!-- <div class="row">
+
+                  <div class="input-field col s6">
+                    <p><label>Customer ID <span class="blue_star">*</span></label></p>
+                    <select class="orga" formControlName="customerId">
+                      <option value="" disabled selected>Select</option>
+                      <option value="rupees">NET 15</option>
+
+                    </select>
+
+                  </div>
+               
+
+                </div> -->
+                
+                <div class="row">
+
+                  <div class="input-field col s4">
+                    <p><label>From Location</label></p>
+                    <input type="text" class="validate" formControlName="location_name">
+
+                  </div>
+                  <div class="input-field col s4">
+                    <p><label>To Location<span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" formControlName="location_code">
+
+                  </div>
+
+                  <div class="input-field col s4">
+                    <p><label>Total (Km)<span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" formControlName="address">
+                  </div>
+                </div>
+                <div class="row">
+
+                  <div class="input-field col s6">
+                    <p><label>Diesel Expenses</label></p>
+                    <input type="text" class="validate" formControlName="location_name">
+
+                  </div>
+                  <div class="input-field col s6">
+                    <p><label>Driver Expenses<span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" formControlName="location_code">
+
+                  </div>
+
+                  <!-- <div class="input-field col s4">
+                    <p><label>Stoppage<span class="blue_star">*</span>                  <button class="addBtn">+</button>
+                    </label></p>
+                    <input type="text" class="validate" formControlName="address">
+                  </div> -->
+                </div>
 
 
-        <div class="input-field col s12 mapPart">
-          <input type="text" class="validate" placeholder="Route Mumbai">
-        </div>
-        <div class="input-field col s12 mapPart">
-            <input type="text" class="validate" placeholder="From Location">
-          </div>
-          <div class="input-field col s12 mapPart">
-              <input type="text" class="validate" placeholder="To Location">
+                <div class="row">
+
+                  <div class="input-field col s4">
+                    <p><label>Stoppage<span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" formControlName="address">
+                  </div>
+                  <div class="input-field col s4">
+                    <button class="addBtn">+</button>
+                  </div>
+                </div>
+                
+
+                <div class="row">
+                  <p class="aetac"><label>Other Expenses<span class="blue_star">*</span></label></p>
+                  <div class="input-field col s4">
+                    <p><label>Name</label></p>
+                    <input type="text" class="validate" formControlName="address">
+                  </div>
+                  <div class="input-field col s4">
+                    <p><label>Expenses</label></p>
+                    <input type="text" class="validate" formControlName="address">
+                  </div>
+                  <div class="input-field col s4">
+                    <button class="addBtn">+</button>
+                  </div>
+                </div>
+                
+              </div>
+
             </div>
-
-
+          </div>
+          <div class="row">
+            <div class="contractorButton">
+              <button class="submitBtn"  (click)="saveForm()">Save</button>
+              <button class="cancelBtn" (click)="cancel()">Cancel</button>
+            </div>
+          </div>
         </div>
-  <p></p>
-</div>
 
 
+
+
+        <!-- input type -->
+
+
+
+
+
+      </div>
     </div>
-    <div class="col-md-8">
-      <div id="googleMap" style="width:100%;height:400px;"></div>
 
-    </div>
-  </div>
-</div>
-
-
- </div>
+  </form>
 </section>
 
 <!-- map -->

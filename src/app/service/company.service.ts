@@ -56,4 +56,10 @@ fleetcreation(data){
       return this.httpClient.post(APIURL+ 'period/create', data)
 
     }
+// *****************************************Destination***********************************************
+destination(id) {
+  return this.httpClient.get(APIURL + 'contact/listByContactType?superAdminId='+id)
+}
+// // *****************************************Destination End****************************************************************************************Destination***********************************************
+
 }

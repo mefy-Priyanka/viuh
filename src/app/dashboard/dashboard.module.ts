@@ -31,6 +31,7 @@ import { ContactcustomerComponent } from './contactcustomer/contactcustomer.comp
 import { PaymentreceivedComponent } from './paymentreceived/paymentreceived.component';
 import { BillComponent } from './bill/bill.component';
 import { PaymentmadeComponent } from './paymentmade/paymentmade.component';
+import { DestinationComponent } from './destination/destination.component';
 // import { EmployeeComponent } from './employee/employee.component';
 
 const routes: Routes = [
@@ -101,6 +102,7 @@ const routes: Routes = [
         PaymentreceivedComponent,
         BillComponent,
         PaymentmadeComponent,
+        DestinationComponent,
         // EmployeeComponent
 
     ]
