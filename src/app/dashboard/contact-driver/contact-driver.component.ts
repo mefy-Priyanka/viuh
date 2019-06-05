@@ -105,7 +105,6 @@ public mask = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\
   add() { 
     // console.log('valid',this.driverForm.valid)
     console.log(this.selecteValue)
-    debugger;
     if(Object.keys(this.selecteValue).length != 0 && this.selecteValue.constructor != Object){
     if(this.driverForm.valid){
     if (this.selecteValue == 'aadhar') {
