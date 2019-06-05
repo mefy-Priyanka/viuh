@@ -15,20 +15,21 @@
                     <table class="col-md-12 table-bordered table-striped table-condensed cf">
                     <thead class="cf">
                       <tr>
-                        <th class="numeric">NO.</th>
-                        <th>NUMBER</th>
-                        <th>CONTRACTOR/TRANSPORTS</th>
-                        <th>PAYMENT NET</th>
+                        <th class="numeric">TRUCK NUMBER</th>
+                        <th>TRUCK CAPACITY</th>
+                        <!-- <th>CONTRACTOR/TRANSPORTS</th> -->
+                        <th>OWENER</th>
                         <th><i class="fa fa-question-circle-o" aria-hidden="true"></i></th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td class="thno" data-title="NO.">-</td>
-                        <td class="thname" data-title="NAME"></td>
-                        <td class="thname" data-title="VAT ID"></td>
-                        <td data-title="ADDRESS" class="numeric"></td>
-                        <td data-title="VAT ID" class="numeric"></td>
+                      <tr *ngFor="let fleet of fleetDetail">
+                        <td class="thno" data-title="NO.">{{fleet.truck_number}}</td>
+                        <td class="thname" data-title="NAME">{{fleet.capacity}}</td>
+                        <!-- <td class="thname" data-title="VAT ID">{{fleet}}</td> -->
+                        <td data-title="ADDRESS" class="numeric">{{fleet.ownership}}</td>
+                        <td data-title="VAT ID" class="numeric" (click)="delete(fleet._id)"><i class="fa fa-trash" aria-hidden="true"></i>
+                        </td>
                       </tr>
                     </tbody>
                   </table>
@@ -66,17 +67,17 @@
 
               <div class="input-field col s4">
                   <p><label>Truck Capacity(Cal)</label></p>
-                  <input type="text" class="validate" [(ngModel)]="trucknumber" [ngModelOptions]="{standalone: true}"
-                    (keyup)="check('trucknumber')">
-                  <p class="errormessage" *ngIf="truckerr">Truck number can't be empty</p>
+                  <input type="text" class="validate" [(ngModel)]="truckcapacity" [ngModelOptions]="{standalone: true}"
+                    (keyup)="check('truckcapacity')">
+                  <p class="errormessage" *ngIf="caperr">Truck capacity can't be empty</p>
                 </div>
 
               <div class="input-field col s4">
                 <p><label>Ownership <span class="blue_star">*</span></label></p>
                 <select [(ngModel)]="ownership" [ngModelOptions]="{standalone: true}" (change)="check('ownership')">
                   <option value="" disabled selected>Ownership</option>
-                  <option value="1">Owned</option>
-                  <option value="2">Contract</option>
+                  <option value='owned'>Owned</option>
+                  <option value='contract'>Contract</option>
                 </select>
                 <p class="errormessage" *ngIf="ownererr">please choose ownership</p>
               </div>
@@ -179,7 +180,7 @@
     <div class="row">
       <div class="contractorButton">
         <button class="submitBtn" (click)="submit()">Submit</button>
-        <button class="cancelBtn">Cancel</button>
+        <button class="cancelBtn" (click)="createFleet()">Cancel</button>
       </div>
     </div>
   </div>

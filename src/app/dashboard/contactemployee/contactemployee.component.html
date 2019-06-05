@@ -48,8 +48,9 @@
       <div class="row">              
           <div class="input-field col s12">
             <p><label>Phone Number</label></p>
-            <input type="text" class="validate" formControlName="phoneNumber" [textMask]="{mask: mask, guide: false}" >
+            <input type="text" class="validate" formControlName="phoneNumber"  minlength="10" [textMask]="{mask: mask, guide: false}" >
           <p class="error" [ngStyle]="{'font-size':'12px'}" *ngIf="employFormerrors.phoneNumber.required || (employForm.controls.phoneNumber.pristine && submitted)">PLease enter valid phone number</p>
+          <p class="errormessage" [ngStyle]="{'font-size':'12px'}" *ngIf="employFormerrors.phoneNumber.minlength ">Please Enter Valid Phone Number
   
   
           </div>
@@ -127,7 +128,7 @@
                     </div>
                     
                     <div class="submitBtn" >
-                      <button class="addBtn" (click)="add()">add</button>
+                      <button class="addBtn" (click)="add()">+</button>
                     </div>
                     <!-- <div class="input-field col s1">
                       <button class="addBtn">+</button>

@@ -38,6 +38,7 @@ public mask = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\
 
 
   document = ['aadhar', 'licence', 'training_certificate', 'police_verification']
+  currentURL: string;
 
   constructor(private formBuilder: FormBuilder, private router: Router, private contactService: ContactService, private companyService: CompanyService,private SharedService: SharedService,private toastr: ToastrService,private sanitizer: DomSanitizer) {
     /*******ERRORS OF userForm ********* */
@@ -103,6 +104,8 @@ public mask = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\
   /*********************STORE DOCUMENT DATA **************/
   add() { 
     // console.log('valid',this.driverForm.valid)
+    console.log(this.selecteValue)
+    if(Object.keys(this.selecteValue).length != 0 && this.selecteValue.constructor != Object){
     if(this.driverForm.valid){
     if (this.selecteValue == 'aadhar') {
       let data = {
@@ -165,11 +168,6 @@ public mask = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\
       this.othersData.push(data.others)
       console.log('push', this.othersData)
     } 
-    else {
-      console.log('hey',this.selecteValue)
-this.error='Document Type can not be empty'
-
-    }
     this.driverForm.controls['doc_name'].reset()
     // this.driverForm.controls['doc'].reset()            //empty these fied after add
     // this.driverForm.controls['number'].reset()
@@ -178,8 +176,13 @@ this.error='Document Type can not be empty'
   }
   else{
     console.log('empty')
-    this.toastr.warning( "Document or Doc number can't be empty")
+    this.toastr.warning( " can't be empty")
   }
+}
+else{
+  console.log('hey',this.selecteValue)
+  this.error='Document Type can not be empty'
+}
 }
 
 
@@ -211,13 +214,9 @@ this.error='Document Type can not be empty'
       })
  
   }
-   
-  
-
-
-
   /**************************************** ENDS *************************************************************** */
 uploadImage(event){
+  this.loader=true;
   let fileList: FileList = event.target.files;
   let fileTarget = fileList;
   let file: File = fileTarget[0];
@@ -227,12 +226,13 @@ uploadImage(event){
   console.log("File information :", formData);
   this.companyService.fileUpload(formData).subscribe(result => {
     console.log('file uploaded', result)
-    let value:any={}
+    let value:any={} 
     value=result
     this.pictureUpload=value.upload._id;
     this.show=false;  
     this.imgUrlPrefix = this.sanitizer.bypassSecurityTrustResourceUrl("http://ec2-52-66-250-48.ap-south-1.compute.amazonaws.com:4052/file/getImage?imageId="+this.pictureUpload);
      console.log(' this.previewImage', this.imgUrlPrefix)
+     this.loader=false;
     }, err => {
       this.loader=false;
     this.toastr.error('Error!', ' failed')        
@@ -242,10 +242,12 @@ uploadImage(event){
 
   /*********************CREATE DRIVER ****************** */
   createDriver() {
+
     this.loader=true;
     if(this.driverForm.valid){
     console.log('valid')
-    let data = {
+    if(Object.keys(this.pictureUpload).length != 0 && this.pictureUpload.constructor != Object){
+      let data = {
       name: this.driverForm.value.name,
       phoneNumber: this.driverForm.value.phoneNumber,
       aadhar: this.aadharData.aadhar,
@@ -262,13 +264,41 @@ uploadImage(event){
       console.log('value', value)
       this.loader=false;
       this.toastr.success('Driver created')
-      this.router.navigate(['/dashboard'])
+      this.driverForm.reset();
+      this.SharedService.abc('contact')
     },
     err=>{
       this.loader=false;
       console.log(err)
       this.toastr.error('Error!', 'Creation  failed')
     })
+  }
+  else{
+    let data = {
+      name: this.driverForm.value.name,
+      phoneNumber: this.driverForm.value.phoneNumber,
+      aadhar: this.aadharData.aadhar,
+      licence: this.licenceData.licence,
+      training_certificate: this.trainingData.training_certificate,
+      police_verification: this.policeData.police_verification,
+      others: this.othersData,
+      contact_type: "driver",
+      userId: this.userId
+    }
+    console.log(data)
+    this.contactService.contactCreate(data).subscribe(value => {
+      console.log('value', value)
+      this.loader=false;
+      this.toastr.success('Driver created')
+      this.driverForm.reset();
+      this.SharedService.abc('contact')
+    },
+    err=>{
+      this.loader=false;
+      console.log(err)
+      this.toastr.error('Error!', 'Creation  failed')
+    })
+  }
   }
     else{
       this.loader=false;
@@ -278,6 +308,7 @@ uploadImage(event){
     }
   }
   /********** ENDS ************** */
-
+  cancel(){
+    this.SharedService.abc('contact')
+  }
 }
-  

@@ -56,7 +56,7 @@
          <div class="row leftCet alit" (click)="abc('contractorlist')" *ngIf='role=="superAdmin" || "admin"'>
             <ul>
                <li><i class="fa fa-sliders" aria-hidden="true"></i></li>
-               <li class="order" [routerLink]="['/dashboard/contractor']">Contractors</li>
+               <li class="order" >Contractors</li>
                <li class="dropdown flRight">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
                      <button class="addItem" (click)="abc('contractordetail')"><i class="fa fa-plus-circle"
@@ -76,7 +76,7 @@
          <div class="row leftCet" (click)="abc('companylist')">
             <ul>
                <li><i class="fa fa-id-card-o" aria-hidden="true"></i></li>
-               <li class="order" [routerLink]="['/dashboard/company']">Company</li>
+               <li class="order" >Company</li>
                <li class="dropdown flRight">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
                      <button class="addItem" (click)="abc('companydetail')"><i class="fa fa-plus-circle"
@@ -90,7 +90,7 @@
                   <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordionMenu"
                      href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
    
-                     <i class="fa fa-money" aria-hidden="true"></i><span [routerLink]="['/dashboard/expensses']">Expenses</span></a>
+                     <i class="fa fa-money" aria-hidden="true"></i><span >Expenses</span></a>
                </h4>
             </div>
             <div id="collapseThree" class="panel-collapse collapse" role="tabpanel"
@@ -111,7 +111,7 @@
          <div class="row leftCet" (click)="abc('fleetdetail')">
             <ul>
                <li><i class="fa fa-truck" aria-hidden="true"></i></li>
-               <li class="order" [routerLink]="['/dashboard/fleet']">Fleet</li>
+               <li class="order" >Fleet</li>
             </ul>
          </div>
          <div class="panel panel-default">
@@ -120,7 +120,7 @@
                   <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordionMenu"
                      href="#collapseTwo" aria-expanded="false" aria-controls="collapseThree">
    
-                     <i class="fa fa-credit-card-alt" aria-hidden="true"></i><span  [routerLink]="['/dashboard/account']" >Accounts</span></a>
+                     <i class="fa fa-credit-card-alt" aria-hidden="true"></i><span  >Accounts</span></a>
                </h4>
             </div>
             <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel"
@@ -128,11 +128,11 @@
                <div class="panel-body">
                   <ul class="nav accordionae">
    
-                     <li class="order" [routerLink]="['/dashboard/account/journal']" (click)="abc('journal','journalcreate')"><i class="fa fa-sticky-note" aria-hidden="true"></i>Journal</li>
+                     <li class="order"  (click)="abc('journal','journalcreate')"><i class="fa fa-sticky-note" aria-hidden="true"></i>Journal</li>
    
-                     <li class="order" [routerLink]="['/dashboard/account/bank']" (click)="abc('bank')"> <i class="fa fa-university" aria-hidden="true"></i>Bank</li>
-                     <li class="order"[routerLink]="['/dashboard/account/consignment']"  (click)="abc('consignment')"> <i class="fa fa-check-circle-o" aria-hidden="true"></i>Consignment</li>
-                     <li class="order" [routerLink]="['/dashboard/account/period']" (click)="abc('period')"> <i class="fa fa-calendar" aria-hidden="true"></i>Period</li>
+                     <li class="order"  (click)="abc('bank')"> <i class="fa fa-university" aria-hidden="true"></i>Bank</li>
+                     <li class="order"   (click)="abc('consignment')"> <i class="fa fa-check-circle-o" aria-hidden="true"></i>Consignment</li>
+                     <li class="order"  (click)="abc('period')"> <i class="fa fa-calendar" aria-hidden="true"></i>Period</li>
    
                   </ul>
                </div>
@@ -141,7 +141,7 @@
          <div class="row leftCet" (click)="abc('map')">
             <ul>
                <li><i class="fa fa-map" aria-hidden="true"></i></li>
-               <li class="order" [routerLink]="['/dashboard/route']">Routes</li>
+               <li class="order" >Routes</li>
                <li class="dropdown flRight">
                </li>
             </ul>
@@ -154,17 +154,17 @@
          <div class="row leftCet" >
             <ul>
                <li><i class="fa fa-address-book" aria-hidden="true"></i></li>
-               <li class="order" (click)="abc('contact')" [routerLink]="['/dashboard/contact']">Contact</li>
+               <li class="order" (click)="abc('contact')" >Contact</li>
                <li class="dropdown flRight">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
                      <button class="addItem" ><i class="fa fa-plus-circle"
                            aria-hidden="true"></i>Add</button></a>
 
                   <ul class="dropdown-menu sitetting colori atea">
-                     <li [routerLink]="['/dashboard/contact/customer']" (click)="abc('Customer')"><a><i class="fa fa-globe" aria-hidden="true"></i>Customer</a></li>
-                     <li [routerLink]="['/dashboard/contact/vendor']" (click)="abc('Vendor')"><a><i class="fa fa-truck" aria-hidden="true"></i>Vendor</a></li>
-                     <li [routerLink]="['/dashboard/contact/employee']" (click)="abc('Employee')"><a><i class="fa fa-ship" aria-hidden="true"></i>Employee</a></li>
-                     <li [routerLink]="['/dashboard/contact/driver']" (click)="abc('Driver')"><a><i class="fa fa-plane"></i >Driver</a></li>
+                     <li  (click)="abc('Customer')"><a><i class="fa fa-globe" aria-hidden="true"></i>Customer</a></li>
+                     <li  (click)="abc('Vendor')"><a><i class="fa fa-truck" aria-hidden="true"></i>Vendor</a></li>
+                     <li  (click)="abc('Employee')"><a><i class="fa fa-ship" aria-hidden="true"></i>Employee</a></li>
+                     <li (click)="abc('Driver')"><a><i class="fa fa-plane"></i >Driver</a></li>
                   </ul>
                </li>
             </ul>
@@ -181,7 +181,7 @@
          <div class="row leftCet" (click)="abc('user')">
             <ul>
                <li><i class="fa fa-user-circle-o" aria-hidden="true"></i></li>
-               <li class="order" [routerLink]="['/dashboard/user']">Users</li>
+               <li class="order" >Users</li>
             </ul>
          </div>
 

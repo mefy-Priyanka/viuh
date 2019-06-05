@@ -4,7 +4,7 @@
     <h1>Invoice | Create
     </h1>
   </div>
-  <form class="createContractorForm">
+  <form class="createContractorForm" [formGroup]="myForm">
     <div class="row">
       <div class="col-md-12">
         <!-- input type -->
@@ -17,7 +17,7 @@
 
                   <div class="input-field col s6">
                     <p><label>Customer Name <span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate">
+                    <input type="text" class="validate" formControlName="customer">
 
                   </div>
                   <div class="input-field col s6">
@@ -32,13 +32,13 @@
 
                   <div class="input-field col s6">
                     <p><label>Order Number</label></p>
-                    <input type="text" class="validate">
+                    <input type="text" class="validate" >
 
                   </div>
 
                   <div class="input-field col s6">
                     <p><label>Invoice Date<span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate">
+                    <input type="text" class="validate" formControlName="invoice_date" >
                   </div>
 
 
@@ -50,7 +50,7 @@
 
                   <div class="input-field col s6">
                     <p><label>Terms</label></p>
-                    <select class="orga">
+                    <select class="orga" formControlName="terms">
                       <option value="" disabled selected>Due On Receipt</option>
                       <option value="rupees">NET 15</option>
                       <option value="rupees">NET 30</option>
@@ -65,18 +65,18 @@
                   </div>
                   <div class="input-field col s6">
                     <p><label>Due Date<span class="blue_star">*</span></label></p>
-                    <input type="date" class="validate">
+                    <input type="date" class="validate" formControlName="due_date">
                   </div>
 
                 </div>
 
 
-                <form [formGroup]="orderForm">
+                <div >
 
                   <div class="tableide journalTable">
                     <div class="row">
                       <div id="no-more-tables">
-                        <table class="col-md-12 table-bordered table-striped table-condensed cf">
+                        <table class="col-md-12 table-bordered table-striped table-condensed cf" formArrayName="arraydata">
                           <thead class="cf">
                             <tr>
                               <th>S NO.</th>
@@ -111,41 +111,42 @@
                             </tr>
                           </thead>
                           <tbody>
-                            <tr>
+                            <tr *ngFor="let phone of phoneForms.controls; let i=index" 
+                            [formGroupName]="i">
 
-                              <td class="thname"><input type="text" style="border: none !important"></td>
-                              <td class="thname"><input type="text" style="border: none !important"></td>
-                              <td class="thname"><input type="text" style="border: none !important"></td>
-                              <td class="thname"><input type="text" style="border: none !important"></td>
-                              <td class="thname"><input type="text" style="border: none !important"></td>
-                              <td class="thname"><input type="text" style="border: none !important"></td>
+                              <td class="thname"><input type="text" style="border: none !important" formControlName="serial_number"  [readonly]='true'></td>
+                              <td class="thname"><input type="text" style="border: none !important" formControlName="vehicle_number"></td>
+                              <td class="thname"><input type="text" style="border: none !important" formControlName="invoice_number" ></td>
+                              <td class="thname"><input type="text" style="border: none !important" formControlName="item"></td>
+                              <td class="thname"><input type="text" style="border: none !important" formControlName="date"></td>
+                              <td class="thname"><input type="text" style="border: none !important" formControlName="ship_to_party"></td>
 
-                              <td class="thname"><input type="text" style="border: none !important"></td>
+                              <td class="thname"><input type="text" style="border: none !important" formControlName="material"></td>
 
-                              <td class="thname"><input type="text" style="border: none !important"></td>
+                              <td class="thname"><input type="text" style="border: none !important" formControlName="quantity"></td>
 
-                              <td class="thname"><input type="text" style="border: none !important"></td>
+                              <td class="thname"><input type="text" style="border: none !important" formControlName="shortage"></td>
                               <td class="thname" style="padding:0">
                             <tr>
-                              <td class="thname"><input type="text" style="border: none !important">
-                              <td class="thname"><input type="text" style="border: none !important">
-                              <td class="thname"><input type="text" style="border: none !important">
+                              <td class="thname"><input type="text" style="border: none !important" formControlName="rtd_p">
+                              <td class="thname"><input type="text" style="border: none !important" formControlName="rtd_h">
+                              <td class="thname"><input type="text" style="border: none !important" formControlName="rtd_hh">
 
                             </tr>
                             </td>
                             <td class="thname" style="padding:0">
                               <tr>
-                                <td class="thname"><input type="text" style="border: none !important">
-                                <td class="thname"><input type="text" style="border: none !important">
-                                <td class="thname"><input type="text" style="border: none !important">
+                                <td class="thname"><input type="text" style="border: none !important" formControlName="rate_p">
+                                <td class="thname"><input type="text" style="border: none !important" formControlName="rate_h">
+                                <td class="thname"><input type="text" style="border: none !important" formControlName="rate_hh">
 
                               </tr>
                             </td>
-                            <td class="thname"><input type="text" style="border: none !important"></td>
-                            <td class="thname"><input type="text" style="border: none !important"></td>
-                            <td class="thname"><input type="text" style="border: none !important"></td>
-                            <td class="thname"><input type="text" style="border: none !important"></td>
-                            <td class="thname"><input type="text" style="border: none !important"></td>
+                            <td class="thname"><input type="text" style="border: none !important" formControlName="gross_amount"></td>
+                            <td class="thname"><input type="text" style="border: none !important" formControlName="penalty_amount"></td>
+                            <td class="thname"><input type="text" style="border: none !important" formControlName="igst"></td>
+                            <td class="thname"><input type="text" style="border: none !important" formControlName="cgst"></td>
+                            <td class="thname"><input type="text" style="border: none !important" formControlName="s_ugst"></td>
 
                             </tr>
                           </tbody>
@@ -156,7 +157,7 @@
                         <div class="row">
                           <div class="col-md-6">
                             <div class="thno">
-                              <button class="At">+&nbsp;&nbsp;Add Another Line</button>
+                              <button class="At" (click)="addPhone()">+&nbsp;&nbsp;Add Another Line</button>
                             </div>
                           </div>
                           <div>
@@ -232,12 +233,12 @@
                           <div class="col-md-6">
                             <label>Customer Notes</label>
                             <textarea rows="4" cols="50" style="height:6em"
-                              placeholder="Thanks for your business."></textarea>
+                              placeholder="Thanks for your business." ></textarea>
                           </div>
                           <div class="col-md-6">
                             <label>Terms & Conditions</label>
                             <textarea rows="6" cols="50" style="height: 6em"
-                              placeholder="Mention your company's Terms and conditions"></textarea>
+                              placeholder="Mention your company's Terms and conditions" ></textarea>
                           </div>
                         </div>
 
@@ -247,7 +248,7 @@
 
                     </div>
                   </div>
-                </form>
+                </div>
 
 
               </div>
@@ -257,7 +258,7 @@
           <div class="row">
             <div class="contractorButton">
               <button class="submitBtn" (click)="submit()">Save as Draft</button>
-              <button class="submitBtn" (click)="submit()">Save and Send</button>
+              <button class="submitBtn" (click)="submitdraft()">Save and Send</button>
               <button class="cancelBtn" (click)="cancel()">Cancel</button>
             </div>
           </div>

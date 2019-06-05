@@ -14,7 +14,7 @@ export class FleetComponent implements OnInit {
   @ViewChild('mydoc') mydoc: ElementRef;
 
   vardata = [];
-public fleet:boolean=true;
+  public fleet: boolean = true;
 
   truckerr: boolean;
   selectedOption = ''
@@ -33,6 +33,8 @@ public fleet:boolean=true;
   userId: string;
   loader: boolean = false;
   trucknumber = "";
+  truckcapacity='';
+  caperr=false;
   ownership = ""
   selecterr: boolean;
   ownererr: boolean;
@@ -44,6 +46,7 @@ public fleet:boolean=true;
   otherbool: boolean;
   othername2 = ''
   other2bool: boolean;
+  fleetDetail=[];
   maindata = { userId: '', superadminid: '', others: [] };
   constructor(private formBuilder: FormBuilder,
     private router: Router, private companyService:
@@ -52,8 +55,22 @@ public fleet:boolean=true;
     this.superadminid = localStorage.getItem('SuperAdmin');
 
     this.userId = localStorage.getItem('userId');
+    this.getfleetList();
   }
 
+  getfleetList() {
+    this.companyService.getfleetlist(localStorage.getItem('SuperAdmin')).subscribe(data => {
+      console.log(data)
+      let result: any = {}
+      result = data;
+      this.fleetDetail = result.result
+      console.log(this.fleetDetail);
+    },
+      error => {
+        console.log(error);
+
+      })
+  }
   ngOnInit() {
     this.maindata.userId = this.userId;
     this.maindata.superadminid = this.superadminid
@@ -431,6 +448,14 @@ public fleet:boolean=true;
         this.truckerr = false;
       }
     }
+    if (xy == 'truckcapacity') {
+      if (this.truckcapacity == '') {
+        this.caperr = true;
+      }
+      else {
+        this.caperr = false;
+      }
+    }
 
     if (xy == 'ownership') {
       if (this.ownership == '') {
@@ -447,6 +472,10 @@ public fleet:boolean=true;
       this.truckerr = true;
       return;
     }
+    if (this.truckcapacity == '') {
+      this.caperr = true;
+      return;
+    }
     else if (this.ownership == '') {
       this.ownererr = true;
       return;
@@ -456,12 +485,17 @@ public fleet:boolean=true;
     if (this.maindata.others.length == 0) {
       delete this.maindata['others'];
     }
+    Object.assign(this.maindata,{truck_number:this.trucknumber});
+    Object.assign(this.maindata,{capacity:this.truckcapacity})
+
+    Object.assign(this.maindata,{ownership:this.ownership})
 
     console.log(this.maindata);
     this.companyService.fleetcreation(this.maindata).subscribe(result => {
       console.log(result);
-      this.toastr.success('Awesome!', 'fleet created successfully')
-      location.reload();
+      this.toastr.success('Awesome!', 'fleet created successfully');
+      this.getfleetList();
+      this.createFleet();
     },
       err => {
         console.log(err)
@@ -469,7 +503,18 @@ public fleet:boolean=true;
 
       })
   }
-  createFleet(){
-    this.fleet=!this.fleet
+  createFleet() {
+    this.fleet = !this.fleet;
+  }
+  delete(id){
+    this.companyService.deletefleet(id).subscribe(result => {
+      console.log(result);
+      this.toastr.success('Awesome!', 'fleet deleted successfully');
+      this.getfleetList();
+    },
+      err => {
+        console.log(err)
+        this.toastr.error('Error!', 'Server Error')
+      })
   }
 }

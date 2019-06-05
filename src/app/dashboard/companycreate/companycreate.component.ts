@@ -11,141 +11,44 @@ import { SharedService } from '../../service/shared.service';
   styleUrls: ['./companycreate.component.css']
 })
 export class CompanycreateComponent implements OnInit {
-  companyForm: FormGroup;
-  companyFormErrors: any;
+
   fieldinput: boolean = true;
   imagefile: boolean = false;
   public loader: boolean = false;
   submitted: boolean = false; //SHOW ERROR,IF INVALID FORM IS SUBMITTED
   userId: string;
-  companyId: any;
-  tradeId: any;
-  gst: any;
-  invoice: any;
-  pan: any;
-  reg: any;
-  constructor(private formBuilder: FormBuilder,
+  inputdata: any = [];
+  maindata = {
+    road_registration_certificate: {},
+    gst: {},
+    tradeLicense_A: {},
+    tradeLicense_B: {},
+    pan: {},
+    tan: {},
+    professional_tax: {},
+    pf: {},
+    esi: {},
+    itr: [],
+    balance_sheet: [],
+    userId: localStorage.getItem('userId')
+  };
+
+  docss: any = {};
+  constructor(
     private router: Router, private companyService:
-      CompanyService, private toastr: ToastrService,private SharedService: SharedService) {
+      CompanyService, private toastr: ToastrService, private SharedService: SharedService) {
     this.userId = localStorage.getItem('userId');
-    // **********Company form errors
-    this.companyFormErrors = {
-      email: {},
-      companyName: {},
-      regNo: {},
-      regId: {},
-      gstNo: {},
-      gstId: {},
-      tradeLicenseNo: {},
-      tradeLicenseId: {},
-      invoiceNo: {},
-      invoiceId: {},
-      panCard: {},
-      panId: {},
-      Address: {},
-      companyLogo: {},
-      currency: {},
-      phoneNumber: {}
-    };
-    // **********Company form errors end
+
   }
-  // ******************** div toggle
   showContent() {
+    console.log(this.inputdata)
     this.fieldinput = false;
     this.imagefile = true;
   }
-  // ******************** div toggle end
   ngOnInit() {
-    this.companyForm = this.createCompanyForm()
 
-    this.companyForm.valueChanges.subscribe(() => {
-      this.onCompanyFormValuesChanged();
-    });
   }
-  /******************************IT CATCHES ALL CHANGES IN FORM******************/
-  onCompanyFormValuesChanged() {
-    for (const field in this.companyFormErrors) {
-      if (!this.companyFormErrors.hasOwnProperty(field)) {
-        continue;
-      }
-      // Clear previous errors
-      this.companyFormErrors[field] = {};
-      // Get the control
-      const control = this.companyForm.get(field);
 
-      if (control && control.dirty && !control.valid) {
-        this.companyFormErrors[field] = control.errors;
-      }
-    }
-  }
-  // ***************Company Form
-  createCompanyForm() {
-    return this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      companyName: ['', Validators.required],
-      regNo: ['', Validators.required],
-      regId: ['', Validators.required],
-      gstNo: ['', Validators.required],
-      gstId: ['', Validators.required],
-      tradeLicenseNo: ['', Validators.required],
-      tradeLicenseId: ['', Validators.required],
-      invoiceNo: ['', Validators.required],
-      invoiceId: ['', Validators.required],
-      panCard: ['', Validators.required],
-      panId: ['', Validators.required],
-      Address: ['', Validators.required],
-      companyLogo: ['', Validators.required],
-      currency: ['', Validators.required],
-      phoneNumber: ['', Validators.required]
-    });
-  }
-  // ***************Company Form end
-  // *****************************Company form submit***************************
-  FormSubmit() {
-    console.log(this.companyForm.value)
-    this.submitted = true;
-    this.loader = true;
-    if (this.companyForm.valid) {
-      let data = {
-        email: this.companyForm.value.email,
-        companyName: this.companyForm.value.companyName,
-        regNo: this.companyForm.value.regNo,
-        regId: this.reg,
-        gstNo: this.companyForm.value.gstNo,
-        gstId: this.gst,
-        tradeLicenseNo: this.companyForm.value.tradeLicenseNo,
-        tradeLicenseId: this.tradeId,
-        invoiceNo: this.companyForm.value.invoiceNo,
-        invoiceId: this.invoice,
-        panCard: this.companyForm.value.panCard,
-        panId: this.pan,
-        Address: this.companyForm.value.Address,
-        companyLogo: this.companyId,
-        currency: this.companyForm.value.currency,
-        phoneNumber: this.companyForm.value.phoneNumber,
-        userId: this.userId
-
-      }
-      this.companyService.createCompany(data).subscribe(value => {
-        this.submitted = false;
-        this.toastr.success('Congo!', 'Successfully Created'),
-          console.log('user', value)
-        let result: any = {}
-        result = value
-        this.companyForm.reset();
-        this.loader = false;
-        this.SharedService.abc('companylist');
-      },
-        err => {
-          console.log(err)
-          this.submitted = false;
-          this.loader = false;
-          this.toastr.error('Error!', 'Server Error')
-          this.companyForm.reset();
-        })
-      console.log("data", data);
-    }
-  }
   /*******************************FILE UPLOAD SECTION**********************/
   upload(event, type) {
     console.log(this.userId)
@@ -165,25 +68,121 @@ export class CompanycreateComponent implements OnInit {
       let result: any = {};
       result = response;
       if (type == "companyLogo") {
-        this.companyId = result.upload._id;
+
+        Object.assign(this.maindata, { companyLogo: result.upload._id })
       }
-      else if (type == "tradeLicenseId") {
-        this.tradeId = result.upload._id;
+      else if (type == "tradeLicenseAId") {
+        Object.assign(this.maindata.tradeLicense_A, { doc: result.upload._id })
+
+      }
+      else if (type == "tradeLicenseBId") {
+        Object.assign(this.maindata.tradeLicense_B, { doc: result.upload._id })
+
       }
       else if (type == "gstId") {
-        this.gst = result.upload._id;
-      }
-      else if (type == "invoiceId") {
-        this.invoice = result.upload._id;
-      }
-      else if (type == "panId") {
-        this.pan = result.upload._id;
-      }
-      else if (type == "regId") {
-        this.reg = result.upload._id;
-      }
+        Object.assign(this.maindata.gst, { doc: result.upload._id })
 
-      console.log(this.companyForm.value)
+      }
+      // else if (type == "invoiceId") {
+      //   Object.assign(this.maindata, { doc: result.upload._id })
+
+      // }
+      else if (type == "panId") {
+        Object.assign(this.maindata.pan, { doc: result.upload._id })
+
+      }
+      // else if (type == "regId") {
+      //   Object.assign(this.maindata.r,{ doc: result.upload._id })
+
+      // }
+      else if (type == "road_registration_certificatedoc") {
+        Object.assign(this.maindata.road_registration_certificate, { doc: result.upload._id })
+
+      }
+      else if (type == "tandoc") {
+        Object.assign(this.maindata.tan, { doc: result.upload._id })
+
+      }
+      else if (type == "balsheet1doc") {
+        let data = {
+          financial_year: '2015',
+          doc: result.upload._id
+        }
+        this.maindata.balance_sheet.push(data)
+
+      }
+      else if (type == "balsheet2doc") {
+        let data = {
+          financial_year: '2016',
+          doc: result.upload._id
+        }
+        this.maindata.balance_sheet.push(data)
+
+      }
+      else if (type == "balsheet3doc") {
+        let data = {
+          financial_year: '2017',
+          doc: result.upload._id
+        }
+        this.maindata.balance_sheet.push(data)
+
+      }
+      else if (type == "balsheet4doc") {
+        let data = {
+          financial_year: '2018',
+          doc: result.upload._id
+        }
+        this.maindata.balance_sheet.push(data)
+
+      }
+      else if (type == "balsheet5doc") {
+        let data = {
+          financial_year: '2019',
+          doc: result.upload._id
+        }
+        this.maindata.balance_sheet.push(data)
+
+      }
+      else if (type == "itr1doc") {
+        let data = {
+          financial_year: '2015',
+          doc: result.upload._id
+        }
+        this.maindata.itr.push(data)
+
+      }
+      else if (type == "itr2doc") {
+        let data = {
+          financial_year: '2016',
+          doc: result.upload._id
+        }
+        this.maindata.itr.push(data)
+
+      }
+      else if (type == "itr3doc") {
+        let data = {
+          financial_year: '2017',
+          doc: result.upload._id
+        }
+        this.maindata.itr.push(data)
+
+      }
+      else if (type == "itr4doc") {
+        let data = {
+          financial_year: '2018',
+          doc: result.upload._id
+        }
+        this.maindata.itr.push(data)
+
+      }
+      else if (type == "itr5doc") {
+        let data = {
+          financial_year: '2019',
+          doc: result.upload._id
+        }
+        this.maindata.itr.push(data)
+
+      }
     }, err => {
       console.log(err);
       this.loader = false;
@@ -191,4 +190,69 @@ export class CompanycreateComponent implements OnInit {
 
     });
   }
+
+
+  keyup(data, key) {
+    if (data != '') {
+      if (key == 'email') {
+        Object.assign(this.maindata, { email: data })
+      }
+      if (key == 'address') {
+        Object.assign(this.maindata, { address: data })
+      }
+      if (key == 'phoneNumber') {
+        Object.assign(this.maindata, { phoneNumber: data })
+      }
+      if (key == 'pan') {
+        Object.assign(this.maindata.pan, { number: data })
+      }
+      if (key == 'gst') {
+        Object.assign(this.maindata.gst, { number: data })
+      }
+      if (key == 'tradeLicense_A') {
+        Object.assign(this.maindata.tradeLicense_A, { number: data })
+      }
+      if (key == 'tradeLicense_B') {
+        Object.assign(this.maindata.tradeLicense_B, { number: data })
+      }
+      if (key == 'road_registration_certificate') {
+        Object.assign(this.maindata.road_registration_certificate, { number: data })
+      }
+      if (key == 'tan') {
+        Object.assign(this.maindata.tan, { number: data })
+      }
+
+      if (key == 'pf') {
+        Object.assign(this.maindata.pf, { number: data })
+      }
+      if (key == 'esi') {
+        Object.assign(this.maindata.esi, { number: data })
+      }
+      if (key == 'professional_tax') {
+        Object.assign(this.maindata.professional_tax, { number: data })
+      }
+      if (key == 'organisation') {
+        Object.assign(this.maindata, { organisation: data })
+      }
+
+    }
+    console.log(this.maindata)
+  }
+  FormSubmit() {
+
+    console.log(this.maindata)
+    this.companyService.createCompany(this.maindata).subscribe(value => {
+      this.toastr.success('Congo!', 'Successfully Created'),
+        console.log('user', value)
+      let result: any = {}
+      result = value
+      this.loader = false;
+      this.SharedService.abc('companylist');
+    },
+      err => {
+        console.log(err)
+      })
+  }
 }
+
+

@@ -49,8 +49,10 @@
                   
           <div class="input-field col s12">
             <p><label>Phone Number</label></p>
-            <input type="text" class="validate" formControlName="phoneNumber" [textMask]="{mask: mask, guide: false}">
+            <input type="text" class="validate" formControlName="phoneNumber" minlength="10" [textMask]="{mask: mask, guide: false}">
             <p class="error" [ngStyle]="{'font-size':'12px'}" *ngIf="customerFormErrors.phoneNumber.required || (customerForm.controls.phoneNumber.pristine && submitted)">Phone Number can't be empty</p>       
+        <p class="errormessage" [ngStyle]="{'font-size':'12px'}" *ngIf="customerFormErrors.phoneNumber.minlength ">Please Enter Valid Phone Number
+        
           </div>
   
         </div>
@@ -151,7 +153,7 @@
                         <!-- <p *ngIf="validerr">can't be empty</p> -->
                     </div>
                     <div class="input-field col s1">
-                      <button class="addBtn" (click)="add()">add</button>
+                      <button class="addBtn" (click)="add()">+</button>
                     </div>
       
                   </div>

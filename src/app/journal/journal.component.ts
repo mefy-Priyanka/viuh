@@ -196,7 +196,8 @@ export class JournalComponent implements OnInit {
         console.log('all equal')
       }
       else {
-        alert('please make sure credit is equal to dabit')
+        alert('please make sure credit is equal to dabit');
+        return;
       }
     }
     else if (!this.cashcheck) {
@@ -206,7 +207,8 @@ export class JournalComponent implements OnInit {
         delete this.maindata['denomination'];
       }
       else {
-        alert('please make sure credit is equal to dabit')
+        alert('please make sure credit is equal to dabit');
+        return;
       }
     }
     console.log(this.maindata);
