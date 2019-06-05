@@ -9,7 +9,7 @@ export class ContactService {
   constructor(private httpClient: HttpClient) { }
    /***************************************CONTACT DRIVER*************************/
    contactCreate(data){
-    return this.httpClient.post(APIURL+'driver/create',data)
+    return this.httpClient.post(APIURL+'contact/create',data)
   }
   /********************************END**************************************/
   
@@ -19,7 +19,7 @@ preview(imageId){
 }  /********************************END**************************************/
  
 contactList(superAdmin){
-  return this.httpClient.get(APIURL+'driver/driverlist?superAdminId='+superAdmin)
+  return this.httpClient.get(APIURL+'contact/contactlist?superAdminId='+superAdmin)
 }
 
 }
