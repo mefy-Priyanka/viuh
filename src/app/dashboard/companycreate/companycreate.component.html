@@ -22,7 +22,7 @@
     <h1>Company | Create
     </h1>
   </div>
-  <form class="createContractorForm" [formGroup]="companyForm">
+  <div class="createContractorForm">
     <div class="row">
       <div class="col-md-12">
         <!-- input type -->
@@ -34,426 +34,396 @@
                 <div class="row">
                   <div class="input-field col s4">
                     <p><label>Email <span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate" formControlName="email">
-                    <p class="errormessage"
-                      *ngIf="companyFormErrors.email.required || companyFormErrors.email.email || (companyForm.controls.email.pristine && submitted)">
-                      Enter Valid Email</p>
-                  </div>
-                  <div class="input-field col s4">
-                    <p><label>Company Name</label></p>
-                    <input type="text" class="validate" formControlName="companyName">
-                    <p class="errormessage"
-                      *ngIf="companyFormErrors.companyName.required || (companyForm.controls.companyName.pristine && submitted)">
-                      companyName can not be empty</p>
+                    <input type="text" class="validate" (keyup)="keyup(inputdata.email,'email')"  [(ngModel)]="inputdata.email">
 
                   </div>
-                  <div class="input-field col s4">
+
+
+                  <!-- <div class="input-field col s4">
                     <p><label>Registration No. <span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate" formControlName="regNo">
-                    <p class="errormessage"
-                      *ngIf="companyFormErrors.regNo.required || (companyForm.controls.regNo.pristine && submitted)">Reg
-                      no can not be empty</p>
+                    <input type="text" class="validate" (keyup)="keyup(inputdata.email,'email')"  [(ngModel)]="inputdata.email">
+
+                  </div> -->
+
+                  <div class="input-field col s4">
+                    <p><label>Organisation</label></p>
+                    <select [(ngModel)]="inputdata.organisation" (change)="keyup(inputdata.organisation,'organisation')">
+                      <option value="" disabled selected>Choose your organisation</option>
+                      <option value="patro">patro</option>
+                      <option value="lalbaba">lalbaba</option>
+
+                    </select>
+
                   </div>
                 </div>
                 <div class="row">
                   <div class="input-field col s4">
                     <p><label>Address</label></p>
-                    <input type="text" class="validate" formControlName="Address">
-                    <p class="errormessage"
-                      *ngIf="companyFormErrors.Address.required || (companyForm.controls.Address.pristine && submitted)">
-                      Address can not be empty</p>
+                    <input type="text" class="validate" (keyup)="keyup(inputdata.address,'address')"  [(ngModel)]="inputdata.address">
+
                   </div>
 
                   <div class="input-field col s4">
                     <p><label>Phone Number</label></p>
-                    <input type="text" class="validate" formControlName="phoneNumber">
-                    <p class="errormessage"
-                      *ngIf="companyFormErrors.phoneNumber.required || (companyForm.controls.phoneNumber.pristine && submitted)">
-                      PhoneNumber can not be empty</p>
+                    <input type="text" class="validate" (keyup)="keyup(inputdata.phoneNumber,'phoneNumber')"  [(ngModel)]="inputdata.phoneNumber">
+
                   </div>
                   <div class="input-field col s4">
                     <p><label>PAN No. <span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate" formControlName="panCard">
-                    <p class="errormessage"
-                      *ngIf="companyFormErrors.panCard.required || (companyForm.controls.panCard.pristine && submitted)">
-                      Pancard can not be empty</p>
+                    <input type="text" class="validate" (keyup)="keyup(inputdata.pan,'pan')"  [(ngModel)]="inputdata.pan">
+
                   </div>
                 </div>
                 <div class="row">
                   <div class="input-field col s4">
                     <p><label>Currency</label></p>
-                    <select formControlName="currency">
+                    <select>
                       <option value="" disabled selected>Choose your option</option>
                       <option value="Rupees">Rupees</option>
                     </select>
-                    <p class="errormessage"
-                      *ngIf="companyFormErrors.currency.required || (companyForm.controls.currency.pristine && submitted)">
-                      Currency can not be empty</p>
+
                   </div>
                   <div class="input-field col s4">
                     <p><label>GST No. <span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate" formControlName="gstNo">
-                    <p class="errormessage"
-                      *ngIf="companyFormErrors.gstNo.required || (companyForm.controls.gstNo.pristine && submitted)">Gst
-                      no can not be empty</p>
+                    <input type="text" class="validate" (keyup)="keyup(inputdata.gst,'gst')"  [(ngModel)]="inputdata.gst">
+
                   </div>
                   <div class="input-field col s4">
                     <p><label>Trade License A<span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate" formControlName="tradeLicenseANo">
-                    <p class="errormessage"
-                      *ngIf="companyFormErrors.tradeLicenseANo.required || (companyForm.controls.tradeLicenseANo.pristine && submitted)">
-                      Tradelicense No. can not be empty</p>
+                    <input type="text" class="validate" (keyup)="keyup(inputdata.tradeLicense_A,'tradeLicense_A')"  [(ngModel)]="inputdata.tradeLicense_A">
+
                   </div>
 
                 </div>
+
+
+
+
+
+
+
+
+                <div class="row">
+                  <div class="input-field col s4">
+                    <p><label>Professional Tax <span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" (keyup)="keyup(inputdata.pf,'pf')"  [(ngModel)]="inputdata.pf">
+
+                  </div>
+                  <div class="input-field col s4">
+                    <p><label>Professional Tax <span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" (keyup)="keyup(inputdata.professional_tax,'professional_tax')"  [(ngModel)]="inputdata.professional_tax">
+
+                  </div>
+                  <div class="input-field col s4">
+                    <p><label>Trade License A<span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" (keyup)="keyup(inputdata.esi,'esi')"  [(ngModel)]="inputdata.esi">
+
+                  </div>
+
+                </div>
+
+
+
+
+
 
                 <div class="row">
                   <div class="input-field col s4">
                     <p><label>Trade License B<span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate" formControlName="tradeLicenseBNo">
-                    <p class="errormessage"
-                      *ngIf="companyFormErrors.tradeLicenseBNo.required || (companyForm.controls.tradeLicenseBNo.pristine && submitted)">
-                      Invoice No can not be empty</p>
+                    <input type="text" class="validate" (keyup)="keyup(inputdata.tradeLicense_B,'tradeLicense_B')"  [(ngModel)]="inputdata.tradeLicense_B">
+
                   </div>
                   <div class="input-field col s4">
                     <p><label>Road Registration Certificate<span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate" formControlName="road_registration_certificateno">
-                    <p class="errormessage" *ngIf="companyFormErrors.road_registration_certificateno.required || (companyForm.controls.road_registration_certificateno.pristine && submitted)">Invoice No can not be empty</p>
+                    <input type="text" class="validate" (keyup)="keyup(inputdata.road_registration_certificate,'road_registration_certificate')"  [(ngModel)]="inputdata.road_registration_certificate">
                   </div>
-                  <div class="input-field col s4">
+                  <!-- <div class="input-field col s4">
                     <p><label>Invoice No. <span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate" formControlName="invoiceNo">
-                    <p class="errormessage"
-                      *ngIf="companyFormErrors.invoiceNo.required || (companyForm.controls.invoiceNo.pristine && submitted)">
-                      Invoice No can not be empty</p>
-                  </div>
+                    <input type="text" class="validate" (keyup)="keyup()"  [(ngModel)]="inputdata.email" >
+                   
+                  </div> -->
                 </div>
                 <div class="row">
                   <div class="input-field col s4">
                     <p><label>Tan No.<span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate" formControlName="tanno">
-                    <p class="errormessage" *ngIf="companyFormErrors.tanno.required || (companyForm.controls.tanno.pristine && submitted)">Invoice No can not be empty</p>
+                    <input type="text" class="validate" (keyup)="keyup(inputdata.tan,'tan')"  [(ngModel)]="inputdata.tan">
                   </div>
                 </div>
+
               </div>
-
             </div>
-          </div>
-          <div class="row">
-            <div class="contractorButton">
-              <button class="submitBtn" (click)="showContent()">Next</button>
-              <button class="cancelBtn">Cancel</button>
-            </div>
-          </div>
-        </div>
-
-
-
-
-        <!-- input type -->
-        <!-- uploadfiles -->
-        <div *ngIf="imagefile">
-          <div class="card corCard">
             <div class="row">
-
-              <div class="imgFile">
-                <p><span class="blue_star">******Upload Files*********</span></p>
-                <div class="row">
-
-
-                  <div class="input-field col s4">
-                    <p><label>Company Logo</label></p>
-                    <div class="input-field col s7 myFilet aeto"><input type="file" class="validate"
-                        (change)="upload($event,'companyLogo')" class="fileType" formControlName="companyLogo">
-                      <p class="errormessage"
-                        *ngIf="companyFormErrors.companyLogo.required || (companyForm.controls.companyLogo.pristine && submitted)">
-                        companyLogo can not be empty</p>
-
-                    </div>
-                  </div>
-
-
-                  <div class="input-field col s4">
-                    <p><label>Trade License A </label></p>
-                    <div class="input-field col s7 myFilet aeto"><input type="file" class="validate"
-                        (change)="upload($event,'tradeLicenseAId')" formControlName="tradeLicenseAId" class="fileType">
-                      <p class="errormessage"
-                        *ngIf="companyFormErrors.tradeLicenseAId.required || (companyForm.controls.tradeLicenseAId.pristine && submitted)">
-                        tradeLicenseId can not be empty</p>
-
-                    </div>
-                  </div>
-
-
-                  <div class="input-field col s4">
-                    <p><label>Trade License B</label></p>
-                    <div class="input-field col s7 myFilet aeto"><input type="file" class="validate"
-                        (change)="upload($event,'tradeLicenseBId')" formControlName="tradeLicenseBId" class="fileType">
-                      <p class="errormessage" *ngIf="companyFormErrors.tradeLicenseBId.required || (companyForm.controls.tradeLicenseBId.pristine && submitted)">gstId can not be empty</p>
-
-                    </div>
-                  </div>
-                </div>
-
-
-
-                <div class="row">
-                  <div class="input-field col s4">
-                    <p><label>GST</label></p>
-                    <div class="input-field col s7 myFilet aeto"><input type="file" class="validate"
-                        (change)="upload($event,'gstId')" formControlName="gstId" class="fileType">
-                      <p class="errormessage"
-                        *ngIf="companyFormErrors.gstId.required || (companyForm.controls.gstId.pristine && submitted)">
-                        gstId can not be empty</p>
-
-                    </div>
-                  </div>
-
-
-                  <div class="input-field col s4">
-                    <p><label>Invoice</label></p>
-                    <div class="input-field col s7 myFilet aeto"><input formControlName="invoiceId"
-                        (change)="upload($event,'invoiceId')" type="file" class="validate" class="fileType">
-                      <p class="errormessage"
-                        *ngIf="companyFormErrors.invoiceId.required || (companyForm.controls.invoiceId.pristine && submitted)">
-                        invoiceId can not be empty</p>
-
-                    </div>
-                  </div>
-
-
-
-                  <div class="input-field col s4">
-                    <p><label>PAN</label></p>
-                    <div class="input-field col s7 myFilet aeto"><input formControlName="panId"
-                        (change)="upload($event,'panId')" type="file" class="validate" class="fileType">
-                      <p class="errormessage"
-                        *ngIf="companyFormErrors.panId.required || (companyForm.controls.panId.pristine && submitted)">
-                        panId can not be empty</p>
-
-                    </div>
-                  </div>
-                </div>
-
-
-                <div class="row">
-                  <div class="input-field col s4">
-                    <p><label>Registration</label></p>
-                    <div class="input-field col s7 myFilet aeto"><input formControlName="regId"
-                        (change)="upload($event,'regId')" type="file" class="validate" class="fileType">
-                      <p class="errormessage"
-                        *ngIf="companyFormErrors.regId.required || (companyForm.controls.regId.pristine && submitted)">
-                        regId can not be empty</p>
-
-                    </div>
-                  </div>
-
-
-                  <div class="input-field col s4">
-                    <p><label>Road Registration Certificate</label></p>
-                    <div class="input-field col s7 myFilet aeto"><input type="file" class="validate"
-                        (change)="upload($event,'road_registration_certificatedoc')" formControlName="road_registration_certificatedoc" class="fileType">
-                      <p class="errormessage"
-                        *ngIf="companyFormErrors.road_registration_certificatedoc.required || (companyForm.controls.road_registration_certificatedoc.pristine && submitted)">
-                        tradeLicenseId can not be empty</p>
-
-                    </div>
-                  </div>
-
-
-
-                  <div class="input-field col s4">
-                    <p><label>TAN</label></p>
-                    <div class="input-field col s7 myFilet aeto"><input type="file" class="validate"
-                        (change)="upload($event,'tandoc')" formControlName="tandoc" class="fileType">
-                      <p class="errormessage"
-                        *ngIf="companyFormErrors.tandoc.required || (companyForm.controls.tandoc.pristine && submitted)">
-                        gstId can not be empty</p>
-
-                    </div>
-                  </div>
-                </div>
-
-                <br>
-                <hr style="border-top:1px dotted ">
-
-                <div class="row">
-                  <div class="col-md-6">
-                    <p><span class="blue_star">******Balance Sheet*********</span></p>
-                    <div class="row">
-                      <div class="input-field col s12">
-                        <p><label>For Year 1</label></p>
-                        <div class="input-field col s7 myFilet aeto"><input formControlName="balsheet1doc"
-                            (change)="upload($event,'balsheet1doc')" type="file" class="validate" class="fileType">
-                          <p class="errormessage"
-                            *ngIf="companyFormErrors.balsheet1doc.required || (companyForm.controls.balsheet1doc.pristine && submitted)">
-                            regId can not be empty</p>
-
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="input-field col s12">
-                        <p><label>For Year 2</label></p>
-                        <div class="input-field col s7 myFilet aeto"><input formControlName="balsheet2doc"
-                            (change)="upload($event,'balsheet2doc')" type="file" class="validate" class="fileType">
-                          <p class="errormessage"
-                            *ngIf="companyFormErrors.balsheet2doc.required || (companyForm.controls.balsheet2doc.pristine && submitted)">
-                            regId can not be empty</p>
-
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="input-field col s12">
-                        <p><label>For Year 3</label></p>
-                        <div class="input-field col s7 myFilet aeto"><input formControlName="balsheet3doc"
-                            (change)="upload($event,'balsheet3doc')" type="file" class="validate" class="fileType">
-                          <p class="errormessage"
-                            *ngIf="companyFormErrors.balsheet3doc.required || (companyForm.controls.balsheet3doc.pristine && submitted)">
-                            regId can not be empty</p>
-
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="input-field col s12">
-                        <p><label>For Year 4</label></p>
-                        <div class="input-field col s7 myFilet aeto"><input formControlName="balsheet4doc"
-                            (change)="upload($event,'balsheet4doc')" type="file" class="validate" class="fileType">
-                          <p class="errormessage"
-                            *ngIf="companyFormErrors.balsheet4doc.required || (companyForm.controls.balsheet4doc.pristine && submitted)">
-                            regId can not be empty</p>
-
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="input-field col s12">
-                        <p><label>For Year 5</label></p>
-                        <div class="input-field col s7 myFilet aeto"><input formControlName="balsheet5doc"
-                            (change)="upload($event,'balsheet5doc')" type="file" class="validate" class="fileType">
-                          <p class="errormessage"
-                            *ngIf="companyFormErrors.balsheet5doc.required || (companyForm.controls.balsheet5doc.pristine && submitted)">
-                            regId can not be empty</p>
-
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-
-
-
-                  <div class="col-md-6">
-                    <p><span class="blue_star">******ITR*********</span></p>
-                    <div class="row">
-                      <div class="input-field col s12">
-                        <p><label>For Year 1</label></p>
-                        <div class="input-field col s7 myFilet aeto"><input formControlName="itr1doc"
-                            (change)="upload($event,'itr1doc')" type="file" class="validate" class="fileType">
-                          <p class="errormessage"
-                            *ngIf="companyFormErrors.itr1doc.required || (companyForm.controls.itr1doc.pristine && submitted)">
-                            regId can not be empty</p>
-
-                        </div>
-                      </div>
-                    </div>
-
-
-                    <div class="row">
-                      <div class="input-field col s12">
-                        <p><label>For Year 2</label></p>
-                        <div class="input-field col s7 myFilet aeto"><input formControlName="itr2doc"
-                            (change)="upload($event,'itr2doc')" type="file" class="validate" class="fileType">
-                          <p class="errormessage"
-                            *ngIf="companyFormErrors.itr2doc.required || (companyForm.controls.itr2doc.pristine && submitted)">
-                            regId can not be empty</p>
-
-                        </div>
-                      </div>
-                    </div>
-
-
-                    <div class="row">
-                      <div class="input-field col s12">
-                        <p><label>For Year 3</label></p>
-                        <div class="input-field col s7 myFilet aeto"><input formControlName="itr3doc"
-                            (change)="upload($event,'itr3doc')" type="file" class="validate" class="fileType">
-                          <p class="errormessage"
-                            *ngIf="companyFormErrors.itr3doc.required || (companyForm.controls.itr3doc.pristine && submitted)">
-                            regId can not be empty</p>
-
-                        </div>
-                      </div>
-                    </div>
-
-
-
-                    <div class="row">
-                      <div class="input-field col s12">
-                        <p><label>For Year 4</label></p>
-                        <div class="input-field col s7 myFilet aeto"><input formControlName="itr4doc"
-                            (change)="upload($event,'itr4doc')" type="file" class="validate" class="fileType">
-                          <p class="errormessage"
-                            *ngIf="companyFormErrors.itr4doc.required || (companyForm.controls.itr4doc.pristine && submitted)">
-                            regId can not be empty</p>
-
-                        </div>
-                      </div>
-                    </div>
-
-
-                    <div class="row">
-                      <div class="input-field col s12">
-                        <p><label>For Year 5</label></p>
-                        <div class="input-field col s7 myFilet aeto"><input formControlName="itr5doc"
-                            (change)="upload($event,'itr5doc')" type="file" class="validate" class="fileType">
-                          <p class="errormessage"
-                            *ngIf="companyFormErrors.itr5doc.required || (companyForm.controls.itr5doc.pristine && submitted)">
-                            regId can not be empty</p>
-
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-
-
-
-
-
-
+              <div class="contractorButton">
+                <button class="submitBtn" (click)="showContent()">Next</button>
+                <button class="cancelBtn">Cancel</button>
               </div>
-
-            </div>
-          </div>
-          <div class="row">
-            <div class="contractorButton">
-              <button class="submitBtn" (click)="FormSubmit()">Save</button>
-              <button class="cancelBtn">Cancel</button>
             </div>
           </div>
         </div>
 
 
 
+          <!-- input type -->
+          <!-- uploadfiles -->
+          <div *ngIf="imagefile">
+            <div class="card corCard">
+              <div class="row">
 
-        <!-- uploadfiles -->
+                <div class="imgFile">
+                  <p><span class="blue_star">******Upload Files*********</span></p>
+                  <div class="row">
+
+
+                    <div class="input-field col s4">
+                      <p><label>Company Logo</label></p>
+                      <div class="input-field col s7 myFilet aeto"><input type="file" class="validate"
+                          (change)="upload($event,'companyLogo')" class="fileType">
+
+
+                      </div>
+                    </div>
+
+
+                    <div class="input-field col s4">
+                      <p><label>Trade License A </label></p>
+                      <div class="input-field col s7 myFilet aeto"><input type="file" class="validate"
+                          (change)="upload($event,'tradeLicenseAId')" class="fileType">
+
+
+                      </div>
+                    </div>
+
+
+                    <div class="input-field col s4">
+                      <p><label>Trade License B</label></p>
+                      <div class="input-field col s7 myFilet aeto"><input type="file" class="validate"
+                          (change)="upload($event,'tradeLicenseBId')" class="fileType">
+
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                  <div class="row">
+                    <div class="input-field col s4">
+                      <p><label>GST</label></p>
+                      <div class="input-field col s7 myFilet aeto"><input type="file" class="validate"
+                          (change)="upload($event,'gstId')" class="fileType">
+
+
+                      </div>
+                    </div>
+
+
+                    <div class="input-field col s4">
+                      <p><label>Invoice</label></p>
+                      <div class="input-field col s7 myFilet aeto"><input (change)="upload($event,'invoiceId')"
+                          type="file" class="validate" class="fileType">
+
+
+                      </div>
+                    </div>
+
+
+
+                    <div class="input-field col s4">
+                      <p><label>PAN</label></p>
+                      <div class="input-field col s7 myFilet aeto"><input (change)="upload($event,'panId')" type="file"
+                          class="validate" class="fileType">
+
+
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="row">
+                    <div class="input-field col s4">
+                      <p><label>Registration</label></p>
+                      <div class="input-field col s7 myFilet aeto"><input (change)="upload($event,'regId')" type="file"
+                          class="validate" class="fileType">
+
+
+                      </div>
+                    </div>
+
+
+                    <div class="input-field col s4">
+                      <p><label>Road Registration Certificate</label></p>
+                      <div class="input-field col s7 myFilet aeto"><input type="file" class="validate"
+                          (change)="upload($event,'road_registration_certificatedoc')" class="fileType">
+
+
+                      </div>
+                    </div>
+
+
+
+                    <div class="input-field col s4">
+                      <p><label>TAN</label></p>
+                      <div class="input-field col s7 myFilet aeto"><input type="file" class="validate"
+                          (change)="upload($event,'tandoc')" class="fileType">
+
+                      </div>
+                    </div>
+                  </div>
+
+                  <br>
+                  <hr style="border-top:1px dotted ">
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p><span class="blue_star">******Balance Sheet*********</span></p>
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <p><label>For Year 1</label></p>
+                          <div class="input-field col s7 myFilet aeto"><input (change)="upload($event,'balsheet1doc')"
+                              type="file" class="validate" class="fileType">
+
+
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <p><label>For Year 2</label></p>
+                          <div class="input-field col s7 myFilet aeto"><input (change)="upload($event,'balsheet2doc')"
+                              type="file" class="validate" class="fileType">
+
+
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <p><label>For Year 3</label></p>
+                          <div class="input-field col s7 myFilet aeto"><input (change)="upload($event,'balsheet3doc')"
+                              type="file" class="validate" class="fileType">
+
+
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <p><label>For Year 4</label></p>
+                          <div class="input-field col s7 myFilet aeto"><input (change)="upload($event,'balsheet4doc')"
+                              type="file" class="validate" class="fileType">
+
+
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <p><label>For Year 5</label></p>
+                          <div class="input-field col s7 myFilet aeto"><input (change)="upload($event,'balsheet5doc')"
+                              type="file" class="validate" class="fileType">
+
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+
+
+                    <div class="col-md-6">
+                      <p><span class="blue_star">******ITR*********</span></p>
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <p><label>For Year 1</label></p>
+                          <div class="input-field col s7 myFilet aeto"><input (change)="upload($event,'itr1doc')"
+                              type="file" class="validate" class="fileType">
+
+
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <p><label>For Year 2</label></p>
+                          <div class="input-field col s7 myFilet aeto"><input (change)="upload($event,'itr2doc')"
+                              type="file" class="validate" class="fileType">
+
+
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <p><label>For Year 3</label></p>
+                          <div class="input-field col s7 myFilet aeto"><input (change)="upload($event,'itr3doc')"
+                              type="file" class="validate" class="fileType">
+
+
+                          </div>
+                        </div>
+                      </div>
+
+
+
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <p><label>For Year 4</label></p>
+                          <div class="input-field col s7 myFilet aeto"><input (change)="upload($event,'itr4doc')"
+                              type="file" class="validate" class="fileType">
+
+
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <p><label>For Year 5</label></p>
+                          <div class="input-field col s7 myFilet aeto"><input (change)="upload($event,'itr5doc')"
+                              type="file" class="validate" class="fileType">
+
+
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+            <div class="row">
+              <div class="contractorButton">
+                <button class="submitBtn" (click)="FormSubmit()">Save</button>
+                <button class="cancelBtn">Cancel</button>
+              </div>
+            </div>
+          </div>
+
+
+
+
+          <!-- uploadfiles -->
 
 
 
 
 
+        </div>
       </div>
-    </div>
 
-  </form>
+  </div>
 </section>
 
 <!-- create company -->

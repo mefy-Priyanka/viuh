@@ -38,4 +38,8 @@ export class JournalistComponent implements OnInit {
 
       })
   }
+
+  delete(id){
+    console.log(id)
+  }
 }
