@@ -69,4 +69,16 @@ destination(id) {
 }
 // // *****************************************Destination End****************************************************************************************Destination***********************************************
 
+
+
+// route
+creatroute(data){
+  return this.httpClient.post(APIURL+ 'routes/create', data)
+
+}
+getroute(id){
+  return this.httpClient.get(APIURL+ 'routes/routeslist?superAdminId='+id)
+
+}
+// route end
 }

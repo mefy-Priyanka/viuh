@@ -4,7 +4,7 @@
     <h1>Route | Create
     </h1>
   </div>
-  <form class="destinationForm">
+  <div class="destinationForm">
     <div class="row">
       <div class="col-md-12">
         <!-- input type -->
@@ -32,30 +32,30 @@
 
                   <div class="input-field col s4">
                     <p><label>From Location</label></p>
-                    <input type="text" class="validate" formControlName="location_name">
+                    <input type="text" class="validate" [(ngModel)]="from_location">
 
                   </div>
                   <div class="input-field col s4">
                     <p><label>To Location<span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate" formControlName="location_code">
+                    <input type="text" class="validate" [(ngModel)]="to_location">
 
                   </div>
 
                   <div class="input-field col s4">
                     <p><label>Total (Km)<span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate" formControlName="address">
+                    <input type="text" class="validate" [(ngModel)]="total_km">
                   </div>
                 </div>
                 <div class="row">
 
                   <div class="input-field col s6">
                     <p><label>Diesel Expenses</label></p>
-                    <input type="text" class="validate" formControlName="location_name">
+                    <input type="text" class="validate" [(ngModel)]="diesel_expenses">
 
                   </div>
                   <div class="input-field col s6">
                     <p><label>Driver Expenses<span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate" formControlName="location_code">
+                    <input type="text" class="validate"[(ngModel)]="driver_expenses">
 
                   </div>
 
@@ -69,28 +69,31 @@
 
                 <div class="row">
 
-                  <div class="input-field col s4">
+                  <div class="input-field col s4 " *ngFor="let x of stopages ;let i = index" >
                     <p><label>Stoppage<span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate" formControlName="address">
+                    <input type="text" class="validate" [(ngModel)]="stopage[i]">
                   </div>
                   <div class="input-field col s4">
-                    <button class="addBtn">+</button>
+                    <button class="addBtn" (click)="addstopage()">+</button>
                   </div>
                 </div>
                 
 
-                <div class="row">
+                <div class="row" *ngFor="let x of others_expenses ;let i = index">
                   <p class="aetac"><label>Other Expenses<span class="blue_star">*</span></label></p>
                   <div class="input-field col s4">
                     <p><label>Name</label></p>
-                    <input type="text" class="validate" formControlName="address">
+                    <input type="text" class="validate" [(ngModel)]="x.name">
                   </div>
                   <div class="input-field col s4">
                     <p><label>Expenses</label></p>
-                    <input type="text" class="validate" formControlName="address">
+                    <input type="text" class="validate" [(ngModel)]="x.expenses">
                   </div>
+                  
+                </div>
+                <div class="row">
                   <div class="input-field col s4">
-                    <button class="addBtn">+</button>
+                    <button class="addBtn" (click)="addother()" >+</button>
                   </div>
                 </div>
                 
@@ -100,7 +103,7 @@
           </div>
           <div class="row">
             <div class="contractorButton">
-              <button class="submitBtn"  (click)="saveForm()">Save</button>
+              <button class="submitBtn"  (click)="submit()">Save</button>
               <button class="cancelBtn" (click)="cancel()">Cancel</button>
             </div>
           </div>
@@ -118,7 +121,7 @@
       </div>
     </div>
 
-  </form>
+  </div>
 </section>
 
 <!-- map -->
