@@ -26,6 +26,9 @@ nav.navbar.navbar-inverse.navbar-fixed-left {
 .fa {
   font-size: 26px;
 }
+.fas{
+  font-size: 26px;
+}
 @media (min-width: 768px) {
   .navbar-nav > li > a {
     padding-top: 15px;
