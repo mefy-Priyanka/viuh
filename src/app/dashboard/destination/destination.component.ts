@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray, } from '@angular/forms';
 import { SharedService } from '../../service/shared.service';
 import { CompanyService } from '../../service/company.service';
 @Component({
@@ -9,14 +9,91 @@ import { CompanyService } from '../../service/company.service';
 })
 export class DestinationComponent implements OnInit {
   destinationDetail=[];
+  destinationList=[];
+  tableDetail=[];
   public destinationForm: FormGroup;
-  constructor(private SharedService: SharedService,private formBuilder: FormBuilder, private CompanyService: CompanyService) { }
+  destinationFormErrors: {};
+  public submitted: boolean = false;
+  public destination:boolean=true;
+ 
+  constructor(private SharedService: SharedService,private formBuilder: FormBuilder, private CompanyService: CompanyService) { 
+    // this.destinationFormErrors = {
+    //   customerId: {},
+    //   location_name: {},
+
+    //   location_code: {},
+    //   address: {},
+    // };
+  }
 
   ngOnInit() {
-    this.saveForm();
+    this.customerList();
+   this.tableList();
+    this.destinationForm = this.formBuilder.group({
+      customerId: ['', Validators.required],
+      details: this.formBuilder.array([])
+    })
+    // this.createdestinationForm()
+     this.addPhone();
+    // this.destinationForm.valueChanges.subscribe(() => {
+    //   this.ondestinationFormValuesChanged();
+    // });
   }
-  saveForm(){
-    this.CompanyService.destination(localStorage.getItem('SuperAdmin')).subscribe(data => {
+  tableList(){
+    let data={
+      superAdminId:localStorage.getItem('SuperAdmin'),
+    }
+    this.CompanyService.destinationList(data).subscribe(data => {
+      console.log(data)
+      let result: any = {}
+      result = data;
+      this.tableDetail = result.result
+      console.log("TableDetail",this.tableDetail);
+      // this.loader = false;
+    },
+      error => {
+        console.log(error);
+        // this.loader = false;
+
+      })
+  }
+  get lForms() {
+    return this.destinationForm.get('details') as FormArray
+  }
+
+  addPhone() {
+
+    const cdetail = this.formBuilder.group({ 
+
+      location_name: [],
+
+      location_code: [],
+      address: [],
+      serial_number:this.lForms.length+1
+    })
+  
+    this.lForms.push(cdetail);
+  }
+  
+
+
+
+  // createdestinationForm() {
+  //   return this.formBuilder.group({
+  //     customerId: ['', Validators.required],
+  //     location_name: ['', Validators.required],
+  //     location_code: ['', Validators.required],
+  //     address: ['', Validators.required],
+  //   });
+  // }
+
+
+  customerList(){
+    let data={
+      superAdminId:localStorage.getItem('SuperAdmin'),
+      contact_type:'customer'
+    }
+    this.CompanyService.destination(data).subscribe(data => {
       console.log(data)
       let result: any = {}
       result = data;
@@ -30,6 +107,37 @@ export class DestinationComponent implements OnInit {
 
       })
   }
+  createDestination(){
+    this.destination=!this.destination;
+  }
+  saveForm(){
+    this.submitted = true;
+    // this.loader = true;
+    if (this.destinationForm.valid) {
+      this.submitted = false;
+    let data={
+      customerId:this.destinationForm.value.customerId,
+      userId:localStorage.getItem('userId'),
+      details:this.destinationForm.value.details
+    }
+    console.log(data);
+    this.CompanyService.destinationCreate(data).subscribe(data => {
+      console.log(data)
+      let result: any = {}
+      result = data;
+      this.destinationList = result.result
+      console.log("List",this.destinationList);
+      // this.loader = false;
+    },
+      error => {
+        console.log(error);
+        // this.loader = false;
 
+      })
+  }
+  else {
+    // this.loader = false;
+  }
+  }
 
 }

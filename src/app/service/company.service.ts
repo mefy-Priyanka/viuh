@@ -65,7 +65,14 @@ return this.httpClient.delete(APIURL+'fleet/delete?fleetId='+id)
     }
 // *****************************************Destination***********************************************
 destination(id) {
-  return this.httpClient.get(APIURL + 'contact/listByContactType?superAdminId='+id)
+  return this.httpClient.get(APIURL + 'contact/listByContactType?superAdminId='+id.superAdminId+'&contact_type='+id.contact_type)
+}
+destinationCreate(data) {
+  return this.httpClient.post(APIURL+ 'destination/create', data)
+console.log("gotdata",data)
+}
+destinationList(id) {
+  return this.httpClient.get(APIURL + 'destination/destinationList?superAdminId='+id.superAdminId)
 }
 // // *****************************************Destination End****************************************************************************************Destination***********************************************
 

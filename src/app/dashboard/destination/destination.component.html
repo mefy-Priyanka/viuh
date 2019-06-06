@@ -1,5 +1,50 @@
+<!-- destinationlist-->
+<section class="corder" *ngIf="destination">
+    <a href="#" class="floatEa">
+        <i class="fa fa-envelope-o my-float"></i>
+        </a>
+    <div class="ft">
+      <h1>Destination
+        <button class="addItema" (click)="createDestination()"><i class="fa fa-plus-circle" aria-hidden="true"></i>Add</button>
+      </h1>
+    </div>
+    <div class="card margina">
+        <div class="tableide">
+            <div class="row">
+                <div id="no-more-tables">
+                    <table class="col-md-12 table-bordered table-striped table-condensed cf">
+                    <thead class="cf">
+                      <tr>
+                        <th class="numeric">Customer Name</th>
+                        <th>Location_code</th>
+                        <!-- <th>CONTRACTOR/TRANSPORTS</th> -->
+                        <th>Location_name</th>
+                        <th><i class="fa fa-question-circle-o" aria-hidden="true"></i></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let fleet of fleetDetail">
+                        <td class="thno" data-title="NO.">{{fleet.truck_number}}</td>
+                        <td class="thname" data-title="NAME">{{fleet.capacity}}</td>
+                        <!-- <td class="thname" data-title="VAT ID">{{fleet}}</td> -->
+                        <td data-title="ADDRESS" class="numeric">{{fleet.ownership}}</td>
+                        <td data-title="VAT ID" class="numeric" (click)="delete(fleet._id)"><i class="fa fa-trash" aria-hidden="true"></i>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </section>
+    <!-- destinationlist -->
+
+
+
 <!-- destination -->
-<section class="createcontract">
+<section class="createcontract" *ngIf="!destination">
   <div class="ft">
     <h1>Destination | Create
     </h1>
@@ -16,36 +61,54 @@
                 <div class="row">
 
                   <div class="input-field col s6">
-                    <p><label>Customer ID <span class="blue_star">*</span></label></p>
+                    <p><label>Customer Name <span class="blue_star">*</span></label></p>
                     <select class="orga" formControlName="customerId">
                       <option value="" disabled selected>Select</option>
-                      <option value="rupees">NET 15</option>
+                      <option *ngFor="let list of destinationDetail" [value]='list._id'>{{list.name}}</option>
 
                     </select>
 
                   </div>
-               
+
 
                 </div>
-                
+
                 <div class="row" style="position:relative">
-                  <button class="addBtn">+</button>
+                  <button class="addBtn" (click)="addPhone()">+</button>
+                  <!-- <div> -->
 
-                  <div class="input-field col s4">
-                    <p><label>Location Name</label></p>
-                    <input type="text" class="validate" formControlName="location_name">
 
+
+                  <div formArrayName="details">
+
+                    <div *ngFor="let cdetail of lForms.controls; let i=index" [formGroupName]="i">
+
+
+                      <div class="input-field col s4">
+                        <p><label>Location Name</label></p>
+                        <input type="text" class="validate" formControlName="location_name">
+
+                      </div>
+                      <div class="input-field col s4">
+                        <p><label>Location Code<span class="blue_star">*</span></label></p>
+                        <input type="text" class="validate" formControlName="location_code">
+
+                      </div>
+
+                      <div class="input-field col s4">
+                        <p><label>Address<span class="blue_star">*</span></label></p>
+                        <input type="text" class="validate" formControlName="address">
+                      </div>
+
+
+                    </div>
                   </div>
-                  <div class="input-field col s4">
-                    <p><label>Location Code<span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate" formControlName="location_code">
 
-                  </div>
 
-                  <div class="input-field col s4">
-                    <p><label>Address<span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate" formControlName="address">
-                  </div>
+
+
+                  <!-- </div> -->
+
                 </div>
               </div>
 
