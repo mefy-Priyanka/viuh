@@ -358,6 +358,7 @@ i.fa.fa-home {
 
 
 /*  media*/
+
 @media screen and (max-width: 768px) {
 .navbar-inverse .navbar-nav .open .dropdown-menu>li>a {
             color: #c8c9ce;
@@ -411,16 +412,36 @@ button.addItem {
   border-radius: 2px;
   text-transform: capitalize;
 }
+
 button.addItem i.fa.fa-plus-circle {
   font-size: 13px;
   margin-right: 3px;
   line-height: 0px !important;
 }
-@media only screen and (min-width: 601px){
-nav, nav .nav-wrapper i, nav a.sidenav-trigger, nav a.sidenav-trigger i {
-    /* height: 0px !important; */
-    line-height: 0 !important;
+button.addItem i.fa.fa-check {
+  font-size: 13px;
+  margin-right: 3px;
+  line-height: 0px !important;
 }
+
+
+@media only screen and (min-width: 1024px){
+  nav, nav .nav-wrapper i, nav a.sidenav-trigger, nav a.sidenav-trigger i {
+      /* height: 0px !important; */
+      line-height: 0 !important;
+  }
+  }
+  
+@media only screen and (min-width: 601px){
+  nav.navbar.navbar-inverse.navbar-fixed-left{
+    overflow-y: scroll
+   }
+   
+   
+   
+   nav.navbar.navbar-inverse.navbar-fixed-left::-webkit-scrollbar {
+     display: none; 
+   }
 }
 .leftCet i {
   font-size: 16px;

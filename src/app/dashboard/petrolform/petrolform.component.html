@@ -1,0 +1,100 @@
+<!-- period -->
+<section class="createcontract" >
+  <div class="ft">
+    <h1>Petrol | Create
+    </h1>
+  </div>
+  <form class="createContractorForm" [formGroup]="petrolForm">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- input type -->
+        <div>
+          <div class="card corCard">
+            <div class="row">
+
+              <div class="nota">
+                <div class="row">
+                  <div class="input-field col s6">
+                      <p><label>Pump Name</label></p>
+                      <input type="text" class="validate" formControlName="pumpname">
+                      <p class="errormessage"
+                      *ngIf="petrolFormErrors.pumpname.required || (petrolForm.controls.pumpname.pristine && submitted)">
+                      Cannot be empty</p>
+
+                    </div>
+                    <div class="input-field col s6">
+                        <p><label>Driver Name</label></p>
+                        <input type="text" class="validate" formControlName="driver">
+                        <p class="errormessage"
+                        *ngIf="petrolFormErrors.driver.required || (petrolForm.controls.driver.pristine && submitted)">
+                        Cannot be empty</p>
+  
+                      </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="input-field col s6">
+                        <p><label>Truck Number</label></p>
+                        <input type="text" class="validate" formControlName="truckno">
+                        <p class="errormessage"
+                        *ngIf="petrolFormErrors.truckno.required || (petrolForm.controls.truckno.pristine && submitted)">
+                        Cannot be empty</p>
+                      </div>
+
+                  <div class="input-field col s6">
+                      <p><label>Date</label></p>
+                      <input type="date" class="validate" formControlName="date">
+                      <p class="errormessage"
+                      *ngIf="petrolFormErrors.date.required || (petrolForm.controls.date.pristine && submitted)">
+                      Cannot be empty</p>
+                    </div>
+                 
+                  
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <p><label>diesel</label></p>
+                        <input type="text" class="validate" formControlName="diesel">
+                        <p class="errormessage"
+                        *ngIf="petrolFormErrors.diesel.required || (petrolForm.controls.diesel.pristine && submitted)">
+                       Cannot be empty</p>
+                      </div>
+
+                  <div class="input-field col s6">
+                      <p><label>Other</label></p>
+                      <input type="text" class="validate" formControlName="other">
+                     
+                    </div>
+                  
+                  
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="contractorButton">
+              <button class="submitBtn" (click)="submit()">Next</button>
+              <button class="cancelBtn" (click)="cancel()">Cancel</button>
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <!-- input type -->
+
+
+
+
+
+      </div>
+    </div>
+
+  </form>
+</section>
+
+<!-- period -->

@@ -53,6 +53,29 @@
                </li>
             </ul>
          </div>
+
+         <div class="row leftCet alit" *ngIf='role=="superAdmin" || "admin"'>
+               <ul>
+                  <li><i class="fa fa-money" aria-hidden="true" style="margin-right:0"></i></li>
+                  <li class="order" ><input style="text-align: center" type="text" [(ngModel)]="dieselrate"></li>
+                  <li class="dropdown flRight">
+                     <a style="padding: 0">
+                        <button class="addItem" (click)="savedieselrate()"><i class="fa fa-check"
+                              aria-hidden="true"></i></button></a>
+                     <!-- <ul class="dropdown-menu">
+                        <li><a href="#">Table 1</a></li>
+                        <li><a href="#">Table 2</a></li>
+                        <li><a href="#">Table 3</a></li>
+                        <li><a href="#">Table 4</a></li>
+                        <li><a href="#">Table 5</a></li>
+                        <li><a href="#">Table 6</a></li>
+   
+                     </ul> -->
+                  </li>
+               </ul>
+            </div>
+
+            
          <div class="row leftCet alit" (click)="abc('contractorlist')" *ngIf='role=="superAdmin" || "admin"'>
             <ul>
                <li><i class="fa fa-sliders" aria-hidden="true"></i></li>
@@ -84,6 +107,16 @@
                </li>
             </ul>
          </div>
+
+         <div class="row leftCet" (click)="abc('petrol')">
+            <ul>
+               <li><i class="fa fa-id-card-o" aria-hidden="true"></i></li>
+               <li class="order" >Petrol Form</li>
+              
+            </ul>
+         </div>
+
+
          <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="headingThree">
                <h4 class="panel-title">

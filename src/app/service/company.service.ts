@@ -81,4 +81,15 @@ getroute(id){
 
 }
 // route end
+
+
+// petrol form
+
+creatpetrom(data){
+  return this.httpClient.post(APIURL+ 'routes/createc', data)
+
+
+}
+
+// petrol form end
 }

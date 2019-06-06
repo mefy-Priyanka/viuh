@@ -9,6 +9,7 @@ import { UserService } from '../service/user.service';
   styleUrls: ['./sidenav.component.css']
 })
 export class SidenavComponent implements OnInit {
+  dieselrate='70.04';
   public accountdata: boolean = true;
   public userId:any={};
   public accountId: any={};
@@ -54,6 +55,8 @@ getUserDetail(){
     /* ************END**************/
 
 
-    //check
+    savedieselrate(){
+      console.log(this.dieselrate)
+    }
 
 }
