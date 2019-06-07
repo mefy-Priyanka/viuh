@@ -33,6 +33,7 @@ import { BillComponent } from './bill/bill.component';
 import { PaymentmadeComponent } from './paymentmade/paymentmade.component';
 import { DestinationComponent } from './destination/destination.component';
 import { WorkorderComponent } from './workorder/workorder.component';
+import { PetrolformComponent } from './petrolform/petrolform.component';
 // import { EmployeeComponent } from './employee/employee.component';
 
 const routes: Routes = [
@@ -97,6 +98,7 @@ const routes: Routes = [
         PaymentmadeComponent,
         DestinationComponent,
         WorkorderComponent,
+        PetrolformComponent,
         // EmployeeComponent
 
     ]
