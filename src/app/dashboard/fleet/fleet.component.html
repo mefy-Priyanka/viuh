@@ -117,7 +117,7 @@
 
               <div class="input-field col s2">
                 <p><label>Valid Upto</label></p>
-                <input (keyup)="check1('valid',selectedOption)" placeholder="dd/mm/yyyy" id="first_name" type="text"
+                <input (keyup)="check1('valid',selectedOption)"  id="first_name" type="date"
                   [(ngModel)]="selected.valid" class="validate" [ngModelOptions]="{standalone: true}">
                 <p *ngIf="validerr">can't be empty</p>
               </div>

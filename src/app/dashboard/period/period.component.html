@@ -35,14 +35,14 @@
                 <div class="row">
                   <div class="input-field col s6">
                       <p><label>Period From</label></p>
-                      <input type="text" class="validate" formControlName="from">
+                      <input type="date" class="validate" formControlName="from">
                       <p class="errormessage"
                       *ngIf="periodFormErrors.from.required || (periodForm.controls.from.pristine && submitted)">
                       Cannot be empty</p>
                     </div>
                   <div class="input-field col s6">
                     <p><label>Period To</label></p>
-                    <input type="text" class="validate" formControlName="to">
+                    <input type="date" class="validate" formControlName="to">
                     <p class="errormessage"
                     *ngIf="periodFormErrors.to.required || (periodForm.controls.to.pristine && submitted)">
                    Cannot be empty</p>

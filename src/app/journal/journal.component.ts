@@ -4,6 +4,7 @@ import { UserService } from '../service/user.service';
 import { SharedService } from '../service/shared.service'
 
 import { ToastrService } from 'ngx-toastr';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-journal',
@@ -181,7 +182,7 @@ export class JournalComponent implements OnInit {
     }
     Object.assign(this.maindata, { detail: this.jdata })
     Object.assign(this.maindata, { total: this.ctotal });
-    Object.assign(this.maindata, { date: this.date });
+    Object.assign(this.maindata, { date: moment(this.date).toISOString() });
     Object.assign(this.maindata, { reference: this.reference })
     Object.assign(this.maindata, { notes: this.notes })
     console.log(this.maindata);
@@ -216,7 +217,9 @@ export class JournalComponent implements OnInit {
     this.userService.journalcreat(this.maindata).subscribe(result => {
       console.log(result);
       this.toastr.success('Awesome!', 'Journal created suceesfully');
+      console.log(result);
       this.SharedService.abc('journal');
+     
     },
       err => {
         console.log(err)
@@ -296,7 +299,7 @@ export class JournalComponent implements OnInit {
     }
     Object.assign(this.maindata, { detail: this.jdata })
     Object.assign(this.maindata, { total: this.ctotal });
-    Object.assign(this.maindata, { date: this.date });
+    Object.assign(this.maindata, { date: moment(this.date).toISOString() });
     Object.assign(this.maindata, { reference: this.reference })
     Object.assign(this.maindata, { notes: this.notes })
     console.log(this.maindata);
