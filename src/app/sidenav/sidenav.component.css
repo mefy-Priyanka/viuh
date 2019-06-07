@@ -437,7 +437,7 @@ button.addItem i.fa.fa-check {
   
 @media only screen and (min-width: 601px){
   nav.navbar.navbar-inverse.navbar-fixed-left{
-    overflow-y: scroll
+    /* overflow-y: scroll */
    }
    
    

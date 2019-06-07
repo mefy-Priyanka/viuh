@@ -99,4 +99,14 @@ creatpetrom(data){
 }
 
 // petrol form end
+
+
+
+
+
+
+
+getcontact(id) {
+  return this.httpClient.get(APIURL + 'contact/contactlist?superAdminId='+id)
+}
 }

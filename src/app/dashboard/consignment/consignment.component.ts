@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { UserService } from 'src/app/service/user.service';
 import { CompanyService } from 'src/app/service/company.service';
 import { ToastrService } from 'ngx-toastr';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-consignment',
@@ -16,9 +17,10 @@ export class ConsignmentComponent implements OnInit {
   organisation: string;
   consignmentFormErrors: {};
   consignmentForm: any;
-  chalandoc:any;
+  chalandoc: any;
   submitted = false;
-  consigmentDetail=[];
+  consigmentDetail = [];
+  contactlist = [];
   constructor(private formBuilder: FormBuilder, private userService: UserService, private companyService: CompanyService, private toastr: ToastrService) {
     this.userId = localStorage.getItem('userId');
     this.role = localStorage.getItem('role');
@@ -99,6 +101,7 @@ export class ConsignmentComponent implements OnInit {
     this.consignmentForm.valueChanges.subscribe(() => {
       this.onconsignmentFormValuesChanged();
     });
+    this.customerList();
   }
   at() {
     this.cdata = !this.cdata;
@@ -115,14 +118,14 @@ export class ConsignmentComponent implements OnInit {
     let formData: FormData = new FormData();
     formData.append('file', file, file.name);
     this.companyService.fileUpload(formData).subscribe(response => {
-     
+
       this.toastr.success('Great !', 'File Successfully Uploaded'),
         console.log(response);
       let result: any = {};
       result = response;
       this.chalandoc = result.upload._id
     }, err => {
-      console.log(err);    
+      console.log(err);
       this.toastr.error('oops !', 'File Upload Failed');
     });
   }
@@ -152,10 +155,10 @@ export class ConsignmentComponent implements OnInit {
         tl_number: this.consignmentForm.value.tl_number,
         location_number: this.consignmentForm.value.location_number,
         challan_number: this.consignmentForm.value.challan_number,
-        challan_date: this.consignmentForm.value.challan_date,
+        challan_date: moment(this.consignmentForm.value.challan_date).toISOString(),
         consignor: this.consignmentForm.value.consignor,
         consignee: this.consignmentForm.value.consignee,
-        consignment_date: this.consignmentForm.value.consignment_date,
+        consignment_date: moment(this.consignmentForm.value.consignment_date).toISOString(),
         reference_number: this.consignmentForm.value.reference_number,
         truck_number: this.consignmentForm.value.truck_number,
         origin_place: this.consignmentForm.value.origin_place,
@@ -163,7 +166,7 @@ export class ConsignmentComponent implements OnInit {
         authorize_person: this.consignmentForm.value.authorize_person,
         driver_license_number: this.consignmentForm.value.driver_license_number,
         driver_name: this.consignmentForm.value.driver_name,
-        challan_doc :this.chalandoc,
+        challan_doc: this.chalandoc,
         quantity: {
           gross_wt: this.consignmentForm.value.gross_wt,
           tare_wt: this.consignmentForm.value.tare_wt,
@@ -196,6 +199,23 @@ export class ConsignmentComponent implements OnInit {
         })
     }
 
+  }
+
+
+
+  customerList() {
+  
+    this.companyService.getcontact(localStorage.getItem('SuperAdmin')).subscribe(data => {
+     
+      let result: any = {}
+      result = data;
+      this.contactlist = result.result
+      console.log(this.contactlist);
+    },
+      error => {
+        console.log(error);
+
+      })
   }
 
 }
