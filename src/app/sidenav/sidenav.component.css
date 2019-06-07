@@ -401,7 +401,7 @@ li.menuTab{
   border-bottom: 1px solid #142333;
 }
 li.dropdown.flRight {
-  float: right;
+  /* float: right; */
 }
 button.addItem {
   height: 24px !important;
@@ -437,7 +437,7 @@ button.addItem i.fa.fa-check {
   
 @media only screen and (min-width: 601px){
   nav.navbar.navbar-inverse.navbar-fixed-left{
-    /* overflow-y: scroll */
+    overflow-y: scroll
    }
    
    
@@ -592,6 +592,14 @@ color: #fff;
 border: none;
 height: 42px;
 }
+div#headingThreea {
+  position: relative;
+  background: #314662;
+  color: #fff;
+  /* padding: 2em 2em 1em 2em; */
+  border: none;
+  height: 42px;
+  }
 div#headingfour {
 position: relative;
 background: #314662;
@@ -670,3 +678,13 @@ ul.nav.accordionae i.fa {
   height: 0;
 }
 /* accordion css */
+li.order input.pumpDetail {
+  margin: 0 !important;
+  height: 1.5rem !important;
+}
+i.fa.fa-bars {
+  font-size: 16px;
+  line-height: 42px;
+  color: rgba(255, 255, 255, 0.8);
+  margin-right: 18px;
+}

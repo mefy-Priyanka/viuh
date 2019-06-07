@@ -1,7 +1,7 @@
 <!-- period -->
 <section class="createcontract" >
   <div class="ft">
-    <h1>Petrol Pump | Create
+    <h1>Diesel Voucher | Create
     </h1>
   </div>
   <form class="createContractorForm" [formGroup]="petrolForm">
@@ -16,7 +16,12 @@
                 <div class="row">
                   <div class="input-field col s6">
                       <p><label>Pump Name</label></p>
-                      <input type="text" class="validate" formControlName="pumpname">
+                      <!-- <input type="text" class="validate" formControlName="pumpname"> -->
+                      <select>
+                          <option value="" disabled selected>Select</option>
+                          <option value='owned'>Owned</option>
+                          <option value='contract'>Contract</option>
+                        </select>
                       <p class="errormessage"
                       *ngIf="petrolFormErrors.pumpname.required || (petrolForm.controls.pumpname.pristine && submitted)">
                       Cannot be empty</p>
@@ -24,7 +29,12 @@
                     </div>
                     <div class="input-field col s6">
                         <p><label>Driver Name</label></p>
-                        <input type="text" class="validate" formControlName="driver">
+                        <!-- <input type="text" class="validate" formControlName="driver"> -->
+                        <select>
+                            <option value="" disabled selected>Select</option>
+                            <option value='owned'>Owned</option>
+                            <option value='contract'>Contract</option>
+                          </select>
                         <p class="errormessage"
                         *ngIf="petrolFormErrors.driver.required || (petrolForm.controls.driver.pristine && submitted)">
                         Cannot be empty</p>
@@ -36,7 +46,12 @@
                 <div class="row">
                     <div class="input-field col s6">
                         <p><label>Truck Number</label></p>
-                        <input type="text" class="validate" formControlName="truckno">
+                        <!-- <input type="text" class="validate" formControlName="truckno"> -->
+                        <select>
+                            <option value="" disabled selected>Select</option>
+                            <option value='owned'>Owned</option>
+                            <option value='contract'>Contract</option>
+                          </select>
                         <p class="errormessage"
                         *ngIf="petrolFormErrors.truckno.required || (petrolForm.controls.truckno.pristine && submitted)">
                         Cannot be empty</p>
@@ -54,7 +69,7 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
-                        <p><label>diesel</label></p>
+                        <p><label>Diesel</label></p>
                         <input type="text" class="validate" formControlName="diesel">
                         <p class="errormessage"
                         *ngIf="petrolFormErrors.diesel.required || (petrolForm.controls.diesel.pristine && submitted)">
@@ -62,7 +77,7 @@
                       </div>
 
                   <div class="input-field col s6">
-                      <p><label>Other</label></p>
+                      <p><label>Notes</label></p>
                       <input type="text" class="validate" formControlName="other">
                      
                     </div>
@@ -76,7 +91,7 @@
           </div>
           <div class="row">
             <div class="contractorButton">
-              <button class="submitBtn" (click)="submit()">Next</button>
+              <button class="submitBtn" (click)="submit()">Submit</button>
               <button class="cancelBtn" (click)="cancel()">Cancel</button>
             </div>
           </div>

@@ -74,6 +74,9 @@ console.log("gotdata",data)
 destinationList(id) {
   return this.httpClient.get(APIURL + 'destination/destinationList?superAdminId='+id.superAdminId)
 }
+deletedestination(id){
+  return this.httpClient.delete(APIURL+'destination/delete?destinationId='+id)
+  }
 // // *****************************************Destination End****************************************************************************************Destination***********************************************
 
 

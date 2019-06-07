@@ -1,4 +1,20 @@
 <!-- destinationlist-->
+<div class="loading" *ngIf="loader">
+    <div class="sk-circle">
+      <div class="sk-circle1 sk-child"></div>
+      <div class="sk-circle2 sk-child"></div>
+      <div class="sk-circle3 sk-child"></div>
+      <div class="sk-circle4 sk-child"></div>
+      <div class="sk-circle5 sk-child"></div>
+      <div class="sk-circle6 sk-child"></div>
+      <div class="sk-circle7 sk-child"></div>
+      <div class="sk-circle8 sk-child"></div>
+      <div class="sk-circle9 sk-child"></div>
+      <div class="sk-circle10 sk-child"></div>
+      <div class="sk-circle11 sk-child"></div>
+      <div class="sk-circle12 sk-child"></div>
+    </div>
+  </div>
 <section class="corder" *ngIf="destination">
     <a href="#" class="floatEa">
         <i class="fa fa-envelope-o my-float"></i>
@@ -16,19 +32,37 @@
                     <thead class="cf">
                       <tr>
                         <th class="numeric">Customer Name</th>
-                        <th>Location_code</th>
-                        <!-- <th>CONTRACTOR/TRANSPORTS</th> -->
-                        <th>Location_name</th>
+                        <th colspan="3">Detail
+                            <table>
+                          <tr>
+                          <td class="w30">Location code:</td>
+                          <td class="w30">Location name</td>
+                          <td class="w30">Address</td>
+                        </tr>
+                        </table>
+                        </th>
+                  
                         <th><i class="fa fa-question-circle-o" aria-hidden="true"></i></th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let fleet of fleetDetail">
-                        <td class="thno" data-title="NO.">{{fleet.truck_number}}</td>
-                        <td class="thname" data-title="NAME">{{fleet.capacity}}</td>
-                        <!-- <td class="thname" data-title="VAT ID">{{fleet}}</td> -->
-                        <td data-title="ADDRESS" class="numeric">{{fleet.ownership}}</td>
-                        <td data-title="VAT ID" class="numeric" (click)="delete(fleet._id)"><i class="fa fa-trash" aria-hidden="true"></i>
+                      <tr *ngFor="let customer of tableDetail">
+                        <td class="thno" data-title="NO.">{{customer.customerId?.name}}</td>
+                        <td class="thname" data-title="NAME" colspan="3">
+
+                            <table cellspacing="0" cellpadding="0">
+                                <tr *ngFor="let data of customer.details">
+                                    <td class="thname" data-title="NAME" class="w30">{{data.location_code}}</td>
+                                    <td class="thname" data-title="NAME" class="w30">{{data.location_name}}</td>
+                                    <td class="thname" data-title="NAME" class="w30">{{data.address}}</td>
+                                  </tr>
+                                </table>
+
+
+                         
+
+                        </td>
+                        <td data-title="VAT ID" class="numeric" (click)="delete(customer._id)"><i class="fa fa-trash" aria-hidden="true"></i>
                         </td>
                       </tr>
                     </tbody>
@@ -67,6 +101,7 @@
                       <option *ngFor="let list of destinationDetail" [value]='list._id'>{{list.name}}</option>
 
                     </select>
+                    <p class="error" [ngStyle]="{'font-size':'12px'}" *ngIf="destinationFormErrors.customerId.required || (destinationForm.controls.customerId.pristine && submitted)">Customer Name Can't be empty</p>
 
                   </div>
 
@@ -87,17 +122,19 @@
                       <div class="input-field col s4">
                         <p><label>Location Name</label></p>
                         <input type="text" class="validate" formControlName="location_name">
-
+                        <!-- {{cdetail.location_code.pristine}} -->
+                        <!-- <p class="error" [ngStyle]="{'font-size':'12px'}" *ngIf=" && submitted)">Location Name Can't be empty</p> -->
                       </div>
                       <div class="input-field col s4">
                         <p><label>Location Code<span class="blue_star">*</span></label></p>
                         <input type="text" class="validate" formControlName="location_code">
-
+                        <!-- <p class="error" [ngStyle]="{'font-size':'12px'}" *ngIf="destinationFormErrors.location_code.required || (destinationForm.controls.location_code.pristine && submitted)">Location Code Can't be empty</p> -->
                       </div>
 
                       <div class="input-field col s4">
                         <p><label>Address<span class="blue_star">*</span></label></p>
                         <input type="text" class="validate" formControlName="address">
+                        <!-- <p class="error" [ngStyle]="{'font-size':'12px'}" *ngIf="destinationFormErrors.address.required || (destinationForm.controls.address.pristine && submitted)">Address Can't be empty</p> -->
                       </div>
 
 
@@ -116,8 +153,9 @@
           </div>
           <div class="row">
             <div class="contractorButton">
-              <button class="submitBtn" [disabled]="!destinationForm.valid" (click)="saveForm()">Save</button>
-              <button class="cancelBtn" (click)="cancel()">Cancel</button>
+                <!-- [disabled]="!destinationForm.valid" -->
+              <button class="submitBtn"  (click)="saveForm()">Save</button>
+              <button class="cancelBtn" (click)="createDestination()">Cancel</button>
             </div>
           </div>
         </div>
