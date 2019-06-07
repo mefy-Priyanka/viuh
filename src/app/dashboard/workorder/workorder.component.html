@@ -1,3 +1,183 @@
-<p>
-  workorder works!
-</p>
+<!-- workorder -->
+<section class="createcontract" >
+    <div class="ft">
+      <h1>Work Order | Create
+      </h1>
+    </div>
+    <form class="createContractorForm" [formGroup]="petrolForm">
+      <div class="row">
+        <div class="col-md-12">
+          <!-- input type -->
+          <div>
+            <div class="card corCard">
+              <div class="row">
+  
+                <div class="nota">
+                  <div class="row">
+                    <div class="input-field col s4">
+                        <p><label>Tender No.</label></p>
+                        <input type="text" class="validate" formControlName="pumpname">
+                        <!-- <p class="errormessage"
+                        *ngIf="petrolFormErrors.pumpname.required || (petrolForm.controls.pumpname.pristine && submitted)">
+                        Cannot be empty</p> -->
+  
+                      </div>
+                      <div class="input-field col s4">
+                          <p><label>Period Of Contract (Start Date)</label></p>
+                          <input type="date" class="validate" formControlName="driver">
+                          <!-- <p class="errormessage"
+                          *ngIf="petrolFormErrors.driver.required || (petrolForm.controls.driver.pristine && submitted)">
+                          Cannot be empty</p> -->
+    
+                        </div>
+                        <div class="input-field col s4">
+                            <p><label>Period Of Contract (End Date)</label></p>
+                            <input type="date" class="validate" formControlName="driver">
+                            <!-- <p class="errormessage"
+                            *ngIf="petrolFormErrors.driver.required || (petrolForm.controls.driver.pristine && submitted)">
+                            Cannot be empty</p> -->
+      
+                          </div>
+  
+                  </div>
+                  <div class="row">
+                      <div class="col s6">     
+                        <p style="margin: 0"><label>Rate Quoted </label>&nbsp;&nbsp;<button class="addBtn">+</button></p>
+                        
+                        </div>
+                        <!-- <div class="input-field col s3">         <button class="addBtn">+</button>
+                        
+                            </div> -->
+                
+                        </div>
+             
+
+                  <div class="row">
+                      <div class="input-field col s3">
+                          <p><label>Item</label></p>
+                          <input type="text" class="validate" formControlName="truckno">
+                          <!-- <p class="errormessage"
+                          *ngIf="petrolFormErrors.truckno.required || (petrolForm.controls.truckno.pristine && submitted)">
+                          Cannot be empty</p> -->
+                        </div>
+  
+                    <div class="input-field col s3">
+                        <p><label>Rate</label></p>
+                        <input type="text" class="validate" formControlName="date">
+                        <!-- <p class="errormessage"
+                        *ngIf="petrolFormErrors.date.required || (petrolForm.controls.date.pristine && submitted)">
+                        Cannot be empty</p> -->
+                      </div>
+                      <div class="input-field col s3">
+                          <p><label>UOM</label></p>
+                          <input type="text" class="validate" formControlName="truckno">
+                          <!-- <p class="errormessage"
+                          *ngIf="petrolFormErrors.truckno.required || (petrolForm.controls.truckno.pristine && submitted)">
+                          Cannot be empty</p> -->
+                        </div>
+  
+                    <div class="input-field col s3">
+                        <p><label>Notes</label></p>
+                        <input type="text" class="validate" formControlName="date">
+                        <!-- <p class="errormessage"
+                        *ngIf="petrolFormErrors.date.required || (petrolForm.controls.date.pristine && submitted)">
+                        Cannot be empty</p> -->
+                      </div>
+                   
+                    
+                  </div>
+                  <div class="row">
+                      <div class="col s6">     
+                        <p style="margin: 0"><label>No Of TT(s)</label>&nbsp;&nbsp;<button class="addBtn">+</button></p>
+                        
+                        </div>
+                        <!-- <div class="input-field col s3">         <button class="addBtn">+</button>
+                        
+                            </div> -->
+                
+                        </div>
+             
+
+                  <div class="row">
+                      <div class="input-field col s4">
+                          <p><label>Qty</label></p>
+                          <input type="text" class="validate" formControlName="truckno">
+                          <!-- <p class="errormessage"
+                          *ngIf="petrolFormErrors.truckno.required || (petrolForm.controls.truckno.pristine && submitted)">
+                          Cannot be empty</p> -->
+                        </div>
+  
+                    <div class="input-field col s4">
+                        <p><label>Unit</label></p>
+                        <input type="text" class="validate" formControlName="date">
+                        <!-- <p class="errormessage"
+                        *ngIf="petrolFormErrors.date.required || (petrolForm.controls.date.pristine && submitted)">
+                        Cannot be empty</p> -->
+                      </div>
+                      <div class="input-field col s4">
+                          <p><label>UOM</label></p>
+                          <input type="text" class="validate" formControlName="truckno">
+                          <!-- <p class="errormessage"
+                          *ngIf="petrolFormErrors.truckno.required || (petrolForm.controls.truckno.pristine && submitted)">
+                          Cannot be empty</p> -->
+                        </div>
+  
+               
+                   
+                    
+                  </div>
+                  <div class="row">
+                      <div class="input-field col s6">
+                          <p><label>Terms & Condition</label></p>
+                          <div class="row">
+                              <div class="input-field col s6">
+                                  <input type="text" class="validate" formControlName="truckno">
+
+                              </div>
+                              <div class="input-field col s6">
+                                  <input type="file" class="validate" formControlName="truckno">
+
+                              </div>
+                          </div>
+                          <!-- <p class="errormessage"
+                          *ngIf="petrolFormErrors.diesel.required || (petrolForm.controls.diesel.pristine && submitted)">
+                         Cannot be empty</p> -->
+                        </div>
+  
+                    <div class="input-field col s6">
+                        <p><label>Notes</label></p>
+                        <input type="text" class="validate" formControlName="other">
+                       
+                      </div>
+                    
+                    
+                  </div>
+  
+                </div>
+  
+              </div>
+            </div>
+            <div class="row">
+              <div class="contractorButton">
+                <button class="submitBtn" (click)="submit()">Submit</button>
+                <button class="cancelBtn" (click)="cancel()">Cancel</button>
+              </div>
+            </div>
+          </div>
+  
+  
+  
+  
+          <!-- input type -->
+  
+  
+  
+  
+  
+        </div>
+      </div>
+  
+    </form>
+  </section>
+  
+  <!-- workorder -->
