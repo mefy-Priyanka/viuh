@@ -184,7 +184,7 @@ button.At {
 
 /* table css */
 table.col-md-12.table-bordered.table-striped.table-condensed.cf {
-    display: block;
+    /* display: block; */
     overflow-x: auto;
     white-space: nowrap;
     padding-left:0;

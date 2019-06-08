@@ -128,44 +128,25 @@
                       <div id="no-more-tables">
                         <table class="col-md-12 table-bordered table-striped table-condensed cf billTable">
                           <thead class="cf">
-                            <tr>
-                              <th>SR NO.</th>
-                              <th>TANK TRUCK NO.</th>
-                              <th>LOAD NO.</th>
-                              <th>LOAD DATA</th>
-                              <th>ORIGIN</th>
-                              <th>DESTINATION</th>
-                              <th>FREIGHT AMOUNT</th>
-                              <th>EXPENSES</th>
-                              <th>HSD(LTS)</th>
-                              <th>RATE</th>
-                              <th>AMOUNT</th>
-                              <th>LUB</th>
-                              <th>HSD/KM/LTS</th>
-                            </tr>
+                              <tr>
+                                  <th>S NO.</th>
+                                  <th>CONSIGNMENT NOTE NO.</th>
+                                  <th>DESCRIPTION</th>
+                                  <th>AMOUNT</th>
+                                </tr>
                           </thead>
                           <tbody>
                             <tr>
-
-                              <td class="thname"><input type="text" style="border: none !important"></td>
-                              <td class="thname"><input type="text" style="border: none !important"></td>
-                              <td class="thname"><input type="text" style="border: none !important"></td>
-                              <td class="thname"><input type="text" style="border: none !important"></td>
-                              <td class="thname"><input type="text" style="border: none !important"></td>
-                              <td class="thname"><input type="text" style="border: none !important"></td>
-
-                              <td class="thname"><input type="text" style="border: none !important"></td>
-
-                              <td class="thname"><input type="text" style="border: none !important"></td>
-
-                              <td class="thname"><input type="text" style="border: none !important"></td>
-                            
-                            <td class="thname"><input type="text" style="border: none !important"></td>
-                            <td class="thname"><input type="text" style="border: none !important"></td>
-                            <td class="thname"><input type="text" style="border: none !important"></td>
-                            <td class="thname"><input type="text" style="border: none !important"></td>
-
-
+                                <td class="thname"><input type="text" style="border: none !important" formControlName="serial_number"></td>
+                                <td class="thname">
+                                    <select >
+                                        <option value="" disabled selected>Select</option>
+                                        <option value="1">a</option>
+                                      </select>
+                                </td>
+                                <td class="thname"><input type="text" style="border: none !important" formControlName="invoice_number" ></td>
+                                <td class="thname"><input type="text" style="border: none !important" formControlName="item"></td>
+                               
                             </tr>
                           </tbody>
                         </table>

@@ -57,7 +57,7 @@
          <div class="row leftCet alit" *ngIf='role=="superAdmin" || "admin"'>
                <ul>
                   <li><i class='fas fa-gas-pump'></i></li>
-                  <li class="order" ><input style="text-align: center" class="pumpDetail" type="text" [(ngModel)]="dieselrate"></li>
+                  <li class="order" style="padding-right:1em;" ><input style="text-align: center" class="pumpDetail" type="text" [(ngModel)]="dieselrate"></li>
                   <li class="dropdown flRight">
                      <a style="padding: 0">
                         <button class="addItem" (click)="savedieselrate()"><i class="fa fa-check"
@@ -226,7 +226,7 @@
          </div>
 
          <!-- <hr class="mHrLine"> -->
-         <div class="panel panel-default">
+         <div class="panel panel-default chevron">
             <div class="panel-heading" role="tab" id="headingThreea">
                <h4 class="panel-title">
                   <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordionMenu"

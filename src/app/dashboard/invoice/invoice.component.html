@@ -80,74 +80,27 @@
                           <thead class="cf">
                             <tr>
                               <th>S NO.</th>
-                              <th>VEHICLE NO.</th>
-                              <th>INVOICE NO.</th>
-                              <th>ITEM</th>
-                              <th>DATE</th>
-                              <th>SHIP-TO-PARTY</th>
-                              <th>MATERIAL</th>
-                              <th>QUANTITY</th>
-                              <th>STORAGE</th>
-                              <th style="padding:0">RTD
-                            <tr style="background: #fafafa;">
-                              <td>P</td>
-                              <td>H</td>
-                              <td>HH</td>
-                            </tr>
-
-                            </th>
-                            <th style="padding:0">RATE
-                                <tr style="background: #fafafa;">
-                                    <td>P</td>
-                                    <td>H</td>
-                                    <td>HH</td>
-                                  </tr>
-                            </th>
-                            <th>GROSS AMT.</th>
-                            <th>PENALTY AMT.</th>
-                            <th>IGST</th>
-                            <th>CGST</th>
-                            <th>S/UGST</th>
+                              <th>CONSIGNMENT NOTE NO.</th>
+                              <th>DESCRIPTION</th>
+                              <th>AMOUNT</th>
                             </tr>
                           </thead>
                           <tbody>
-                            <tr *ngFor="let phone of phoneForms.controls; let i=index" 
-                            [formGroupName]="i">
-
-                              <td class="thname"><input type="text" style="border: none !important" formControlName="serial_number"  [readonly]='true'></td>
-                              <td class="thname"><input type="text" style="border: none !important" formControlName="vehicle_number"></td>
+                            <tr >
+                                <!-- *ngFor="let phone of phoneForms.controls; let i=index" 
+                                [formGroupName]="i" -->
+                              <td class="thname"><input type="text" style="border: none !important" formControlName="serial_number"></td>
+                              <td class="thname">
+                                  <select >
+                                      <option value="" disabled selected>Select</option>
+                                      <option value="1">a</option>
+                                    </select>
+                              </td>
                               <td class="thname"><input type="text" style="border: none !important" formControlName="invoice_number" ></td>
                               <td class="thname"><input type="text" style="border: none !important" formControlName="item"></td>
-                              <td class="thname"><input type="text" style="border: none !important" formControlName="date"></td>
-                              <td class="thname"><input type="text" style="border: none !important" formControlName="ship_to_party"></td>
+                             
 
-                              <td class="thname"><input type="text" style="border: none !important" formControlName="material"></td>
-
-                              <td class="thname"><input type="text" style="border: none !important" formControlName="quantity"></td>
-
-                              <td class="thname"><input type="text" style="border: none !important" formControlName="shortage"></td>
-                              <td class="thname" style="padding:0">
-                            <tr>
-                              <td class="thname"><input type="text" style="border: none !important" formControlName="rtd_p">
-                              <td class="thname"><input type="text" style="border: none !important" formControlName="rtd_h">
-                              <td class="thname"><input type="text" style="border: none !important" formControlName="rtd_hh">
-
-                            </tr>
-                            </td>
-                            <td class="thname" style="padding:0">
-                              <tr>
-                                <td class="thname"><input type="text" style="border: none !important" formControlName="rate_p">
-                                <td class="thname"><input type="text" style="border: none !important" formControlName="rate_h">
-                                <td class="thname"><input type="text" style="border: none !important" formControlName="rate_hh">
-
-                              </tr>
-                            </td>
-                            <td class="thname"><input type="text" style="border: none !important" formControlName="gross_amount"></td>
-                            <td class="thname"><input type="text" style="border: none !important" formControlName="penalty_amount"></td>
-                            <td class="thname"><input type="text" style="border: none !important" formControlName="igst"></td>
-                            <td class="thname"><input type="text" style="border: none !important" formControlName="cgst"></td>
-                            <td class="thname"><input type="text" style="border: none !important" formControlName="s_ugst"></td>
-
+                        
                             </tr>
                           </tbody>
                         </table>

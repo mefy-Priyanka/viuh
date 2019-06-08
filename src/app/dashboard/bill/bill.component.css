@@ -199,7 +199,7 @@ button.addItema i {
 }
 /* table css */
 table.col-md-12.table-bordered.table-striped.table-condensed.cf.billTable {
-    display: block;
+    /* display: block; */
     overflow-x: auto;
     white-space: nowrap;
     padding-left:0;
