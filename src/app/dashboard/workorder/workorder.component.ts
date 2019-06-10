@@ -6,9 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./workorder.component.css']
 })
 export class WorkorderComponent implements OnInit {
-
+public workorder:boolean=true;
   constructor() { }
-
+  createworkorder(){
+    this.workorder=!this.workorder;
+  }
   ngOnInit() {
   }
 
