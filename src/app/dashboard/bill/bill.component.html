@@ -54,7 +54,7 @@
     <h1>Bill | Create
     </h1>
   </div>
-  <form class="createContractorForm">
+  <form class="createContractorForm" [formGroup]="billForm">
     <div class="row">
       <div class="col-md-12">
         <!-- input type -->
@@ -67,7 +67,10 @@
 
                   <div class="input-field col s6">
                     <p><label>Vendor Name <span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate">
+                    <select formControlName="vendorId">
+                      <option value="" disabled selected>Select</option>
+                      <option *ngFor="let data of contactlist" [value]='data._id'>{{data.name}}</option>
+                    </select>
 
                   </div>
                   <div class="input-field col s6">
@@ -81,29 +84,22 @@
 
 
                   <div class="input-field col s6">
-                    <p><label>Order Number</label></p>
-                    <input type="text" class="validate">
-
+                    <p><label>Work order </label></p>
+                    <select formControlName="Work_order">
+                      <option value="" disabled selected>Select</option>
+                      <option value="work">Work order</option>
+                    </select>
                   </div>
 
                   <div class="input-field col s6">
                     <p><label>Bill Date<span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate">
+                    <input type="date" class="validate" formControlName="invoice_date">
                   </div>
-
-
-
-
-
                 </div>
                 <div class="row">
                   <div class="input-field col s6">
-                    <p><label>Due Date<span class="blue_star">*</span></label></p>
-                    <input type="date" class="validate">
-                  </div>
-                  <div class="input-field col s6">
-                    <p><label>Payment Terms</label></p>
-                    <select class="orga">
+                    <p><label>Terms</label></p>
+                    <select class="orga" formControlName="terms">
                       <option value="" disabled selected>Due On Receipt</option>
                       <option value="rupees">NET 15</option>
                       <option value="rupees">NET 30</option>
@@ -116,7 +112,10 @@
 
                     </select>
                   </div>
-
+                  <div class="input-field col s6">
+                    <p><label>Due Date<span class="blue_star">*</span></label></p>
+                    <input type="date" class="validate" formControlName="due_date">
+                  </div>
 
                 </div>
 
@@ -125,19 +124,31 @@
 
                   <div class="input-field col s6">
                     <p><label>Period (Start Date)</label></p>
-                    <input type="text" class="validate" >
+                    <input type="date" class="validate" formControlName="periodstart">
 
                   </div>
 
                   <div class="input-field col s6">
                     <p><label>Period (End Date)</label></p>
-                    <input type="text" class="validate" formControlName="invoice_date" >
+                    <input type="date" class="validate" formControlName="periodend">
                   </div>
 
 
 
 
 
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <p><label>Reverse Change</label></p>
+                    <select class="orga" formControlName="reverse_change">
+                      <option value="" disabled selected>Reverse Change</option>
+                      <option value="yes">yes</option>
+                      <option value="no">No</option>
+
+
+                    </select>
+                  </div>
                 </div>
 
                 <form>
@@ -155,7 +166,7 @@
                                 </tr>
                           </thead>
                           <tbody>
-                            <tr>
+                            <tr *ngFor="let phone of phoneForms.controls; let i=index" [formGroupName]="i">
                                 <td class="thname"><input type="text" style="border: none !important" formControlName="serial_number"></td>
                                 <td class="thname">
                                     <select >
@@ -175,7 +186,7 @@
                         <div class="row">
                           <div class="col-md-6">
                             <div class="thno">
-                              <button class="At">+&nbsp;&nbsp;Add Another Line</button>
+                              <button class="At" (click)="addPhone()">+&nbsp;&nbsp;Add Another Line</button>
                             </div>
                           </div>
                           <div>
