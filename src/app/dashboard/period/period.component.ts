@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CompanyService } from '../../service/company.service';
 import { ToastrService } from 'ngx-toastr';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-period',
@@ -94,8 +95,8 @@ export class PeriodComponent implements OnInit {
       let data = {
         period_name: this.periodForm.value.period_name,
         period_status: this.periodForm.value.period_status,
-        from: this.periodForm.value.from,
-        to: this.periodForm.value.to,
+        from: moment(this.periodForm.value.from).toISOString(),
+        to: moment(this.periodForm.value.to).toISOString(),
         userId: localStorage.getItem('userId')
       }
       console.log('let data be', data);

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { CompanyService } from '../../service/company.service';
-
+import * as moment from 'moment';
 @Component({
   selector: 'app-petrolform',
   templateUrl: './petrolform.component.html',
@@ -14,6 +14,8 @@ export class PetrolformComponent implements OnInit {
   submitted: boolean;
   petrols = [];
   openbool: boolean;
+  driverlist=[];
+  trucklist=[];
   constructor(private formBuilder: FormBuilder, private CompanyService: CompanyService, private toastr: ToastrService) {
     this.petrolFormErrors = {
       pumpname: {},
@@ -31,6 +33,8 @@ export class PetrolformComponent implements OnInit {
     this.petrolForm.valueChanges.subscribe(() => {
       this.onpetrolFormValuesChanged();
     });
+    this.gettruck();
+    this.getdriver()
   }
 
  
@@ -70,7 +74,7 @@ export class PetrolformComponent implements OnInit {
         pumpname: this.petrolForm.value.pumpname,
         truckno: this.petrolForm.value.truckno,
         driver:this.petrolForm.value.driver,
-        date: this.petrolForm.value.date,
+        date: moment(this.petrolForm.value.date).toISOString,
         diesel: this.petrolForm.value.diesel,
         other: this.petrolForm.value.other,
         userId: localStorage.getItem('userId')
@@ -93,5 +97,36 @@ export class PetrolformComponent implements OnInit {
     }
 
   }
+
+
+  getdriver(){
+    let data={
+      id:localStorage.getItem('SuperAdmin'),
+      contact_type:'driver'
+    }
+    this.CompanyService.getdriver(data).subscribe(data=>{
+      console.log(data);
+      let something:any;
+      something=data;
+      this.driverlist=something.result
+    },
+    err=>{
+      console.log(err);
+    })
+  }
+
+  gettruck(){
+   
+    this.CompanyService.getfleetlist(localStorage.getItem('SuperAdmin')).subscribe(data=>{
+      console.log(data);
+      let something:any;
+      something=data;
+      this.trucklist=something.result
+    },
+    err=>{
+      console.log(err);
+    })
+  }
+
 }
 

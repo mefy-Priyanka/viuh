@@ -98,4 +98,8 @@ export class UserService {
     return this.httpClient.get(APIURL + 'consignment/consignmentList?superAdminId='+id)
 
   }
+
+
+
+
 }

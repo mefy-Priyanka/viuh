@@ -4,6 +4,7 @@ import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CompanyService } from 'src/app/service/company.service';
 import { ToastrService } from 'ngx-toastr';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-fleet',
@@ -33,8 +34,8 @@ export class FleetComponent implements OnInit {
   userId: string;
   loader: boolean = false;
   trucknumber = "";
-  truckcapacity='';
-  caperr=false;
+  truckcapacity = '';
+  caperr = false;
   ownership = ""
   selecterr: boolean;
   ownererr: boolean;
@@ -46,7 +47,7 @@ export class FleetComponent implements OnInit {
   otherbool: boolean;
   othername2 = ''
   other2bool: boolean;
-  fleetDetail=[];
+  fleetDetail = [];
   maindata = { userId: '', superadminid: '', others: [] };
   constructor(private formBuilder: FormBuilder,
     private router: Router, private companyService:
@@ -148,6 +149,7 @@ export class FleetComponent implements OnInit {
       return;
     }
     console.log(this.selected);
+    this.selected.valid = moment(this.selected.valid).toISOString()
     if (y == "Rc") {
       let rc = {
         number: this.selected.number,
@@ -480,33 +482,45 @@ export class FleetComponent implements OnInit {
       this.ownererr = true;
       return;
     }
-    console.log('lenght', this.maindata.others.length)
-
-    if (this.maindata.others.length == 0) {
-      delete this.maindata['others'];
+    console.log('length', this.maindata)
+    if (this.maindata.others != null) {
+      if (this.maindata.others.length == 0) {
+        delete this.maindata['others'];
+      }
     }
-    Object.assign(this.maindata,{truck_number:this.trucknumber});
-    Object.assign(this.maindata,{capacity:this.truckcapacity})
 
-    Object.assign(this.maindata,{ownership:this.ownership})
+    Object.assign(this.maindata, { truck_number: this.trucknumber });
+    Object.assign(this.maindata, { capacity: this.truckcapacity })
+
+    Object.assign(this.maindata, { ownership: this.ownership })
 
     console.log(this.maindata);
     this.companyService.fleetcreation(this.maindata).subscribe(result => {
       console.log(result);
       this.toastr.success('Awesome!', 'fleet created successfully');
+      this.reset();
+
       this.getfleetList();
       this.createFleet();
+
     },
       err => {
         console.log(err)
         this.toastr.error('Error!', 'Server Error')
 
       })
+
+  }
+  reset() {
+    this.maindata = { userId: '', superadminid: '', others: [] };
+    this.vardata = [];
+    this.maindata.userId = this.userId;
+    this.maindata.superadminid = this.superadminid
   }
   createFleet() {
     this.fleet = !this.fleet;
   }
-  delete(id){
+  delete(id) {
     this.companyService.deletefleet(id).subscribe(result => {
       console.log(result);
       this.toastr.success('Awesome!', 'fleet deleted successfully');

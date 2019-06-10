@@ -17,10 +17,11 @@
                   <div class="input-field col s6">
                       <p><label>Pump Name</label></p>
                       <!-- <input type="text" class="validate" formControlName="pumpname"> -->
-                      <select>
+                      <select formControlName="pumpname">
                           <option value="" disabled selected>Select</option>
-                          <option value='owned'>Owned</option>
-                          <option value='contract'>Contract</option>
+                          <option value='mefy'>mefy</option>
+                          <option value='meme'>meme</option>
+                          <option value='indian'>indian</option>
                         </select>
                       <p class="errormessage"
                       *ngIf="petrolFormErrors.pumpname.required || (petrolForm.controls.pumpname.pristine && submitted)">
@@ -30,10 +31,10 @@
                     <div class="input-field col s6">
                         <p><label>Driver Name</label></p>
                         <!-- <input type="text" class="validate" formControlName="driver"> -->
-                        <select>
+                        <select formControlName="driver">
                             <option value="" disabled selected>Select</option>
-                            <option value='owned'>Owned</option>
-                            <option value='contract'>Contract</option>
+                            <option *ngFor="let driver of driverlist" [value]='driver._id'>{{driver.name}}</option>
+                            <!-- <option value='contract'>Contract</option> -->
                           </select>
                         <p class="errormessage"
                         *ngIf="petrolFormErrors.driver.required || (petrolForm.controls.driver.pristine && submitted)">
@@ -47,10 +48,9 @@
                     <div class="input-field col s6">
                         <p><label>Truck Number</label></p>
                         <!-- <input type="text" class="validate" formControlName="truckno"> -->
-                        <select>
+                        <select formControlName="truckno">
                             <option value="" disabled selected>Select</option>
-                            <option value='owned'>Owned</option>
-                            <option value='contract'>Contract</option>
+                            <option *ngFor="let truck of trucklist" [value]='truck._id'>{{truck.truck_number}}</option>
                           </select>
                         <p class="errormessage"
                         *ngIf="petrolFormErrors.truckno.required || (petrolForm.controls.truckno.pristine && submitted)">
