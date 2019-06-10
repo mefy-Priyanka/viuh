@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SharedService } from '../service/shared.service';
 import { UserService } from '../service/user.service';
+import { CompanyService } from '../service/company.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-sidenav',
@@ -9,15 +11,15 @@ import { UserService } from '../service/user.service';
   styleUrls: ['./sidenav.component.css']
 })
 export class SidenavComponent implements OnInit {
-  dieselrate='70.04';
+  dieselrate='';
   public accountdata: boolean = true;
   public userId:any={};
   public accountId: any={};
   public userDetail:any={};  /***********LOGIN USER DETAIL *************/
-  constructor(private router: Router, private SharedService: SharedService,public userService: UserService) { 
+  constructor(private router: Router, private SharedService: SharedService,public userService: UserService,private CompanyService: CompanyService, private toastr: ToastrService) { 
     this.userId = localStorage.getItem('userId');   /************** LOGIN USER ID FECTCH FROM LOCAL STORAGE****/
     console.log("loginId",this.userId);
-
+    this.getdiesel()
 }
   // **************dashboard toggle*********************
   abc(a){
@@ -56,7 +58,33 @@ getUserDetail(){
 
 
     savedieselrate(){
-      console.log(this.dieselrate)
-    }
+      let data={
+        diesel_price:this.dieselrate,
+        userId:localStorage.getItem('userId')
+      }
+      this.CompanyService.creatdiesel(data).subscribe(value => {
+        this.toastr.success('Congo!', 'diesel Created '),
+          console.log('user', value)
+        let result: any = {}
+        result = value;
+        this.getdiesel()
+      },
+        err => {
+          console.log(err)
 
+          this.toastr.error('Error!', 'Server Error')
+        })
+    }
+getdiesel(){
+  let something:any;
+  let i=0;
+  this.CompanyService.getdiesel(localStorage.getItem('SuperAdmin')).subscribe(result=>{
+    console.log(result);
+    something=result;
+    this.dieselrate=something.result[something.result.length-1].diesel_price
+  },
+  err=>{
+    console.log(err)
+  })
+}
 }
