@@ -96,10 +96,15 @@ export class UserService {
 
   consignmentList(id){
     return this.httpClient.get(APIURL + 'consignment/consignmentList?superAdminId='+id)
-
   }
 
 
 
+// invoice
 
+
+creatinvoice(data){
+  return this.httpClient.post(APIURL+'invoice/create',data)
+}
+// end invoice
 }
