@@ -125,4 +125,16 @@ export class CompanyService {
   getdiesel(id) {
     return this.httpClient.get(APIURL + 'diesel/petrolList?superAdminId=' +id)
   }
+
+  // 
+  // diesel creat daily end
+
+  creatworkorder(data){
+    return this.httpClient.post(APIURL + 'order/create', data)
+
+  }
+  getworkorder(id){
+    return this.httpClient.get(APIURL + 'order/orderList?superAdminId=' +id)
+
+  }
 }

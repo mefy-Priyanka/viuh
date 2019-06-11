@@ -15,20 +15,18 @@
                     <table class="col-md-12 table-bordered table-striped table-condensed cf">
                     <thead class="cf">
                       <tr>
-                        <th class="numeric">TRUCK NUMBER</th>
-                        <th>TRUCK CAPACITY</th>
-                        <!-- <th>CONTRACTOR/TRANSPORTS</th> -->
-                        <th>OWENER</th>
-                        <th><i class="fa fa-question-circle-o" aria-hidden="true"></i></th>
+                        <th class="numeric">TENDER NUMBER</th>
+                        <th>START DATE</th>
+                        <th>ENDDATE</th>
+                        <th>INDUCTION TT</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr *ngFor="let fleet of fleetDetail">
-                        <td class="thno" data-title="NO.">{{fleet.truck_number}}</td>
-                        <td class="thname" data-title="NAME">{{fleet.capacity}}</td>
-                        <!-- <td class="thname" data-title="VAT ID">{{fleet}}</td> -->
-                        <td data-title="ADDRESS" class="numeric">{{fleet.ownership}}</td>
-                        <td data-title="VAT ID" class="numeric" (click)="delete(fleet._id)"><i class="fa fa-trash" aria-hidden="true"></i>
+                      <tr *ngFor="let work of worklist">
+                        <td class="thno" data-title="NO.">{{work?.tender_number}}</td>
+                        <td class="thname" data-title="NAME">{{work?.period?.start_date}}</td>
+                        <td data-title="ADDRESS" class="numeric">{{work?.period?.end_date}}</td>
+                        <td data-title="VAT ID" class="numeric" >{{work?.induction_tt}}
                         </td>
                       </tr>
                     </tbody>
@@ -47,7 +45,7 @@
     <h1>Work Order | Create
     </h1>
   </div>
-  <form class="createContractorForm" [formGroup]="petrolForm">
+  <div class="createContractorForm" >
     <div class="row">
       <div class="col-md-12">
         <!-- input type -->
@@ -59,7 +57,7 @@
                 <div class="row">
                   <div class="input-field col s4">
                     <p><label>Tender No.</label></p>
-                    <input type="text" class="validate" formControlName="pumpname">
+                    <input type="text" class="validate" [(ngModel)]='tender_number'>
                     <!-- <p class="errormessage"
                         *ngIf="petrolFormErrors.pumpname.required || (petrolForm.controls.pumpname.pristine && submitted)">
                         Cannot be empty</p> -->
@@ -67,7 +65,7 @@
                   </div>
                   <div class="input-field col s4">
                     <p><label>Period Of Contract (Start Date)</label></p>
-                    <input type="date" class="validate" formControlName="driver">
+                    <input type="date" class="validate" [(ngModel)]='period.start_date'>
                     <!-- <p class="errormessage"
                           *ngIf="petrolFormErrors.driver.required || (petrolForm.controls.driver.pristine && submitted)">
                           Cannot be empty</p> -->
@@ -75,7 +73,7 @@
                   </div>
                   <div class="input-field col s4">
                     <p><label>Period Of Contract (End Date)</label></p>
-                    <input type="date" class="validate" formControlName="driver">
+                    <input type="date" class="validate" [(ngModel)]='period.end_date'>
                     <!-- <p class="errormessage"
                             *ngIf="petrolFormErrors.driver.required || (petrolForm.controls.driver.pristine && submitted)">
                             Cannot be empty</p> -->
@@ -85,20 +83,18 @@
                 </div>
                 <div class="row">
                   <div class="col s6">
-                    <p style="margin: 0"><label>Rate Quoted </label>&nbsp;&nbsp;<button class="addBtn">+</button></p>
+                    <p style="margin: 0"><label>Rate Quoted </label>&nbsp;&nbsp;<button class="addBtn" (click)="addquote()">+</button></p>
 
                   </div>
-                  <!-- <div class="input-field col s3">         <button class="addBtn">+</button>
-                        
-                            </div> -->
+         
 
                 </div>
 
 
-                <div class="row">
+                <div class="row" *ngFor="let rate of rate_quoted">
                   <div class="input-field col s3">
                     <p><label>Item</label></p>
-                    <input type="text" class="validate" formControlName="truckno">
+                    <input type="text" class="validate" [(ngModel)]='rate.item'>
                     <!-- <p class="errormessage"
                           *ngIf="petrolFormErrors.truckno.required || (petrolForm.controls.truckno.pristine && submitted)">
                           Cannot be empty</p> -->
@@ -106,14 +102,14 @@
 
                   <div class="input-field col s3">
                     <p><label>Rate</label></p>
-                    <input type="text" class="validate" formControlName="date">
+                    <input type="text" class="validate"  [(ngModel)]='rate.rate'>
                     <!-- <p class="errormessage"
                         *ngIf="petrolFormErrors.date.required || (petrolForm.controls.date.pristine && submitted)">
                         Cannot be empty</p> -->
                   </div>
                   <div class="input-field col s3">
                     <p><label>UOM</label></p>
-                    <input type="text" class="validate" formControlName="truckno">
+                    <input type="text" class="validate"  [(ngModel)]='rate.uom'>
                     <!-- <p class="errormessage"
                           *ngIf="petrolFormErrors.truckno.required || (petrolForm.controls.truckno.pristine && submitted)">
                           Cannot be empty</p> -->
@@ -121,7 +117,7 @@
 
                   <div class="input-field col s3">
                     <p><label>Notes</label></p>
-                    <input type="text" class="validate" formControlName="date">
+                    <input type="text" class="validate"  [(ngModel)]='rate.notes'>
                     <!-- <p class="errormessage"
                         *ngIf="petrolFormErrors.date.required || (petrolForm.controls.date.pristine && submitted)">
                         Cannot be empty</p> -->
@@ -131,7 +127,7 @@
                 </div>
                 <div class="row">
                   <div class="col s6">
-                    <p style="margin: 0"><label>No Of TT(s)</label>&nbsp;&nbsp;<button class="addBtn">+</button></p>
+                    <p style="margin: 0"><label>No Of TT(s)</label>&nbsp;&nbsp;<button class="addBtn" (click)="addtts()">+</button></p>
 
                   </div>
                   <!-- <div class="input-field col s3">         <button class="addBtn">+</button>
@@ -141,10 +137,10 @@
                 </div>
 
 
-                <div class="row">
+                <div class="row" *ngFor="let tt of tts">
                   <div class="input-field col s4">
                     <p><label>Qty</label></p>
-                    <input type="text" class="validate" formControlName="truckno">
+                    <input type="text" class="validate" [(ngModel)]='tt.quantity'>
                     <!-- <p class="errormessage"
                           *ngIf="petrolFormErrors.truckno.required || (petrolForm.controls.truckno.pristine && submitted)">
                           Cannot be empty</p> -->
@@ -152,14 +148,14 @@
 
                   <div class="input-field col s4">
                     <p><label>Unit</label></p>
-                    <input type="text" class="validate" formControlName="date">
+                    <input type="text" class="validate" [(ngModel)]='tt.uom'>
                     <!-- <p class="errormessage"
                         *ngIf="petrolFormErrors.date.required || (petrolForm.controls.date.pristine && submitted)">
                         Cannot be empty</p> -->
                   </div>
                   <div class="input-field col s4">
                     <p><label>UOM</label></p>
-                    <input type="text" class="validate" formControlName="truckno">
+                    <input type="text" class="validate" [(ngModel)]='tt.notes'>
                     <!-- <p class="errormessage"
                           *ngIf="petrolFormErrors.truckno.required || (petrolForm.controls.truckno.pristine && submitted)">
                           Cannot be empty</p> -->
@@ -174,12 +170,12 @@
                     <p><label>Terms & Condition</label></p>
                     <div class="row">
                       <div class="input-field col s4" style="padding-left:0">
-                        <input type="text" class="validate" formControlName="truckno">
+                        <input type="text" class="validate" [(ngModel)]='terms_condition.text'>
 
                       </div>
                       <div class="input-field col s8" style="padding-left:0">
-                        <input type="file" class="validate" class="fileType" formControlName="truckno">
-
+                        <input type="file" class="validate" class="fileType" #mydoc
+                        (change)="upload($event,'Terms')">
                       </div>
                     </div>
                     <!-- <p class="errormessage"
@@ -191,12 +187,12 @@
                       <p><label>Special Condition</label></p>
                       <div class="row">
                         <div class="input-field col s4" style="padding-left:0">
-                          <input type="text" class="validate" formControlName="truckno">
+                          <input type="text" class="validate" [(ngModel)]='spcl_condition.text'>
   
                         </div>
                         <div class="input-field col s8" style="padding-left:0">
-                          <input type="file" class="validate" class="fileType" formControlName="truckno">
-  
+                          <input type="file" class="validate" class="fileType" #mydoc
+                          (change)="upload($event,'Special')">
                         </div>
                       </div>
                       <!-- <p class="errormessage"
@@ -212,12 +208,12 @@
                       <p><label>Transport Guideline</label></p>
                       <div class="row">
                         <div class="input-field col s4" style="padding-left:0">
-                          <input type="text" class="validate" formControlName="truckno">
+                          <input type="text" class="validate" [(ngModel)]='transport_guide.text'>
   
                         </div>
                         <div class="input-field col s8" style="padding-left:0">
-                          <input type="file" class="validate" class="fileType" formControlName="truckno">
-  
+                          <input type="file" class="validate" class="fileType" #mydoc
+                          (change)="upload($event,'Transport')">  
                         </div>
                       </div>
                       <!-- <p class="errormessage"
@@ -229,12 +225,12 @@
                         <p><label>POL Bulk Transport Agent</label></p>
                         <div class="row">
                           <div class="input-field col s4" style="padding-left:0">
-                            <input type="text" class="validate" formControlName="truckno">
+                            <input type="text" class="validate" [(ngModel)]='pbta.text'>
     
                           </div>
                           <div class="input-field col s8" style="padding-left:0">
-                            <input type="file" class="validate" class="fileType" formControlName="truckno">
-    
+                            <input type="file" class="validate" class="fileType" #mydoc
+                            (change)="upload($event,'Bulk')">      
                           </div>
                         </div>
                         <!-- <p class="errormessage"
@@ -248,7 +244,7 @@
                   <div class="row">
                       <div class="input-field col s6">
                         <p><label>Induction of TT in Service</label></p>
-                        <input type="text" class="validate" formControlName="pumpname">
+                        <input type="text" class="validate" [(ngModel)]='induction_tt'  >
                         <!-- <p class="errormessage"
                             *ngIf="petrolFormErrors.pumpname.required || (petrolForm.controls.pumpname.pristine && submitted)">
                             Cannot be empty</p> -->
@@ -282,7 +278,7 @@
       </div>
     </div>
 
-  </form>
+  </div>
 </section>
 
 <!-- workorder -->
