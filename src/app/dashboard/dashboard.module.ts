@@ -34,6 +34,8 @@ import { PaymentmadeComponent } from './paymentmade/paymentmade.component';
 import { DestinationComponent } from './destination/destination.component';
 import { WorkorderComponent } from './workorder/workorder.component';
 import { PetrolformComponent } from './petrolform/petrolform.component';
+import { TenderComponent } from './tender/tender.component';
+// import { ExpenseComponent } from './expense/expense.component';
 // import { EmployeeComponent } from './employee/employee.component';
 
 const routes: Routes = [
@@ -99,6 +101,8 @@ const routes: Routes = [
         DestinationComponent,
         WorkorderComponent,
         PetrolformComponent,
+        TenderComponent,
+        // ExpenseComponent,
         // EmployeeComponent
 
     ]

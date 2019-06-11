@@ -58,19 +58,11 @@
                <ul>
                   <li><i class='fas fa-gas-pump'></i></li>
                   <li class="order" style="padding-right:1em;" ><input style="text-align: center" class="pumpDetail" type="text" [(ngModel)]="dieselrate"></li>
-                  <li class="dropdown flRight">
+                  <li class="dropdown flRight" *ngIf='showbtn'>
                      <a style="padding: 0">
                         <button class="addItem" (click)="savedieselrate()"><i class="fa fa-check"
                               aria-hidden="true"></i></button></a>
-                     <!-- <ul class="dropdown-menu">
-                        <li><a href="#">Table 1</a></li>
-                        <li><a href="#">Table 2</a></li>
-                        <li><a href="#">Table 3</a></li>
-                        <li><a href="#">Table 4</a></li>
-                        <li><a href="#">Table 5</a></li>
-                        <li><a href="#">Table 6</a></li>
-   
-                     </ul> -->
+                     
                   </li>
                </ul>
             </div>
