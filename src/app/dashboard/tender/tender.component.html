@@ -1,120 +1,280 @@
-
-
-
 <!-- period -->
-<section class="createcontract" >
-  <div class="ft">
-    <h1>Diesel Voucher | Create
-    </h1>
-  </div>
-  <form class="createContractorForm" [formGroup]="petrolForm">
-    <div class="row">
-      <div class="col-md-12">
-        <!-- input type -->
-        <div>
-          <div class="card corCard">
-            <section class="container container--sm">
-	<ul class="cd-accordion cd-accordion--animated margin-top--lg margin-bottom--lg">
-		<li class="cd-accordion__item cd-accordion__item--has-children">
-			<input class="cd-accordion__input" type="checkbox" name ="group-1" id="group-1">
-			<label class="cd-accordion__label cd-accordion__label--icon-folder" for="group-1"><span>Group 1</span></label>
+<section class="createcontract">
+	<div class="ft">
+		<h1>Tender | Create
+		</h1>
+	</div>
+	<form class="createContractorForm" [formGroup]="petrolForm">
+		<div class="row">
+			<div class="col-md-12">
+				<!-- input type -->
+				<div>
+					<div class="card corCard">
+						<div class="row">
+							<div class="col-md-8 col-md-offset-2">
+								<section class="container container--sm">
+									<ul class="cd-accordion cd-accordion--animated margin-top--lg margin-bottom--lg">
+										<li class="cd-accordion__item cd-accordion__item--has-children aT">
+											<input class="cd-accordion__input" type="checkbox" name="group-2" id="group-2">
+											<label class="cd-accordion__label cd-accordion__label--icon-folder" for="group-2"><span
+													class="comt">Company</span>
+												<!-- <div class="check">
+													<input type="checkbox" id="checka" [checked]='cashcheck'>
 
-  		<ul class="cd-accordion__sub cd-accordion__sub--l1">
-  			<li class="cd-accordion__item cd-accordion__item--has-children">
-  				<input class="cd-accordion__input" type="checkbox" name ="sub-group-1" id="sub-group-1">
-			    <label class="cd-accordion__label cd-accordion__label--icon-folder" for="sub-group-1"><span>Sub Group 1</span></label>
+												</div> -->
+												<label class="t_a">
+													<input type="checkbox" class="filled-in" />
+													<span></span>
+												</label>
+											</label>
 
-					<ul class="cd-accordion__sub cd-accordion__sub--l2">
-						<li class="cd-accordion__item"><a class="cd-accordion__label cd-accordion__label--icon-img" href="#0"><span>Image</span></a></li>
-						<li class="cd-accordion__item"><a class="cd-accordion__label cd-accordion__label--icon-img" href="#0"><span>Image</span></a></li>
-						<li class="cd-accordion__item"><a class="cd-accordion__label cd-accordion__label--icon-img" href="#0"><span>Image</span></a></li>
-					</ul>
-        </li>
-        
-  			<li class="cd-accordion__item cd-accordion__item--has-children">
-  				<input class="cd-accordion__input" type="checkbox" name ="sub-group-2" id="sub-group-2">
-          <label class="cd-accordion__label cd-accordion__label--icon-folder" for="sub-group-2"><span>Sub Group 2</span></label>
+											<ul class="cd-accordion__sub cd-accordion__sub--l1">
+												<li class="cd-accordion__item"><a class="cd-accordion__label cd-accordion__label--icon-img"
+														href="#0"><span>
+															Company Logo
+														</span>
+														<label class="t_a">
+															<input type="checkbox" />
+															<span></span>
+														</label></a></li>
+												<li class="cd-accordion__item"><a class="cd-accordion__label cd-accordion__label--icon-img"
+														href="#0"><span>
+															Trade License A
+														</span> <label class="t_a">
+															<input type="checkbox" />
+															<span></span>
+														</label></a></li>
+												<li class="cd-accordion__item"><a class="cd-accordion__label cd-accordion__label--icon-img"
+														href="#0"><span>
+															Trade License B
+														</span> <label class="t_a">
+															<input type="checkbox" />
+															<span></span>
+														</label></a></li>
+												<li class="cd-accordion__item"><a class="cd-accordion__label cd-accordion__label--icon-img"
+														href="#0"><span>
+															GST
+														</span> <label class="t_a">
+															<input type="checkbox" />
+															<span></span>
+														</label></a></li>
+												<li class="cd-accordion__item"><a class="cd-accordion__label cd-accordion__label--icon-img"
+														href="#0"><span>
+															Invoice
+														</span> <label class="t_a">
+															<input type="checkbox" />
+															<span></span>
+														</label></a></li>
+												<li class="cd-accordion__item"><a class="cd-accordion__label cd-accordion__label--icon-img"
+														href="#0"><span>
+															PAN
+														</span> <label class="t_a">
+															<input type="checkbox" />
+															<span></span>
+														</label></a></li>
+												<li class="cd-accordion__item"><a class="cd-accordion__label cd-accordion__label--icon-img"
+														href="#0"><span>
+															Registration
+														</span> <label class="t_a">
+															<input type="checkbox" />
+															<span></span>
+														</label></a></li>
+												<li class="cd-accordion__item"><a class="cd-accordion__label cd-accordion__label--icon-img"
+														href="#0"><span>
+															Road Registration Certificate
+														</span> <label class="t_a">
+															<input type="checkbox" />
+															<span></span>
+														</label></a></li>
+												<li class="cd-accordion__item"><a class="cd-accordion__label cd-accordion__label--icon-img"
+														href="#0"><span>
+															TAN
+														</span> <label class="t_a">
+															<input type="checkbox" />
+															<span></span>
+														</label></a></li>
+												<li class="cd-accordion__item"><a class="cd-accordion__label cd-accordion__label--icon-img"
+														href="#0"><span>
+															Balance Sheet
+														</span> <label class="t_a">
+															<input type="checkbox" />
+															<span></span>
+														</label></a></li>
+												<li class="cd-accordion__item"><a class="cd-accordion__label cd-accordion__label--icon-img"
+														href="#0"><span>
+															ITR
+														</span> <label class="t_a">
+															<input type="checkbox" />
+															<span></span>
+														</label></a></li>
+												<!-- <li class="cd-accordion__item"><a class="cd-accordion__label cd-accordion__label--icon-img"
+																href="#0"><span>Image</span></a></li> -->
+											</ul>
+										</li>
+										<li class="cd-accordion__item cd-accordion__item--has-children aT">
+											<input class="cd-accordion__input" type="checkbox" name="group-1" id="group-1">
+											<label class="cd-accordion__label cd-accordion__label--icon-folder" for="group-1"><span
+													class="comt">Fleet</span>
+												<label class="t_a">
+													<input type="checkbox" class="filled-in" />
+													<span></span>
+												</label>
+											</label>
 
-					<ul class="cd-accordion__sub cd-accordion__sub--l2">
-						<li class="cd-accordion__item cd-accordion__item--has-children">
-							<input class="cd-accordion__input" type="checkbox" name ="sub-group-level-3" id="sub-group-level-3">
-							<label class="cd-accordion__label cd-accordion__label--icon-folder" for="sub-group-level-3"><span>Sub Group Level 3</span></label>
+											<ul class="cd-accordion__sub cd-accordion__sub--l1">
+												<li class="cd-accordion__item cd-accordion__item--has-children">
+													<input class="cd-accordion__input" type="checkbox" name="sub-group-1" id="sub-group-1">
+													<label class="cd-accordion__label cd-accordion__label--icon-folder" for="sub-group-1"><span
+															class="truck1">Truck
+															1</span>
+														<label class="t_a">
+															<input type="checkbox" />
+															<span></span>
+														</label></label>
 
-							<ul class="cd-accordion__sub cd-accordion__sub--l3">
-								<li class="cd-accordion__item"><a class="cd-accordion__label cd-accordion__label--icon-img" href="#0"><span>Image</span></a></li>
-								<li class="cd-accordion__item"><a class="cd-accordion__label cd-accordion__label--icon-img" href="#0"><span>Image</span></a></li>
-							</ul>
-				    </li>
-				    <li class="cd-accordion__item"><a class="cd-accordion__label cd-accordion__label--icon-img" href="#0"><span>Image</span></a></li>
-          </ul>
-  			</li>
-  			<li class="cd-accordion__item"><a class="cd-accordion__label cd-accordion__label--icon-img" href="#0"><span>Image</span></a></li>
-		    <li class="cd-accordion__item"><a class="cd-accordion__label cd-accordion__label--icon-img" href="#0"><span>Image</span></a></li>
-  		</ul>
-    </li>
+													<ul class="cd-accordion__sub cd-accordion__sub--l2">
+														<li class="cd-accordion__item"><a class="cd-accordion__label cd-accordion__label--icon-img"
+																href="#0"><span>
+																	Road Registration Certificate
+																</span>
+																<label class="t_a">
+																	<input type="checkbox" />
+																	<span></span>
+																</label></a></li>
+														<li class="cd-accordion__item"><a class="cd-accordion__label cd-accordion__label--icon-img"
+																href="#0"><span>
+																	Road Registration Certificate
+																</span>
+																<label class="t_a">
+																		<input type="checkbox"/>
+																		<span></span>
+																	</label></a></li>
+														<li class="cd-accordion__item"><a class="cd-accordion__label cd-accordion__label--icon-img"
+																href="#0"><span>
+																	Road Registration Certificate
+																</span>
+																<label class="t_a">
+																		<input type="checkbox"/>
+																		<span></span>
+																	</label></a></li>
+													</ul>
+												</li>
 
-		<li class="cd-accordion__item cd-accordion__item--has-children">
-			<input class="cd-accordion__input" type="checkbox" name ="group-2" id="group-2">
-			<label class="cd-accordion__label cd-accordion__label--icon-folder" for="group-2"><span>Group 2</span></label>
+												<li class="cd-accordion__item cd-accordion__item--has-children">
+													<input class="cd-accordion__input" type="checkbox" name="sub-group-2" id="sub-group-2">
+													<label class="cd-accordion__label cd-accordion__label--icon-folder" for="sub-group-2"><span
+															class="truck1">Truck
+															2</span>
+														<label class="t_a">
+															<input type="checkbox" />
+															<span></span>
+														</label></label>
 
-			<ul class="cd-accordion__sub cd-accordion__sub--l1">
-				<li class="cd-accordion__item"><a class="cd-accordion__label cd-accordion__label--icon-img" href="#0"><span>Image</span></a></li>
-				<li class="cd-accordion__item"><a class="cd-accordion__label cd-accordion__label--icon-img" href="#0"><span>Image</span></a></li>
-			</ul>
-		</li>
+													<ul class="cd-accordion__sub cd-accordion__sub--l2">
+														<li class="cd-accordion__item"><a class="cd-accordion__label cd-accordion__label--icon-img"
+																href="#0"><span>
+																	Road Registration Certificate 
+																</span>
+																<label class="t_a">
+																		<input type="checkbox"/>
+																		<span></span>
+																	</label></a></li>
+														<li class="cd-accordion__item"><a class="cd-accordion__label cd-accordion__label--icon-img"
+																href="#0"><span>
+																	Road Registration Certificate 
+																</span>
+																<label class="t_a">
+																		<input type="checkbox"/>
+																		<span></span>
+																	</label></a></li>
+														<li class="cd-accordion__item"><a class="cd-accordion__label cd-accordion__label--icon-img"
+																href="#0"><span>
+																	Road Registration Certificate 
+																</span>
+																<label class="t_a">
+																		<input type="checkbox"/>
+																		<span></span>
+																	</label></a></li>
+													</ul>
+												</li>
+											</ul>
+										</li>
+										<li class="cd-accordion__item cd-accordion__item--has-children aT">
+											<input class="cd-accordion__input" type="checkbox" name="group-4" id="group-4">
+											<label class="cd-accordion__label cd-accordion__label--icon-folder" for="group-4"><span
+													class="comt">Driver</span>
+												<label class="t_a">
+													<input type="checkbox" class="filled-in" />
+													<span></span>
+												</label>
+											</label>
 
-		<li class="cd-accordion__item cd-accordion__item--has-children">
-			<input class="cd-accordion__input" type="checkbox" name ="group-3" id="group-3">
-			<label class="cd-accordion__label cd-accordion__label--icon-folder" for="group-3"><span>Group 3</span></label>
+											<ul class="cd-accordion__sub cd-accordion__sub--l1">
+												<li class="cd-accordion__item cd-accordion__item--has-children">
+													<input class="cd-accordion__input" type="checkbox" name="sub-group-3" id="sub-group-3">
+													<label class="cd-accordion__label cd-accordion__label--icon-folder" for="sub-group-3"><span
+															class="truck1">Driver
+															1</span>
+														<label class="t_a">
+															<input type="checkbox" />
+															<span></span>
+														</label>
+													</label>
 
-			<ul class="cd-accordion__sub cd-accordion__sub--l1">
-				<li class="cd-accordion__item"><a class="cd-accordion__label cd-accordion__label--icon-img" href="#0"><span>Image</span></a></li>
-				<li class="cd-accordion__item"><a class="cd-accordion__label cd-accordion__label--icon-img" href="#0"><span>Image</span></a></li>
-			</ul>
-		</li>
-
-		<li class="cd-accordion__item cd-accordion__item--has-children">
-			<input class="cd-accordion__input" type="checkbox" name ="group-4" id="group-4">
-			<label class="cd-accordion__label cd-accordion__label--icon-folder" for="group-4"><span>Group 4</span></label>
-
-			<ul class="cd-accordion__sub cd-accordion__sub--l1">
-				<li class="cd-accordion__item cd-accordion__item--has-children">
-					<input class="cd-accordion__input" type="checkbox" name ="sub-group-3" id="sub-group-3">
-					<label class="cd-accordion__label cd-accordion__label--icon-folder" for="sub-group-3"><span>Sub Group 3</span></label>
-
-					<ul class="cd-accordion__sub cd-accordion__sub--l2">
-						<li class="cd-accordion__item"><a class="cd-accordion__label cd-accordion__label--icon-img" href="#0"><span>Image</span></a></li>
-						<li class="cd-accordion__item"><a class="cd-accordion__label cd-accordion__label--icon-img" href="#0"><span>Image</span></a></li>
-					</ul>
-				</li>
-				<li class="cd-accordion__item"><a class="cd-accordion__label cd-accordion__label--icon-img" href="#0"><span>Image</span></a></li>
-				<li class="cd-accordion__item"><a class="cd-accordion__label cd-accordion__label--icon-img" href="#0"><span>Image</span></a></li>
-			</ul>
-		</li>
-	</ul>
-</section>
-          </div>
-          <div class="row">
-            <div class="contractorButton">
-              <button class="submitBtn" (click)="submit()">Submit</button>
-              <button class="cancelBtn" (click)="cancel()">Cancel</button>
-            </div>
-          </div>
-        </div>
+													<ul class="cd-accordion__sub cd-accordion__sub--l2">
+														<li class="cd-accordion__item"><a class="cd-accordion__label cd-accordion__label--icon-img"
+																href="#0"><span>
+																	Road Registration Certificate 
+																</span>
+																<label class="t_a">
+																		<input type="checkbox"/>
+																		<span></span>
+																	</label></a></li>
+														<li class="cd-accordion__item"><a class="cd-accordion__label cd-accordion__label--icon-img"
+																href="#0"><span>
+																	Road Registration Certificate 
+																</span>
+																<label class="t_a">
+																		<input type="checkbox"/>
+																		<span></span>
+																	</label></a></li>
+													</ul>
+												</li>
+												<!-- <li class="cd-accordion__item"><a class="cd-accordion__label cd-accordion__label--icon-img" href="#0"><span>Image</span></a></li> -->
+												<!-- <li class="cd-accordion__item"><a class="cd-accordion__label cd-accordion__label--icon-img" href="#0"><span>Image</span></a></li> -->
+											</ul>
+										</li>
 
 
 
 
-        <!-- input type -->
+									</ul>
+								</section>
+							</div>
+						</div>
+
+					</div>
+					<div class="row">
+						<div class="contractorButton">
+							<button class="submitBtn" (click)="submit()">Submit</button>
+							<button class="cancelBtn" (click)="cancel()">Cancel</button>
+						</div>
+					</div>
+				</div>
+
+
+
+
+				<!-- input type -->
 
 
 
 
 
-      </div>
-    </div>
+			</div>
+		</div>
 
-  </form>
+	</form>
 </section>
 
 <!-- period -->

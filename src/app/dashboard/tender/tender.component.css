@@ -2250,6 +2250,55 @@ button.addBtn {
 input.cote {
     height: 7.4vh !important;
 }
+.check label span{
+    display: inline-block;
+    margin-left: 2em;
+}
+input#checka {
+    opacity: 1;
+    pointer-events: auto;
+	bottom: -7px;
+	right: 0;
+}
+a.cd-accordion__label.cd-accordion__label--icon-img {
+    text-decoration: none;
+    font-size: 14px;
+    color: #988b8b;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    margin-left: 3em;
+    margin-bottom: 7px;
+}
+span.comt {
+	font-family: 'Montserrat', sans-serif;
+    margin-left: 13px;
+	font-size: 15px;
+	font-size: 20px;
+    color: #314662;
+    font-weight: 700;
+}
+ul.cd-accordion__sub.cd-accordion__sub--l1 {
+	margin-left: 1em;
+	margin-top: 2em;
+    margin-bottom: 2em;
+}
+label.cd-accordion__label.cd-accordion__label--icon-folder span.truck1 {
+	margin-left: 1em;
+	font-size: 17px;
+    color: #2790fc;
+    font-family: 'Montserrat', sans-serif;
+}
+ul.cd-accordion.cd-accordion--animated.margin-top--lg.margin-bottom--lg li.cd-accordion__item.cd-accordion__item--has-children.aT {
+    margin: 3em 0;
+}
+ul.cd-accordion__sub.cd-accordion__sub--l2 {
+    margin: 1em 0;
+}
+label.t_a {
+    float: right;
+    position: absolute;
+    right: 0;
+}
 /* tender css */
 
 /* Responsive css */
