@@ -54,6 +54,7 @@ consigmentDetail=[];
     }
 
     this.billForm.value.sub_total = amounts;
+    console.log("hi",this.billForm.value.sub_total)
     this.calc();
   }
   calc() {
