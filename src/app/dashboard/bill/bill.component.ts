@@ -121,7 +121,7 @@ consigmentDetail=[];
   submit() {
     console.log(this.billForm.value);
     let data = {
-      vendorId: this.billForm.value.customer,
+      vendorId: this.billForm.value.vendorId,
       work_order: this.billForm.value.work_order,
       bill_date: this.billForm.value.bill_date,
       terms: this.billForm.value.terms,
