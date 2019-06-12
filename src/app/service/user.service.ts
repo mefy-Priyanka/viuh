@@ -107,4 +107,11 @@ creatinvoice(data){
   return this.httpClient.post(APIURL+'invoice/create',data)
 }
 // end invoice
+// bill
+
+
+createbill(data){
+  return this.httpClient.post(APIURL+'bill/create',data)
+}
+// end bill
 }
