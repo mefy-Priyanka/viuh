@@ -110,7 +110,9 @@ export class CompanyService {
   getcontact(id) {
     return this.httpClient.get(APIURL + 'contact/contactlist?superAdminId=' + id)
   }
-
+  getvendor(data) {
+    return this.httpClient.get(APIURL + 'contact/listByContactType?superAdminId=' + data.id + '&contact_type=' + data.contact_type)
+  }
   // driver get
 
   getdriver(data) {
