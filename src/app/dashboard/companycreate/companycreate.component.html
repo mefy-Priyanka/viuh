@@ -39,11 +39,11 @@
                   </div>
 
 
-                  <!-- <div class="input-field col s4">
+                  <div class="input-field col s4">
                     <p><label>Registration No. <span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate" (keyup)="keyup(inputdata.email,'email')"  [(ngModel)]="inputdata.email">
+                    <input type="text" class="validate" (keyup)="keyup(inputdata.email,'email')"  [(ngModel)]="inputdata.registration_certificate">
 
-                  </div> -->
+                  </div>
 
                   <div class="input-field col s4">
                     <p><label>Organisation</label></p>
@@ -105,8 +105,8 @@
 
                 <div class="row">
                   <div class="input-field col s4">
-                    <p><label>Professional Tax <span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate" (keyup)="keyup(inputdata.pf,'pf')"  [(ngModel)]="inputdata.pf">
+                    <p><label>Trade License B<span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" (keyup)="keyup(inputdata.tradeLicense_B,'tradeLicense_B')"  [(ngModel)]="inputdata.tradeLicense_B">
 
                   </div>
                   <div class="input-field col s4">
@@ -115,7 +115,7 @@
 
                   </div>
                   <div class="input-field col s4">
-                    <p><label>Trade License A<span class="blue_star">*</span></label></p>
+                    <p><label>ESI<span class="blue_star">*</span></label></p>
                     <input type="text" class="validate" (keyup)="keyup(inputdata.esi,'esi')"  [(ngModel)]="inputdata.esi">
 
                   </div>
@@ -128,27 +128,40 @@
 
 
                 <div class="row">
+                  
+
                   <div class="input-field col s4">
-                    <p><label>Trade License B<span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate" (keyup)="keyup(inputdata.tradeLicense_B,'tradeLicense_B')"  [(ngModel)]="inputdata.tradeLicense_B">
+                    <p><label>PF<span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" (keyup)="keyup(inputdata.pf,'pf')"  [(ngModel)]="inputdata.pf">
 
                   </div>
+
                   <div class="input-field col s4">
                     <p><label>Road Registration Certificate<span class="blue_star">*</span></label></p>
                     <input type="text" class="validate" (keyup)="keyup(inputdata.road_registration_certificate,'road_registration_certificate')"  [(ngModel)]="inputdata.road_registration_certificate">
                   </div>
-                  <!-- <div class="input-field col s4">
+
+                  
+                  <div class="input-field col s4">
                     <p><label>Invoice No. <span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate" (keyup)="keyup()"  [(ngModel)]="inputdata.email" >
+                    <input type="text" class="validate" (keyup)="keyup(inputdata.invoice_number,'invoice_number')"   [(ngModel)]="inputdata.invoice_number" >
                    
-                  </div> -->
+                  </div>
                 </div>
                 <div class="row">
                   <div class="input-field col s4">
                     <p><label>Tan No.<span class="blue_star">*</span></label></p>
                     <input type="text" class="validate" (keyup)="keyup(inputdata.tan,'tan')"  [(ngModel)]="inputdata.tan">
                   </div>
+                  <div class="input-field col s4">
+                    <p><label>MSME<span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" (keyup)="keyup(inputdata.msme,'msme')"  [(ngModel)]="inputdata.msme">
+                  </div>
                 </div>
+
+                
+             
+
 
               </div>
             </div>
@@ -216,14 +229,14 @@
                     </div>
 
 
-                    <div class="input-field col s4">
+                    <!-- <div class="input-field col s4">
                       <p><label>Invoice</label></p>
                       <div class="input-field col s7 myFilet aeto"><input (change)="upload($event,'invoiceId')"
                           type="file" class="validate" class="fileType">
 
 
                       </div>
-                    </div>
+                    </div> -->
 
 
 

@@ -38,7 +38,7 @@
                     <p><label>Work order </label></p>
                     <select formControlName="Work_order">
                       <option value="" disabled selected>Select</option>
-                      <option value="work">work order</option>
+                      <option *ngFor="let work of worklist" [value]="work._id">{{work.tender_number}}</option>
                     </select>
                   </div>
 
@@ -131,7 +131,7 @@
                               <td class="thname">
                                 <select formControlName="cosignmentId">
                                   <option value="" disabled selected>Select</option>
-                                  <option *ngFor="let data of consigmentDetail" [value]='data._id'>{{data.consignee}}</option>
+                                  <option *ngFor="let data of consigmentDetail" [value]='data._id'>{{data.consignmentNumber}}</option>
                                 </select>
                               </td>
                               <td class="thname"><input type="text" style="border: none !important"

@@ -14,6 +14,7 @@ export class InvoiceComponent implements OnInit {
   myForm: FormGroup;
   consigmentDetail=[];
   contactlist=[];
+  worklist=[];
   constructor(private fb: FormBuilder, private userService: UserService, private toastr: ToastrService,private companyService:CompanyService) { }
 
   ngOnInit() {
@@ -41,6 +42,7 @@ export class InvoiceComponent implements OnInit {
     this.getConsignmentList();
     this.customerList();
     this.customerList(); 
+    this.getwork()
   }
   getConsignmentList() {
     this.userService.consignmentList(localStorage.getItem('SuperAdmin')).subscribe(data => {
@@ -55,6 +57,23 @@ export class InvoiceComponent implements OnInit {
 
       })
   }
+
+  getwork(){
+    let some:any;
+  
+    this.companyService.getworkorder(localStorage.getItem('SuperAdmin')).subscribe(result=>{
+      some=result
+      console.log(some.result);
+      this.worklist=some.result
+    },
+    err=>{
+      console.log(err);
+      this.toastr.error('oops','work order creation failed')
+  
+    })
+  }
+
+  
   customerList() {
   
     this.companyService.getcontact(localStorage.getItem('SuperAdmin')).subscribe(data => {

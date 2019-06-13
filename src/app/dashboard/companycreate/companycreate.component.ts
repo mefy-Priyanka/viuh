@@ -29,7 +29,9 @@ export class CompanycreateComponent implements OnInit {
     pf: {},
     esi: {},
     itr: [],
+    registration_certificate:[],
     balance_sheet: [],
+    msme:[],
     userId: localStorage.getItem('userId')
   };
 
@@ -83,18 +85,22 @@ export class CompanycreateComponent implements OnInit {
         Object.assign(this.maindata.gst, { doc: result.upload._id })
 
       }
-      // else if (type == "invoiceId") {
-      //   Object.assign(this.maindata, { doc: result.upload._id })
-
-      // }
+     
       else if (type == "panId") {
         Object.assign(this.maindata.pan, { doc: result.upload._id })
 
       }
-      // else if (type == "regId") {
-      //   Object.assign(this.maindata.r,{ doc: result.upload._id })
+      else if (type == "regId") {
+        Object.assign(this.maindata.registration_certificate,{ doc: result.upload._id })
 
-      // }
+      }
+
+      else if (type == "msme") {
+        Object.assign(this.maindata.msme,{ doc: result.upload._id })
+
+      }
+
+
       else if (type == "road_registration_certificatedoc") {
         Object.assign(this.maindata.road_registration_certificate, { doc: result.upload._id })
 
@@ -218,6 +224,17 @@ export class CompanycreateComponent implements OnInit {
       if (key == 'road_registration_certificate') {
         Object.assign(this.maindata.road_registration_certificate, { number: data })
       }
+      if (key == 'registration_certificate') {
+        Object.assign(this.maindata.registration_certificate, { number: data })
+      }
+      if (key == 'invoice_number') {
+        Object.assign(this.maindata, { invoice_number: data })
+      }
+      if (key == 'msme') {
+        Object.assign(this.maindata.msme, { invoice_number: data })
+      }
+      
+      
       if (key == 'tan') {
         Object.assign(this.maindata.tan, { number: data })
       }
@@ -241,17 +258,17 @@ export class CompanycreateComponent implements OnInit {
   FormSubmit() {
 
     console.log(this.maindata)
-    this.companyService.createCompany(this.maindata).subscribe(value => {
-      this.toastr.success('Congo!', 'Successfully Created'),
-        console.log('user', value)
-      let result: any = {}
-      result = value
-      this.loader = false;
-      this.SharedService.abc('companylist');
-    },
-      err => {
-        console.log(err)
-      })
+    // this.companyService.createCompany(this.maindata).subscribe(value => {
+    //   this.toastr.success('Congo!', 'Successfully Created'),
+    //     console.log('user', value)
+    //   let result: any = {}
+    //   result = value
+    //   this.loader = false;
+    //   this.SharedService.abc('companylist');
+    // },
+    //   err => {
+    //     console.log(err)
+    //   })
   }
 }
 
