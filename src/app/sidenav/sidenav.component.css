@@ -598,8 +598,16 @@ div#headingThreea {
   color: #fff;
   /* padding: 2em 2em 1em 2em; */
   border: none;
-  height: 42px;
+  height: 30px;
   }
+  div#headingFivea {
+    position: relative;
+    background: #314662;
+    color: #fff;
+    /* padding: 2em 2em 1em 2em; */
+    border: none;
+    height: 42px;
+    }
 div#headingfour {
 position: relative;
 background: #314662;
@@ -683,11 +691,31 @@ li.order input.pumpDetail {
   height: 1.5rem !important;
 }
 .chevron.panel-default > .panel-heading a:after {
-  top: 16px;
+  top: 2px;
+}
+i.fa.fa-sliders {
+  margin-right: 14px !important;
+}
+i.fa.fa-cc-mastercard {
+  font-size: 15px !important;
+  margin-right: 10px !important;
+}
+.chevrona.panel-default > .panel-heading a:after {
+  top: 15px;
 }
 i.fa.fa-bars {
   font-size: 16px;
   line-height: 42px;
   color: rgba(255, 255, 255, 0.8);
   margin-right: 18px;
+}
+i.fa.fa-truck {
+  font-size: 17px;
+  margin-right: 16px;
+  height: 0px;
+}
+i.fa.fa-line-chart {
+  font-size: 17px;
+  margin-right: 16px;
+  height: 0px !important;
 }
