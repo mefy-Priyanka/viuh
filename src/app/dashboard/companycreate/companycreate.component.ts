@@ -258,17 +258,17 @@ export class CompanycreateComponent implements OnInit {
   FormSubmit() {
 
     console.log(this.maindata)
-    // this.companyService.createCompany(this.maindata).subscribe(value => {
-    //   this.toastr.success('Congo!', 'Successfully Created'),
-    //     console.log('user', value)
-    //   let result: any = {}
-    //   result = value
-    //   this.loader = false;
-    //   this.SharedService.abc('companylist');
-    // },
-    //   err => {
-    //     console.log(err)
-    //   })
+    this.companyService.createCompany(this.maindata).subscribe(value => {
+      this.toastr.success('Congo!', 'Successfully Created'),
+        console.log('user', value)
+      let result: any = {}
+      result = value
+      this.loader = false;
+      this.SharedService.abc('companylist');
+    },
+      err => {
+        console.log(err)
+      })
   }
 }
 

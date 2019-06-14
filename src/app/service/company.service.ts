@@ -40,7 +40,8 @@ export class CompanyService {
 
   /***************************** GETTING LOGIN USER DETAIL ****************** */
   companyList(superAdmin) {
-    return this.httpClient.get(APIURL + 'company/companyBySuperAdminId', superAdmin)
+    console.log(APIURL + 'company/companyBySuperAdminId?superAdminId='+ superAdmin)
+    return this.httpClient.get(APIURL + 'company/companyBySuperAdminId?superAdminId='+ superAdmin)
   }
   /********************************END**************************************/
   /***************************** GETTING LOGIN USER DETAIL ****************** */
@@ -137,6 +138,11 @@ export class CompanyService {
   }
   getworkorder(id){
     return this.httpClient.get(APIURL + 'order/orderList?superAdminId=' +id)
+
+  }
+
+  creattender(data){
+    return this.httpClient.post(APIURL + 'company/tender', data)
 
   }
 }
