@@ -24,6 +24,10 @@ section.background {
 .input-field.col.s12.aeField {
     margin: 0 0 10px 0 !important;
 }
+.leftContent {
+    margin-top:6em;
+    text-align: center;
+}
 p.account {
     text-align: center;
     margin-top: 2em;
@@ -55,8 +59,13 @@ p.logo {
     color: #fff;
     font-size: 22px;
     font-weight: 500;
-    margin: 1em 0 0 1em;
+    /* margin: 1em 0 0 1em; */
     font-family: 'Roboto', sans-serif;
+}
+svg#truck {
+    fill: #fff;
+    height: 100px;
+    width: 100px;
 }
 i.material-icons.prefix {
     color: #9E9E9E;
