@@ -1,0 +1,103 @@
+<!-- banktransfer -->
+<section class="createcontract" >
+  <div class="ft">
+    <h1>Bank File Upload
+    </h1>
+  </div>
+  <form class="createContractorForm" [formGroup]="">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- input type -->
+        <div>
+          <div class="card corCard">
+            <div class="row">
+
+              <div class="nota">
+                <div class="row">
+                  <div class="input-field col s4">
+                      <!-- <p><label>Period Name</label></p>
+                      <input type="text" class="validate" formControlName=""> -->
+                      <label>
+                        <input class="with-gap" name="group1" type="radio" checked />
+                        <span>Employee</span>
+                      </label>
+                    </div>
+                  <div class="input-field col s4">
+                    <!-- <p><label>Period Status</label></p>
+                    <input type="text" class="validate" formControlName=""> -->
+                    <label>
+                      <input class="with-gap" name="group1" type="radio" />
+                      <span>Vendor</span>
+                    </label>
+                  </div>
+                  <div class="input-field col s4">
+                    <!-- <p><label>Period Status</label></p>
+                    <input type="text" class="validate" formControlName=""> -->
+                    <label>
+                      <input class="with-gap" name="group1" type="radio"  />
+                      <span>Contractor</span>
+                    </label>
+                  </div>
+                </div>
+
+         
+                <div class="tableide banktransferTable">
+                  <div class="row">
+                    <div id="no-more-tables">
+                      <table class="col-md-12 table-bordered table-striped table-condensed cf">
+                        <thead class="cf">
+                          <tr>
+                            <th>NAME</th>
+                            <th>A/C HOLDER NAME</th>
+                            <th>IFSC CODE</th>
+                            <th>A/C</th>
+                            <th>AMOUNT</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+
+                            <td class="thname">1</td>
+                            <td class="thname">a</td>
+                            <td class="thname">a</td>
+
+                            <td class="thname">a</td>
+                            <td class="thname">
+                            <input type="number" placeholder="Enter Amount">
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+                    </div>
+
+
+                  </div>
+                </div>
+
+
+
+
+
+
+
+                
+              </div>
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="contractorButton">
+              <button class="submitBtn" (click)="submit()">Submit</button>
+              <button class="cancelBtn" (click)="cancel()">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</section>
+
+<!-- banktransfer -->
+
+
