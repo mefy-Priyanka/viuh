@@ -155,7 +155,7 @@
                   <div class="tableide journalTable">
                     <div class="row">
                       <div id="no-more-tables">
-                        <table class="col-md-12 table-bordered table-striped table-condensed cf billTable">
+                        <table class="col-md-12 table-bordered table-striped table-condensed cf billTable" formArrayName="arraydata">
                           <thead class="cf">
                               <tr>
                                   <th>S NO.</th>
@@ -165,8 +165,8 @@
                                 </tr>
                           </thead>
                           <tbody>
-                            <tr *ngFor="let phone of phoneForms.controls; let i=index" [formGroupName]="i">
-                                <td class="thname"><input type="text" style="border: none !important" formControlName="serial_number"></td>
+                              <tr *ngFor="let phone of phoneForms.controls; let i=index" [formGroupName]="i">
+                                  <td class="thname"><input type="text" style="border: none !important" formControlName="serial_number"></td>
                                 <td class="thname">
                                   <select formControlName="cosignmentId">
                                     <option value="" disabled selected>Select</option>
