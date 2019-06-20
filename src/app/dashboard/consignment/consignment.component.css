@@ -287,6 +287,13 @@ button.At {
 .tableide.consignmentTable {
     margin-top: 2em;
 }
+.tableide.consignmentTable {
+    overflow-x: auto;
+    overflow-y: visible;
+}
+table.col-md-12.table-bordered.table-striped.table-condensed.cf {
+    overflow: auto;
+}
 /* table css */
 /* Responsive css */
 @media only screen and (min-width: 320px) and (max-width: 1024px){

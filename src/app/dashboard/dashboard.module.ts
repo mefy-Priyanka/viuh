@@ -35,6 +35,7 @@ import { DestinationComponent } from './destination/destination.component';
 import { WorkorderComponent } from './workorder/workorder.component';
 import { PetrolformComponent } from './petrolform/petrolform.component';
 import { TenderComponent } from './tender/tender.component';
+import { BanktransferComponent } from './banktransfer/banktransfer.component';
 // import { ExpenseComponent } from './expense/expense.component';
 // import { EmployeeComponent } from './employee/employee.component';
 
@@ -102,6 +103,7 @@ const routes: Routes = [
         WorkorderComponent,
         PetrolformComponent,
         TenderComponent,
+        BanktransferComponent,
         // ExpenseComponent,
         // EmployeeComponent
 

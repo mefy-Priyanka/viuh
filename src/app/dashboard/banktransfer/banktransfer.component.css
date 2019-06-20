@@ -1,4 +1,4 @@
-/* workorder css */
+/* banktransfer css */
 .ft h1 {
     font-size: 34px;
     padding: 19px 0;
@@ -50,7 +50,7 @@ button.cancelBtn {
 select {
     display: block;
 }
-.createContractorForm input {
+form.createContractorForm input {
     border: 1px solid #f2f2f2 !important;
     text-indent: 12px;
     height: 2.5rem ;
@@ -84,11 +84,11 @@ button.addBtn {
     border: none;
     background: #32b1f8;
     color: #fff;
-    height: 25px;
-    width: 25px;
-    font-size: 17px;
+    height: 35px;
+    width: 35px;
+    font-size: 21px;
+    margin-top: 37px;
     font-weight: 600;
-    margin-bottom: 1em;
 }
  input[type="file"] {
     /* line-height: 39px; */
@@ -98,15 +98,14 @@ button.addBtn {
 input.cote {
     height: 7.4vh !important;
 }
-input.fileType {
-    padding-top: 7px;
-    display: flex;
-    padding-left: 6px;
-    height: 2.5rem !important;
+/* banktransfer css */
+/* table css */
+.tableide {
+    /* padding: 1em 2em; */
 }
-/* workorder css */
-/* Table css */
-
+span.closT {
+    float: right;
+}
 .tableide .table-bordered>tbody>tr>td{
     border: none;
     /* padding: 1em; */
@@ -121,91 +120,19 @@ input.fileType {
     color:#7b95a1;
     text-align: center;
 }
+div#journalModal input[type="text"] {
+    height: 31px;
+    width: 100px;
+    border: none;
+    margin: auto;
+    background: #fff;
+}
+div#journalModal {
+    max-height: 92%;
+}
 .tableide tr {
     border-bottom: none;
     background: #fff;
-}
-.tableide .table-bordered {
-    border: none;
-}
-/* fleet css */
-@media only screen and (max-width: 800px) {
-    
-    /* Force table to not be like tables anymore */
-	#no-more-tables table, 
-	#no-more-tables thead, 
-	#no-more-tables tbody, 
-	#no-more-tables th, 
-	#no-more-tables td, 
-	#no-more-tables tr { 
-		display: block; 
-	}
- 
-	/* Hide table headers (but not display: none;, for accessibility) */
-	#no-more-tables thead tr { 
-		position: absolute;
-		top: -9999px;
-		left: -9999px;
-	}
- 
-	#no-more-tables tr { border: 1px solid #ccc; }
- 
-	#no-more-tables td { 
-		/* Behave  like a "row" */
-		border: none;
-		border-bottom: 1px solid #eee; 
-		position: relative;
-		padding-left: 50%; 
-		white-space: normal;
-		text-align:left;
-	}
- 
-	#no-more-tables td:before { 
-		/* Now like a table header */
-		position: absolute;
-		/* Top/left values mimic padding */
-		top: 6px;
-		left: 6px;
-		width: 45%; 
-		padding-right: 10px; 
-		white-space: nowrap;
-		text-align:left;
-		font-weight: bold;
-	}
- 
-	/*
-	Label the data
-	*/
-	#no-more-tables td:before { content: attr(data-title); }
-}
-.tableide {
-    /* padding: 1em 2em; */
-}
-.tableide .table-bordered>tbody>tr>td{
-    border: none;
-    padding: 1em;
-    color: #000;
-    font-weight: 600;
-}
-.tableide .table-bordered>thead>tr>th {
-    border: none;
-    padding: 1em;
-    background: #fff;
-    color:#7b95a1;
-}
-table, th, td {
-    border: 1px solid #5544442b !important;
-}
-.tableide .table-bordered > thead > tr > th {
-    border: none;
-    padding: 1em;
-    background: #fafafa;
-    color: #7b95a1;
-    text-align: center;
-}
-.tableide tr {
-    border-bottom: 1px solid #eee;
-    /* background: #f6fbfc; */
 }
 .tableide .table-bordered {
     border: none;
@@ -233,24 +160,27 @@ button.caretn {
 i.fa.fa-question-circle-o {
     font-size: 27px;
 }
-button.addItema {
-    border: 2px solid #32b1f8;
-    background: transparent;
-    color: #32b1f8;
-    height: 35px;
-    font-size: 15px;
-    border-radius: 2px;
-    width: 90px;
-    font-weight: 600;
-    font-family: 'Montserrat', sans-serif;
-    margin-left: 1em;
+table {
+    border-collapse: collapse !important;
+  }
+  
+  table, th, td {
+    border: 1px solid #5544442b !important;
+  }
+  .tableide.banktransferTable {
+    margin-top: 5em;
 }
-button.addItema i {
-    font-size: 17px;
-    margin-right: 7px;
+button.At {
+    border: 1px solid #32b1f8;
+    color: #32b1f8;
+    height: 29px;
+    font-size: 11px;
+    background: transparent;
+    border-radius: 5px;
 }
 /* table css */
-/* Table css */
+/* table css */
+
 /* Responsive css */
 @media only screen and (min-width: 320px) and (max-width: 1024px){
     .input-field.col.s4{
