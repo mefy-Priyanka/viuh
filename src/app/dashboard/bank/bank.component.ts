@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators ,FormArray} from '@angular/forms';
-import {FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { UserService } from 'src/app/service/user.service';
 import { ToastrService } from 'ngx-toastr';
 
@@ -15,10 +15,10 @@ export class BankComponent implements OnInit {
   bankFormErrors: {};
   bankForm: FormGroup;
   submitted: boolean;
-  orders=[]
+  orders = []
   userId: string;
-  banklist=[]
-  constructor(private formBuilder: FormBuilder,private userService: UserService, private toastr: ToastrService ) {
+  banklist = []
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private toastr: ToastrService) {
     this.userId = localStorage.getItem('userId');
 
     this.bankFormErrors = {
@@ -26,8 +26,8 @@ export class BankComponent implements OnInit {
       ifsc: {},
       account_holder_name: {},
       branch_name: {},
-      address:{},
-      account_number:{},
+      address: {},
+      account_number: {},
       // consirmacn:{},
 
     };
@@ -42,14 +42,14 @@ export class BankComponent implements OnInit {
     this.getbanklist()
   }
 
-  getbanklist(){
-    let something:any;
+  getbanklist() {
+    let something: any;
     this.userService.banklist(this.userId).subscribe(value => {
 
       // this.toastr.success('Congo!', 'account get Successfully '),
-        console.log('list', value)
-        something= value;
-      this.banklist=something.result
+      console.log('list', value)
+      something = value;
+      this.banklist = something.result
     },
       err => {
         console.log(err)
@@ -91,51 +91,82 @@ export class BankComponent implements OnInit {
     if (this.bankForm.valid) {
       console.log('let data be', this.bankForm);
       this.submitted = false;
-      this.bank=!this.bank;
+      this.bank = !this.bank;
     }
   }
-  submit(){
-    let something:any;
-      let data={
-        bank_name:this.bankForm.value.bank_name,
-        branch_name:this.bankForm.value.branch_name,
-        account_holder_namet:this.bankForm.value.account_holder_name,
-        ifsc:this.bankForm.value.account_number,
-        account_number:this.bankForm.value.account_number,
-        address:this.bankForm.value.address,
-        userId:this.userId ,
-        format:this.orders
-      }
-    
-      console.log(data);
-      this.userService.bankcreat(data).subscribe(value => {
+  submit() {
+    let something: any;
+    let data = {
+      bank_name: this.bankForm.value.bank_name,
+      branch_name: this.bankForm.value.branch_name,
+      account_holder_namet: this.bankForm.value.account_holder_name,
+      ifsc: this.bankForm.value.account_number,
+      account_number: this.bankForm.value.account_number,
+      address: this.bankForm.value.address,
+      userId: this.userId,
+      format: this.orders
+    }
 
-        this.toastr.success('Congo!', 'Bank created Successfully '),
-          console.log('', value)
-        something = value;
-        this.getbanklist()
-        this.listBank();
-      },
-        err => {
-          console.log(err)
+    console.log(data);
+    this.userService.bankcreat(data).subscribe(value => {
 
-        })
+      console.log('', value)
+      something = value;
+      this.creataccount()
+
+    },
+      err => {
+        console.log(err)
+
+      })
 
   }
-  cancel(){
-    this.bank=!this.bank
+  cancel() {
+    this.bank = !this.bank
   }
-  add(){
-    let temp={
-      field_name:'',
-      field_type:'',
-      description:''
+  add() {
+    let temp = {
+      field_name: '',
+      field_type: '',
+      description: ''
     };
     this.orders.push(temp)
   }
-  
-  listBank(){
-    this.bankList=!this.bankList;
+
+  listBank() {
+    this.bankList = !this.bankList;
+  }
+
+
+  creataccount() {
+
+    let data = {
+      accountName: this.bankForm.value.account_holder_name,
+      accountType: "Asset",
+      description: "description",
+      accountCode: this.bankForm.value.account_number,
+      organisation: localStorage.getItem('organisation'),
+      userId: this.userId,
+      parentAccount: "Bank"
+    }
+
+    console.log('let data be', data);
+    this.userService.creataccount(data).subscribe(value => {
+      this.toastr.success('Congo!', 'account Successfully Created'),
+        console.log('user', value)
+      let result: any = {}
+      result = value
+      console.log(result)
+      this.getbanklist()
+      this.listBank();
+      this.toastr.success('Awesome!', 'Bank created successfully')
+
+    },
+      err => {
+        console.log(err)
+
+        this.toastr.error('Error!', 'Server Error')
+      })
   }
 }
 

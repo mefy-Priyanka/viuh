@@ -6,174 +6,67 @@
 	</div>
 	<div class="createContractorForm">
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-12 ">
 				<!-- input type -->
 				<div>
-					<div class="card corCard">
-						<div class="row">
-							<div class="col-md-12">
-								<section class="container container--sm">
-									<ul class="cd-accordion cd-accordion--animated margin-top--lg margin-bottom--lg">
-										<li class="cd-accordion__item cd-accordion__item--has-children aT">
-											<input class="cd-accordion__input" type="checkbox" name="group-2"
-												id="group-2">
-											<label class="cd-accordion__label cd-accordion__label--icon-folder"
-												for="group-2"><span class="comt">Company</span>
 
-												<label class="t_a">
-													<input type="checkbox" class="filled-in" (change)="selectAll()"
-														[checked]="selectedAll" />
-													<span></span>
-												</label>
-											</label>
 
-											<ul class="cd-accordion__sub cd-accordion__sub--l1">
-												<li class="cd-accordion__item"><a
-														class="cd-accordion__label cd-accordion__label--icon-img"
-														*ngFor="let n of names"><span>
-															{{n.name}}
-														</span>
+
+					<div class="card" *ngIf="active=='first'">
+							<h4>Company</h4>
+
+									<ul class="uls">
+
+
+
+											<li class="parent" style="margin-top: 3em">
+				
+												<div class="row">
+														<div class="col-md-2"></div>
+													<div class="col-md-5">
+														<span class="title" (click)="opencomp()">Company</span>
+													</div>
+													<div class="col-md-5">
 														<label class="t_a">
-															<input type="checkbox" 
-																[(ngModel)]="n.selected"
-																(change)="checkIfAllSelected(i)" />
-															<span></span>
-														</label></a></li>
-
-											</ul>
-										</li>
-
-
-
-
-
-
-
-
-
-
-										<!-- <li class="cd-accordion__item cd-accordion__item--has-children aT">
-											<input class="cd-accordion__input" type="checkbox" name="group-1"
-												id="group-1">
-											<label class="cd-accordion__label cd-accordion__label--icon-folder"
-												for="group-1"><span class="comt">Fleet</span>
-											
-											</label>
-
-											<ul class="cd-accordion__sub cd-accordion__sub--l1"
-												*ngFor="let truck of fleetDetail">
-												<li class="cd-accordion__item cd-accordion__item--has-children">
-													<input class="cd-accordion__input" type="checkbox"
-														name="sub-group-1" id="sub-group-1">
-													<label class="cd-accordion__label cd-accordion__label--icon-folder"
-														for="sub-group-1"><span
-															class="truck1">{{truck.truck_number}}</span>
-														<label class="t_a">
-															<input type="checkbox" (change)="selectAlltruck()"
-																[checked]="truck.selectalltruck" />
-															<span></span>
-														</label></label>
-
-													<ul class="cd-accordion__sub cd-accordion__sub--l2">
-														<li class="cd-accordion__item" *ngFor="let truck of fleetsdata">
-															<a
-																class="cd-accordion__label cd-accordion__label--icon-img"><span>
-																	{{truck.key}}
-																</span>
-																<label class="t_a">
-																	<input type="checkbox" (change)="selecttruck()"
-																		[checked]="truck.selectdoc" />
-																	<span></span>
-																</label></a></li>
-														<li class="cd-accordion__item"><a
-																class="cd-accordion__label cd-accordion__label--icon-img"><span>
-																	Road Registration Certificate
-																</span>
-																<label class="t_a">
-																	<input type="checkbox" />
-																	<span></span>
-																</label></a></li>
-														<li class="cd-accordion__item"><a
-																class="cd-accordion__label cd-accordion__label--icon-img"><span>
-																	Road Registration Certificate
-																</span>
-																<label class="t_a">
-																	<input type="checkbox" />
-																	<span></span>
-																</label></a></li>
-													</ul>
-												</li>
-
-											</ul>
-										</li> -->
-
-
-
-
-
-
-
-
-
-											truck data
-										<ul *ngFor="let truck of truck ;let i= index">
-											<li style="margin-top: 3em">
-												<span>{{truck.maindata.number}}</span>
-												<input type="checkbox" />
-												<label class="t_a">
-													<input type="checkbox" value="{{truck.maindata.selectalltruck}}"
-														(change)="selectAlltruck(i)"
-														[checked]='truck.maindata.selectalltruck' />
-													<span></span>
-												</label>
-
-												<ul>
-													<li *ngFor="let keys of truck.key" style="margin-left: 2em">
-														<span>{{keys.key}} </span>
-														<label class="t_a">
-																
-															<input type="checkbox" value="{{keys.key}}"
-																[(ngModel)]="keys.selectdoc"
-																(change)="checkIftrcukSelected(i)" />
+															<input type="checkbox" class="filled-in" (change)="selectAll()"
+																[checked]="selectedAll" />
 															<span></span>
 														</label>
-
+													</div>
+												</div>
+				
+				
+				
+				
+												<ul>
+													<li *ngFor="let n of names">
+														<div class="row">
+																<div class="col-md-2"></div>
+															<div class="col-md-5">
+																<span style="padding-left: 2em">{{n.name}} </span>
+															</div>
+															<div class="col-md-5">
+																<label class="t_a">
+				
+																	<input type="checkbox" [(ngModel)]="n.selected"
+																		(change)="checkIfAllSelected(i)" />
+																	<span></span>
+																</label>
+															</div>
+														</div>
+				
+				
+				
+				
 													</li>
 												</ul>
 											</li>
 										</ul>
-
-
-
-
-
-
-										driver data
-										<ul *ngFor="let driver of drivers ;let i= index">
-											<li style="margin-top: 3em">
-												<span>{{driver.maindata.name}}</span>
-												<input type="checkbox" />
-												<label class="t_a">
-													<input type="checkbox" value="{{driver.maindata.selectalldriver}}"
-														(change)="selectAlldriver(i)"
-														[checked]='driver.maindata.selectalldriver' />
-													<span></span>
-												</label>
-
-												<ul>
-													<li *ngFor="let keys of driver.key" style="margin-left: 2em">
-														<span>{{keys.key}} </span>
-														<label class="t_a">
-															<input type="checkbox" value="{{keys.key}}"
-																[(ngModel)]="keys.selectdoc"
-																(change)="checkIfdriverSelected(i)" />
-															<span></span>
-														</label>
-
-													</li>
-												</ul>
-											</li>
-										</ul>
+										<div class="contractorButton">
+											<button (click)="select('second')">Fleet  <i class="fa fa-2x fa-angle-double-right"></i> </button>
+										</div>
+							
+						
 
 
 
@@ -182,71 +75,109 @@
 
 
 
+					</div>
 
 
+					<div class="card" *ngIf="active=='second'">
+						<h4>Fleet</h4>
+						<ul class="uls" *ngFor="let truck of truck ;let i= index">
 
+							<div class="row">
+									<div class="col-md-2"></div>
+								<div class="col-md-5"> <span class="title"
+										(click)="openacc(i)">{{truck.maindata.number}}</span>
+								</div>
+								<div class="col-md-5">
 
-
-
-
-
-
-
-
-										<li class="cd-accordion__item cd-accordion__item--has-children aT">
-											<input class="cd-accordion__input" type="checkbox" name="group-4"
-												id="group-4">
-											<label class="cd-accordion__label cd-accordion__label--icon-folder"
-												for="group-4"><span class="comt">Driver</span>
-												<label class="t_a">
-													<input type="checkbox" class="filled-in" />
-													<span></span>
-												</label>
-											</label>
-
-											<ul class="cd-accordion__sub cd-accordion__sub--l1">
-												<li class="cd-accordion__item cd-accordion__item--has-children">
-													<input class="cd-accordion__input" type="checkbox"
-														name="sub-group-3" id="sub-group-3">
-													<label class="cd-accordion__label cd-accordion__label--icon-folder"
-														for="sub-group-3"><span class="truck1">Driver
-															1</span>
-														<label class="t_a">
-															<input type="checkbox" />
-															<span></span>
-														</label>
-													</label>
-
-													<ul class="cd-accordion__sub cd-accordion__sub--l2">
-														<li class="cd-accordion__item"><a
-																class="cd-accordion__label cd-accordion__label--icon-img"><span>
-																	Road Registration Certificate
-																</span>
-																<label class="t_a">
-																	<input type="checkbox" />
-																	<span></span>
-																</label></a></li>
-														<li class="cd-accordion__item"><a
-																class="cd-accordion__label cd-accordion__label--icon-img"><span>
-																	Road Registration Certificate
-																</span>
-																<label class="t_a">
-																	<input type="checkbox" />
-																	<span></span>
-																</label></a></li>
-													</ul>
-												</li>
-												<!-- <li class="cd-accordion__item"><a class="cd-accordion__label cd-accordion__label--icon-img" ><span>Image</span></a></li> -->
-												<!-- <li class="cd-accordion__item"><a class="cd-accordion__label cd-accordion__label--icon-img" ><span>Image</span></a></li> -->
-											</ul>
-										</li>
-
-
-
-
-									</ul>
-								</section>
+									<label class="t_a">
+										<input type="checkbox" value="{{truck.maindata.selectalltruck}}"
+											(change)="selectAlltruck(i)" [checked]='truck.maindata.selectalltruck' />
+										<span></span>
+									</label>
+								</div>
 							</div>
+
+							<li class="parent" style="margin-top: 1em">
+
+
+
+
+								<ul class="child" [ngClass]="{'first': opens==i}">
+									<li *ngFor="let keys of truck.key">
+										<div class="row">
+												<div class="col-md-2"></div>
+
+											<div class="col-md-5"> <span style="padding-left: 2em">{{keys.key}} </span>
+											</div>
+											<div class="col-md-5"> <label class="t_a">
+
+													<input type="checkbox" value="{{keys.key}}"
+														[(ngModel)]="keys.selectdoc"
+														(change)="checkIftrcukSelected(i)" />
+													<span></span>
+												</label>
+											</div>
+										</div>
+
+
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<div class="contractorButton">
+							<button (click)="select('first')"><i class="fa fa-2x fa-angle-double-left"></i>  Company</button>
+
+
+							<button (click)="select('third')">Driver  <i class="fa fa-2x fa-angle-double-right"></i> </button>
+						</div>
+
+
+					</div>
+
+
+					<div class="card" *ngIf="active=='third'">
+						<h4>Drivers</h4>
+						<ul class="uls" *ngFor="let driver of drivers ;let i= index">
+							<li style="margin-top: 2em">
+								<div class="row">
+										<div class="col-md-2"></div>
+
+									<div class="col-md-5"> <span class="title"
+											(click)="opendriver(i)">{{driver.maindata.name}}</span>
+									</div>
+									<div class="col-md-5"> <label class="t_a">
+											<input type="checkbox" value="{{driver.maindata.selectalldriver}}"
+												(change)="selectAlldriver(i)"
+												[checked]='driver.maindata.selectalldriver' />
+											<span></span>
+										</label></div>
+								</div>
+
+
+
+								<ul class="child" [ngClass]="{'first': openss==i}">
+									<li *ngFor="let keys of driver.key">
+										<div class="row">
+												<div class="col-md-2"></div>
+
+											<div class="col-md-5"><span style="padding-left: 2em">{{keys.key}} </span>
+											</div>
+											<div class="col-md-5">
+												<label class="t_a">
+													<input type="checkbox" value="{{keys.key}}"
+														[(ngModel)]="keys.selectdoc"
+														(change)="checkIfdriverSelected(i)" />
+													<span></span>
+												</label></div>
+										</div>
+
+
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<div class="contractorButton">
+							<button (click)="select('second')"> <i class="fa fa-2x fa-angle-double-left"></i>  Fleet </button>
 						</div>
 
 					</div>

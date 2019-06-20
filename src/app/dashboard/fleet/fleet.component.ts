@@ -531,4 +531,39 @@ export class FleetComponent implements OnInit {
         this.toastr.error('Error!', 'Server Error')
       })
   }
+
+
+
+
+
+  // creataccount() {
+
+  //   let data = {
+  //     accountName: this.bankForm.value.account_holder_name,
+  //     accountType: "Asset",
+  //     description: "description",
+  //     accountCode: this.bankForm.value.account_number,
+  //     organisation: localStorage.getItem('organisation'),
+  //     userId: this.userId,
+  //     parentAccount: "Bank"
+  //   }
+
+  //   console.log('let data be', data);
+  //   this.userService.creataccount(data).subscribe(value => {
+  //     this.toastr.success('Congo!', 'account Successfully Created'),
+  //       console.log('user', value)
+  //     let result: any = {}
+  //     result = value
+  //     console.log(result)
+  //     this.getbanklist()
+  //     this.listBank();
+  //     this.toastr.success('Awesome!', 'Bank created successfully')
+
+  //   },
+  //     err => {
+  //       console.log(err)
+
+  //       this.toastr.error('Error!', 'Server Error')
+  //     })
+  // }
 }

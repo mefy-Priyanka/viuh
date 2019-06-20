@@ -108,6 +108,56 @@
 
                     </div>
                   </div>
+
+
+
+
+                  <div class="row">
+                      <div class="input-field col s4">
+                        <p><label>Bank Name</label></p>
+                        <input type="text" class="validate" formControlName="bank_name">
+                        <p class="errormessage" *ngIf="contractorFormErrors.bank_name.required || (contractorForm.controls.bank_name.pristine && submitted)">Bank Name can not be empty</p>
+
+                      </div>
+                      <div class="input-field col s4">
+                        <p><label>Branch Name<span class="blue_star">*</span></label></p>
+                        <input type="text" class="validate" formControlName="branch_name">
+                        <p class="errormessage" *ngIf="contractorFormErrors.branch_name.required || (contractorForm.controls.branch_name.pristine && submitted)">Branch Name can not be empty</p>
+
+                      </div>
+                      <div class="input-field col s4">
+                        <p><label>Account Holder Name <span class="blue_star">*</span></label></p>
+                        <input type="text" class="validate" formControlName="account_holder_name">
+                        <p class="errormessage" *ngIf="contractorFormErrors.account_holder_name.required || (contractorForm.controls.account_holder_name.pristine && submitted)">Account holder Name can not be empty</p>
+
+                      </div>
+          
+                    </div>
+          
+          
+          
+          
+          
+                    <div class="row">
+                      <div class="input-field col s4">
+                        <p><label>Account Number <span class="blue_star">*</span></label></p>
+                        <input type="text" class="validate" formControlName="account_number">
+                        <p class="errormessage" *ngIf="contractorFormErrors.account_number.required || (contractorForm.controls.account_number.pristine && submitted)">Account No. can not be empty</p>
+
+                      </div>
+                      <div class="input-field col s4">
+                        <p><label>IFSC</label></p>
+                        <input type="text" class="validate" formControlName="ifsc">
+                        <p class="errormessage" *ngIf="contractorFormErrors.ifsc.required || (contractorForm.controls.ifsc.pristine && submitted)">IFSC can not be empty</p>
+
+                      </div>
+          
+          
+          
+                    </div>
+
+                    
+
                 </div>
         
               </div>
