@@ -50,7 +50,7 @@ button.cancelBtn {
 select {
     display: block;
 }
-form.createContractorForm input {
+.createContractorForm input {
     border: 1px solid #f2f2f2 !important;
     text-indent: 12px;
     height: 2.5rem !important;
