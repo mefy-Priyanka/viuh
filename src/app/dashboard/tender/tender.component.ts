@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CompanyService } from '../../service/company.service';
+declare const jQuery;
 
 @Component({
   selector: 'app-tender',
@@ -18,6 +19,10 @@ export class TenderComponent implements OnInit {
   driver = [];
   drivers = []
   alldata = [];
+  opens:number;
+  compopen: boolean=false;
+  active='first';
+  openss: number;
   constructor(private CompanyService: CompanyService) {
 
     this.names = [
@@ -42,7 +47,9 @@ export class TenderComponent implements OnInit {
 
   ngOnInit() {
     this.getfleetList();
-    this.driverList()
+    this.driverList();
+
+    
   }
   driverList() {
     let data = {
@@ -71,7 +78,7 @@ export class TenderComponent implements OnInit {
     var driverss: any = [];
     for (var i = 0; i < this.driver.length; i++) {
       var data = {
-        selectalldriver: true,
+        selectalldriver: false,
         name: this.driver[i].name,
         id: this.driver[i]._id
       }
@@ -81,7 +88,7 @@ export class TenderComponent implements OnInit {
           if (key != 'userId') {
             var some = {
               key: [key],
-              selectdoc: true,
+              selectdoc: false,
             }
             driverss.push(some);
           }
@@ -141,7 +148,7 @@ export class TenderComponent implements OnInit {
     var truckss: any = [];
     for (var i = 0; i < this.fleetDetail.length; i++) {
       var data = {
-        selectalltruck: true,
+        selectalltruck: false,
         number: this.fleetDetail[i].truck_number,
         id: this.fleetDetail[i]._id
       }
@@ -151,7 +158,7 @@ export class TenderComponent implements OnInit {
           if (key != 'userId') {
             var some = {
               key: [key],
-              selectdoc: true,
+              selectdoc: false,
             }
             truckss.push(some);
           }
@@ -225,9 +232,6 @@ export class TenderComponent implements OnInit {
     }
     Object.assign(comp, { superAdminId: localStorage.getItem('SuperAdmin') })
 
-
-
-
     for (var i = 0; i < this.truck.length; i++) {
 
       for (var j = 0; j < this.truck[i].key.length; j++) {
@@ -237,14 +241,10 @@ export class TenderComponent implements OnInit {
           var x = (this.truck[i].key[j].key)
           Object.assign(intruck, { [x]: x[0] })
         }
-
-
       }
-
       trucks.push(intruck);
       intruck = [];
       trucks[i].fleetId = this.fleetDetail[i]._id;
-
     }
 
 
@@ -282,7 +282,29 @@ export class TenderComponent implements OnInit {
     this.alldata = [];
 
   }
- 
 
 
+
+  openacc(i){
+    if(i==this.opens){
+    this.opens=999999;
+    return;
+    }
+    console.log(this.opens)
+    this.opens=i;
+  }
+  opencomp(){
+    this.compopen=!this.compopen;
+  }
+  opendriver(i){
+    if(i==this.openss){
+      this.openss=999999;
+      return;
+      }
+    console.log(i)
+    this.openss=i
+  }
+  select(s){
+    this.active=s
+  }
 }

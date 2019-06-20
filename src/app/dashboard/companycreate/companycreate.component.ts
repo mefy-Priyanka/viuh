@@ -29,9 +29,9 @@ export class CompanycreateComponent implements OnInit {
     pf: {},
     esi: {},
     itr: [],
-    registration_certificate:[],
+    registration_certificate:{},
     balance_sheet: [],
-    msme:[],
+    msme:{},
     userId: localStorage.getItem('userId')
   };
 
@@ -99,6 +99,24 @@ export class CompanycreateComponent implements OnInit {
         Object.assign(this.maindata.msme,{ doc: result.upload._id })
 
       }
+
+
+
+      else if (type == "professional_tax") {
+        Object.assign(this.maindata.professional_tax, { doc: result.upload._id })
+
+      }
+      else if (type == "pf") {
+        Object.assign(this.maindata.pf,{ doc: result.upload._id })
+
+      }
+
+      else if (type == "esi") {
+        Object.assign(this.maindata.esi,{ doc: result.upload._id })
+
+      }
+
+
 
 
       else if (type == "road_registration_certificatedoc") {
@@ -231,7 +249,7 @@ export class CompanycreateComponent implements OnInit {
         Object.assign(this.maindata, { invoice_number: data })
       }
       if (key == 'msme') {
-        Object.assign(this.maindata.msme, { invoice_number: data })
+        Object.assign(this.maindata.msme, { number: data })
       }
       
       

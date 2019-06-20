@@ -41,7 +41,7 @@
 
                   <div class="input-field col s4">
                     <p><label>Registration No. <span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate" (keyup)="keyup(inputdata.email,'email')"  [(ngModel)]="inputdata.registration_certificate">
+                    <input type="text" class="validate" (keyup)="keyup(inputdata.registration_certificate,'registration_certificate')"  [(ngModel)]="inputdata.registration_certificate">
 
                   </div>
 
@@ -159,9 +159,6 @@
                   </div>
                 </div>
 
-                
-             
-
 
               </div>
             </div>
@@ -229,14 +226,14 @@
                     </div>
 
 
-                    <!-- <div class="input-field col s4">
-                      <p><label>Invoice</label></p>
-                      <div class="input-field col s7 myFilet aeto"><input (change)="upload($event,'invoiceId')"
+                    <div class="input-field col s4">
+                      <p><label>MSME</label></p>
+                      <div class="input-field col s7 myFilet aeto"><input (change)="upload($event,'msme')"
                           type="file" class="validate" class="fileType">
 
 
                       </div>
-                    </div> -->
+                    </div>
 
 
 
@@ -281,6 +278,50 @@
                       </div>
                     </div>
                   </div>
+
+
+
+
+
+
+
+                  <div class="row">
+                      <div class="input-field col s4">
+                        <p><label>Professional Tax</label></p>
+                        <div class="input-field col s7 myFilet aeto"><input (change)="upload($event,'professional_tax')" type="file"
+                            class="validate" class="fileType">
+  
+  
+                        </div>
+                      </div>
+  
+  
+                      <div class="input-field col s4">
+                        <p><label>PF</label></p>
+                        <div class="input-field col s7 myFilet aeto"><input type="file" class="validate"
+                            (change)="upload($event,'pf')" class="fileType">
+  
+  
+                        </div>
+                      </div>
+  
+  
+  
+                      <div class="input-field col s4">
+                        <p><label>ESI</label></p>
+                        <div class="input-field col s7 myFilet aeto"><input type="file" class="validate"
+                            (change)="upload($event,'esi')" class="fileType">
+  
+                        </div>
+                      </div>
+                    </div>
+
+
+
+
+
+
+
 
                   <br>
                   <hr style="border-top:1px dotted ">

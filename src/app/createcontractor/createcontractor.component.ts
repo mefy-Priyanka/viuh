@@ -40,12 +40,12 @@ export class CreatecontractorComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     private router: Router, private companyService:
-      CompanyService, private toastr: ToastrService,private SharedService: SharedService) {
+      CompanyService, private toastr: ToastrService, private SharedService: SharedService) {
 
-        this.superadminid=localStorage.getItem('SuperAdmin');
-        
+    this.superadminid = localStorage.getItem('SuperAdmin');
+
     this.userId = localStorage.getItem('userId');
-    console.log(this.superadminid,this.userId)
+    console.log(this.superadminid, this.userId)
     this.contractorFormErrors = {
       email: {},
       contactPersonName: {},
@@ -58,6 +58,15 @@ export class CreatecontractorComponent implements OnInit {
       tradeLicenseNo: {},
       invoiceNo: {},
       panCard: {},
+
+
+      bank_name: {},
+      branch_name: {},
+      account_holder_name: {},
+      account_number: {},
+      ifsc: {},
+
+
     };
 
   }
@@ -73,7 +82,14 @@ export class CreatecontractorComponent implements OnInit {
       panCard: ['', Validators.required],
       Address: ['', Validators.required],
       currency: ['', Validators.required],
-      phoneNumber: ['', Validators.required]
+      phoneNumber: ['', Validators.required],
+
+
+      bank_name: ['', Validators.required],
+      branch_name: ['', Validators.required],
+      account_holder_name: ['', Validators.required],
+      account_number: ['', Validators.required],
+      ifsc: ['', Validators.required],
     });
   }
   showContent() {
@@ -108,7 +124,7 @@ export class CreatecontractorComponent implements OnInit {
     this.loader = true;
     if (this.contractorForm.valid) {
       let data = {
-        contactPersonName:this.contractorForm.value.contactPersonName,
+        contactPersonName: this.contractorForm.value.contactPersonName,
         email: this.contractorForm.value.email,
         companyName: this.contractorForm.value.companyName,
         regNo: this.contractorForm.value.regNo,
@@ -125,15 +141,19 @@ export class CreatecontractorComponent implements OnInit {
         companyLogo: this.companyId,
         currency: this.contractorForm.value.currency,
         phoneNumber: this.contractorForm.value.phoneNumber,
+        bank_name: this.contractorForm.value.bank_name,
+        branch_name: this.contractorForm.value.branch_name,
+        account_holder_name: this.contractorForm.value.account_holder_name,
+        account_number: this.contractorForm.value.account_number,
+        ifsc: this.contractorForm.value.ifsc,
         userId: this.userId,
-        superAdminId:this.superadminid
-
+        superAdminId: this.superadminid
       }
       console.log('let data be', data);
       this.companyService.createContractor(data).subscribe(value => {
         this.submitted = false;
         this.toastr.success('Congo!', 'Successfully Created'),
-          console.log('user', value)
+        console.log('user', value)
         let result: any = {}
         result = value
         this.contractorForm.reset();
@@ -219,4 +239,36 @@ export class CreatecontractorComponent implements OnInit {
     }
 
   }
+
+
+  // creataccount() {
+
+  //   let data = {
+  //     accountName: this.bankForm.value.account_holder_name,
+  //     accountType: "Asset",
+  //     description: "description",
+  //     accountCode: this.bankForm.value.account_number,
+  //     organisation: localStorage.getItem('organisation'),
+  //     userId: this.userId,
+  //     parentAccount: "Bank"
+  //   }
+
+  //   console.log('let data be', data);
+  //   this.userService.creataccount(data).subscribe(value => {
+  //     this.toastr.success('Congo!', 'account Successfully Created'),
+  //       console.log('user', value)
+  //     let result: any = {}
+  //     result = value
+  //     console.log(result)
+  //     this.getbanklist()
+  //     this.listBank();
+  //     this.toastr.success('Awesome!', 'Bank created successfully')
+
+  //   },
+  //     err => {
+  //       console.log(err)
+
+  //       this.toastr.error('Error!', 'Server Error')
+  //     })
+  // }
 }

@@ -223,25 +223,25 @@ export class AccountComponent implements OnInit {
         parentAccount: this.accountForm.value.parent
       }
       console.log('let data be', data);
-      // this.userService.creataccount(data).subscribe(value => {
-      //   this.submitted = false;
-      //   this.toastr.success('Congo!', 'account Successfully Created'),
-      //     console.log('user', value)
-      //   let result: any = {}
-      //   result = value
-      //   this.accountForm.reset();
-      //   this.loader = false;;
-      //   this.getaccountlist();
-      //   this.toastr.success('Awesome!', 'Account created successfully')
+      this.userService.creataccount(data).subscribe(value => {
+        this.submitted = false;
+        this.toastr.success('Congo!', 'account Successfully Created'),
+          console.log('user', value)
+        let result: any = {}
+        result = value
+        this.accountForm.reset();
+        this.loader = false;;
+        this.getaccountlist();
+        this.toastr.success('Awesome!', 'Account created successfully')
 
-      // },
-      //   err => {
-      //     console.log(err)
-      //     this.submitted = false;
-      //     this.loader = false;
-      //     this.toastr.error('Error!', 'Server Error')
-      //     this.accountForm.reset();
-      //   })
+      },
+        err => {
+          console.log(err)
+          this.submitted = false;
+          this.loader = false;
+          this.toastr.error('Error!', 'Server Error')
+          this.accountForm.reset();
+        })
     }
     this.getaccountlist();
     this.getaccountlist1();
