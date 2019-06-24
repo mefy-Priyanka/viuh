@@ -59,9 +59,8 @@
         <div class="row">
           <div class="input-field col s12">
             <p><label>Bank Name</label></p>
-            <input type="text" class="validate" formControlName="phoneNumber">
-            <!-- <p class="error" [ngStyle]="{'font-size':'12px'}" *ngIf="vendorFormErrors.phoneNumber.required || (vendorForm.controls.phoneNumber.pristine && submitted)">PLease enter valid phone number</p> -->
-            <!-- <p class="errormessage" [ngStyle]="{'font-size':'12px'}" *ngIf="vendorFormErrors.phoneNumber.minlength ">Please Enter Valid Phone Number -->
+            <input type="text" class="validate" formControlName="bank_name">
+            <p class="error" [ngStyle]="{'font-size':'12px'}" *ngIf="employFormerrors.bank_name.required || (employForm.controls.bank_name.pristine && submitted)">PLease enter Bank name</p>
 
           </div>
 
@@ -105,25 +104,27 @@
     <div class="input-field col s3">
       <p><label>Branch Name</label></p>
       <input placeholder="Enter Number" id="first_name" type="text" class="cote validate"
-        formControlName="doc_name">
+        formControlName="branch_name">
+        <p class="error" [ngStyle]="{'font-size':'12px'}" *ngIf="employFormerrors.branch_name.required || (employForm.controls.branch_name.pristine && submitted)">PLease enter Branch name</p>
 
-      <!-- <p *ngIf="validerr">can't be empty</p> -->
     </div>
     <div class="input-field col s3">
       <p><label>Account Holder Name</label></p>
-      <input id="first_name" type="text" class="cote validate" formControlName="valid_upto">
+      <input id="first_name" type="text" class="cote validate" formControlName="account_holder_name">
+      <p class="error" [ngStyle]="{'font-size':'12px'}" *ngIf="employFormerrors.account_holder_name.required || (employForm.controls.account_holder_name.pristine && submitted)">PLease enter Account holder  name</p>   
     </div>
 
   <div class="input-field col s3">
     <p><label>Ifsc Code</label></p>
     <input placeholder="Enter Number" id="first_name" type="text" class="cote validate"
-      formControlName="number">
-    <!-- <p *ngIf="docuerr">can't be empty</p> -->
+      formControlName="ifsc">
+      <p class="error" [ngStyle]="{'font-size':'12px'}" *ngIf="employFormerrors.ifsc.required || (employForm.controls.ifsc.pristine && submitted)">PLease enter ifsc </p>
+
   </div>
   <div class="input-field col s3">
     <p><label>Account Number</label></p>
-    <input id="first_name" type="text" class="cote validate" formControlName="valid_upto">
-    <!-- <p *ngIf="validerr">can't be empty</p> -->
+    <input id="first_name" type="text" class="cote validate" formControlName="account_number">
+    <p class="error" [ngStyle]="{'font-size':'12px'}" *ngIf="employFormerrors.account_number.required || (employForm.controls.account_number.pristine && submitted)">PLease enter Account number </p> 
   </div>
 </div>
   
