@@ -204,3 +204,6 @@ input.cote {
     width: 207px;
     border-radius: 50%;
 }
+.row.branchAt {
+  padding: 0 1em;
+}
