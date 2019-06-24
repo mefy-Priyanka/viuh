@@ -38,7 +38,12 @@ export class ContactemployeeComponent implements OnInit {
     /*******ERRORS OF userForm ********* */
     this.employFormerrors = {
       name: {},
-      phoneNumber: {}
+      phoneNumber: {},
+      branch_name: {},
+      bank_name: {},
+      account_holder_name: {},
+      ifsc: {},
+      account_number: {}
     };
     /********** ENDS ************** */
   }
@@ -72,11 +77,16 @@ export class ContactemployeeComponent implements OnInit {
       name: ['', Validators.required],
       phoneNumber: ['', Validators.required],
       valid_upto: [''],
-      number: ['',Validators.required],
+      number: ['', Validators.required],
       doc_name: [''],
-      doc: ['',Validators.required],
+      doc: ['', Validators.required],
       list: [''],
-      picture: ['']
+      picture: [''],
+      bank_name: ['', Validators.required],
+      branch_name: ['', Validators.required],
+      account_holder_name: ['', Validators.required],
+      ifsc: ['', Validators.required],
+      account_number: ['', Validators.required]
     });
   }
   /********** ENDS ************** */
@@ -212,39 +222,21 @@ export class ContactemployeeComponent implements OnInit {
   createEmployee() {
     this.loader = true;
     if (this.employForm.valid) {
-      if(Object.keys(this.pictureUpload).length != 0 && this.pictureUpload.constructor != Object){
-      console.log('valid')
-      let data = {
-        name: this.employForm.value.name,
-        phoneNumber: this.employForm.value.phoneNumber,
-        aadhar: this.aadharData.aadhar,
-        voterId: this.voterIdDate.voterId,
-        others: this.othersData,
-        picture: this.pictureUpload ? this.pictureUpload : null,
-        contact_type: "employee",
-        userId: this.userId
-      }
-      console.log(data)
-      this.contactService.contactCreate(data).subscribe(value => {
-        console.log('value', value)
-        this.loader = false;
-        this.toastr.success('Employee created')
-        this.SharedService.abc('contact')
-      },
-        err => {
-          this.loader = false;
-          console.log(err)
-          this.toastr.error('Error!', 'Creation  failed')
-        })
-      }
-      else{
+      if (Object.keys(this.pictureUpload).length != 0 && this.pictureUpload.constructor != Object) {
+        console.log('valid')
         let data = {
           name: this.employForm.value.name,
           phoneNumber: this.employForm.value.phoneNumber,
           aadhar: this.aadharData.aadhar,
           voterId: this.voterIdDate.voterId,
           others: this.othersData,
+          picture: this.pictureUpload ? this.pictureUpload : null,
           contact_type: "employee",
+          bank_name: this.employForm.value.bank_name,
+          branch_name: this.employForm.value.branch_name,
+          account_holder_name: this.employForm.value.account_holder_name,
+          ifsc: this.employForm.value.ifsc,
+          account_number: this.employForm.value.account_number,
           userId: this.userId
         }
         console.log(data)
@@ -258,7 +250,35 @@ export class ContactemployeeComponent implements OnInit {
             this.loader = false;
             console.log(err)
             this.toastr.error('Error!', 'Creation  failed')
-          }) 
+          })
+      }
+      else {
+        let data = {
+          name: this.employForm.value.name,
+          phoneNumber: this.employForm.value.phoneNumber,
+          aadhar: this.aadharData.aadhar,
+          voterId: this.voterIdDate.voterId,
+          others: this.othersData,
+          contact_type: "employee",
+          bank_name: this.employForm.value.bank_name,
+          branch_name: this.employForm.value.branch_name,
+          account_holder_name: this.employForm.value.account_holder_name,
+          ifsc: this.employForm.value.ifsc,
+          account_number: this.employForm.value.account_number,
+          userId: this.userId
+        }
+        console.log(data)
+        this.contactService.contactCreate(data).subscribe(value => {
+          console.log('value', value)
+          this.loader = false;
+          this.toastr.success('Employee created')
+          this.SharedService.abc('contact')
+        },
+          err => {
+            this.loader = false;
+            console.log(err)
+            this.toastr.error('Error!', 'Creation  failed')
+          })
       }
     }
     else {
@@ -269,7 +289,7 @@ export class ContactemployeeComponent implements OnInit {
     }
   }
   /********** ENDS ************** */
-  cancel(){
+  cancel() {
     this.SharedService.abc('contact')
   }
 
