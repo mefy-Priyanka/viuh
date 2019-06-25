@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { SharedService } from '../.././service/shared.service';
 import { ContactService } from '../.././service/contact.service';
 import { CompanyService } from '../.././service/company.service';
+import { UserService } from '../.././service/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 
@@ -33,6 +34,7 @@ export class ContactDriverComponent implements OnInit {
   public searchValue:any;
   public error:any;
   public imgUrlPrefix:any;
+  public accountId:any;
   public userId = localStorage.getItem('userId');
 public mask = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/] // Account number validation 
 
@@ -40,7 +42,7 @@ public mask = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\
   document = ['aadhar', 'licence', 'training_certificate', 'police_verification']
   currentURL: string;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private contactService: ContactService, private companyService: CompanyService,private SharedService: SharedService,private toastr: ToastrService,private sanitizer: DomSanitizer) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private contactService: ContactService,private userService: UserService, private companyService: CompanyService,private SharedService: SharedService,private toastr: ToastrService,private sanitizer: DomSanitizer) {
     /*******ERRORS OF userForm ********* */
     this.driverFormErrors = {
       name: {},
@@ -262,8 +264,12 @@ uploadImage(event){
     console.log(data)
     this.contactService.contactCreate(data).subscribe(value => {
       console.log('value', value)
+      let result:any={}
+      result=value
+      this.accountId=result.result._id
+      this. driverAccount();
       this.loader=false;
-      this.toastr.success('Driver created')
+      this.toastr.success('Driver created')     
       this.driverForm.reset();
       this.SharedService.abc('contact')
     },
@@ -288,8 +294,11 @@ uploadImage(event){
     console.log(data)
     this.contactService.contactCreate(data).subscribe(value => {
       console.log('value', value)
+      let result:any={}
+      result=value
+      this.accountId=result.result._id
+      this. driverAccount();
       this.loader=false;
-      this.toastr.success('Driver created')
       this.driverForm.reset();
       this.SharedService.abc('contact')
     },
@@ -311,4 +320,33 @@ uploadImage(event){
   cancel(){
     this.SharedService.abc('contact')
   }
+  /**************CRATE ACCOUNT AGAINST DRIVER ***********************/
+  driverAccount(){
+    let data={
+      accountName:this.driverForm.value.name,
+      accountType:'Expense',
+      organisation:localStorage.getItem('organisation'),
+      parentAccount:'Driver',
+      userId:this.userId
+    }
+    console.log(' account data',data)
+    this.userService.creataccount(data).subscribe(result=>{
+      this.loader=false;
+      console.log('resultttt',result)
+    },
+    err=>{
+      console.log('account err',err)
+      this.toastr.error('Error!', 'Creation  failed')
+      this.userService.deleteAccount(this.accountId).subscribe(result=>{
+        this.loader=false;
+        console.log('delete result',result);
+      },
+      err=>{
+        this.loader=false;
+        console.log('delete err',err)
+      })
+    })
+  }
+  /********* ENDS ************** */
+
 }

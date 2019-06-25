@@ -114,4 +114,10 @@ createbill(data){
   return this.httpClient.post(APIURL+'bill/create',data)
 }
 // end bill
+
+/*******************DELETE ACCOUNT BY ACCOUNTID***********************/
+deleteAccount(accountId){
+  return this.httpClient.delete(APIURL + 'account/delete?accountId='+accountId)
+}
+
 }

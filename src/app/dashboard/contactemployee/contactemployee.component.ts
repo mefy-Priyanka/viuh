@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { SharedService } from '../.././service/shared.service';
 import { ContactService } from '../.././service/contact.service';
 import { CompanyService } from '../.././service/company.service';
+import { UserService } from '../.././service/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 
@@ -28,13 +29,14 @@ export class ContactemployeeComponent implements OnInit {
   public searchValue: any;
   public error: any;
   public imgUrlPrefix: any;
+  public accountId:any;
   public userId = localStorage.getItem('userId');
   public mask = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/] // Account number validation 
 
 
   document = ['aadhar', 'voterId']
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private contactService: ContactService, private companyService: CompanyService, private SharedService: SharedService, private toastr: ToastrService, private sanitizer: DomSanitizer) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private userService: UserService,private contactService: ContactService, private companyService: CompanyService, private SharedService: SharedService, private toastr: ToastrService, private sanitizer: DomSanitizer) {
     /*******ERRORS OF userForm ********* */
     this.employFormerrors = {
       name: {},
@@ -242,6 +244,10 @@ export class ContactemployeeComponent implements OnInit {
         console.log(data)
         this.contactService.contactCreate(data).subscribe(value => {
           console.log('value', value)
+          let result:any={}
+          result=value
+          this.accountId=result.result._id
+          this.employeeAccount();
           this.loader = false;
           this.toastr.success('Employee created')
           this.SharedService.abc('contact')
@@ -270,6 +276,10 @@ export class ContactemployeeComponent implements OnInit {
         console.log(data)
         this.contactService.contactCreate(data).subscribe(value => {
           console.log('value', value)
+          let result:any={}
+          result=value
+          this.accountId=result.result._id
+          this.employeeAccount();
           this.loader = false;
           this.toastr.success('Employee created')
           this.SharedService.abc('contact')
@@ -292,5 +302,32 @@ export class ContactemployeeComponent implements OnInit {
   cancel() {
     this.SharedService.abc('contact')
   }
-
+/**************CRATE ACCOUNT AGAINST EMPLOYEE ***********************/
+employeeAccount(){
+  let data={
+    accountName:this.employForm.value.name,
+    accountType:'Expense',
+    organisation:localStorage.getItem('organisation'),
+    parentAccount:'Employee',
+    userId:this.userId
+  }
+  console.log(' account data',data)
+    this.userService.creataccount(data).subscribe(result=>{
+      console.log('resultttt',result)
+      this.loader=false;
+    },
+    err=>{
+      console.log('account err',err)
+      this.toastr.error('Error!', 'Creation  failed')
+      this.userService.deleteAccount(this.accountId).subscribe(result=>{
+        this.loader=false;
+        console.log('delete result',result);
+      },
+      err=>{
+        this.loader=false;
+        console.log('delete err',err)
+      })
+    })
+  }
+/********** ENDS ************** */
 }
