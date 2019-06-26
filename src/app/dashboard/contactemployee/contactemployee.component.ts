@@ -55,6 +55,7 @@ export class ContactemployeeComponent implements OnInit {
     this.employForm.valueChanges.subscribe(() => {
       this.onemployFormValuesChanged();
     });
+    //  this.account();
   }
   /***********IT CATCHES ALL CHANGES IN FORM*******/
   onemployFormValuesChanged() {
@@ -330,4 +331,23 @@ employeeAccount(){
     })
   }
 /********** ENDS ************** */
+/****************FIRST TIME ACCOUNT CREATION **************************/
+// account(){
+//   let data={
+//     accountName:'Employee',
+//     accountType:'Expense',
+//     organisation:localStorage.getItem('organisation'),
+//     userId:this.userId
+//   }
+//   console.log(' account data',data)
+//   this.userService.creataccount(data).subscribe(result=>{
+//     this.loader=false;
+//     console.log('resultttt',result)
+//   },
+//   err=>{
+//     console.log('account err',err)
+//     this.toastr.error('Error!', 'Creation  failed')
+//   })
+// }
+  /********* ENDS ************** */
 }

@@ -55,6 +55,7 @@ public mask = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\
     this.customerForm.valueChanges.subscribe(() => {
       this.oncustomerFormValuesChanged();
     });
+    // this.account();
   }
    /***********IT CATCHES ALL CHANGES IN FORM*******/
    oncustomerFormValuesChanged() {
@@ -353,4 +354,23 @@ uploadImage(event){
     })
   }
   /********** ENDS ************** */
+  /****************FIRST TIME ACCOUNT CREATION **************************/
+// account(){
+//   let data={
+//     accountName:'Customer',
+//     accountType:'Revenue',
+//     organisation:localStorage.getItem('organisation'),
+//     userId:this.userId
+//   }
+//   console.log(' account data',data)
+//   this.userService.creataccount(data).subscribe(result=>{
+//     this.loader=false;
+//     console.log('resultttt',result)
+//   },
+//   err=>{
+//     console.log('account err',err)
+//     this.toastr.error('Error!', 'Creation  failed')
+//   })
+// }
+  /********* ENDS ************** */
 }

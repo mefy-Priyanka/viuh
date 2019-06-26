@@ -57,6 +57,7 @@ export class ContactvendorComponent implements OnInit {
     this.vendorForm.valueChanges.subscribe(() => {
       this.onvendorFormValuesChanged();
     });
+    // this.account();
   }
   /***********IT CATCHES ALL CHANGES IN FORM*******/
   onvendorFormValuesChanged() {
@@ -339,7 +340,7 @@ export class ContactvendorComponent implements OnInit {
       accountName: this.vendorForm.value.name,
       accountType: 'Expense',
       organisation: localStorage.getItem('organisation'),
-      parentAccount: 'Employee',
+      parentAccount: 'Vendor',
       userId: this.userId
     }
     console.log(' account data', data)
@@ -362,4 +363,25 @@ export class ContactvendorComponent implements OnInit {
       })
   }
   /********** ENDS ************** */
+/****************FIRST TIME ACCOUNT CREATION **************************/
+
+  // account(){
+  //   let data={
+  //     accountName:'Vendor',
+  //     accountType:'Expense',
+  //     organisation:localStorage.getItem('organisation'),
+  //     userId:this.userId
+  //   }
+  //   console.log(' account data',data)
+  //   this.userService.creataccount(data).subscribe(result=>{
+  //     this.loader=false;
+  //     console.log('resultttt',result)
+  //   },
+  //   err=>{
+  //     console.log('account err',err)
+  //     this.toastr.error('Error!', 'Creation  failed')
+  //   })
+  // }
+  /********** ENDS ************** */
+
 }

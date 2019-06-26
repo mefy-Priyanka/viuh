@@ -27,6 +27,7 @@ export class ContactDriverComponent implements OnInit {
   public policeData: any = {};
   public licenceData: any = {};
   public othersData: any = [];
+  public accountDetail:any=[];
   public inputField: Boolean = false;
   public show:Boolean=true
   public imageUpload:any={};
@@ -56,6 +57,8 @@ public mask = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\
     this.driverForm.valueChanges.subscribe(() => {
       this.onDriverFormValuesChanged();
     });
+    // this.getAccountDetail();
+    // this.account();
   }
   /***********IT CATCHES ALL CHANGES IN FORM*******/
   onDriverFormValuesChanged() {
@@ -320,8 +323,16 @@ uploadImage(event){
   cancel(){
     this.SharedService.abc('contact')
   }
+  // getAccountDetail(){
+  //   this.userService.getAccountDetail('Driver','Expense').subscribe(data=>{
+  //     console.log('account detail',data)
+  //     let value:any={};
+  //     value=data
+  //    this. accountDetail=value.result
+  //   })
+  // }
   /**************CRATE ACCOUNT AGAINST DRIVER ***********************/
-  driverAccount(){
+  driverAccount(){  
     let data={
       accountName:this.driverForm.value.name,
       accountType:'Expense',
@@ -347,6 +358,26 @@ uploadImage(event){
       })
     })
   }
+  
+  /********* ENDS ************** */
+/****************FIRST TIME ACCOUNT CREATION **************************/
+// account(){
+//   let data={
+//     accountName:'Driver',
+//     accountType:'Expense',
+//     organisation:localStorage.getItem('organisation'),
+//     userId:this.userId
+//   }
+//   console.log(' account data',data)
+//   this.userService.creataccount(data).subscribe(result=>{
+//     this.loader=false;
+//     console.log('resultttt',result)
+//   },
+//   err=>{
+//     console.log('account err',err)
+//     this.toastr.error('Error!', 'Creation  failed')
+//   })
+// }
   /********* ENDS ************** */
 
 }

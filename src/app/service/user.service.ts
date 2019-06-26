@@ -120,4 +120,8 @@ deleteAccount(accountId){
   return this.httpClient.delete(APIURL + 'account/delete?accountId='+accountId)
 }
 
+/*****************GET ACCOUNT LIST BY PARENT ACCOUNTNAME AND ACCOUNT TYPE */
+// getAccountDetail(parentAccount,accountType){
+//   return this.httpClient.get(APIURL + 'account/accountType?parentAccount='+parentAccount + '&accountType=' +accountType)
+// }
 }
