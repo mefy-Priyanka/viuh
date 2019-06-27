@@ -34,7 +34,6 @@
                         <select formControlName="driver">
                             <option value="" disabled selected>Select</option>
                             <option *ngFor="let driver of driverlist" [value]='driver._id'>{{driver.name}}</option>
-                            <!-- <option value='contract'>Contract</option> -->
                           </select>
                         <p class="errormessage"
                         *ngIf="petrolFormErrors.driver.required || (petrolForm.controls.driver.pristine && submitted)">
@@ -92,7 +91,7 @@
           <div class="row">
             <div class="contractorButton">
               <button class="submitBtn" (click)="submit()">Submit</button>
-              <button class="cancelBtn" (click)="cancel()">Cancel</button>
+              <button class="cancelBtn">Cancel</button>
             </div>
           </div>
         </div>

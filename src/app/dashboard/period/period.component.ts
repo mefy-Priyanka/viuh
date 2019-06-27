@@ -10,11 +10,12 @@ import * as moment from 'moment';
   styleUrls: ['./period.component.css']
 })
 export class PeriodComponent implements OnInit {
-  periodFormErrors: {};
+  // periodFormErrors: {};
   periodForm: FormGroup;
   submitted: boolean;
   periods=[];
   openbool: boolean;
+  periodFormErrors: { period_name: any; period_status: any; from: any; to: any; };
   constructor(private formBuilder: FormBuilder, private CompanyService: CompanyService, private toastr: ToastrService) {
     this.periodFormErrors = {
       period_name: {},

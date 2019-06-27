@@ -15,12 +15,13 @@ export class ContactComponent implements OnInit {
   userId: string;
   role: string;
   organisation: string;
-  contactFormErrors: {};
+  // contactFormErrors: {};
   contactypelist = [];
   contactForm: FormGroup;
   submitted: boolean;
   loader: boolean;
   contactlist=[];
+  contactFormErrors: { email: any; phoneNumber: any; company_name: any; contactType: any; website: any; };
 
   constructor(private SharedService:SharedService,private formBuilder: FormBuilder, private userService: UserService, private toastr: ToastrService) {
     this.userId = localStorage.getItem('userId');

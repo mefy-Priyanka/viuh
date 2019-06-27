@@ -8,11 +8,9 @@ import { AccountComponent } from './account/account.component';
 import { FleetComponent } from './fleet/fleet.component';
 import { UserComponent } from './user/user.component';
 import { OrderComponent } from './order/order.component';
-// import { ContractorcreateComponent } from './contractorcreate/contractorcreate.component';
 import { CompanycreateComponent } from './companycreate/companycreate.component';
 import { SidenavComponent } from '../sidenav/sidenav.component';
-import { CreatecontractorComponent } from '../createcontractor/createcontractor.component';
-// import { ContactComponent } from '../dashboard/contact/contact.component';
+import { ContactComponent } from '../dashboard/contact/contact.component';
 import { MaprouteComponent } from './maproute/maproute.component';
 import { ContractorListComponent } from './contractor-list/contractor-list.component';
 import { CompanyListComponent } from './company-list/company-list.component';
@@ -49,7 +47,6 @@ const routes: Routes = [
             { path: "fleet", component: FleetComponent },
             { path: "user", component: UserComponent },
             { path: "order", component: OrderComponent },
-            { path: "contractor", component: CreatecontractorComponent },
             { path: "company", component: CompanycreateComponent },
             // { path: "contact", component: ContactComponent }
             { path: "contact", component: CompanyListComponent },
@@ -77,10 +74,8 @@ const routes: Routes = [
         FleetComponent,
         UserComponent,
         OrderComponent,
-        CreatecontractorComponent,
-        // ContractorcreateComponent,
         CompanycreateComponent,
-        // ContactComponent,
+        ContactComponent,
         SidenavComponent,
         MaprouteComponent,
         ContractorListComponent,

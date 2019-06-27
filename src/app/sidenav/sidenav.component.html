@@ -54,7 +54,7 @@
             </ul>
          </div>
 
-         <div class="row leftCet alit" *ngIf='role=="superAdmin" || "admin"'>
+         <div class="row leftCet alit" >
                <ul>
                   <li><i class='fas fa-gas-pump'></i></li>
                   <li class="order" style="padding-right:1em;" ><input style="text-align: center" class="pumpDetail" type="text" [(ngModel)]="dieselrate"></li>
@@ -131,7 +131,7 @@
                   <ul class="nav accordionae">
                      <li class="order" (click)="abc('petrol')"> <i class="fa fa-list-alt" aria-hidden="true"></i>Diesel Voucher</li>
 
-                     <li class="order"  (click)="abc('journal','journalcreate')"><i class="fa fa-sticky-note" aria-hidden="true"></i>Journal</li>
+                     <li class="order"  (click)="abc('journal')"><i class="fa fa-sticky-note" aria-hidden="true"></i>Journal</li>
                      <li class="order" (click)="abc('invoice')"><i class="fa fa-sticky-note" aria-hidden="true"></i>Invoice</li>
                      <li class="order" (click)="abc('bill')"> <i class="fa fa-list-alt" aria-hidden="true"></i>Bills</li>
                      <li class="order" (click)="abc('payment')"> <i class="fa fa-cc-mastercard" aria-hidden="true"></i>Payment Received</li>

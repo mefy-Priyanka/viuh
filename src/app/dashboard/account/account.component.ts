@@ -15,7 +15,6 @@ export class AccountComponent implements OnInit {
   userId: string;
   role: string;
   organisation: string;
-  accountFormErrors: {};
   accountypelist = [];
   accountForm: FormGroup;
   submitted: boolean;
@@ -34,6 +33,7 @@ export class AccountComponent implements OnInit {
   acnttype: any;
   levelteoacnt = [];
   accountlist1=[];
+  accountFormErrors: { accountName: any; parent: any; description: any; accountCode: any; };
 
   constructor(private formBuilder: FormBuilder, private userService: UserService, private toastr: ToastrService) {
     this.userId = localStorage.getItem('userId');
