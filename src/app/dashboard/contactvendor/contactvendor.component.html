@@ -130,7 +130,7 @@
                 </div>
                 <div class="input-field col s3">
                   <p><label>Account Number</label></p>
-                  <input id="first_name" type="text" class="cote validate" formControlName="account_number">
+                  <input id="first_name" type="text" class="cote validate" formControlName="account_number" [textMask]="{mask: account, guide: false}">
                   <p class="error" [ngStyle]="{'font-size':'12px'}" *ngIf="vendorFormErrors.account_number.required || (vendorForm.controls.account_number.pristine && submitted)">PLease enter Account number </p>
 
                 </div>
