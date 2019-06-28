@@ -34,7 +34,7 @@ export class AccountComponent implements OnInit {
   acnttype: any;
   levelteoacnt = [];
   accountlist1=[];
-
+superparent='';
   constructor(private formBuilder: FormBuilder, private userService: UserService, private toastr: ToastrService) {
     this.userId = localStorage.getItem('userId');
     this.role = localStorage.getItem('role');
@@ -45,7 +45,7 @@ export class AccountComponent implements OnInit {
       parent: {},
 
       description: {},
-      accountCode: {},
+      // accountCode: {},
     };
   }
 
@@ -54,7 +54,7 @@ export class AccountComponent implements OnInit {
       accountName: ['', Validators.required],
       parent: ['', Validators.required],
       description: ['', Validators.required],
-      accountCode: ['', Validators.required],
+      // accountCode: ['', Validators.required],
     });
   }
 
@@ -147,10 +147,12 @@ export class AccountComponent implements OnInit {
 
 
   inputcheck1(event) {
-    
+
+    console.log(this.accountForm.value.parent)
     let something: any;
     this.childbool = event.currentTarget.checked;
     if (event.currentTarget.checked) {
+      this.superparent=this.accountForm.value.parent
       console.log('parent account name', this.accountForm.value.parent);
 
       if (this.accountForm.value.parent !== '') {
@@ -168,6 +170,9 @@ export class AccountComponent implements OnInit {
           })
       }
     }
+    else{
+      this.superparent=''
+    }
   }
   isCherries(fruit) {
     return fruit.name === 'cherries';
@@ -177,6 +182,7 @@ export class AccountComponent implements OnInit {
     console.log(this.accountForm.value.parent);
     this.acnttype = this.accountlist.find(x => x.accountName == this.accountForm.value.parent).accountType;
     console.log(this.acnttype)
+    
   }
   getparent() {
     // let something: any;
@@ -203,7 +209,6 @@ export class AccountComponent implements OnInit {
 
 
   submit() {
-    console.log(this.accountForm.value)
     this.submitted = true;
     this.loader = true;
     var accounttype: any;
@@ -217,12 +222,14 @@ export class AccountComponent implements OnInit {
         accountName: this.accountForm.value.accountName,
         accountType: accounttype,
         description: this.accountForm.value.description,
-        accountCode: this.accountForm.value.accountCode,
+        // accountCode: this.accountForm.value.accountCode,
         organisation: this.organisation,
         userId: this.userId,
-        parentAccount: this.accountForm.value.parent
+        parentAccount: this.accountForm.value.parent,
+        super_parent_Account:this.superparent
       }
       console.log('let data be', data);
+      
       this.userService.creataccount(data).subscribe(value => {
         this.submitted = false;
         this.toastr.success('Congo!', 'account Successfully Created'),

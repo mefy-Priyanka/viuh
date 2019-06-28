@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CompanyService } from '../service/company.service';
 import { ToastrService } from 'ngx-toastr';
 import { SharedService } from '../service/shared.service';
+import { UserService } from '../service/user.service';
 
 
 @Component({
@@ -40,7 +41,7 @@ export class CreatecontractorComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     private router: Router, private companyService:
-      CompanyService, private toastr: ToastrService, private SharedService: SharedService) {
+      CompanyService, private userService: UserService, private toastr: ToastrService, private SharedService: SharedService) {
 
     this.superadminid = localStorage.getItem('SuperAdmin');
 
@@ -153,9 +154,10 @@ export class CreatecontractorComponent implements OnInit {
       this.companyService.createContractor(data).subscribe(value => {
         this.submitted = false;
         this.toastr.success('Congo!', 'Successfully Created'),
-        console.log('user', value)
+          console.log('user', value)
         let result: any = {}
-        result = value
+        result = value;
+        this.creataccount()
         this.contractorForm.reset();
         this.loader = false;
         this.SharedService.abc('contractorlist');
@@ -241,34 +243,33 @@ export class CreatecontractorComponent implements OnInit {
   }
 
 
-  // creataccount() {
+  creataccount() {    
 
-  //   let data = {
-  //     accountName: this.bankForm.value.account_holder_name,
-  //     accountType: "Asset",
-  //     description: "description",
-  //     accountCode: this.bankForm.value.account_number,
-  //     organisation: localStorage.getItem('organisation'),
-  //     userId: this.userId,
-  //     parentAccount: "Bank"
-  //   }
+    let data = {
+      accountName: this.contractorForm.value.companyName,
+      accountType: "Expense",
+      description: "description",
+      // accountCode: this.contractorForm.value.account_number,
+      organisation: localStorage.getItem('organisation'),
+      userId: this.userId,
+      parentAccount: "contractor",
+      super_parent_Account:''
+    }
 
-  //   console.log('let data be', data);
-  //   this.userService.creataccount(data).subscribe(value => {
-  //     this.toastr.success('Congo!', 'account Successfully Created'),
-  //       console.log('user', value)
-  //     let result: any = {}
-  //     result = value
-  //     console.log(result)
-  //     this.getbanklist()
-  //     this.listBank();
-  //     this.toastr.success('Awesome!', 'Bank created successfully')
+    console.log('let data be', data);
+    this.userService.creataccount(data).subscribe(value => {
+      console.log('user', value)
+      let result: any = {}
+      result = value
+      console.log(result)
 
-  //   },
-  //     err => {
-  //       console.log(err)
+      this.toastr.success('Awesome!', 'Contractor created successfully')
 
-  //       this.toastr.error('Error!', 'Server Error')
-  //     })
-  // }
+    },
+      err => {
+        console.log(err)
+
+        this.toastr.error('Error!', 'Server Error')
+      })
+  }
 }

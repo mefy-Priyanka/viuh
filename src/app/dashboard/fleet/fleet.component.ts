@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { CompanyService } from 'src/app/service/company.service';
 import { ToastrService } from 'ngx-toastr';
 import * as moment from 'moment';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-fleet',
@@ -51,7 +52,7 @@ export class FleetComponent implements OnInit {
   maindata = { userId: '', superadminid: '', others: [] };
   constructor(private formBuilder: FormBuilder,
     private router: Router, private companyService:
-      CompanyService, private toastr: ToastrService) {
+      CompanyService, private toastr: ToastrService,private userService: UserService,) {
 
     this.superadminid = localStorage.getItem('SuperAdmin');
 
@@ -497,11 +498,13 @@ export class FleetComponent implements OnInit {
     console.log(this.maindata);
     this.companyService.fleetcreation(this.maindata).subscribe(result => {
       console.log(result);
-      this.toastr.success('Awesome!', 'fleet created successfully');
       this.reset();
-
+      this.creataccountasset()
+      this.creataccountexpense();
+      this.creataccountrevenue();
       this.getfleetList();
       this.createFleet();
+      this.toastr.success('Awesome!', 'fleet created successfully');
 
     },
       err => {
@@ -536,34 +539,93 @@ export class FleetComponent implements OnInit {
 
 
 
-  // creataccount() {
+  creataccountasset() {
 
-  //   let data = {
-  //     accountName: this.bankForm.value.account_holder_name,
-  //     accountType: "Asset",
-  //     description: "description",
-  //     accountCode: this.bankForm.value.account_number,
-  //     organisation: localStorage.getItem('organisation'),
-  //     userId: this.userId,
-  //     parentAccount: "Bank"
-  //   }
+    let data = {
+      accountName: this.trucknumber,
+      accountType: "Asset",
+      description: "description",
+      organisation: localStorage.getItem('organisation'),
+      userId: this.userId,
+      parentAccount: "fleet",
+      super_parent_Account:''
+    }
 
-  //   console.log('let data be', data);
-  //   this.userService.creataccount(data).subscribe(value => {
-  //     this.toastr.success('Congo!', 'account Successfully Created'),
-  //       console.log('user', value)
-  //     let result: any = {}
-  //     result = value
-  //     console.log(result)
-  //     this.getbanklist()
-  //     this.listBank();
-  //     this.toastr.success('Awesome!', 'Bank created successfully')
+    console.log('let data be', data);
+    this.userService.creataccount(data).subscribe(value => {
+      this.toastr.success('Congo!', ' Asset Account Successfully Created'),
+        console.log('user', value)
+      let result: any = {}
+      result = value
+      console.log(result)
+    
 
-  //   },
-  //     err => {
-  //       console.log(err)
+    },
+      err => {
+        console.log(err)
 
-  //       this.toastr.error('Error!', 'Server Error')
-  //     })
-  // }
+        this.toastr.error('Error!', 'Server Error')
+      })
+  }
+
+
+  creataccountrevenue() {
+
+    let data = {
+      accountName: this.trucknumber,
+      accountType: "Revenue",
+      description: "description",
+      organisation: localStorage.getItem('organisation'),
+      userId: this.userId,
+      parentAccount: "fleet",
+      super_parent_Account:''
+    }
+
+    console.log('let data be', data);
+    this.userService.creataccount(data).subscribe(value => {
+      this.toastr.success('Congo!',  ' Revenue Account Successfully Created'),
+        console.log('user', value)
+      let result: any = {}
+      result = value
+      console.log(result)
+    
+
+    },
+      err => {
+        console.log(err)
+
+        this.toastr.error('Error!', 'Server Error')
+      })
+  }
+
+
+
+  creataccountexpense() {
+
+    let data = {
+      accountName: this.trucknumber,
+      accountType: "Expense",
+      description: "description",
+      organisation: localStorage.getItem('organisation'),
+      userId: this.userId,
+      parentAccount: "fleet",
+      super_parent_Account:''
+    }
+
+    console.log('let data be', data);
+    this.userService.creataccount(data).subscribe(value => {
+        console.log('user', value)
+      let result: any = {}
+      result = value
+      console.log(result)
+    
+      this.toastr.success('Awesome!', 'Expense Account created successfully')
+
+    },
+      err => {
+        console.log(err)
+
+        this.toastr.error('Error!', 'Server Error')
+      })
+  }
 }

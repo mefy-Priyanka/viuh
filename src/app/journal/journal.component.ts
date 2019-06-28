@@ -226,9 +226,6 @@ export class JournalComponent implements OnInit {
         this.toastr.error('Error!', 'Server Error')
 
       })
-
-
-
   }
   check(index, field) {
 

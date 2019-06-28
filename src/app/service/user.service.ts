@@ -114,4 +114,11 @@ createbill(data){
   return this.httpClient.post(APIURL+'bill/create',data)
 }
 // end bill
+
+
+
+// account for customer,vender etc
+accountbytype(data){
+  return this.httpClient.get(APIURL + 'account/accountDetail?accountName='+data.account+'&accountType='+data.accounttype+'&parentAccount=Driver')
+}
 }

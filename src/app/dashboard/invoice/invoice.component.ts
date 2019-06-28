@@ -15,6 +15,7 @@ export class InvoiceComponent implements OnInit {
   consigmentDetail=[];
   contactlist=[];
   worklist=[];
+  firstaccountid: any;
   constructor(private fb: FormBuilder, private userService: UserService, private toastr: ToastrService,private companyService:CompanyService) { }
 
   ngOnInit() {
@@ -170,4 +171,74 @@ export class InvoiceComponent implements OnInit {
 
     })
   }
+  onChangeObj(data){
+  console.log(data);
+  var accounttype='Expense'
+  var account='';
+  var parent='';
+  for(var i=0;i<this.contactlist.length;i++){
+    if(this.contactlist[i]._id==data){
+      parent=this.contactlist[i].contact_type;
+      account=this.contactlist[i].name;
+      break;
+    }
+  }
+  if(parent=='customer'){
+    accounttype='Revenue'
+  }
+  let datas={
+    accounttype:accounttype,
+    account:account,
+    parent:parent
+  }
+  console.log(account,parent,accounttype)
+    this.userService.accountbytype(datas).subscribe(result => {
+      console.log(result);
+      let something:any;
+      something=result
+      this.firstaccountid=something._id
+    },
+      err => {
+        console.log(err)
+
+      })
+  }
+
+
+  // createjournal(){
+    
+  //   let data={
+  //     date:new Date().toISOString(),
+  //     reference:this.myForm.value.customer,
+  //     notes:'',
+  //     total:this.myForm.value.amount,
+  //     userId:localStorage.getItem('userId'),
+  //     detail:[{
+  //       accountId:this.firstaccountid,
+  //       credit:this.myForm.value.amount,
+  //       description:'description'
+  //     },
+  //     {
+  //       accountId:,
+  //       debit:this.myForm.value.amount,
+  //       description:'description'
+  //     }
+  //   ]
+
+  //   }
+  // }
+  //   this.userService.journalcreat(this.maindata).subscribe(result => {
+  //     console.log(result);
+  //     this.toastr.success('Awesome!', 'Journal created suceesfully');
+  //     console.log(result);
+  //     this.SharedService.abc('journal');
+     
+  //   },
+  //     err => {
+  //       console.log(err)
+  //       this.toastr.error('Error!', 'Server Error')
+
+  //     })
+  // }
+  
 }

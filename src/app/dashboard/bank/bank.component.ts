@@ -141,13 +141,14 @@ export class BankComponent implements OnInit {
   creataccount() {
 
     let data = {
-      accountName: this.bankForm.value.account_holder_name,
+      accountName: this.bankForm.value.bank_name,
       accountType: "Asset",
       description: "description",
-      accountCode: this.bankForm.value.account_number,
+      // accountCode: this.bankForm.value.account_number,
       organisation: localStorage.getItem('organisation'),
       userId: this.userId,
-      parentAccount: "Bank"
+      parentAccount: "Bank",
+      super_parent_Account:''
     }
 
     console.log('let data be', data);

@@ -17,9 +17,9 @@
 
                   <div class="input-field col s6">
                     <p><label>Customer Name <span class="blue_star">*</span></label></p>
-                    <select formControlName="customer">
+                    <select formControlName="customer" (ngModelChange)="onChangeObj($event)">
                       <option value="" disabled selected>Select</option>
-                      <option *ngFor="let data of contactlist" [value]='data._id'>{{data.name}}</option>
+                      <option *ngFor="let data of contactlist" [ngValue]='data._id'>{{data.name}}</option>
                     </select>
 
 
