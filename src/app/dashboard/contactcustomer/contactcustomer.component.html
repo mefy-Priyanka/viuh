@@ -57,34 +57,25 @@
   
         </div>
         <div class="row">
-                  
-            <div class="input-field col s12">
-              <p><label>Email</label></p>
-              <input type="text" class="validate" formControlName="email">
-              <p class="error"  [ngStyle]="{'font-size':'12px'}"*ngIf="customerFormErrors.email.required || customerFormErrors.email.email ||(customerForm.controls.email.pristine && submitted)">PLease enter valid email</p>      
-            </div>
-    
+          <div class="input-field col s12">
+            <p><label>Email</label></p>
+            <input type="text" class="validate" formControlName="email">
+            <p class="error"  [ngStyle]="{'font-size':'12px'}"*ngIf="customerFormErrors.email.required || customerFormErrors.email.email ||(customerForm.controls.email.pristine && submitted)">PLease enter valid email</p>      
           </div>
-          <div class="row">
-                  
-              <div class="input-field col s12">
-                <p><label>Company Name</label></p>
-                <input type="text" class="validate" formControlName="company_name">
-                <p class="error" [ngStyle]="{'font-size':'12px'}" *ngIf="customerFormErrors.company_name.required || (customerForm.controls.company_name.pristine && submitted)">Company name can't be empty</p>
-      
-              </div>
-      
-            </div>
-            <div class="row">
-                  
-                <div class="input-field col s12">
-                  <p><label>Website</label></p>
-                  <input type="text" class="validate" formControlName="website">
-                  <!-- <p class="error"  [ngStyle]="{'font-size':'12px'}" *ngIf="customerFormErrors.website.required || (customerForm.controls.website.pristine && submitted)">Phone Number can't be empty</p> -->
-        
-                </div>
-        
-              </div>
+    
+        </div>
+       
+    <div class="row">
+            
+      <div class="input-field col s12">
+        <p><label>Company Name</label></p>
+        <input type="text" class="validate" formControlName="company_name">
+        <p class="error" [ngStyle]="{'font-size':'12px'}" *ngIf="customerFormErrors.company_name.required || (customerForm.controls.company_name.pristine && submitted)">Company name can't be empty</p>
+
+      </div>
+
+    </div>
+             
   
   </div>
   <div class="col-md-6">
@@ -106,7 +97,7 @@
               </div>
         </div>
     </div>
-    
+ 
     
     
     </div>
@@ -115,11 +106,11 @@
   
   
   
-  
+
   
   
                 
-                  <div class="row">
+                  <div class="row branchAt">
                     <div class="input-field col s3">
                         <p><label>Doc type <span class="blue_star">*</span></label></p>
                         <select (change)='selectedValue($event.target.value)' formControlName="list" >

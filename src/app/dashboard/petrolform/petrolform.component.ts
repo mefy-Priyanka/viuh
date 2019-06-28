@@ -9,13 +9,14 @@ import * as moment from 'moment';
   styleUrls: ['./petrolform.component.css']
 })
 export class PetrolformComponent implements OnInit {
-  petrolFormErrors: {};
+  // petrolFormErrors: {};
   petrolForm: FormGroup;
   submitted: boolean;
   petrols = [];
   openbool: boolean;
   driverlist=[];
   trucklist=[];
+  petrolFormErrors: { pumpname: any; truckno: any; date: any; diesel: any; other: any; driver: any; };
   constructor(private formBuilder: FormBuilder, private CompanyService: CompanyService, private toastr: ToastrService) {
     this.petrolFormErrors = {
       pumpname: {},

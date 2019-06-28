@@ -1,27 +1,27 @@
 <!-- contact -->
-<section class="createcontract" >
+<section class="createcontract">
   <div class="ft">
     <h1>Vendor | Create
     </h1>
   </div>
   <!-- Loader -->
-<div class="loading" *ngIf="loader">
-  <div class="sk-circle">
-    <div class="sk-circle1 sk-child"></div>
-    <div class="sk-circle2 sk-child"></div>
-    <div class="sk-circle3 sk-child"></div>
-    <div class="sk-circle4 sk-child"></div>
-    <div class="sk-circle5 sk-child"></div>
-    <div class="sk-circle6 sk-child"></div>
-    <div class="sk-circle7 sk-child"></div>
-    <div class="sk-circle8 sk-child"></div>
-    <div class="sk-circle9 sk-child"></div>
-    <div class="sk-circle10 sk-child"></div>
-    <div class="sk-circle11 sk-child"></div>
-    <div class="sk-circle12 sk-child"></div>
+  <div class="loading" *ngIf="loader">
+    <div class="sk-circle">
+      <div class="sk-circle1 sk-child"></div>
+      <div class="sk-circle2 sk-child"></div>
+      <div class="sk-circle3 sk-child"></div>
+      <div class="sk-circle4 sk-child"></div>
+      <div class="sk-circle5 sk-child"></div>
+      <div class="sk-circle6 sk-child"></div>
+      <div class="sk-circle7 sk-child"></div>
+      <div class="sk-circle8 sk-child"></div>
+      <div class="sk-circle9 sk-child"></div>
+      <div class="sk-circle10 sk-child"></div>
+      <div class="sk-circle11 sk-child"></div>
+      <div class="sk-circle12 sk-child"></div>
+    </div>
   </div>
-</div>
-<!-- Loader -->
+  <!-- Loader -->
   <form class="createContractorForm" [formGroup]="vendorForm">
     <div class="row">
       <div class="col-md-12">
@@ -32,130 +32,181 @@
 
               <div class="nota">
 
-<div class="row">
+                <div class="row">
 
 
-<div class="col-md-6">
-  <div class="row">
-    <div class="input-field col s12">
-        <p class="error" [ngStyle]="{'font-size':'12px'}"  >{{error}}</p>
+                  <div class="col-md-6">
+                    <div class="row">
+                      <div class="input-field col s12">
+                        <p class="error" [ngStyle]="{'font-size':'12px'}">{{error}}</p>
 
-        <p><label>Name</label></p>
-        <input type="text" class="validate" formControlName="name">
-        <p class="error" [ngStyle]="{'font-size':'12px'}" *ngIf="vendorFormErrors.name.required || (vendorForm.controls.name.pristine && submitted)">PLease enter name</p>
-      </div>
-    </div>
-    <div class="row">              
-        <div class="input-field col s12">
-          <p><label>Phone Number</label></p>
-          <input type="text" class="validate" formControlName="phoneNumber" [textMask]="{mask: mask, guide: false}" minlength="10" >
-        <p class="error" [ngStyle]="{'font-size':'12px'}" *ngIf="vendorFormErrors.phoneNumber.required || (vendorForm.controls.phoneNumber.pristine && submitted)">PLease enter valid phone number</p>
-        <p class="errormessage" [ngStyle]="{'font-size':'12px'}" *ngIf="vendorFormErrors.phoneNumber.minlength ">Please Enter Valid Phone Number
+                        <p><label>Name</label></p>
+                        <input type="text" class="validate" formControlName="name">
+                        <p class="error" [ngStyle]="{'font-size':'12px'}"
+                          *ngIf="vendorFormErrors.name.required || (vendorForm.controls.name.pristine && submitted)">
+                          PLease enter name</p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="input-field col s12">
+                        <p><label>Phone Number</label></p>
+                        <input type="text" class="validate" formControlName="phoneNumber"
+                          [textMask]="{mask: mask, guide: false}" minlength="10">
+                        <p class="error" [ngStyle]="{'font-size':'12px'}"
+                          *ngIf="vendorFormErrors.phoneNumber.required || (vendorForm.controls.phoneNumber.pristine && submitted)">
+                          PLease enter valid phone number</p>
+                        <p class="errormessage" [ngStyle]="{'font-size':'12px'}"
+                          *ngIf="vendorFormErrors.phoneNumber.minlength ">Please Enter Valid Phone Number
 
-        </div>
+                      </div>
 
-      </div>
+                    </div>
+                    <div class="row">
+                      <div class="input-field col s12">
+                        <p><label>Bank Name</label></p>
+                        <input type="text" class="validate" formControlName="bank_name">
+                        <p class="error" [ngStyle]="{'font-size':'12px'}" *ngIf="vendorFormErrors.bank_name.required || (vendorForm.controls.bank_name.pristine && submitted)">PLease enter Bank name</p>
+                        <!-- <p class="errormessage" [ngStyle]="{'font-size':'12px'}" *ngIf="vendorFormErrors.phoneNumber.minlength ">Please Enter Valid Phone Number -->
 
-</div>
-<div class="col-md-6">
-    <!-- <img src="../../../assets/p4.png">
+                      </div>
+
+                    </div>
+
+                  </div>
+                  <div class="col-md-6">
+                    <!-- <img src="../../../assets/p4.png">
   <button>
     <input type="file">
   </button> -->
-  
-  
-  <div class="container">
-      <div class="avatar-upload">
-          <div class="avatar-edit">
-              <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" formControlName="list" (change)="uploadImage($event)" />
-              <label for="imageUpload"></label>
-          </div>
-          <div class="avatar-preview" >
-                  <!-- style="background-image: url(http://i.pravatar.cc/500?img=7);" -->
-              <div id="imagePreview">
-                <img src="http://i.pravatar.cc/500?img=7" class="imgContact" *ngIf="show">
-                <img [src]="imgUrlPrefix" class="imgContact" *ngIf="!show">          
-              </div>
-          
-          </div>
-      </div>
-  </div>
-  
-  
-  
-  </div>
-</div>
 
 
+                    <div class="container">
+                      <div class="avatar-upload">
+                        <div class="avatar-edit">
+                          <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" formControlName="list"
+                            (change)="uploadImage($event)" />
+                          <label for="imageUpload"></label>
+                        </div>
+                        <div class="avatar-preview">
+                          <!-- style="background-image: url(http://i.pravatar.cc/500?img=7);" -->
+                          <div id="imagePreview">
+                            <img src="http://i.pravatar.cc/500?img=7" class="imgContact" *ngIf="show">
+                            <img [src]="imgUrlPrefix" class="imgContact" *ngIf="!show">
+                          </div>
 
-
-
-
-
-              
-                <div class="row">
-                  <div class="input-field col s3">
-                    <p><label>License <span class="blue_star">*</span></label></p>
-                    <select (change)='selectedValue($event.target.value)' formControlName="list" >
-                      <option value="" disabled selected>Document</option>
-                      <option *ngFor="let name of document" [value]="name">{{name}}</option>
-                      <option >others</option>
-                      <!-- <option>Police Verification</option>
-                      <option>Others</option> -->
-                    </select>
-                  </div>
-                  <div class="input-field col s2" *ngIf='inputField'>
-                    <p><label>name</label></p>
-                    <input placeholder="Enter Number" id="first_name" type="text" class="cote validate" formControlName="doc_name">
-
-                      <!-- <p *ngIf="validerr">can't be empty</p> -->
-                  </div>
-                  <div class="input-field col s3">
-                    <p><label>Doc Upload</label></p>
-                    <div class="input-field myFilet aeto" ><input type="file" class="validate" class="fileType" formControlName="doc" (change)="uploadDoc($event)" >
+                        </div>
+                      </div>
                     </div>
+
+
+
+                  </div>
+                </div>
+
+
+                <div class="row branchAt">
+                  <div class="input-field col s3">
+                    <p><label>Branch Name</label></p>
+                    <input placeholder="Enter Number" id="first_name" type="text" class="cote validate"
+                      formControlName="branch_name">
+                      <p class="error" [ngStyle]="{'font-size':'12px'}" *ngIf="vendorFormErrors.branch_name.required || (vendorForm.controls.branch_name.pristine && submitted)">PLease enter Branch name</p>
+
+
+                    <!-- <p *ngIf="validerr">can't be empty</p> -->
                   </div>
                   <div class="input-field col s3">
-                    <p><label>Doc Number</label></p>
-                    <input placeholder="Enter Number" id="first_name" type="text"  class="cote validate" formControlName="number">
-                      <!-- <p *ngIf="docuerr">can't be empty</p> -->
+                    <p><label>Account Holder Name</label></p>
+                    <input id="first_name" type="text" class="cote validate" formControlName="account_holder_name">
+                    <p class="error" [ngStyle]="{'font-size':'12px'}" *ngIf="vendorFormErrors.account_holder_name.required || (vendorForm.controls.account_holder_name.pristine && submitted)">PLease enter Account holder  name</p>
+
                   </div>
-                  <div class="input-field col s2" >
-                    <p><label>Valid Upto</label></p>
-                    <input placeholder="dd/mm/yyyy" id="first_name" type="text"   class="cote validate" formControlName="valid_upto">
-                      <!-- <p *ngIf="validerr">can't be empty</p> -->
-                  </div>
-                  
-                  <div class="submitBtn" >
-                    <button class="addBtn" (click)="add()">+</button>
-                  </div>
-                  <!-- <div class="input-field col s1">
-                    <button class="addBtn">+</button>
-                  </div> -->
-    
+              
+                <div class="input-field col s3">
+                  <p><label>Ifsc Code</label></p>
+                  <input placeholder="Enter Number" id="first_name" type="text" class="cote validate"
+                    formControlName="ifsc">
+                    <p class="error" [ngStyle]="{'font-size':'12px'}" *ngIf="vendorFormErrors.ifsc.required || (vendorForm.controls.ifsc.pristine && submitted)">PLease enter ifsc </p>
+
+                </div>
+                <div class="input-field col s3">
+                  <p><label>Account Number</label></p>
+                  <input id="first_name" type="text" class="cote validate" formControlName="account_number" [textMask]="{mask: account, guide: false}">
+                  <p class="error" [ngStyle]="{'font-size':'12px'}" *ngIf="vendorFormErrors.account_number.required || (vendorForm.controls.account_number.pristine && submitted)">PLease enter Account number </p>
+
                 </div>
               </div>
 
+
+
+
+
+              <div class="row branchAt">
+                <div class="input-field col s3">
+                  <p><label>License <span class="blue_star">*</span></label></p>
+                  <select (change)='selectedValue($event.target.value)' formControlName="list">
+                    <option value="" disabled selected>Document</option>
+                    <option *ngFor="let name of document" [value]="name">{{name}}</option>
+                    <option>others</option>
+                    <!-- <option>Police Verification</option>
+                      <option>Others</option> -->
+                  </select>
+                </div>
+                <div class="input-field col s2" *ngIf='inputField'>
+                  <p><label>name</label></p>
+                  <input placeholder="Enter Number" id="first_name" type="text" class="cote validate"
+                    formControlName="doc_name">
+
+                  <!-- <p *ngIf="validerr">can't be empty</p> -->
+                </div>
+                <div class="input-field col s3">
+                  <p><label>Doc Upload</label></p>
+                  <div class="input-field myFilet aeto"><input type="file" class="validate" class="fileType"
+                      formControlName="doc" (change)="uploadDoc($event)">
+                  </div>
+                </div>
+                <div class="input-field col s3">
+                  <p><label>Doc Number</label></p>
+                  <input placeholder="Enter Number" id="first_name" type="text" class="cote validate"
+                    formControlName="number">
+                  <!-- <p *ngIf="docuerr">can't be empty</p> -->
+                </div>
+                <div class="input-field col s2">
+                  <p><label>Valid Upto</label></p>
+                  <input placeholder="dd/mm/yyyy" id="first_name" type="text" class="cote validate"
+                    formControlName="valid_upto">
+                  <!-- <p *ngIf="validerr">can't be empty</p> -->
+                </div>
+
+                <div class="submitBtn">
+                  <button class="addBtn" (click)="add()">+</button>
+                </div>
+                <!-- <div class="input-field col s1">
+                    <button class="addBtn">+</button>
+                  </div> -->
+
+              </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="contractorButton">
-              <button class="submitBtn" (click)="createVendor()">Next</button>
-              <button class="cancelBtn" (click)="cancel()" >Cancel</button>
-            </div>
+
           </div>
         </div>
-
-
-
-
-        <!-- input type -->
-
-
-
-
-
+        <div class="row">
+          <div class="contractorButton">
+            <button class="submitBtn" (click)="createVendor()">Next</button>
+            <button class="cancelBtn" (click)="cancel()">Cancel</button>
+          </div>
+        </div>
       </div>
+
+
+
+
+      <!-- input type -->
+
+
+
+
+
+    </div>
     </div>
 
   </form>

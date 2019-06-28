@@ -11,11 +11,10 @@ import { resource } from 'selenium-webdriver/http';
 })
 export class AccountComponent implements OnInit {
 
-  
+
   userId: string;
   role: string;
   organisation: string;
-  accountFormErrors: {};
   accountypelist = [];
   accountForm: FormGroup;
   submitted: boolean;
@@ -33,8 +32,10 @@ export class AccountComponent implements OnInit {
   childbool: boolean = false;
   acnttype: any;
   levelteoacnt = [];
-  accountlist1=[];
-superparent='';
+  accountlist1 = [];
+  superparent = '';
+  accountFormErrors: { accountName: any; parent: any; description: any;  };
+
   constructor(private formBuilder: FormBuilder, private userService: UserService, private toastr: ToastrService) {
     this.userId = localStorage.getItem('userId');
     this.role = localStorage.getItem('role');
@@ -44,7 +45,7 @@ superparent='';
       accountName: {},
       parent: {},
 
-      description: {},
+      description: {}
       // accountCode: {},
     };
   }
@@ -93,7 +94,7 @@ superparent='';
       this.accountlist1 = (something.result);
 
       console.log(this.accountlist1);
-     
+
     },
       err => {
         console.log(err)
@@ -141,7 +142,7 @@ superparent='';
     this.accountForm.reset();
     console.log(event);
     this.parentbool = event.currentTarget.checked;
-    this.childbool=false;
+    this.childbool = false;
     this.accountForm.value.parent = ''
   }
 
@@ -152,7 +153,7 @@ superparent='';
     let something: any;
     this.childbool = event.currentTarget.checked;
     if (event.currentTarget.checked) {
-      this.superparent=this.accountForm.value.parent
+      this.superparent = this.accountForm.value.parent
       console.log('parent account name', this.accountForm.value.parent);
 
       if (this.accountForm.value.parent !== '') {
@@ -170,8 +171,8 @@ superparent='';
           })
       }
     }
-    else{
-      this.superparent=''
+    else {
+      this.superparent = ''
     }
   }
   isCherries(fruit) {
@@ -182,7 +183,7 @@ superparent='';
     console.log(this.accountForm.value.parent);
     this.acnttype = this.accountlist.find(x => x.accountName == this.accountForm.value.parent).accountType;
     console.log(this.acnttype)
-    
+
   }
   getparent() {
     // let something: any;
@@ -226,10 +227,10 @@ superparent='';
         organisation: this.organisation,
         userId: this.userId,
         parentAccount: this.accountForm.value.parent,
-        super_parent_Account:this.superparent
+        super_parent_Account: this.superparent
       }
       console.log('let data be', data);
-      
+
       this.userService.creataccount(data).subscribe(value => {
         this.submitted = false;
         this.toastr.success('Congo!', 'account Successfully Created'),
