@@ -402,14 +402,17 @@ uploadImage(event){
         this.contactService.deleteContact(this.contactId).subscribe(result=>{
           this.loader=false;
           console.log('delete result',result);
-        },
-        err=>{
           this.userService.deleteAccount(this.accountId).subscribe(result=>{
+            console.log('delete  account result',result);
 
           },
           error=>{
+            this.loader=false;
             console.log('error',error)
           })
+        },
+        err=>{
+         
           this.loader=false;
           console.log('delete err',err)
         })
