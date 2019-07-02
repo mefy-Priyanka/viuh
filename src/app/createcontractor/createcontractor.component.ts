@@ -157,7 +157,8 @@ export class CreatecontractorComponent implements OnInit {
           console.log('user', value)
         let result: any = {}
         result = value;
-        this.creataccount()
+        this.creataccount();
+        this.creataccountinpayable()
         this.contractorForm.reset();
         this.loader = false;
         this.SharedService.abc('contractorlist');
@@ -254,6 +255,37 @@ export class CreatecontractorComponent implements OnInit {
       userId: this.userId,
       parentAccount: "contractor",
       super_parent_Account:''
+    }
+
+    console.log('let data be', data);
+    this.userService.creataccount(data).subscribe(value => {
+      console.log('user', value)
+      let result: any = {}
+      result = value
+      console.log(result)
+
+      this.toastr.success('Awesome!', 'Contractor created successfully')
+
+    },
+      err => {
+        console.log(err)
+
+        this.toastr.error('Error!', 'Server Error')
+      })
+  }
+
+
+  creataccountinpayable() {    
+
+    let data = {
+      accountName: this.contractorForm.value.companyName,
+      accountType: "Liability",
+      description: "description",
+      // accountCode: this.contractorForm.value.account_number,
+      organisation: localStorage.getItem('organisation'),
+      userId: this.userId,
+      parentAccount: "Contractors",
+      super_parent_Account:'Account Payable'
     }
 
     console.log('let data be', data);

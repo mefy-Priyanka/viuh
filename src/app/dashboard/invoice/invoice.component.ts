@@ -76,8 +76,11 @@ export class InvoiceComponent implements OnInit {
 
   
   customerList() {
-  
-    this.companyService.getcontact(localStorage.getItem('SuperAdmin')).subscribe(data => {
+    let data={
+      id:localStorage.getItem('SuperAdmin'),
+      contact_type:'customer'
+    }
+    this.companyService.getcustomer(data).subscribe(data => {
      
       let result: any = {}
       result = data;
@@ -173,12 +176,12 @@ export class InvoiceComponent implements OnInit {
   }
   onChangeObj(data){
   console.log(data);
-  var accounttype='Expense'
+  var accounttype='Revenue'
   var account='';
-  var parent='';
+  var parent='Amount Receivable';
   for(var i=0;i<this.contactlist.length;i++){
     if(this.contactlist[i]._id==data){
-      parent=this.contactlist[i].contact_type;
+      // parent=this.contactlist[i].contact_type;
       account=this.contactlist[i].name;
       break;
     }
@@ -205,28 +208,28 @@ export class InvoiceComponent implements OnInit {
   }
 
 
-  // createjournal(){
+  createjournal(){
     
-  //   let data={
-  //     date:new Date().toISOString(),
-  //     reference:this.myForm.value.customer,
-  //     notes:'',
-  //     total:this.myForm.value.amount,
-  //     userId:localStorage.getItem('userId'),
-  //     detail:[{
-  //       accountId:this.firstaccountid,
-  //       credit:this.myForm.value.amount,
-  //       description:'description'
-  //     },
-  //     {
-  //       accountId:,
-  //       debit:this.myForm.value.amount,
-  //       description:'description'
-  //     }
-  //   ]
+    let data={
+      date:new Date().toISOString(),
+      reference:this.myForm.value.customer,
+      notes:'',
+      total:this.myForm.value.amount,
+      userId:localStorage.getItem('userId'),
+      detail:[{
+        accountId:this.firstaccountid,
+        debit:this.myForm.value.amount,
+        description:'description'
+      },
+      {
+        accountId:'',
+        credit:this.myForm.value.amount,
+        description:'description'
+      }
+    ]
 
-  //   }
-  // }
+  }
+  }
   //   this.userService.journalcreat(this.maindata).subscribe(result => {
   //     console.log(result);
   //     this.toastr.success('Awesome!', 'Journal created suceesfully');

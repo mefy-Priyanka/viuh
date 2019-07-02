@@ -116,10 +116,14 @@ export class CompanyService {
   }
   // driver get
 
+
   getdriver(data) {
     return this.httpClient.get(APIURL + 'contact/listByContactType?superAdminId=' + data.id + '&contact_type=' + data.contact_type)
   }
 
+  getcustomer(data) {
+    return this.httpClient.get(APIURL + 'contact/listByContactType?superAdminId=' + data.id + '&contact_type=' + data.contact_type)
+  }
 
   // diesel creat daily
   creatdiesel(data) {

@@ -547,7 +547,7 @@ export class FleetComponent implements OnInit {
       description: "description",
       organisation: localStorage.getItem('organisation'),
       userId: this.userId,
-      parentAccount: "fleet",
+      parentAccount: "Fleet",
       super_parent_Account:''
     }
 
@@ -577,7 +577,7 @@ export class FleetComponent implements OnInit {
       description: "description",
       organisation: localStorage.getItem('organisation'),
       userId: this.userId,
-      parentAccount: "fleet",
+      parentAccount: "Fleet",
       super_parent_Account:''
     }
 
@@ -608,7 +608,7 @@ export class FleetComponent implements OnInit {
       description: "description",
       organisation: localStorage.getItem('organisation'),
       userId: this.userId,
-      parentAccount: "fleet",
+      parentAccount: "Fleet",
       super_parent_Account:''
     }
 

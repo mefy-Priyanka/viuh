@@ -13,6 +13,7 @@ export class DashboardComponent implements OnInit {
     this.SharedService.abcd.subscribe(abc => {
       console.log('sddddfjddsfd',abc);
       this.sharenav=abc;
+      console.log(this.sharenav)
     });
 
 
