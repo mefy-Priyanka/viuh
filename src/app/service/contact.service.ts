@@ -21,5 +21,8 @@ preview(imageId){
 contactList(superAdmin){
   return this.httpClient.get(APIURL+'contact/contactlist?superAdminId='+superAdmin)
 }
+deleteContact(contactId){
+  return this.httpClient.delete(APIURL+'contact/contactId?contactId='+contactId)
 
+}
 }

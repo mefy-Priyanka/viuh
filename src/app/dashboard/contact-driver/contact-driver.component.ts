@@ -35,7 +35,7 @@ export class ContactDriverComponent implements OnInit {
   public searchValue:any;
   public error:any;
   public imgUrlPrefix:any;
-  public accountId:any;
+  public contactId:any;
   public userId = localStorage.getItem('userId');
 public mask = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/] // Account number validation 
 
@@ -269,7 +269,7 @@ uploadImage(event){
       console.log('value', value)
       let result:any={}
       result=value
-      this.accountId=result.result._id
+      this.contactId=result.result._id
       this. driverAccount();
       this.loader=false;
       this.toastr.success('Driver created')     
@@ -299,7 +299,7 @@ uploadImage(event){
       console.log('value', value)
       let result:any={}
       result=value
-      this.accountId=result.result._id
+      this.contactId=result.result._id
       this. driverAccount();
       this.loader=false;
       this.driverForm.reset();
@@ -348,7 +348,7 @@ uploadImage(event){
     err=>{
       console.log('account err',err)
       this.toastr.error('Error!', 'Creation  failed')
-      this.userService.deleteAccount(this.accountId).subscribe(result=>{
+      this.contactService.deleteContact(this.contactId).subscribe(result=>{
         this.loader=false;
         console.log('delete result',result);
       },
