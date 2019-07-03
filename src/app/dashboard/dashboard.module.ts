@@ -10,11 +10,10 @@ import { UserComponent } from './user/user.component';
 import { OrderComponent } from './order/order.component';
 import { CompanycreateComponent } from './companycreate/companycreate.component';
 import { SidenavComponent } from '../sidenav/sidenav.component';
-import { ContactComponent } from '../dashboard/contact/contact.component';
+// import { ContactComponent } from '../dashboard/contact/contact.component';
 import { MaprouteComponent } from './maproute/maproute.component';
 import { ContractorListComponent } from './contractor-list/contractor-list.component';
 import { CompanyListComponent } from './company-list/company-list.component';
-            // { path: "contact", component: ContactComponent }
 import { ContactlistComponent } from '../contactlist/contactlist.component';
 import { JournalComponent } from '../journal/journal.component';
 import { JournalistComponent } from './journalist/journalist.component';
@@ -34,6 +33,7 @@ import { WorkorderComponent } from './workorder/workorder.component';
 import { PetrolformComponent } from './petrolform/petrolform.component';
 import { TenderComponent } from './tender/tender.component';
 import { BanktransferComponent } from './banktransfer/banktransfer.component';
+import { CreatecontractorComponent } from './createcontractor/createcontractor.component';
 // import { ExpenseComponent } from './expense/expense.component';
 // import { EmployeeComponent } from './employee/employee.component';
 
@@ -48,11 +48,10 @@ const routes: Routes = [
             { path: "user", component: UserComponent },
             { path: "order", component: OrderComponent },
             { path: "company", component: CompanycreateComponent },
-            // { path: "contact", component: ContactComponent }
             { path: "contact", component: CompanyListComponent },
             { path: "route", component: MaprouteComponent },
             { path: "expensses", component: InvoiceComponent },
-
+            { path: "creatcontractor", component: CreatecontractorComponent },
 
 
 
@@ -73,9 +72,10 @@ const routes: Routes = [
         DashboardComponent,
         FleetComponent,
         UserComponent,
+        CreatecontractorComponent,
         OrderComponent,
         CompanycreateComponent,
-        ContactComponent,
+        // ContactComponent,
         SidenavComponent,
         MaprouteComponent,
         ContractorListComponent,

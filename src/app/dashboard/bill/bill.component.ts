@@ -3,6 +3,8 @@ import { FormGroup, FormArray, FormBuilder } from '@angular/forms';
 import { UserService } from 'src/app/service/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { CompanyService } from 'src/app/service/company.service';
+import * as moment from 'moment'
+import { SharedService } from 'src/app/service/shared.service';
 
 @Component({
   selector: 'app-bill',
@@ -14,9 +16,11 @@ public  bill:boolean=true;
 billForm: FormGroup;
 vendorlist=[];
 consigmentDetail=[];
-  constructor(private fb: FormBuilder, private userService: UserService, private toastr: ToastrService,private companyService:CompanyService) { }
+  worklist: any;
+  constructor(private fb: FormBuilder,private SharedService :SharedService, private userService: UserService, private toastr: ToastrService,private companyService:CompanyService) { }
 
   ngOnInit() {
+    this.getwork()
     this.billForm = this.fb.group({
       work_order: '',
       vendorId: '',
@@ -25,6 +29,7 @@ consigmentDetail=[];
       due_date: '',
       sub_total: '',
       adjustment: 0,
+      discount:0,
       periodstart: '',
       periodend: '',
       reverse_change: '',
@@ -32,6 +37,8 @@ consigmentDetail=[];
       tdsrate: 0,
       amount: '',
       notes: '',
+      status:'',
+      amount_paid:0,
       arraydata: this.fb.array([])
     })
 
@@ -68,6 +75,21 @@ consigmentDetail=[];
     this.billForm.value.amount = this.billForm.value.tdsamount + adjustedval;
 
 
+  }
+
+  getwork(){
+    let some:any;
+  
+    this.companyService.getworkorder(localStorage.getItem('SuperAdmin')).subscribe(result=>{
+      some=result
+      console.log(some.result);
+      this.worklist=some.result
+    },
+    err=>{
+      console.log(err);
+      this.toastr.error('oops','work order creation failed')
+  
+    })
   }
   createbill(){
     this.bill=!this.bill;
@@ -124,20 +146,24 @@ consigmentDetail=[];
     let data = {
       vendorId: this.billForm.value.vendorId,
       work_order: this.billForm.value.work_order,
-      bill_date: this.billForm.value.bill_date,
+      bill_date: moment(this.billForm.value.bill_date).toISOString(),
       terms: this.billForm.value.terms,
       notes:this.billForm.value.notes,
-      due_date: this.billForm.value.due_date,
+      due_date: moment(this.billForm.value.due_date).toISOString(),
       sub_total: this.billForm.value.sub_total,
       total: this.billForm.value.amount,
+      amount_paid: this.billForm.value.amount_paid,
+      status: this.billForm.value.status,
+      discount:this.billForm.value.discount,
       adjustment: {
         amount: this.billForm.value.adjustment,
       },
       period: {
-        start_date: this.billForm.value.periodstart,
-        end_date: this.billForm.value.periodend,
+        start_date: moment(this.billForm.value.periodstart).toISOString(),
+        end_date: moment(this.billForm.value.periodend).toISOString(),
       },
       reverse_change: this.billForm.value.reverse_change,
+      
       tds: {
         rate: this.billForm.value.tdsrate,
         amount: this.billForm.value.tdsamount,
@@ -152,6 +178,44 @@ consigmentDetail=[];
     },
     err=>{
       console.log(err);
+      this.toastr.error('Error!', 'Server Error')
+
+    })
+  }
+
+
+
+  createjournal(){
+    
+    let data={
+      date:new Date().toISOString(),
+      reference:this.billForm.value.vendorId,
+      notes:'',
+      total:this.billForm.value.amount,
+      userId:localStorage.getItem('userId'),
+      detail:[{
+        // accountId:this.firstaccountid,
+        debit:this.billForm.value.amount,
+        description:'description'
+      },
+      {
+        accountId:"5d1af5eafbe2953ecca6f2da",
+        credit:this.billForm.value.amount,
+        description:'description'
+      }
+    ]
+  }
+  console.log(data);
+
+  this.userService.journalcreat(data).subscribe(result => {
+    console.log(result);
+    this.toastr.success('Awesome!', 'Journal created suceesfully');
+    console.log(result);
+    this.SharedService.abc('journal');
+   
+  },
+    err => {
+      console.log(err)
       this.toastr.error('Error!', 'Server Error')
 
     })

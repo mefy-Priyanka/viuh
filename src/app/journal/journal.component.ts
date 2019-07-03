@@ -5,6 +5,7 @@ import { SharedService } from '../service/shared.service'
 
 import { ToastrService } from 'ngx-toastr';
 import * as moment from 'moment';
+import { CompanyService } from '../service/company.service';
 
 @Component({
   selector: 'app-journal',
@@ -26,8 +27,9 @@ export class JournalComponent implements OnInit {
   ctotal = 0;
   dtotal = 0;
   cashcheck = false
+  contactlist: any;
   constructor(private formBuilder: FormBuilder, private userService: UserService, 
-    private SharedService :SharedService,private toastr: ToastrService) {
+    private SharedService :SharedService, private toastr: ToastrService,private companyService:CompanyService) {
     this.userId = localStorage.getItem('userId');
 
     this.denomFormErrors = {
@@ -41,16 +43,30 @@ export class JournalComponent implements OnInit {
     };
     this.getaccountlist();
 
-    this.addItem()
+    this.addItem();
+    this.contactList();
   }
 
+  contactList() {
+    
+    this.companyService.getcontact(localStorage.getItem('SuperAdmin')).subscribe(data => {
+     
+      let result: any = {}
+      result = data;
+      this.contactlist = result.result
+      console.log(this.contactlist);
+    },
+      error => {
+        console.log(error);
 
+      })
+  }
 
   addItem() {
     let temp = {
-      account: '',
+      accountId: '',
       description: '',
-      contact: '',
+      contactPersonId: '',
       credit: 0,
       dabit: 0
     }

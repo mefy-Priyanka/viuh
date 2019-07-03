@@ -95,7 +95,7 @@
                             <tr *ngFor="let data of jdata; let i = index">
 
                               <td class="thno">
-                                <select style="border: none !important" [(ngModel)]="data.account">
+                                <select style="border: none !important" [(ngModel)]="data.accountId">
                                   <option value="" disabled selected>Select</option>
                                   <option *ngFor="let list of accountlist1" [value]='list._id'>{{list.accountName}}
                                   </option>
@@ -103,9 +103,9 @@
                               </td>
                               <td class="thname"><textarea style="border:none !important" [(ngModel)]="data.description"></textarea></td>
                               <td class="thno">
-                                <select style="border: none !important" [(ngModel)]="data.contact">
+                                <select style="border: none !important" [(ngModel)]="data.contactPersonId">
                                   <option value="" disabled selected>Select Contact</option>
-                                  <option value="1">a</option>
+                                  <option *ngFor="let list of contactlist" [value]='list._id'>{{list.name}}</option>
                                 </select>
                               </td>
 

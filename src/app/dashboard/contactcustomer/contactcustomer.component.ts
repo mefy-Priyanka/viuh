@@ -31,6 +31,7 @@ export class ContactcustomerComponent implements OnInit {
   public searchValue:any;
   public error:any;
   public imgUrlPrefix:any;
+  public contactId:any;
   public accountId:any;
   public userId = localStorage.getItem('userId');
 public mask = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/] // Account number validation 
@@ -270,7 +271,7 @@ uploadImage(event){
       console.log('value', value)
       let result:any={}
       result=value
-      this.accountId=result.result._id;
+      this.contactId=result.result._id;
       this.customerAccount();
       this.loader=false;
       this.toastr.success('Customer created')
@@ -302,7 +303,7 @@ uploadImage(event){
       console.log('value', value)
       let result:any={}
       result=value
-      this.accountId=result.result._id
+      this.contactId=result.result._id
       this.customerAccount()
       this.loader=false;
       this.toastr.success('Customer created')
@@ -339,11 +340,16 @@ uploadImage(event){
     this.userService.creataccount(data).subscribe(result=>{
       this.loader=false;
       console.log('resultttt',result)
+      let value:any
+      value=result
+      this.accountId=value.user._id
+      this.creataccountinpayable()
+    
     },
     err=>{
       console.log('account err',err)
       this.toastr.error('Error!', 'Creation  failed')
-      this.userService.deleteAccount(this.accountId).subscribe(result=>{
+      this.contactService.deleteContact(this.contactId).subscribe(result=>{
         this.loader=false;
         console.log('delete result',result);
       },
@@ -373,4 +379,45 @@ uploadImage(event){
 //   })
 // }
   /********* ENDS ************** */
+  creataccountinpayable() {    
+    let data = {
+      accountName: this.customerForm.value.name,
+      accountType: "Asset",
+      description: "Description",
+      organisation: localStorage.getItem('organisation'),
+      userId: this.userId,
+      parentAccount: "Customer",
+      super_parent_Account:'Account Receivable'
+    }
+
+    console.log('let data be', data);
+    this.userService.creataccount(data).subscribe(value => {
+      console.log('user', value)
+      let result: any = {}
+      result = value
+      console.log('Account Payable',result)
+    },
+      err => {
+        console.log(err)
+        this.contactService.deleteContact(this.contactId).subscribe(result=>{
+          this.loader=false;
+          console.log('delete result',result);
+          this.userService.deleteAccount(this.accountId).subscribe(result=>{
+            console.log('delete  account result',result);
+
+          },
+          error=>{
+            this.loader=false;
+            console.log('error',error)
+          })
+        },
+        err=>{
+         
+          this.loader=false;
+          console.log('delete err',err)
+        })
+        this.toastr.error('Error!', 'Server Error')
+      })
+  }
 }
+

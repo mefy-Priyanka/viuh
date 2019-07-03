@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { CreatecontractorComponent } from './createcontractor/createcontractor.component';
+// import { CreatecontractorComponent } from './dashboard/createcontractor/createcontractor.component';
 
 // import { SidenavComponent } from './sidenav/sidenav.component';
 // import { DashboardComponent } from './dashboard/dashboard.component';
@@ -28,7 +28,6 @@ import { ContactService } from './service/contact.service';
 
 // import { JournalComponent } from './journal/journal.component';
 // import { ContactlistComponent } from './contactlist/contactlist.component';
-// import { ContactComponent } from './dashboard/contact/contact.component';
 // import { TreeViewComponent } from '@syncfusion/ej2-angular-navigations';
 
 const routes: Routes = [
@@ -57,9 +56,8 @@ const routes: Routes = [
     InviteComponent,
     // JournalComponent,
     // ContactlistComponent,
-    // ContactComponent,
     // AccountComponent,
-    CreatecontractorComponent,
+    // CreatecontractorComponent,
     // CompanycreateComponent,
 
   ],
