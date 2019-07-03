@@ -1,10 +1,10 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { FormControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CompanyService } from '../service/company.service';
+import { CompanyService } from '../../service/company.service';
 import { ToastrService } from 'ngx-toastr';
-import { SharedService } from '../service/shared.service';
-import { UserService } from '../service/user.service';
+import { SharedService } from '../../service/shared.service';
+import { UserService } from '../../service/user.service';
 
 
 @Component({
@@ -253,7 +253,7 @@ export class CreatecontractorComponent implements OnInit {
       // accountCode: this.contractorForm.value.account_number,
       organisation: localStorage.getItem('organisation'),
       userId: this.userId,
-      parentAccount: "contractor",
+      parentAccount: "Contractors",
       super_parent_Account:''
     }
 

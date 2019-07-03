@@ -147,6 +147,16 @@ export class CompanyService {
 
   creattender(data){
     return this.httpClient.post(APIURL + 'company/tender', data)
+  }
 
+  
+  // get invoice list
+  getinvoice(id){
+    return this.httpClient.get(APIURL+'invoice/invoiceList?superAdminId='+id)
+  }
+
+  // putinvoice
+  paidinvoice(data){
+    return this.httpClient.put(APIURL+'invoice/paid',data)
   }
 }

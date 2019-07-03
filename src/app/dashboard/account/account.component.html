@@ -17,6 +17,7 @@
             <thead class="cf">
               <tr>
                 <th class="numeric">ACCOUNT TYPE</th>
+                <th>SUPER ACCOUNT</th>
                 <th>PARENT ACCOUNT</th>
                 <th>NAME</th>
                 <th>ACCOUNT CODE</th>
@@ -25,9 +26,11 @@
             <tbody>
               <tr *ngFor="let list of accountlist1">
                 <td class="thno" data-title="NO.">{{list.accountType}}</td>
+                <td class="thname" data-title="VAT ID">{{list.super_parent_Account}}</td>
                 <td class="thname" data-title="NAME">{{list.parentAccount}}</td>
                 <td class="thname" data-title="NAME">{{list.accountName}}</td>
                 <td class="thname" data-title="VAT ID">{{list.accountCode}}</td>
+                
               </tr>
 
             </tbody>

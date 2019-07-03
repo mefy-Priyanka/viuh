@@ -4,6 +4,8 @@ import { UserService } from 'src/app/service/user.service';
 
 import { ToastrService } from 'ngx-toastr';
 import { CompanyService } from 'src/app/service/company.service';
+import { SharedService } from 'src/app/service/shared.service';
+
 
 @Component({
   selector: 'app-invoice',
@@ -16,7 +18,7 @@ export class InvoiceComponent implements OnInit {
   contactlist=[];
   worklist=[];
   firstaccountid: any;
-  constructor(private fb: FormBuilder, private userService: UserService, private toastr: ToastrService,private companyService:CompanyService) { }
+  constructor(private fb: FormBuilder,   private SharedService :SharedService, private userService: UserService, private toastr: ToastrService,private companyService:CompanyService) { }
 
   ngOnInit() {
     this.myForm = this.fb.group({
@@ -141,7 +143,7 @@ export class InvoiceComponent implements OnInit {
   submit() {
     console.log(this.myForm.value);
     let data = {
-      customer: this.myForm.value.customer,
+      customerId: this.myForm.value.customer,
       Work_order: this.myForm.value.Work_order,
       invoice_date: this.myForm.value.invoice_date,
       terms: this.myForm.value.terms,
@@ -167,18 +169,19 @@ export class InvoiceComponent implements OnInit {
     this.userService.creatinvoice(data).subscribe(result=>{
       console.log(data);
       this.toastr.success('Awesome!', 'invoice saved suceesfully');
+      this.createjournal()
     },
     err=>{
       console.log(err);
-      this.toastr.error('Error!', 'Server Error')
+      this.toastr.error('Error in invoice!', 'Server Error')
 
     })
   }
   onChangeObj(data){
   console.log(data);
-  var accounttype='Revenue'
+  var accounttype='Asset'
   var account='';
-  var parent='Amount Receivable';
+  var parent='Customer';
   for(var i=0;i<this.contactlist.length;i++){
     if(this.contactlist[i]._id==data){
       // parent=this.contactlist[i].contact_type;
@@ -199,7 +202,8 @@ export class InvoiceComponent implements OnInit {
       console.log(result);
       let something:any;
       something=result
-      this.firstaccountid=something._id
+      this.firstaccountid=something.result[0]._id
+      console.log(this.firstaccountid)
     },
       err => {
         console.log(err)
@@ -222,26 +226,27 @@ export class InvoiceComponent implements OnInit {
         description:'description'
       },
       {
-        accountId:'',
+        accountId:'5d1af882fbe2953ecca6f2ea',
         credit:this.myForm.value.amount,
         description:'description'
       }
     ]
-
   }
-  }
-  //   this.userService.journalcreat(this.maindata).subscribe(result => {
-  //     console.log(result);
-  //     this.toastr.success('Awesome!', 'Journal created suceesfully');
-  //     console.log(result);
-  //     this.SharedService.abc('journal');
-     
-  //   },
-  //     err => {
-  //       console.log(err)
-  //       this.toastr.error('Error!', 'Server Error')
+  console.log(data);
 
-  //     })
-  // }
+  this.userService.journalcreat(data).subscribe(result => {
+    console.log(result);
+    this.toastr.success('Awesome!', 'Journal created suceesfully');
+    console.log(result);
+    this.SharedService.abc('journal');
+   
+  },
+    err => {
+      console.log(err)
+      this.toastr.error('Error!', 'Server Error')
+
+    })
+  }
+  
   
 }

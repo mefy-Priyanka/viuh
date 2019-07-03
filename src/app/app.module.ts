@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { CreatecontractorComponent } from './createcontractor/createcontractor.component';
+// import { CreatecontractorComponent } from './dashboard/createcontractor/createcontractor.component';
 
 // import { SidenavComponent } from './sidenav/sidenav.component';
 // import { DashboardComponent } from './dashboard/dashboard.component';
@@ -59,7 +59,7 @@ const routes: Routes = [
     // ContactlistComponent,
     // ContactComponent,
     // AccountComponent,
-    CreatecontractorComponent,
+    // CreatecontractorComponent,
     // CompanycreateComponent,
 
   ],

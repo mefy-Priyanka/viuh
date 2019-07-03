@@ -34,6 +34,7 @@ import { WorkorderComponent } from './workorder/workorder.component';
 import { PetrolformComponent } from './petrolform/petrolform.component';
 import { TenderComponent } from './tender/tender.component';
 import { BanktransferComponent } from './banktransfer/banktransfer.component';
+import { CreatecontractorComponent } from './createcontractor/createcontractor.component';
 // import { ExpenseComponent } from './expense/expense.component';
 // import { EmployeeComponent } from './employee/employee.component';
 
@@ -52,7 +53,7 @@ const routes: Routes = [
             { path: "contact", component: CompanyListComponent },
             { path: "route", component: MaprouteComponent },
             { path: "expensses", component: InvoiceComponent },
-
+            { path: "creatcontractor", component: CreatecontractorComponent },
 
 
 
@@ -73,6 +74,7 @@ const routes: Routes = [
         DashboardComponent,
         FleetComponent,
         UserComponent,
+        CreatecontractorComponent,
         OrderComponent,
         CompanycreateComponent,
         ContactComponent,

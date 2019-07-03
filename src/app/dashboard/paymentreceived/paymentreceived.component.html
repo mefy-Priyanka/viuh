@@ -17,7 +17,7 @@
                     <tr>
                       <th>DATE</th>
                       <th>INVOICE #</th>
-                      <th>ORDER NUMBER</th>
+                      <!-- <th>ORDER NUMBER</th> -->
                       <th>CUSTOMER NAME</th>
                       <th>STATUS</th>
                       <th>DUE DATE</th>
@@ -26,15 +26,15 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr data-toggle="modal" data-target="#paymentModal">
-                      <td class="thno" data-title="NO.">-</td>
-                      <td class="thname" data-title="NAME"></td>
-                      <td class="thname" data-title="VAT ID"></td>
-                      <td data-title="ADDRESS" class="numeric"></td>
-                      <td data-title="VAT ID" class="numeric"></td>
-                      <td data-title="VAT ID" class="numeric"></td>
-                      <td data-title="VAT ID" class="numeric"></td>
-                      <td data-title="VAT ID" class="numeric"></td>
+                    <tr data-toggle="modal" data-target="#paymentModal" *ngFor="let invoice of invoicelists" (click)="pay(invoice)">
+                      <td class="thno" data-title="NO.">{{invoice.createdDate}}</td>
+                      <td class="thname" data-title="NAME">{{invoice.invoice_number}}</td>
+                      <!-- <td class="thname" data-title="VAT ID">{{invoice.invoice_number}}</td> -->
+                      <td data-title="ADDRESS" class="numeric"> {{invoice.userId.name}}</td>
+                      <td data-title="VAT ID" class="numeric">{{invoice.status}}</td>
+                      <td data-title="VAT ID" class="numeric">{{invoice.due_date}}</td>
+                      <td data-title="VAT ID" class="numeric">{{invoice.total}}</td>
+                      <td data-title="VAT ID" class="numeric">{{invoice.total-invoice.amount_paid}}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -59,7 +59,7 @@
 
         </div>
         <div class="modal-body">
-          <form >
+        
    
 
 
@@ -71,7 +71,7 @@
                 <label>Pay Amount<span class="blue_star">*</span></label>
               </div>
               <div class="input-field col s7">
-                <input type="text" class="validate" >
+                <input type="text" class="validate" [(ngModel)]="amount" >
 
 
               </div>
@@ -82,15 +82,15 @@
                 <label>Description</label>
               </div>
               <div class="input-field col s7">
-                <textarea cols="8" rows="4" placeholder="Max 500 characters"></textarea>
+                <textarea cols="8" rows="4" placeholder="Max 500 characters" [(ngModel)]="description"></textarea>
 
               </div>
             </div>
             <div class="modal-footer">
-              <!-- <button type="button"  class="saveBtn" (click)="submit()">Save</button> -->
-              <button type="button" class="cancelBtn">Cancel</button>
+              <button type="button"  class="saveBtn" (click)="submit()">Save</button>
+              <button type="button" class="cancelBtn" data-dismiss="modal" id="cancel" (click)="cancel()">Cancel</button>
             </div>
-          </form>
+          
         </div>
       </div>
     </div>

@@ -76,6 +76,7 @@ export class UserService {
 
 
   journalcreat(data){
+    console.log('dkfgdhzjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjg',data)
     return this.httpClient.post(APIURL + 'journal/create',data)
   }
   journaldraft(data){
@@ -119,7 +120,7 @@ createbill(data){
 
 // account for customer,vender etc
 accountbytype(data){
-  return this.httpClient.get(APIURL + 'account/accountDetail?accountName='+data.account+'&accountType='+data.accounttype+'&parentAccount=Driver')
+  return this.httpClient.get(APIURL + 'account/accountDetail?accountName='+data.account+'&accountType='+data.accounttype+'&parentAccount='+data.parent)
 }
 
 /*******************DELETE ACCOUNT BY ACCOUNTID***********************/

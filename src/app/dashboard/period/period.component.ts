@@ -15,13 +15,17 @@ export class PeriodComponent implements OnInit {
   submitted: boolean;
   periods=[];
   openbool: boolean;
-  periodFormErrors: { period_name: any; period_status: any; from: any; to: any; };
+  periodFormErrors: { period_name: any; period_status: any; from: any; to: any; fiscle_year:any; assessment_year:any; quarter_end:any; quarter_start:any;};
   constructor(private formBuilder: FormBuilder, private CompanyService: CompanyService, private toastr: ToastrService) {
     this.periodFormErrors = {
       period_name: {},
       period_status: {},
       from: {},
       to: {},
+      fiscle_year: {},
+      assessment_year: {},
+      quarter_start: {},
+      quarter_end: {},
     };
   }
 
@@ -45,12 +49,17 @@ export class PeriodComponent implements OnInit {
 
       })
   }
-  checkopen(){
+  checkopen(date){
+    date=moment(date).toISOString()
+    console.log(date)
     let i=0;
     for(i=0;i<this.periods.length;i++){
-      if(this.periods[i].period_status=='open'){
+     
+      console.log(this.periods[i].from,date,this.periods[i].to)
+      if(this.periods[i].from<date && date<this.periods[i].to){
         this.openbool=true;
-        return;
+       alert(i);
+       return;
       }
       else{
         this.openbool=false
@@ -64,6 +73,10 @@ export class PeriodComponent implements OnInit {
       period_status: ['', Validators.required],
       from: ['', Validators.required],
       to: ['', Validators.required],
+      fiscle_year: ['', Validators.required],
+      assessment_year: ['', Validators.required],
+      quarter_start: ['', Validators.required],
+      quarter_end: ['', Validators.required],
     });
   }
 
@@ -83,11 +96,7 @@ export class PeriodComponent implements OnInit {
     }
   }
   submit() {
-    this.checkopen();
-    if(this.openbool){
-      alert('you already have one period open please close it')
-      return;
-    }
+    
     console.log(this.periodForm.value)
     this.submitted = true;
     var accounttype: any;
@@ -98,9 +107,14 @@ export class PeriodComponent implements OnInit {
         period_status: this.periodForm.value.period_status,
         from: moment(this.periodForm.value.from).toISOString(),
         to: moment(this.periodForm.value.to).toISOString(),
-        userId: localStorage.getItem('userId')
+        userId: localStorage.getItem('userId'),
+        fiscle_year: this.periodForm.value.fiscle_year,
+        assessment_year: this.periodForm.value.assessment_year,
+        quarter_start: this.periodForm.value.quarter_start,
+        quarter_end: this.periodForm.value.quarter_end,
       }
       console.log('let data be', data);
+      
       this.CompanyService.creatperiod(data).subscribe(value => {
         this.submitted = false;
         this.toastr.success('Congo!', 'account Successfully Created'),

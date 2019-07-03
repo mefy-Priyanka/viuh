@@ -16,7 +16,21 @@
                 <div class="row">
                   <div class="input-field col s6">
                       <p><label>Period Name</label></p>
-                      <input type="text" class="validate" formControlName="period_name">
+                      <select class="orga" formControlName="period_name">
+                        <option value="" disabled selected>Select Month</option>
+                        <option value="Jan">January</option>
+                        <option value="Feb">February</option>
+                        <option value="Mar">March</option>
+                        <option value="Apr">April</option>
+                        <option value="May">May</option>
+                        <option value="June">June</option>
+                        <option value="July">July</option>
+                        <option value="Aug">August</option>
+                        <option value="Sept">September</option>
+                        <option value="Oct">October</option>
+                        <option value="Nov">November</option>
+                        <option value="Dec">December</option>
+                      </select>
                       <p class="errormessage"
                       *ngIf="periodFormErrors.period_name.required || (periodForm.controls.period_name.pristine && submitted)">
                       Cannot be empty</p>
@@ -24,7 +38,14 @@
                     </div>
                   <div class="input-field col s6">
                     <p><label>Period Status</label></p>
-                    <input type="text" class="validate" formControlName="period_status">
+                    <!-- <input type="text" class="validate" formControlName="period_status"> -->
+                    <select class="orga" formControlName="period_status">
+                      <option value="" disabled selected>Select</option>
+                      <option value="open">Open</option>
+                      <option value="closed">Closed</option>
+                      <option value="unopend">Unopened</option>
+                      
+                    </select>
                     <p class="errormessage"
                     *ngIf="periodFormErrors.period_status.required || (periodForm.controls.period_status.pristine && submitted)">
                     Cannot be empty</p>
@@ -35,14 +56,14 @@
                 <div class="row">
                   <div class="input-field col s6">
                       <p><label>Period From</label></p>
-                      <input type="date" class="validate" formControlName="from">
+                      <input type="date" class="validate" formControlName="from"  (change)="checkopen(periodForm.value.from)">
                       <p class="errormessage"
                       *ngIf="periodFormErrors.from.required || (periodForm.controls.from.pristine && submitted)">
                       Cannot be empty</p>
                     </div>
                   <div class="input-field col s6">
                     <p><label>Period To</label></p>
-                    <input type="date" class="validate" formControlName="to">
+                    <input type="date" class="validate" formControlName="to" (change)="checkopen(periodForm.value.to)">
                     <p class="errormessage"
                     *ngIf="periodFormErrors.to.required || (periodForm.controls.to.pristine && submitted)">
                    Cannot be empty</p>
@@ -50,7 +71,52 @@
                   
                 </div>
 
+                <div class="row">
+                  <div class="input-field col s6">
+                      <p><label>Fiscle Year</label></p>
+                      <select class="orga" formControlName="fiscle_year">
+                        <option value="" disabled selected>Select</option>
+                        <option value="Fy18-19">Fy18-19</option>
+                        <option value="Fy19-20">Fy19-20</option>
+                        <option value="Fy20-21">Fy20-21</option>
+                      </select>
+                      <p class="errormessage"
+                      *ngIf="periodFormErrors.fiscle_year.required || (periodForm.controls.fiscle_year.pristine && submitted)">
+                      Cannot be empty</p>
 
+                    </div>
+                  <div class="input-field col s6">
+                    <p><label>Assessment Year</label></p>
+                    <select class="orga" formControlName="assessment_year">
+                      <option value="" disabled selected>Select</option>
+                      <option value="As18-19">As18-19</option>
+                      <option value="As19-20">As19-20</option>
+                      <option value="As20-21">As20-21</option>
+                      
+                    </select>
+                    <p class="errormessage"
+                    *ngIf="periodFormErrors.assessment_year.required || (periodForm.controls.assessment_year.pristine && submitted)">
+                    Cannot be empty</p>
+                  </div>
+
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                      <p><label>Quarter Start</label></p>
+                      <input type="date" class="validate" formControlName="quarter_start">
+                      <p class="errormessage"
+                      *ngIf="periodFormErrors.quarter_start.required || (periodForm.controls.quarter_start.pristine && submitted)">
+                      Cannot be empty</p>
+                    </div>
+                  <div class="input-field col s6">
+                    <p><label>Quarter End</label></p>
+                    <input type="date" class="validate" formControlName="quarter_end">
+                    <p class="errormessage"
+                    *ngIf="periodFormErrors.quarter_end.required || (periodForm.controls.quarter_end.pristine && submitted)">
+                   Cannot be empty</p>
+                  </div>
+                  
+                </div>
               </div>
 
             </div>
