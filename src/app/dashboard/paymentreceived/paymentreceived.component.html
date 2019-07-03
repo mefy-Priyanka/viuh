@@ -21,7 +21,8 @@
                       <th>CUSTOMER NAME</th>
                       <th>STATUS</th>
                       <th>DUE DATE</th>
-                      <th>AMOUNT</th>
+                      <th>TOTAL</th>
+                      <th>AMOUNT PAID</th>
                       <th>BALANCE DUE</th>
                     </tr>
                   </thead>
@@ -33,8 +34,9 @@
                       <td data-title="ADDRESS" class="numeric"> {{invoice.userId.name}}</td>
                       <td data-title="VAT ID" class="numeric">{{invoice.status}}</td>
                       <td data-title="VAT ID" class="numeric">{{invoice.due_date}}</td>
-                      <td data-title="VAT ID" class="numeric">{{invoice.total}}</td>
-                      <td data-title="VAT ID" class="numeric">{{invoice.total-invoice.amount_paid}}</td>
+                      <td data-title="VAT ID" class="numeric">{{invoice.total}} </td>
+                      <td data-title="VAT ID" class="numeric">{{invoice.amount_paid}} </td>
+                      <td data-title="VAT ID" class="numeric">{{invoice.amount_due}}</td>
                     </tr>
                   </tbody>
                 </table>

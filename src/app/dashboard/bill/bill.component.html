@@ -67,9 +67,14 @@
 
                   <div class="input-field col s6">
                     <p><label>Vendor Name <span class="blue_star">*</span></label></p>
-                    <select formControlName="vendorId">
-                      <option value="" disabled selected>Select</option>
+                    <select formControlName="vendorId" (ngModelChange)="onChangeObj($event)">
+                      <option value="" disabled selected>vender</option>
                       <option *ngFor="let data of vendorlist" [value]='data._id'>{{data.name}}</option>
+                      <option value="" disabled selected>contractor</option>
+
+                      <option *ngFor="let contractor of contractorDetail" [value]='contractor._id'>{{contractor.companyName}}</option>
+
+                      
                     </select>
 
                   </div>

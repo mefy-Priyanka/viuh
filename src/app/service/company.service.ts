@@ -159,4 +159,13 @@ export class CompanyService {
   paidinvoice(data){
     return this.httpClient.put(APIURL+'invoice/paid',data)
   }
+
+
+  // bill
+  getbill(id){
+    return this.httpClient.get(APIURL+'bill/billList?superAdminId='+id)
+  }
+  paybill(data){
+    return this.httpClient.put(APIURL+'bill/paid',data)
+  }
 }
