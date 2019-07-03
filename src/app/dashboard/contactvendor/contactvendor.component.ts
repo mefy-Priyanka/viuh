@@ -32,6 +32,7 @@ export class ContactvendorComponent implements OnInit {
   public error: any;
   public imgUrlPrefix: any;
   public accountId:any;
+  public contactId:any;
   public userId = localStorage.getItem('userId');
   public mask = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/] // Account number validation 
   public account = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/,/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/] // Account number validation 
@@ -277,7 +278,7 @@ export class ContactvendorComponent implements OnInit {
           console.log('value', value)
           let result: any = {}
           result = value
-          this.accountId = result.result._id
+          this.contactId = result.result._id
           this.vendorAccount();
           this.loader = false;
           this.toastr.success('Vendor created')
@@ -311,7 +312,7 @@ export class ContactvendorComponent implements OnInit {
           console.log('value', value)
           let result: any = {}
           result = value
-          this.accountId = result.result._id
+          this.contactId = result.result._id
           this.vendorAccount();
           this.loader = false;
           this.toastr.success('Vendor created')
@@ -347,12 +348,15 @@ export class ContactvendorComponent implements OnInit {
     console.log(' account data', data)
     this.userService.creataccount(data).subscribe(result => {
       console.log('resultttt', result)
+      let value:any
+      value=result
+      this.accountId=value.user._id
       this.loader=false;
     },
       err => {
         console.log('account err', err)
         this.toastr.error('Error!', 'Creation  failed')
-        this.userService.deleteAccount(this.accountId).subscribe(result => {
+        this.contactService.deleteContact(this.contactId).subscribe(result=>{
           console.log('delete result', result);
           this.loader=false;
         },
@@ -384,5 +388,44 @@ export class ContactvendorComponent implements OnInit {
   //   })
   // }
   /********** ENDS ************** */
+  creataccountinpayable() {    
+    let data = {
+      accountName: this.vendorForm.value.name,
+      accountType: "Liability",
+      description: "Description",
+      organisation: localStorage.getItem('organisation'),
+      userId: this.userId,
+      parentAccount: "Vendor",
+      super_parent_Account:'Account Payable'
+    }
+
+    console.log('let data be', data);
+    this.userService.creataccount(data).subscribe(value => {
+      console.log('user', value)
+      let result: any = {}
+      result = value
+      console.log('Account Payable',result)
+    },
+      err => {
+        console.log(err)
+        this.contactService.deleteContact(this.contactId).subscribe(result=>{
+          this.loader=false;
+          console.log('delete result',result);
+          this.userService.deleteAccount(this.accountId).subscribe(result=>{
+            console.log('delete  account result',result);
+          },
+          error=>{
+            this.loader=false;
+            console.log('error',error)
+          })
+        },
+        err=>{
+         
+          this.loader=false;
+          console.log('delete err',err)
+        })
+        this.toastr.error('Error!', 'Server Error')
+      })
+  }
 
 }

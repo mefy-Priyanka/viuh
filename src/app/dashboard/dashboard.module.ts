@@ -10,11 +10,10 @@ import { UserComponent } from './user/user.component';
 import { OrderComponent } from './order/order.component';
 import { CompanycreateComponent } from './companycreate/companycreate.component';
 import { SidenavComponent } from '../sidenav/sidenav.component';
-import { ContactComponent } from '../dashboard/contact/contact.component';
+// import { ContactComponent } from '../dashboard/contact/contact.component';
 import { MaprouteComponent } from './maproute/maproute.component';
 import { ContractorListComponent } from './contractor-list/contractor-list.component';
 import { CompanyListComponent } from './company-list/company-list.component';
-            // { path: "contact", component: ContactComponent }
 import { ContactlistComponent } from '../contactlist/contactlist.component';
 import { JournalComponent } from '../journal/journal.component';
 import { JournalistComponent } from './journalist/journalist.component';
@@ -49,7 +48,6 @@ const routes: Routes = [
             { path: "user", component: UserComponent },
             { path: "order", component: OrderComponent },
             { path: "company", component: CompanycreateComponent },
-            // { path: "contact", component: ContactComponent }
             { path: "contact", component: CompanyListComponent },
             { path: "route", component: MaprouteComponent },
             { path: "expensses", component: InvoiceComponent },
@@ -77,7 +75,7 @@ const routes: Routes = [
         CreatecontractorComponent,
         OrderComponent,
         CompanycreateComponent,
-        ContactComponent,
+        // ContactComponent,
         SidenavComponent,
         MaprouteComponent,
         ContractorListComponent,
