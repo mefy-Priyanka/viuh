@@ -34,6 +34,7 @@ import { PetrolformComponent } from './petrolform/petrolform.component';
 import { TenderComponent } from './tender/tender.component';
 import { BanktransferComponent } from './banktransfer/banktransfer.component';
 import { CreatecontractorComponent } from './createcontractor/createcontractor.component';
+import { MainComponent } from './main/main.component';
 // import { ExpenseComponent } from './expense/expense.component';
 // import { EmployeeComponent } from './employee/employee.component';
 
@@ -99,6 +100,7 @@ const routes: Routes = [
         PetrolformComponent,
         TenderComponent,
         BanktransferComponent,
+        MainComponent,
         // ExpenseComponent,
         // EmployeeComponent
 
