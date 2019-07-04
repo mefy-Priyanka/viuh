@@ -27,7 +27,8 @@
                         <td class="thno" data-title="NO.">{{fleet.truck_number}}</td>
                         <td class="thname" data-title="NAME">{{fleet.capacity}}</td>
                         <!-- <td class="thname" data-title="VAT ID">{{fleet}}</td> -->
-                        <td data-title="ADDRESS" class="numeric">{{fleet.ownership}}</td>
+                        <td data-title="ADDRESS" class="numeric" *ngIf="fleet.ownId">{{fleet.ownId.name}}</td>
+                        <td data-title="ADDRESS" class="numeric" *ngIf="fleet.contractId">{{fleet.contractId.companyName}}</td>
                         <td data-title="VAT ID" class="numeric" (click)="delete(fleet._id)"><i class="fa fa-trash" aria-hidden="true"></i>
                         </td>
                       </tr>
@@ -74,10 +75,11 @@
 
               <div class="input-field col s4">
                 <p><label>Ownership <span class="blue_star">*</span></label></p>
-                <select [(ngModel)]="ownership" [ngModelOptions]="{standalone: true}" (change)="check('ownership')">
+                <select [(ngModel)]="ownership" [ngModelOptions]="{standalone: true}" (ngModelChange)="check('ownership',$event)">
                   <option value="" disabled selected>Ownership</option>
-                  <option value='owned'>Owned</option>
-                  <option value='contract'>Contract</option>
+                  <option [value]='superadminid'>Owned</option>
+                  <option *ngFor="let contractor of contractorDetail" [value]='contractor._id'>{{contractor.companyName}}</option>
+
                 </select>
                 <p class="errormessage" *ngIf="ownererr">please choose ownership</p>
               </div>

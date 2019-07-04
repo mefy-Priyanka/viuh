@@ -50,6 +50,7 @@ export class FleetComponent implements OnInit {
   other2bool: boolean;
   fleetDetail = [];
   maindata = { userId: '', superadminid: '', others: [] };
+  contractorDetail: any;
   constructor(private formBuilder: FormBuilder,
     private router: Router, private companyService:
       CompanyService, private toastr: ToastrService,private userService: UserService,) {
@@ -58,6 +59,7 @@ export class FleetComponent implements OnInit {
 
     this.userId = localStorage.getItem('userId');
     this.getfleetList();
+    this.getContractorList()
   }
 
   getfleetList() {
@@ -67,6 +69,22 @@ export class FleetComponent implements OnInit {
       result = data;
       this.fleetDetail = result.result
       console.log(this.fleetDetail);
+    },
+      error => {
+        console.log(error);
+
+      })
+  }
+
+
+  getContractorList() {
+    this.companyService.contractorList(localStorage.getItem('userId')).subscribe(data => {
+      console.log(data)
+      let result: any = {}
+      result = data;
+      this.contractorDetail = result.result
+      console.log(this.contractorDetail);
+
     },
       error => {
         console.log(error);
@@ -442,7 +460,8 @@ export class FleetComponent implements OnInit {
     });
   }
 
-  check(xy) {
+  check(xy,owner) {
+    console.log(xy,owner)
     if (xy == 'trucknumber') {
       if (this.trucknumber == '') {
         this.truckerr = true;
@@ -467,9 +486,17 @@ export class FleetComponent implements OnInit {
       else {
         this.ownererr = false;
       }
+      if(owner==this.superadminid){
+        Object.assign(this.maindata, { ownId: this.superadminid })
+      }
+      else{
+        Object.assign(this.maindata, { contractId: owner })
+
+      }
     }
 
   }
+  
   submit() {
     if (this.trucknumber == '') {
       this.truckerr = true;
@@ -493,7 +520,7 @@ export class FleetComponent implements OnInit {
     Object.assign(this.maindata, { truck_number: this.trucknumber });
     Object.assign(this.maindata, { capacity: this.truckcapacity })
 
-    Object.assign(this.maindata, { ownership: this.ownership })
+    // Object.assign(this.maindata, { ownership: this.ownership })
 
     console.log(this.maindata);
     this.companyService.fleetcreation(this.maindata).subscribe(result => {

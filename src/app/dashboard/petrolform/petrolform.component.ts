@@ -5,7 +5,6 @@ import { CompanyService } from '../../service/company.service';
 import * as moment from 'moment';
 import { UserService } from 'src/app/service/user.service';
 import { SharedService } from 'src/app/service/shared.service';
-// import { totalmem } from 'os';
 
 @Component({
   selector: 'app-petrolform',

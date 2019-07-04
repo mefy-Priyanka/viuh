@@ -45,7 +45,8 @@ export class InvoiceComponent implements OnInit {
     this.getConsignmentList();
     this.customerList();
     this.customerList(); 
-    this.getwork()
+    this.getwork();
+    // this.get()
   }
   getConsignmentList() {
     this.userService.consignmentList(localStorage.getItem('SuperAdmin')).subscribe(data => {
@@ -210,6 +211,27 @@ export class InvoiceComponent implements OnInit {
 
       })
   }
+
+  get(){
+   
+    let datas={
+      accounttype:"Revenue",
+      account:"Fleet",
+      parent:null
+    }
+  
+      this.userService.accountbytype(datas).subscribe(result => {
+        console.log(result);
+        let something:any;
+        something=result
+        this.firstaccountid=something.result[0]._id
+        console.log(this.firstaccountid)
+      },
+        err => {
+          console.log(err)
+  
+        })
+    }
 
 
   createjournal(){

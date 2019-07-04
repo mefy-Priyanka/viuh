@@ -12,14 +12,16 @@ import { SharedService } from 'src/app/service/shared.service';
   styleUrls: ['./bill.component.css']
 })
 export class BillComponent implements OnInit {
-public  bill:boolean=true;
-billForm: FormGroup;
-vendorlist=[];
-consigmentDetail=[];
+  public bill: boolean = true;
+  billForm: FormGroup;
+  vendorlist = [];
+  consigmentDetail = [];
   worklist: any;
   contractorDetail: any;
   firstaccountid: any;
-  constructor(private fb: FormBuilder,private SharedService :SharedService, private userService: UserService, private toastr: ToastrService,private companyService:CompanyService) { }
+  venderid: any;
+  contractorid: any;
+  constructor(private fb: FormBuilder, private SharedService: SharedService, private userService: UserService, private toastr: ToastrService, private companyService: CompanyService) { }
 
   ngOnInit() {
     this.getwork()
@@ -31,7 +33,7 @@ consigmentDetail=[];
       due_date: '',
       sub_total: '',
       adjustment: 0,
-      discount:0,
+      discount: 0,
       periodstart: '',
       periodend: '',
       reverse_change: '',
@@ -39,8 +41,8 @@ consigmentDetail=[];
       tdsrate: 0,
       amount: '',
       notes: '',
-      status:'',
-      amount_paid:0,
+      status: '',
+      amount_paid: 0,
       arraydata: this.fb.array([])
     })
 
@@ -64,7 +66,7 @@ consigmentDetail=[];
     }
 
     this.billForm.value.sub_total = amounts;
-    console.log("hi",this.billForm.value.sub_total)
+    console.log("hi", this.billForm.value.sub_total)
     this.calc();
   }
   getContractorList() {
@@ -74,7 +76,7 @@ consigmentDetail=[];
       result = data;
       this.contractorDetail = result.result
       console.log(this.contractorDetail);
-     
+
     },
       error => {
         console.log(error);
@@ -94,76 +96,75 @@ consigmentDetail=[];
 
   }
 
-  getwork(){
-    let some:any;
-  
-    this.companyService.getworkorder(localStorage.getItem('SuperAdmin')).subscribe(result=>{
-      some=result
+  getwork() {
+    let some: any;
+
+    this.companyService.getworkorder(localStorage.getItem('SuperAdmin')).subscribe(result => {
+      some = result
       console.log(some.result);
-      this.worklist=some.result
+      this.worklist = some.result
     },
-    err=>{
-      console.log(err);
-      this.toastr.error('oops','work order creation failed')
-  
-    })
+      err => {
+        console.log(err);
+        this.toastr.error('oops', 'work order creation failed')
+
+      })
   }
-  createbill(){
-    this.bill=!this.bill;
+  createbill() {
+    this.bill = !this.bill;
   }
   get phoneForms() {
     return this.billForm.get('arraydata') as FormArray
   }
 
 
-  onChangeObj(data){
+  onChangeObj(data) {
     console.log(data);
-    var accounttype='Expense'
-    var account='';
-    var parent='Contractors';
-    var alldata=this.vendorlist.concat(this.contractorDetail);
+    var accounttype = 'Expense'
+    var account = '';
+    var parent = 'Contractors';
+    var alldata = this.vendorlist.concat(this.contractorDetail);
 
     console.log(alldata)
-    for(var i=0;i<alldata.length;i++){
-      if(alldata[i]._id==data){
+    for (var i = 0; i < alldata.length; i++) {
+      if (alldata[i]._id == data) {
         console.log('daaaaaaaaaaaaaaa')
-        if(alldata[i].contact_type){
-          account=alldata[i].name;
-          parent='Vendor';
+        if (alldata[i].contact_type) {
+          account = alldata[i].name;
+          parent = 'Vendor';
         }
-        else{
-          account=alldata[i].companyName;
+        else {
+          account = alldata[i].companyName;
         }
         break;
       }
     }
 
-  
-    let datas={
-      accounttype:accounttype,
-      account:account,
-      parent:parent
+
+    let datas = {
+      accounttype: accounttype,
+      account: account,
+      parent: parent
     }
     console.log(datas);
+    this.userService.accountbytype(datas).subscribe(result => {
+      console.log(result);
+      let something: any;
+      something = result
+      if (something.result.lenght != 0) {
+        this.firstaccountid = something.result[0]._id
 
-      this.userService.accountbytype(datas).subscribe(result => {
-        console.log(result);
-        let something:any;
-        something=result
-        if(something.result.lenght!=0){
-          this.firstaccountid=something.result[0]._id
+      }
+      console.log(this.firstaccountid)
+    },
+      err => {
+        console.log(err)
 
-        }
-        console.log(this.firstaccountid)
-      },
-        err => {
-          console.log(err)
-  
-        })
-    }
+      })
+  }
 
 
-    
+
   addPhone() {
 
     const phone = this.fb.group({
@@ -189,12 +190,12 @@ consigmentDetail=[];
       })
   }
   vendorList() {
-    let data={
-      id:localStorage.getItem('SuperAdmin'),
-      contact_type:'vendor'
+    let data = {
+      id: localStorage.getItem('SuperAdmin'),
+      contact_type: 'vendor'
     }
     this.companyService.getvendor(data).subscribe(data => {
-     
+
       let result: any = {}
       result = data;
       this.vendorlist = result.result
@@ -208,20 +209,38 @@ consigmentDetail=[];
   deletePhone(i) {
     this.phoneForms.removeAt(i)
   }
+  check() {
+
+    for (var i = 0; i < this.vendorlist.length; i++) {
+      if(this.vendorlist[i]._id==this.billForm.value.vendorId){
+        console.log('vender');
+        this.venderid=this.vendorlist[i]._id;
+        this.contractorid=''
+      }
+      else{
+        console.log('contractor');
+        this.contractorid=this.vendorlist[i]._id;
+        this.venderid=''
+      }
+    }
+  }
   submit() {
+    this.check()
     console.log(this.billForm.value);
+   
     let data = {
-      vendorId: this.billForm.value.vendorId,
+      vendorId: this.venderid,
+      contractId:this.contractorid,
       work_order: this.billForm.value.work_order,
       bill_date: moment(this.billForm.value.bill_date).toISOString(),
       terms: this.billForm.value.terms,
-      notes:this.billForm.value.notes,
+      notes: this.billForm.value.notes,
       due_date: moment(this.billForm.value.due_date).toISOString(),
       sub_total: this.billForm.value.sub_total,
       total: this.billForm.value.amount,
       amount_paid: this.billForm.value.amount_paid,
       status: this.billForm.value.status,
-      discount:this.billForm.value.discount,
+      discount: this.billForm.value.discount,
       adjustment: {
         amount: this.billForm.value.adjustment,
       },
@@ -230,7 +249,7 @@ consigmentDetail=[];
         end_date: moment(this.billForm.value.periodend).toISOString(),
       },
       reverse_change: this.billForm.value.reverse_change,
-      
+
       tds: {
         rate: this.billForm.value.tdsrate,
         amount: this.billForm.value.tdsamount,
@@ -239,53 +258,54 @@ consigmentDetail=[];
       userId: localStorage.getItem('userId'),
     }
     console.log(data);
-    this.userService.createbill(data).subscribe(result=>{
+    
+    this.userService.createbill(data).subscribe(result => {
       console.log(data);
       this.toastr.success('Awesome!', 'Bill saved suceesfully');
       this.createjournal();
     },
-    err=>{
-      console.log(err);
-      this.toastr.error('Error!', 'Server Error')
+      err => {
+        console.log(err);
+        this.toastr.error('Error!', 'Server Error')
 
-    })
+      })
   }
 
 
 
-  createjournal(){
-    
-    let data={
-      date:new Date().toISOString(),
-      reference:this.billForm.value.vendorId,
-      notes:'',
-      total:this.billForm.value.amount,
-      userId:localStorage.getItem('userId'),
-      detail:[{
-        accountId:this.firstaccountid,
-        debit:this.billForm.value.amount,
-        description:'description'
+  createjournal() {
+
+    let data = {
+      date: new Date().toISOString(),
+      reference: this.billForm.value.vendorId,
+      notes: '',
+      total: this.billForm.value.amount,
+      userId: localStorage.getItem('userId'),
+      detail: [{
+        accountId: this.firstaccountid,
+        debit: this.billForm.value.amount,
+        description: 'description'
       },
       {
-        accountId:"5d1af5eafbe2953ecca6f2da",
-        credit:this.billForm.value.amount,
-        description:'description'
+        accountId: "5d1af5eafbe2953ecca6f2da",
+        credit: this.billForm.value.amount,
+        description: 'description'
       }
-    ]
-  }
-  console.log(data);
+      ]
+    }
+    console.log(data);
 
-  this.userService.journalcreat(data).subscribe(result => {
-    console.log(result);
-    this.toastr.success('Awesome!', 'Journal created suceesfully');
-    console.log(result);
-    this.SharedService.abc('journal');
-   
-  },
-    err => {
-      console.log(err)
-      this.toastr.error('Error!', 'Server Error')
+    this.userService.journalcreat(data).subscribe(result => {
+      console.log(result);
+      this.toastr.success('Awesome!', 'Journal created suceesfully');
+      console.log(result);
+      this.SharedService.abc('journal');
 
-    })
+    },
+      err => {
+        console.log(err)
+        this.toastr.error('Error!', 'Server Error')
+
+      })
   }
 }
