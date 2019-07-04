@@ -17,6 +17,8 @@ billForm: FormGroup;
 vendorlist=[];
 consigmentDetail=[];
   worklist: any;
+  contractorDetail: any;
+  firstaccountid: any;
   constructor(private fb: FormBuilder,private SharedService :SharedService, private userService: UserService, private toastr: ToastrService,private companyService:CompanyService) { }
 
   ngOnInit() {
@@ -49,6 +51,7 @@ consigmentDetail=[];
     this.addPhone();
     this.getConsignmentList();
     this.vendorList();
+    this.getContractorList()
   }
   onbillFormValuesChanged() {
     let i = 0;
@@ -63,6 +66,20 @@ consigmentDetail=[];
     this.billForm.value.sub_total = amounts;
     console.log("hi",this.billForm.value.sub_total)
     this.calc();
+  }
+  getContractorList() {
+    this.companyService.contractorList(localStorage.getItem('userId')).subscribe(data => {
+      console.log(data)
+      let result: any = {}
+      result = data;
+      this.contractorDetail = result.result
+      console.log(this.contractorDetail);
+     
+    },
+      error => {
+        console.log(error);
+
+      })
   }
   calc() {
     console.log(this.billForm.value.sub_total.toString())
@@ -97,6 +114,56 @@ consigmentDetail=[];
   get phoneForms() {
     return this.billForm.get('arraydata') as FormArray
   }
+
+
+  onChangeObj(data){
+    console.log(data);
+    var accounttype='Expense'
+    var account='';
+    var parent='Contractors';
+    var alldata=this.vendorlist.concat(this.contractorDetail);
+
+    console.log(alldata)
+    for(var i=0;i<alldata.length;i++){
+      if(alldata[i]._id==data){
+        console.log('daaaaaaaaaaaaaaa')
+        if(alldata[i].contact_type){
+          account=alldata[i].name;
+          parent='Vendor';
+        }
+        else{
+          account=alldata[i].companyName;
+        }
+        break;
+      }
+    }
+
+  
+    let datas={
+      accounttype:accounttype,
+      account:account,
+      parent:parent
+    }
+    console.log(datas);
+
+      this.userService.accountbytype(datas).subscribe(result => {
+        console.log(result);
+        let something:any;
+        something=result
+        if(something.result.lenght!=0){
+          this.firstaccountid=something.result[0]._id
+
+        }
+        console.log(this.firstaccountid)
+      },
+        err => {
+          console.log(err)
+  
+        })
+    }
+
+
+    
   addPhone() {
 
     const phone = this.fb.group({
@@ -175,6 +242,7 @@ consigmentDetail=[];
     this.userService.createbill(data).subscribe(result=>{
       console.log(data);
       this.toastr.success('Awesome!', 'Bill saved suceesfully');
+      this.createjournal();
     },
     err=>{
       console.log(err);
@@ -194,7 +262,7 @@ consigmentDetail=[];
       total:this.billForm.value.amount,
       userId:localStorage.getItem('userId'),
       detail:[{
-        // accountId:this.firstaccountid,
+        accountId:this.firstaccountid,
         debit:this.billForm.value.amount,
         description:'description'
       },
