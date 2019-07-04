@@ -8,6 +8,7 @@
       </div>
       <!-- <p>hiiiii</p> -->
       <div class="col-md-9 ipadwidth" id="padding-o">
+        <app-main *ngIf="sharenav=='dashboard'"></app-main>
         <app-fleet *ngIf="sharenav=='fleetdetail'"></app-fleet>
         <app-account *ngIf="sharenav=='accountdetail'"></app-account>
         <app-order *ngIf="sharenav=='orderdetail'"></app-order>
