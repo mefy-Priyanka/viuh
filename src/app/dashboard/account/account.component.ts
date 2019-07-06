@@ -34,7 +34,7 @@ export class AccountComponent implements OnInit {
   levelteoacnt = [];
   accountlist1 = [];
   superparent = '';
-  accountFormErrors: { accountName: any; parent: any; description: any;  };
+  accountFormErrors: { accountName: any; parent: any; description: any; };
 
   constructor(private formBuilder: FormBuilder, private userService: UserService, private toastr: ToastrService) {
     this.userId = localStorage.getItem('userId');
@@ -86,14 +86,36 @@ export class AccountComponent implements OnInit {
   getaccountlist1() {
     let i = 0;
     this.empty()
-    console.log('getting all account')
+    console.log('getting all account superadmin')
     let something: any;
-    this.userService.getaccountlist1(this.userId).subscribe(result => {
+    this.userService.getaccountlist1(localStorage.getItem('SuperAdmin')).subscribe(result => {
       console.log(result);
       something = result
       this.accountlist1 = (something.result);
 
       console.log(this.accountlist1);
+
+      this.accountlist = (something.result);
+      if (this.accountlist.length != 0) {
+        for (i = 0; i < this.accountlist.length; i++) {
+          if (this.accountlist[i].accountType == "Asset") {
+            this.assets.push(this.accountlist[i].accountName)
+          }
+          if (this.accountlist[i].accountType == "Equity") {
+            this.equity.push(this.accountlist[i].accountName)
+          }
+          if (this.accountlist[i].accountType == "Expense") {
+            this.expenses.push(this.accountlist[i].accountName)
+          }
+          if (this.accountlist[i].accountType == "Revenue") {
+            this.revenue.push(this.accountlist[i].accountName)
+          }
+          if (this.accountlist[i].accountType == "Liability") {
+            this.liabilities.push(this.accountlist[i].accountName)
+          }
+        }
+      }
+      console.log(this.equity, this.expenses, this.assets, this.revenue, this.liabilities)
 
     },
       err => {
@@ -113,24 +135,8 @@ export class AccountComponent implements OnInit {
       this.accountlist = (something.result);
 
       console.log(this.accountlist);
-      for (i = 0; i < this.accountlist.length; i++) {
-        if (this.accountlist[i].accountType == "Asset") {
-          this.assets.push(this.accountlist[i].accountName)
-        }
-        if (this.accountlist[i].accountType == "Equity") {
-          this.equity.push(this.accountlist[i].accountName)
-        }
-        if (this.accountlist[i].accountType == "Expense") {
-          this.expenses.push(this.accountlist[i].accountName)
-        }
-        if (this.accountlist[i].accountType == "Revenue") {
-          this.revenue.push(this.accountlist[i].accountName)
-        }
-        if (this.accountlist[i].accountType == "Liability") {
-          this.liabilities.push(this.accountlist[i].accountName)
-        }
-      }
-      console.log(this.equity, this.expenses, this.assets, this.revenue, this.liabilities)
+
+
     },
       err => {
         console.log(err)
@@ -149,7 +155,8 @@ export class AccountComponent implements OnInit {
 
   inputcheck1(event) {
 
-    console.log(this.accountForm.value.parent)
+    console.log(this.accountForm.value.parent, this.superparent)
+
     let something: any;
     this.childbool = event.currentTarget.checked;
     if (event.currentTarget.checked) {
@@ -158,7 +165,12 @@ export class AccountComponent implements OnInit {
 
       if (this.accountForm.value.parent !== '') {
         console.log(this.accountForm.value.parent);
-        this.userService.getlistbyparent(this.accountForm.value.parent).subscribe(value => {
+        let data = {
+          parent: this.accountForm.value.parent,
+          id: localStorage.getItem('SuperAdmin'),
+          super_parent_Account: this.superparent
+        }
+        this.userService.getlistbyparent(data).subscribe(value => {
 
           this.toastr.success('Congo!', 'account get Successfully '),
             console.log('list', value)
@@ -200,7 +212,7 @@ export class AccountComponent implements OnInit {
 
   ngOnInit() {
     this.getparent();
-    this.getaccountlist();
+    // this.getaccountlist();
     this.getaccountlist1();
     this.accountForm = this.createAccountForm()
     this.accountForm.valueChanges.subscribe(() => {
@@ -239,9 +251,10 @@ export class AccountComponent implements OnInit {
         result = value
         this.accountForm.reset();
         this.loader = false;;
-        this.getaccountlist();
-        this.toastr.success('Awesome!', 'Account created successfully')
+        this.getaccountlist1();
 
+        this.toastr.success('Awesome!', 'Account created successfully')
+        document.getElementById('cancel').click()
       },
         err => {
           console.log(err)
@@ -251,7 +264,7 @@ export class AccountComponent implements OnInit {
           this.accountForm.reset();
         })
     }
-    this.getaccountlist();
+    // this.getaccountlist();
     this.getaccountlist1();
   }
 

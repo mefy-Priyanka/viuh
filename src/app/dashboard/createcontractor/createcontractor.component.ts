@@ -253,7 +253,7 @@ export class CreatecontractorComponent implements OnInit {
       // accountCode: this.contractorForm.value.account_number,
       organisation: localStorage.getItem('organisation'),
       userId: this.userId,
-      parentAccount: "Contractors",
+      parentAccount: "Contractor",
       super_parent_Account:''
     }
 
@@ -284,7 +284,7 @@ export class CreatecontractorComponent implements OnInit {
       // accountCode: this.contractorForm.value.account_number,
       organisation: localStorage.getItem('organisation'),
       userId: this.userId,
-      parentAccount: "Contractors",
+      parentAccount: "Contractor",
       super_parent_Account:'Account Payable'
     }
 

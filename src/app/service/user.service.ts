@@ -42,8 +42,8 @@ export class UserService {
 
   }
   getaccountlist1(id) {
-    return this.httpClient.get(APIURL + 'account/accountByUserId?userId='+id);
-    // return this.httpClient.get(APIURL + 'account/accountType?parentAccount='+'')
+    // return this.httpClient.get(APIURL + 'account/accountByUserId?userId='+id);
+    return this.httpClient.get(APIURL + 'account/accountBySuperAdminId?superAdminId='+id)
 
   }
   getaccountlist(id) {
@@ -57,8 +57,8 @@ export class UserService {
   }
 
 
-  getlistbyparent(id){
-    return this.httpClient.get(APIURL + 'account/accountType?parentAccount='+id)
+  getlistbyparent(data){
+    return this.httpClient.get(APIURL + 'account/accountByParent?parentAccount='+data.parent+'&super_parent_Account='+data.super_parent_Account+'&superAdminId='+data.id)
 
   }
 
@@ -120,7 +120,8 @@ createbill(data){
 
 // account for customer,vender etc
 accountbytype(data){
-  return this.httpClient.get(APIURL + 'account/accountDetail?accountName='+data.account+'&accountType='+data.accounttype+'&parentAccount='+data.parent)
+  console.log(APIURL + 'account/accountDetail?accountName='+data.account+'&accountType='+data.accounttype+'&parentAccount='+data.parent+'&superAdminId='+data.superAdminId)
+  return this.httpClient.get(APIURL + 'account/accountDetail?accountName='+data.account+'&accountType='+data.accounttype+'&parentAccount='+data.parent+'&superAdminId='+data.superAdminId)
 }
 
 /*******************DELETE ACCOUNT BY ACCOUNTID***********************/

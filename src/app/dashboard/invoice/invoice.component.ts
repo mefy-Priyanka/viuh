@@ -46,7 +46,7 @@ export class InvoiceComponent implements OnInit {
     this.customerList();
     this.customerList(); 
     this.getwork();
-    // this.get()
+    this.get()
   }
   getConsignmentList() {
     this.userService.consignmentList(localStorage.getItem('SuperAdmin')).subscribe(data => {
@@ -179,7 +179,6 @@ export class InvoiceComponent implements OnInit {
     })
   }
   onChangeObj(data){
-  console.log(data);
   var accounttype='Asset'
   var account='';
   var parent='Customer';
@@ -196,9 +195,10 @@ export class InvoiceComponent implements OnInit {
   let datas={
     accounttype:accounttype,
     account:account,
-    parent:parent
+    parent:parent,
+    superAdminId:localStorage.getItem('SuperAdmin')
   }
-  console.log(account,parent,accounttype)
+  console.log(datas)
     this.userService.accountbytype(datas).subscribe(result => {
       console.log(result);
       let something:any;
@@ -217,14 +217,18 @@ export class InvoiceComponent implements OnInit {
     let datas={
       accounttype:"Revenue",
       account:"Fleet",
-      parent:null
+      parent:null,
+      superAdminId:localStorage.getItem('SuperAdmin')
     }
   
       this.userService.accountbytype(datas).subscribe(result => {
         console.log(result);
         let something:any;
         something=result
-        this.firstaccountid=something.result[0]._id
+        if(something.result.length!=0){
+          this.firstaccountid=something.result[0]._id
+
+        }
         console.log(this.firstaccountid)
       },
         err => {

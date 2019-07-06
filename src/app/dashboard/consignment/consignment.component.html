@@ -79,7 +79,7 @@
                       <select class="orga" formControlName="consignor">
   
                         <option value="" disabled selected>Choose Consignor</option>
-                        <option *ngFor="let list of contactlist" [value]='list._id'>{{list.company_name}}</option>
+                        <option *ngFor="let list of contactlist" [value]='list._id'>{{list.name}}</option>
                       </select>
                       <p class="errormessage"
                       *ngIf="consignmentFormErrors.consignor.required || (consignmentForm.controls.consignor.pristine && submitted)">
@@ -92,7 +92,7 @@
                         <select class="orga" formControlName="consignee">
     
                           <option value="" disabled selected>Choose Consignee</option>
-                          <option *ngFor="let list of contactlist" [value]='list._id'>{{list.company_name}}</option>
+                          <option *ngFor="let list of contactlist" [value]='list._id'>{{list.name}}</option>
                         </select>
                         <p class="errormessage"
                       *ngIf="consignmentFormErrors.consignee.required || (consignmentForm.controls.consignee.pristine && submitted)">
