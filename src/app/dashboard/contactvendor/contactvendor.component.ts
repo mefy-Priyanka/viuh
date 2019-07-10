@@ -342,7 +342,7 @@ export class ContactvendorComponent implements OnInit {
       accountName: this.vendorForm.value.name,
       accountType: 'Expense',
       organisation: localStorage.getItem('organisation'),
-      parentAccount: 'Vendor',
+      parentAccount: 'Vendors',
       userId: this.userId
     }
     console.log(' account data', data)

@@ -158,7 +158,7 @@ export class CreatecontractorComponent implements OnInit {
         let result: any = {}
         result = value;
         this.creataccount();
-        this.creataccountinpayable()
+        // this.creataccountinpayable()
         this.contractorForm.reset();
         this.loader = false;
         this.SharedService.abc('contractorlist');
@@ -253,7 +253,7 @@ export class CreatecontractorComponent implements OnInit {
       // accountCode: this.contractorForm.value.account_number,
       organisation: localStorage.getItem('organisation'),
       userId: this.userId,
-      parentAccount: "Contractor",
+      parentAccount: "Contractors",
       super_parent_Account:''
     }
 
@@ -284,7 +284,7 @@ export class CreatecontractorComponent implements OnInit {
       // accountCode: this.contractorForm.value.account_number,
       organisation: localStorage.getItem('organisation'),
       userId: this.userId,
-      parentAccount: "Contractor",
+      parentAccount: "Contractors",
       super_parent_Account:'Account Payable'
     }
 

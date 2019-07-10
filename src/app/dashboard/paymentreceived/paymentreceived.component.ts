@@ -70,7 +70,7 @@ export class PaymentreceivedComponent implements OnInit {
 
   getaccount(){
     var accounttype='Asset'
-    var parent='Customer';
+    var parent='Customers';
    
     let datas={
       accounttype:accounttype,
@@ -107,7 +107,7 @@ export class PaymentreceivedComponent implements OnInit {
         description:'description'
       },
       {
-        accountId:"5d1af2f6fbe2953ecca6f2cf",
+        accountId:"5d2583ef8de29212f49cf200",
         debit:this.amount,
         description:'description'
       }

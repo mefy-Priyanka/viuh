@@ -20,9 +20,12 @@ export class SidenavComponent implements OnInit {
   showbtn: boolean=true;
   constructor(private router: Router, private SharedService: SharedService, public userService: UserService, private CompanyService: CompanyService, private toastr: ToastrService) {
     this.userId = localStorage.getItem('userId');   /************** LOGIN USER ID FECTCH FROM LOCAL STORAGE****/
+   
     console.log("loginId", this.userId);
     this.getdiesel();
     this.SharedService.abc('dashboard');
+
+   
   }
   // **************dashboard toggle*********************
   abc(a) {

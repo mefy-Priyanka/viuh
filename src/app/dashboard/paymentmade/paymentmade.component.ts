@@ -105,12 +105,12 @@ export class PaymentmadeComponent implements OnInit {
       total:this.amount,
       userId:localStorage.getItem('userId'),
       detail:[{
-        accountId:'5d1af5eafbe2953ecca6f2da',
+        accountId:'5d2583ef8de29212f49cf200',
         credit:this.amount,
         description:'description'
       },
       {
-        accountId:"5d1af2f6fbe2953ecca6f2cf",
+        accountId:"5d2590fc7c8f70150cbca388",
         debit:this.amount,
         description:'description'
       }

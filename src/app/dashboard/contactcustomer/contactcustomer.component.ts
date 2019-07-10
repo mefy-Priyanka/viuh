@@ -333,7 +333,7 @@ uploadImage(event){
       accountName:this.customerForm.value.name,
       accountType:'Revenue',
       organisation:localStorage.getItem('organisation'),
-      parentAccount:'Customer',
+      parentAccount:'Customers',
       userId:this.userId
     }
     console.log(' account data',data)
@@ -343,7 +343,7 @@ uploadImage(event){
       let value:any
       value=result
       this.accountId=value.user._id
-      this.creataccountinpayable()
+      // this.creataccountinpayable()
     
     },
     err=>{
@@ -386,7 +386,7 @@ uploadImage(event){
       description: "Description",
       organisation: localStorage.getItem('organisation'),
       userId: this.userId,
-      parentAccount: "Customer",
+      parentAccount: "Customers",
       super_parent_Account:'Account Receivable'
     }
 

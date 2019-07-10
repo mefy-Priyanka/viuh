@@ -337,7 +337,7 @@ uploadImage(event){
       accountName:this.driverForm.value.name,
       accountType:'Expense',
       organisation:localStorage.getItem('organisation'),
-      parentAccount:'Driver',
+      parentAccount:'Drivers',
       userId:this.userId
     }
     console.log(' account data',data)

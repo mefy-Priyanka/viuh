@@ -199,7 +199,7 @@ export class PetrolformComponent implements OnInit {
     console.log(data);
     var accounttype='Expense'
     var account='';
-    var parent='Vendor';
+    var parent='Vendors';
 
     
     for(var i=0;i<this.vendorlist.length;i++){
