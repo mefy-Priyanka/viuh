@@ -17,12 +17,12 @@
   
                     <div class="input-field col s6">
                       <p><label>Date <span class="blue_star">*</span></label></p>
-                      <input type="date" class="validate" [(ngModel)]="date" >
+                      <input type="text" class="validate" placeholder="a" [readonly]=true [value] = "name">
   
                     </div>
                     <div class="input-field col s6">
                       <p><label>Journal# <span class="blue_star">*</span></label></p>
-                      <input type="text" class="validate" [readonly]=true>
+                      <input type="text" class="validate" [readonly]=true [value] = "name">
   
                     </div>
   
