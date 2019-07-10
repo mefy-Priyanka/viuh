@@ -149,7 +149,7 @@ export class CreatecontractorComponent implements OnInit {
         ifsc: this.contractorForm.value.ifsc,
         userId: this.userId,
         superAdminId: this.superadminid,
-        commision_percentage:''
+        // commision_percentage:''
       }
       console.log('let data be', data);
       this.companyService.createContractor(data).subscribe(value => {
@@ -257,7 +257,7 @@ export class CreatecontractorComponent implements OnInit {
       parentAccount: "",
       super_parent_Account:''
     }
-
+    this.creataccountinpayable()
     console.log('let data be', data);
     this.userService.creataccount(data).subscribe(value => {
       console.log('user', value)
