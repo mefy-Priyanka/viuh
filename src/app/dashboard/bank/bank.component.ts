@@ -148,7 +148,7 @@ export class BankComponent implements OnInit {
       organisation: localStorage.getItem('organisation'),
       userId: this.userId,
       parentAccount: "Bank",
-      super_parent_Account:''
+      super_parent_Account:'Current Assets'
     }
 
     console.log('let data be', data);

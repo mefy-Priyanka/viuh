@@ -310,12 +310,15 @@ employeeAccount(){
     accountName:this.employForm.value.name,
     accountType:'Expense',
     organisation:localStorage.getItem('organisation'),
-    parentAccount:'Employee',
-    userId:this.userId
+    parentAccount:'',
+    userId:this.userId,
+    super_parent_Account:''
+
   }
   console.log(' account data',data)
     this.userService.creataccount(data).subscribe(result=>{
-      console.log('resultttt',result)
+      console.log('resultttt',result);
+      this.creataccountinpayable()
       this.loader=false;
     },
     err=>{
@@ -330,6 +333,36 @@ employeeAccount(){
         console.log('delete err',err)
       })
     })
+  }
+
+  creataccountinpayable() {    
+
+    let data = {
+      accountName:this.employForm.value.name,
+      accountType: "Liability",
+      description: "description",
+      // accountCode: this.contractorForm.value.account_number,
+      organisation: localStorage.getItem('organisation'),
+      userId: this.userId,
+      parentAccount: "Account Payable",
+      super_parent_Account:'Current Liability'
+    }
+
+    console.log('let data be', data);
+    this.userService.creataccount(data).subscribe(value => {
+      console.log('user', value)
+      let result: any = {}
+      result = value
+      console.log(result)
+
+      this.toastr.success('Awesome!', 'Contractor created successfully')
+
+    },
+      err => {
+        console.log(err)
+
+        this.toastr.error('Error!', 'Server Error')
+      })
   }
 /********** ENDS ************** */
 /****************FIRST TIME ACCOUNT CREATION **************************/

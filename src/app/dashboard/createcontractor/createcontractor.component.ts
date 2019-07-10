@@ -148,7 +148,8 @@ export class CreatecontractorComponent implements OnInit {
         account_number: this.contractorForm.value.account_number,
         ifsc: this.contractorForm.value.ifsc,
         userId: this.userId,
-        superAdminId: this.superadminid
+        superAdminId: this.superadminid,
+        commision_percentage:''
       }
       console.log('let data be', data);
       this.companyService.createContractor(data).subscribe(value => {
@@ -253,7 +254,7 @@ export class CreatecontractorComponent implements OnInit {
       // accountCode: this.contractorForm.value.account_number,
       organisation: localStorage.getItem('organisation'),
       userId: this.userId,
-      parentAccount: "Contractors",
+      parentAccount: "",
       super_parent_Account:''
     }
 
@@ -284,8 +285,8 @@ export class CreatecontractorComponent implements OnInit {
       // accountCode: this.contractorForm.value.account_number,
       organisation: localStorage.getItem('organisation'),
       userId: this.userId,
-      parentAccount: "Contractors",
-      super_parent_Account:'Account Payable'
+      parentAccount: "Account Payable",
+      super_parent_Account:'Current Liability'
     }
 
     console.log('let data be', data);

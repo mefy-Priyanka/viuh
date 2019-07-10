@@ -96,16 +96,18 @@
                       <option *ngFor="let list of assets" [value]='list'>{{list}}</option>
     
                       <option value="Expense" disabled>Expenses</option>
-                      <option *ngFor="let list of liabilities" [value]='list'>{{list}}</option>
+                      <option *ngFor="let list of expenses" [value]='list'>{{list}}</option>
+
     
                       <option value="Liability" disabled>Liability</option>
-                      <option *ngFor="let list of equity" [value]='list'>{{list}}</option>
-    
+                      <option *ngFor="let list of liabilities" [value]='list'>{{list}}</option>
+
                       <option value="Revenue" disabled>Revenue</option>
                       <option *ngFor="let list of revenue" [value]='list'>{{list}}</option>
     
                       <option value="Equity" disabled>Equity</option>
-                      <option *ngFor="let list of expenses" [value]='list'>{{list}}</option>
+                      <option *ngFor="let list of equity" [value]='list'>{{list}}</option>
+
                 
                  
 

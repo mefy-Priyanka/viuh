@@ -338,12 +338,16 @@ export class ContactvendorComponent implements OnInit {
   }
   /**************CREATE ACCOUNT AGAINST VENDOR ***********************/
   vendorAccount() {
+
+
     let data = {
       accountName: this.vendorForm.value.name,
       accountType: 'Expense',
       organisation: localStorage.getItem('organisation'),
-      parentAccount: 'Vendors',
-      userId: this.userId
+      parentAccount: '',
+      userId: this.userId,
+      super_parent_Account:''
+
     }
     console.log(' account data', data)
     this.userService.creataccount(data).subscribe(result => {
@@ -358,6 +362,7 @@ export class ContactvendorComponent implements OnInit {
         this.toastr.error('Error!', 'Creation  failed')
         this.contactService.deleteContact(this.contactId).subscribe(result=>{
           console.log('delete result', result);
+          this.creataccountinpayable()
           this.loader=false;
         },
           err => {
@@ -365,6 +370,36 @@ export class ContactvendorComponent implements OnInit {
             this.loader=false;
             console.log('delete err', err)
           })
+      })
+  }
+
+  creataccountinpayable() {    
+
+    let data = {
+      accountName:this.vendorForm.value.name,
+      accountType: "Liability",
+      description: "description",
+      // accountCode: this.contractorForm.value.account_number,
+      organisation: localStorage.getItem('organisation'),
+      userId: this.userId,
+      parentAccount: "Account Payable",
+      super_parent_Account:'Current Liability'
+    }
+
+    console.log('let data be', data);
+    this.userService.creataccount(data).subscribe(value => {
+      console.log('user', value)
+      let result: any = {}
+      result = value
+      console.log(result)
+
+      this.toastr.success('Awesome!', 'Contractor created successfully')
+
+    },
+      err => {
+        console.log(err)
+
+        this.toastr.error('Error!', 'Server Error')
       })
   }
   /********** ENDS ************** */
@@ -388,44 +423,6 @@ export class ContactvendorComponent implements OnInit {
   //   })
   // }
   /********** ENDS ************** */
-  creataccountinpayable() {    
-    let data = {
-      accountName: this.vendorForm.value.name,
-      accountType: "Liability",
-      description: "Description",
-      organisation: localStorage.getItem('organisation'),
-      userId: this.userId,
-      parentAccount: "Vendor",
-      super_parent_Account:'Account Payable'
-    }
-
-    console.log('let data be', data);
-    this.userService.creataccount(data).subscribe(value => {
-      console.log('user', value)
-      let result: any = {}
-      result = value
-      console.log('Account Payable',result)
-    },
-      err => {
-        console.log(err)
-        this.contactService.deleteContact(this.contactId).subscribe(result=>{
-          this.loader=false;
-          console.log('delete result',result);
-          this.userService.deleteAccount(this.accountId).subscribe(result=>{
-            console.log('delete  account result',result);
-          },
-          error=>{
-            this.loader=false;
-            console.log('error',error)
-          })
-        },
-        err=>{
-         
-          this.loader=false;
-          console.log('delete err',err)
-        })
-        this.toastr.error('Error!', 'Server Error')
-      })
-  }
+ 
 
 }

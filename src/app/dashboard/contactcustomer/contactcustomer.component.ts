@@ -331,10 +331,12 @@ uploadImage(event){
   customerAccount(){
     let data={
       accountName:this.customerForm.value.name,
-      accountType:'Revenue',
+      accountType:'Asset',
       organisation:localStorage.getItem('organisation'),
-      parentAccount:'Customers',
-      userId:this.userId
+      parentAccount:'Account Receivable',
+      userId:this.userId,
+      super_parent_Account:'Current Assets'
+
     }
     console.log(' account data',data)
     this.userService.creataccount(data).subscribe(result=>{
@@ -359,6 +361,37 @@ uploadImage(event){
       })
     })
   }
+
+
+  creataccountinpayable() {    
+
+    let data = {
+      accountName:this.customerForm.value.name,
+      accountType: "Liability",
+      description: "description",
+      // accountCode: this.contractorForm.value.account_number,
+      organisation: localStorage.getItem('organisation'),
+      userId: this.userId,
+      parentAccount: "Account Payable",
+      super_parent_Account:'Current Liability'
+    }
+
+    console.log('let data be', data);
+    this.userService.creataccount(data).subscribe(value => {
+      console.log('user', value)
+      let result: any = {}
+      result = value
+      console.log(result)
+
+      this.toastr.success('Awesome!', 'Contractor created successfully')
+
+    },
+      err => {
+        console.log(err)
+
+        this.toastr.error('Error!', 'Server Error')
+      })
+  }
   /********** ENDS ************** */
   /****************FIRST TIME ACCOUNT CREATION **************************/
 // account(){
@@ -379,45 +412,6 @@ uploadImage(event){
 //   })
 // }
   /********* ENDS ************** */
-  creataccountinpayable() {    
-    let data = {
-      accountName: this.customerForm.value.name,
-      accountType: "Asset",
-      description: "Description",
-      organisation: localStorage.getItem('organisation'),
-      userId: this.userId,
-      parentAccount: "Customers",
-      super_parent_Account:'Account Receivable'
-    }
-
-    console.log('let data be', data);
-    this.userService.creataccount(data).subscribe(value => {
-      console.log('user', value)
-      let result: any = {}
-      result = value
-      console.log('Account Payable',result)
-    },
-      err => {
-        console.log(err)
-        this.contactService.deleteContact(this.contactId).subscribe(result=>{
-          this.loader=false;
-          console.log('delete result',result);
-          this.userService.deleteAccount(this.accountId).subscribe(result=>{
-            console.log('delete  account result',result);
-
-          },
-          error=>{
-            this.loader=false;
-            console.log('error',error)
-          })
-        },
-        err=>{
-         
-          this.loader=false;
-          console.log('delete err',err)
-        })
-        this.toastr.error('Error!', 'Server Error')
-      })
-  }
+ 
 }
 

@@ -96,26 +96,26 @@ export class AccountComponent implements OnInit {
       console.log(this.accountlist1);
 
       this.accountlist = (something.result);
-      if (this.accountlist.length != 0) {
+      if (this.accountlist.length != 0 ) {
         for (i = 0; i < this.accountlist.length; i++) {
-          if (this.accountlist[i].accountType == "Asset") {
+          if (this.accountlist[i].accountType == "Asset" && this.accountlist[i].parentAccount==null) {
             this.assets.push(this.accountlist[i].accountName)
           }
-          if (this.accountlist[i].accountType == "Equity") {
+          if (this.accountlist[i].accountType == "Equity" && this.accountlist[i].parentAccount==null) {
             this.equity.push(this.accountlist[i].accountName)
           }
-          if (this.accountlist[i].accountType == "Expense") {
+          if (this.accountlist[i].accountType == "Expense" && this.accountlist[i].parentAccount==null) {
             this.expenses.push(this.accountlist[i].accountName)
           }
-          if (this.accountlist[i].accountType == "Revenue") {
+          if (this.accountlist[i].accountType == "Revenue" && this.accountlist[i].parentAccount==null) {
             this.revenue.push(this.accountlist[i].accountName)
           }
-          if (this.accountlist[i].accountType == "Liability") {
+          if (this.accountlist[i].accountType == "Liability" && this.accountlist[i].parentAccount==null) {
             this.liabilities.push(this.accountlist[i].accountName)
           }
         }
       }
-      console.log(this.equity, this.expenses, this.assets, this.revenue, this.liabilities)
+      console.log(this.assets,this.expenses,  this.revenue, this.liabilities,this.equity, )
 
     },
       err => {
