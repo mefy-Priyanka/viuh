@@ -4,7 +4,7 @@
     <h1>Payment Voucher | Create
     </h1>
   </div>
-  <form class="createContractorForm" [formGroup]="petrolForm">
+  <form class="createContractorForm" >
     <div class="row">
       <div class="col-md-12">
         <!-- input type -->
@@ -16,7 +16,7 @@
                 <div class="row">
                   <div class="input-field col s6">
                     <p><label>To</label></p>
-                    <select formControlName="">
+                    <select >
                       <option value="" disabled selected>Select</option>
                       <option value="a">Contractor</option>
                       <option value="a">Vendor</option>
@@ -26,14 +26,14 @@
                   </div>
                   <div class="input-field col s6">
                     <p><label>Voc#</label></p>
-                    <input type="text" class="validate" formControlName="">
+                    <input type="text" class="validate">
                   </div>
                 </div>
 
                 <div class="row">
                   <div class="input-field col s6">
                     <p><label>Truck#</label></p>
-                    <select formControlName="truckno">
+                    <select >
                       <option value="" disabled selected>Select</option>
                       <option value="a">WB 1234</option>
                       <option value="a">UP 4567</option>
@@ -41,7 +41,7 @@
                   </div>
                   <div class="input-field col s6">
                     <p><label>Payment Mode</label></p>
-                    <select formControlName="truckno">
+                    <select >
                       <option value="" disabled selected>Select</option>
                       <option value="a">Bank</option>
                       <option value="a">Cash</option>
@@ -59,11 +59,11 @@
                 <div class="row">
                   <div class="input-field col s6">
                     <p><label>Date</label></p>
-                    <input type="date" class="validate" formControlName="date">
+                    <input type="date" class="validate" >
                   </div>
                   <div class="input-field col s6">
                     <p><label>Payment Type</label></p>
-                    <select formControlName="truckno">
+                    <select >
                       <option value="" disabled selected>Select</option>
                       <option value="a">Diesel</option>
                       <option value="a">Toll</option>
@@ -77,7 +77,7 @@
                 <div class="row">
                     <div class="input-field col s6">
                         <p><label>Bank</label></p>
-                        <select formControlName="truckno">
+                        <select >
                           <option value="" disabled selected>Select</option>
                           <option value="a">State Bank Of India</option>
                           <option value="a">Axis Bank</option>
@@ -87,14 +87,14 @@
                       </div>
                     <div class="input-field col s6">
                       <p><label>Denomination</label></p>
-                      <input type="text" class="validate" formControlName="">
+                      <input type="text" class="validate" >
                     </div>
                    
                   </div>
                 <div class="row">
                   <div class="input-field col s6">
                     <p><label>Amount</label></p>
-                    <input type="number" class="validate" formControlName="">
+                    <input type="number" class="validate" >
                   </div>
                 </div>
 
@@ -104,7 +104,7 @@
           </div>
           <div class="row">
             <div class="contractorButton">
-              <button class="submitBtn" (click)="submit()">Submit</button>
+              <button class="submitBtn" >Submit</button>
               <button class="cancelBtn">Cancel</button>
             </div>
           </div>

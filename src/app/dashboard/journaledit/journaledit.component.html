@@ -1,4 +1,4 @@
-<!-- journal -->
+<!-- 
 <section class="createcontract">
     <div class="ft">
       <h1>Journal | Edit
@@ -7,7 +7,6 @@
     <div class="createContractorForm">
       <div class="row">
         <div class="col-md-12">
-          <!-- input type -->
           <div>
             <div class="card corCard">
               <div class="row">
@@ -95,7 +94,7 @@
                               <tr *ngFor="let data of jdata; let i = index">
   
                                 <td class="thno">
-                                  <select style="border: none !important" [(ngModel)]="data.accountId">
+                                  <select style="border: none !important" >
                                     <option value="" disabled selected>Select</option>
                                     <option *ngFor="let list of accountlist1" [value]='list._id'>{{list.accountName}}
                                     </option>
@@ -116,20 +115,6 @@
                           </table>
   
   
-                          <!-- <div>
-                            <div>
-                              <div class="thno">
-                                <button class="At" (click)="addItem()">+&nbsp;&nbsp;Add Another Line</button>
-                              </div>
-                              <div class="thno" colspan="2">
-                                Total
-                              </div>
-                              <div class="thname"><span>{{ctotal}}</span></div>
-  
-  
-                              <div class="thname"><span>{{dtotal}}</span></div>
-                            </div>
-                          </div> -->
   
   
   
@@ -215,7 +200,6 @@
   
   
   
-          <!-- input type -->
   
   
   
@@ -227,10 +211,7 @@
     </div>
   </section>
   
-  <!-- journal -->
   
-  
-  <!-- Modal -->
   <div class="modal fade" id="journalModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="vertical-alignment-helper">
       <div class="modal-dialog modal-lg vertical-align-center">
@@ -240,11 +221,10 @@
                 class="sr-only">Close</span>
   
             </button>
-            <!-- <h4 class="modal-title accountTitle">Add Denominations</h4> -->
   
           </div>
           <div class="modal-body">
-            <form [formGroup]="denomForm">
+            <form >
   
               <div class="tableide">
                 <div class="row">
@@ -260,45 +240,45 @@
                       <tbody>
                         <tr>
                           <td class="thno">10<span class="closT">&times;</span></td>
-                          <td class="thname"><input type="number" formControlName="note10"></td>
+                          <td class="thname"><input type="number" ></td>
                           <td class="thname">
-                            {{denomForm.value.note10*10}}
+                           1
                           </td>
                         </tr>
                         <tr>
                           <td class="thno">20<span class="closT">&times;</span></td>
-                          <td class="thname"><input type="number" formControlName="note20"></td>
-                          <td class="thname">{{denomForm.value.note20*20}}</td>
+                          <td class="thname"><input type="number" ></td>
+                          <td class="thname">1</td>
                         </tr>
                         <tr>
                           <td class="thno">50<span class="closT">&times;</span></td>
-                          <td class="thname"><input type="number" formControlName="note50"></td>
-                          <td class="thname">{{denomForm.value.note50*50}}</td>
+                          <td class="thname"><input type="number" ></td>
+                          <td class="thname">1</td>
                         </tr>
                         <tr>
                           <td class="thno">100<span class="closT">&times;</span></td>
-                          <td class="thname"><input type="number" formControlName="note100"></td>
-                          <td class="thname">{{denomForm.value.note100*100}}</td>
+                          <td class="thname"><input type="number" ></td>
+                          <td class="thname">1</td>
                         </tr>
                         <tr>
                           <td class="thno">200<span class="closT">&times;</span></td>
-                          <td class="thname"><input type="number" formControlName="note200"></td>
-                          <td class="thname">{{denomForm.value.note200*200}}</td>
+                          <td class="thname"><input type="number" ></td>
+                          <td class="thname">1</td>
                         </tr>
                         <tr>
                           <td class="thno">500<span class="closT">&times;</span></td>
-                          <td class="thname"><input type="number" formControlName="note500"></td>
-                          <td class="thname">{{denomForm.value.note500*500}}</td>
+                          <td class="thname"><input type="number" ></td>
+                          <td class="thname">1</td>
                         </tr>
                         <tr>
                           <td class="thno">2000<span class="closT">&times;</span></td>
-                          <td class="thname"><input type="number" formControlName="note2000"></td>
-                          <td class="thname">{{denomForm.value.note2000*2000}}</td>
+                          <td class="thname"><input type="number" ></td>
+                          <td class="thname">1</td>
                         </tr>
                         <tr>
                           <td class="thno" colspan="2" style="background:#eee;text-align: center">Total</td>
   
-                          <td class="thname" style="background:#fff">{{total}}</td>
+                          <td class="thname" style="background:#fff">1</td>
                         </tr>
                       </tbody>
                     </table>
@@ -314,5 +294,4 @@
         </div>
       </div>
     </div>
-  </div>
-  <!-- Modal -->
+  </div> -->
