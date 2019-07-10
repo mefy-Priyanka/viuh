@@ -1,0 +1,318 @@
+<!-- journal -->
+<section class="createcontract">
+    <div class="ft">
+      <h1>Journal | Edit
+      </h1>
+    </div>
+    <div class="createContractorForm">
+      <div class="row">
+        <div class="col-md-12">
+          <!-- input type -->
+          <div>
+            <div class="card corCard">
+              <div class="row">
+  
+                <div class="nota">
+                  <div class="row">
+  
+                    <div class="input-field col s6">
+                      <p><label>Date <span class="blue_star">*</span></label></p>
+                      <input type="text" class="validate" placeholder="a" [readonly]=true [value] = "name">
+  
+                    </div>
+                    <div class="input-field col s6">
+                      <p><label>Journal# <span class="blue_star">*</span></label></p>
+                      <input type="text" class="validate" [readonly]=true [value] = "name">
+  
+                    </div>
+  
+                  </div>
+                  <div class="row">
+  
+  
+                    <div class="input-field col s6">
+                      <p><label>Reference</label></p>
+                      <input type="text" class="validate" [(ngModel)]="reference">
+  
+                    </div>
+  
+                    <div class="input-field col s6">
+                      <p><label>Currency<span class="blue_star">*</span></label></p>
+                      <select class="orga" [(ngModel)]="currency">
+  
+                        <option value="" disabled selected>Currency</option>
+                        <option value="rupees">Rupees</option>
+                      </select>
+                    </div>
+  
+  
+  
+  
+  
+                  </div>
+                  <div class="row">
+  
+                    <div class="input-field col s6">
+                      <p><label>Notes</label></p>
+                      <textarea name="" id="" cols="30" rows="10" [(ngModel)]="notes"></textarea>
+                    </div>
+  
+  
+                  </div>
+  
+                  <div class="row">
+  
+                    <div class="input-field col s6">
+                      <p ><label>Journal Type</label></p>
+                      <div class="check">
+                        <input type="checkbox" id="checka" [checked]='cashcheck' (change)="checkValue($event)"  >
+  
+                        <label for="checka"> <span>Cash based Journal</span></label>
+                      </div>
+                    </div>
+  
+                    <a id="models" data-toggle="modal" data-target="#journalModal"></a>
+  
+  
+                  </div>
+  
+                  <div >
+  
+                    <div class="tableide journalTable">
+                      <div class="row">
+                        <div id="no-more-tables">
+                          <table class="col-md-12 table-bordered table-striped table-condensed cf">
+                            <thead class="cf">
+                              <tr>
+                                <th>ACCOUNT</th>
+                                <th>DESCRIPTION</th>
+                                <th>CONTACT(INR)</th>
+                                <th>CREDITS</th>
+                                <th>DEBITS</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let data of jdata; let i = index">
+  
+                                <td class="thno">
+                                  <select style="border: none !important" [(ngModel)]="data.accountId">
+                                    <option value="" disabled selected>Select</option>
+                                    <option *ngFor="let list of accountlist1" [value]='list._id'>{{list.accountName}}
+                                    </option>
+                                  </select>
+                                </td>
+                                <td class="thname"><textarea style="border:none !important" [(ngModel)]="data.description"></textarea></td>
+                                <td class="thno">
+                                  <select style="border: none !important" [(ngModel)]="data.contactPersonId">
+                                    <option value="" disabled selected>Select Contact</option>
+                                    <option *ngFor="let list of contactlist" [value]='list._id'>{{list.name}}</option>
+                                  </select>
+                                </td>
+  
+                                <td class="thname"><input type="number" style="border: none !important" [(ngModel)]="data.credit" (keyup)="check(i,'credit')"></td>
+                                <td class="thname"><input type="number" style="border: none !important" [(ngModel)]="data.dabit" (keyup)="check(i,'dabit')"></td>
+                              </tr>
+                            </tbody>
+                          </table>
+  
+  
+                          <!-- <div>
+                            <div>
+                              <div class="thno">
+                                <button class="At" (click)="addItem()">+&nbsp;&nbsp;Add Another Line</button>
+                              </div>
+                              <div class="thno" colspan="2">
+                                Total
+                              </div>
+                              <div class="thname"><span>{{ctotal}}</span></div>
+  
+  
+                              <div class="thname"><span>{{dtotal}}</span></div>
+                            </div>
+                          </div> -->
+  
+  
+  
+  
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="thno">
+                                <button class="At" (click)="addItem()">+&nbsp;&nbsp;Add Another Line</button>
+                              </div>
+                            </div>
+                            <div>
+                              <div class="col-md-6 hrTag">
+                                <div class="row total">
+                                  <div class="col-md-6">
+                                    <div class="thno">
+                                     <strong>Total</strong>
+                                    </div>
+                                  </div>
+                                  <div class="col-md-3">
+                                    <div class="thno">
+                                      {{ctotal}}
+                                    </div>
+                                  </div>
+                                  <div class="col-md-3">
+                                    <div class="thno">
+                                      {{dtotal}}
+                                    </div>
+                                  </div>
+  
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+                        </div>
+  
+  
+                      </div>
+                    </div>
+                  </div>
+  
+  
+                </div>
+  
+              </div>
+            </div>
+            <div class="row">
+              <div class="contractorButton">
+                <button class="submitBtn" (click)="submit()">Save & Publish</button>
+                <button class="submitBtn" (click)="draft()">Save as Draft</button>
+                <button class="cancelBtn" >Cancel</button>
+              </div>
+            </div>
+          </div>
+  
+  
+  
+  
+          <!-- input type -->
+  
+  
+  
+  
+  
+        </div>
+      </div>
+  
+    </div>
+  </section>
+  
+  <!-- journal -->
+  
+  
+  <!-- Modal -->
+  <div class="modal fade" id="journalModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="vertical-alignment-helper">
+      <div class="modal-dialog modal-lg vertical-align-center">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                class="sr-only">Close</span>
+  
+            </button>
+            <!-- <h4 class="modal-title accountTitle">Add Denominations</h4> -->
+  
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="denomForm">
+  
+              <div class="tableide">
+                <div class="row">
+                  <div id="no-more-tables">
+                    <table class="col-md-12 table-bordered table-striped table-condensed cf">
+                      <thead class="cf">
+                        <tr>
+                          <th>DENOMINATION</th>
+                          <th>COUNT</th>
+                          <th>AMOUNT</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td class="thno">10<span class="closT">&times;</span></td>
+                          <td class="thname"><input type="number" formControlName="note10"></td>
+                          <td class="thname">
+                            {{denomForm.value.note10*10}}
+                          </td>
+                        </tr>
+                        <tr>
+                          <td class="thno">20<span class="closT">&times;</span></td>
+                          <td class="thname"><input type="number" formControlName="note20"></td>
+                          <td class="thname">{{denomForm.value.note20*20}}</td>
+                        </tr>
+                        <tr>
+                          <td class="thno">50<span class="closT">&times;</span></td>
+                          <td class="thname"><input type="number" formControlName="note50"></td>
+                          <td class="thname">{{denomForm.value.note50*50}}</td>
+                        </tr>
+                        <tr>
+                          <td class="thno">100<span class="closT">&times;</span></td>
+                          <td class="thname"><input type="number" formControlName="note100"></td>
+                          <td class="thname">{{denomForm.value.note100*100}}</td>
+                        </tr>
+                        <tr>
+                          <td class="thno">200<span class="closT">&times;</span></td>
+                          <td class="thname"><input type="number" formControlName="note200"></td>
+                          <td class="thname">{{denomForm.value.note200*200}}</td>
+                        </tr>
+                        <tr>
+                          <td class="thno">500<span class="closT">&times;</span></td>
+                          <td class="thname"><input type="number" formControlName="note500"></td>
+                          <td class="thname">{{denomForm.value.note500*500}}</td>
+                        </tr>
+                        <tr>
+                          <td class="thno">2000<span class="closT">&times;</span></td>
+                          <td class="thname"><input type="number" formControlName="note2000"></td>
+                          <td class="thname">{{denomForm.value.note2000*2000}}</td>
+                        </tr>
+                        <tr>
+                          <td class="thno" colspan="2" style="background:#eee;text-align: center">Total</td>
+  
+                          <td class="thname" style="background:#fff">{{total}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="saveBtn" (click)="submitmodel()">Save</button>
+                <button type="button" class="cancelBtn" id="cancel" data-dismiss="modal" (click)="cancelmodel()">Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal -->

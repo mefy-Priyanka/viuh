@@ -35,6 +35,9 @@ import { TenderComponent } from './tender/tender.component';
 import { BanktransferComponent } from './banktransfer/banktransfer.component';
 import { CreatecontractorComponent } from './createcontractor/createcontractor.component';
 import { MainComponent } from './main/main.component';
+import { PaymentvoucherComponent } from './paymentvoucher/paymentvoucher.component';
+import { JournalviewComponent } from './journalview/journalview.component';
+import { JournaleditComponent } from './journaledit/journaledit.component';
 // import { ExpenseComponent } from './expense/expense.component';
 // import { EmployeeComponent } from './employee/employee.component';
 
@@ -101,6 +104,9 @@ const routes: Routes = [
         TenderComponent,
         BanktransferComponent,
         MainComponent,
+        PaymentvoucherComponent,
+        JournalviewComponent,
+        JournaleditComponent,
         // ExpenseComponent,
         // EmployeeComponent
 

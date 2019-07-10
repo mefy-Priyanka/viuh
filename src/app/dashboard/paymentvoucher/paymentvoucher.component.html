@@ -1,0 +1,128 @@
+<!-- Payment Voucher -->
+<section class="createcontract">
+  <div class="ft">
+    <h1>Payment Voucher | Create
+    </h1>
+  </div>
+  <form class="createContractorForm" [formGroup]="petrolForm">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- input type -->
+        <div>
+          <div class="card corCard">
+            <div class="row">
+
+              <div class="nota">
+                <div class="row">
+                  <div class="input-field col s6">
+                    <p><label>To</label></p>
+                    <select formControlName="">
+                      <option value="" disabled selected>Select</option>
+                      <option value="a">Contractor</option>
+                      <option value="a">Vendor</option>
+                      <option value="a">Driver</option>
+                      <option value="a">Employee</option>
+                    </select>
+                  </div>
+                  <div class="input-field col s6">
+                    <p><label>Voc#</label></p>
+                    <input type="text" class="validate" formControlName="">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="input-field col s6">
+                    <p><label>Truck#</label></p>
+                    <select formControlName="truckno">
+                      <option value="" disabled selected>Select</option>
+                      <option value="a">WB 1234</option>
+                      <option value="a">UP 4567</option>
+                    </select>
+                  </div>
+                  <div class="input-field col s6">
+                    <p><label>Payment Mode</label></p>
+                    <select formControlName="truckno">
+                      <option value="" disabled selected>Select</option>
+                      <option value="a">Bank</option>
+                      <option value="a">Cash</option>
+                      <option value="a">Cheque</option>
+                    </select>
+                  </div>
+
+                  <!-- <div class="input-field col s6">
+                      <p><label>Date</label></p>
+                      <input type="date" class="validate" formControlName="date">
+                    </div> -->
+
+
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <p><label>Date</label></p>
+                    <input type="date" class="validate" formControlName="date">
+                  </div>
+                  <div class="input-field col s6">
+                    <p><label>Payment Type</label></p>
+                    <select formControlName="truckno">
+                      <option value="" disabled selected>Select</option>
+                      <option value="a">Diesel</option>
+                      <option value="a">Toll</option>
+                      <option value="a">Price</option>
+                      <option value="a">Expense</option>
+                      <option value="a">Advance</option>
+                      <option value="a">Other</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <p><label>Bank</label></p>
+                        <select formControlName="truckno">
+                          <option value="" disabled selected>Select</option>
+                          <option value="a">State Bank Of India</option>
+                          <option value="a">Axis Bank</option>
+                          <option value="a">HDFC</option>
+                          <option value="a">Other</option>
+                        </select>
+                      </div>
+                    <div class="input-field col s6">
+                      <p><label>Denomination</label></p>
+                      <input type="text" class="validate" formControlName="">
+                    </div>
+                   
+                  </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <p><label>Amount</label></p>
+                    <input type="number" class="validate" formControlName="">
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="contractorButton">
+              <button class="submitBtn" (click)="submit()">Submit</button>
+              <button class="cancelBtn">Cancel</button>
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <!-- input type -->
+
+
+
+
+
+      </div>
+    </div>
+
+  </form>
+</section>
+
+<!-- Payment Voucher -->
