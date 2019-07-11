@@ -1,54 +1,10 @@
-<!-- fleetlist-->
-<section class="corder" *ngIf="fleet">
-    <a href="#" class="floatEa">
-        <i class="fa fa-envelope-o my-float"></i>
-        </a>
-    <div class="ft">
-      <h1>Fleet
-        <button class="addItema" (click)="createFleet()"><i class="fa fa-plus-circle" aria-hidden="true"></i>Add</button>
-      </h1>
-    </div>
-    <div class="card margina">
-        <div class="tableide">
-            <div class="row">
-                <div id="no-more-tables">
-                    <table class="col-md-12 table-bordered table-striped table-condensed cf">
-                    <thead class="cf">
-                      <tr>
-                        <th class="numeric">TRUCK NUMBER</th>
-                        <th>TRUCK CAPACITY</th>
-                        <!-- <th>CONTRACTOR/TRANSPORTS</th> -->
-                        <th>OWNER</th>
-                        <th><i class="fa fa-question-circle-o" aria-hidden="true"></i></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let fleet of fleetDetail">
-                        <td class="thno" data-title="NO.">{{fleet.truck_number}}</td>
-                        <td class="thname" data-title="NAME">{{fleet.capacity}}</td>
-                        <!-- <td class="thname" data-title="VAT ID">{{fleet}}</td> -->
-                        <td data-title="ADDRESS" class="numeric" *ngIf="fleet.ownId">{{fleet.ownId.name}}</td>
-                        <td data-title="ADDRESS" class="numeric" *ngIf="fleet.contractId">{{fleet.contractId.companyName}}</td>
-                        <td data-title="VAT ID" class="numeric" (click)="delete(fleet._id)"><i class="fa fa-trash" aria-hidden="true"></i>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    </section>
-    <!-- fleetlist -->
-
 
 
 
 <!-- Fleet management -->
-<section class="fleet" *ngIf="!fleet">
+<section class="fleet">
   <div class="ft">
-    <h1>Fleet Management</h1>
+    <h1>Fleet Detail</h1>
   </div>
   <div class="row">
     <div class="card fleetCard">
@@ -117,7 +73,7 @@
               </div>
 
 
-              <div class="input-field col s2">
+              <div class="input-field col s3">
                 <p><label>Valid Upto</label></p>
                 <input (keyup)="check1('valid',selectedOption)"  id="first_name" type="date"
                   [(ngModel)]="selected.valid" class="validate" [ngModelOptions]="{standalone: true}">
@@ -126,7 +82,7 @@
 
 
               <div class="input-field col s1">
-                <button class="addBtn" (click)="add(selected,selectedOption)">+</button>
+                <!-- <button class="addBtn" (click)="add(selected,selectedOption)">+</button> -->
               </div>
 
 

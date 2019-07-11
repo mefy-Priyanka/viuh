@@ -37,7 +37,7 @@ import { CreatecontractorComponent } from './createcontractor/createcontractor.c
 import { MainComponent } from './main/main.component';
 import { PaymentvoucherComponent } from './paymentvoucher/paymentvoucher.component';
 import { JournalviewComponent } from './journalview/journalview.component';
-import { JournaleditComponent } from './journaledit/journaledit.component';
+import { FleetdetailComponent } from './fleetdetail/fleetdetail.component';
 // import { ExpenseComponent } from './expense/expense.component';
 // import { EmployeeComponent } from './employee/employee.component';
 
@@ -106,7 +106,7 @@ const routes: Routes = [
         MainComponent,
         PaymentvoucherComponent,
         JournalviewComponent,
-        JournaleditComponent,
+        FleetdetailComponent,
         // ExpenseComponent,
         // EmployeeComponent
 
