@@ -23,6 +23,9 @@ button.addItema {
     font-family: 'Montserrat', sans-serif;
     margin-left: 1em;
 }
+i.fa.fa-pencil {
+    margin-right: 11px;
+}
 button.addItema i {
     font-size: 17px;
     margin-right: 7px;
@@ -189,10 +192,10 @@ button.cancelBtn {
     font-weight: 600;
     border-radius: 5px;
 }
-div#accountModal .modal-body {
+div#accountModal .modal-body , div#accountModal .modal-body{
     padding: 0;
 }
-div#accountModal input {
+div#accountModal input , div#confirmModal input {
     border: 1px solid #f2f2f2;
     text-indent: 12px;
     opacity:1;
@@ -222,6 +225,36 @@ div#accountModal .modal-header {
     padding-top: 0;
 }
 
+
+
+
+
+div#confirmModal textarea {
+    border: 1px solid #f2f2f2;
+    text-indent: 12px;
+    margin-bottom: 1em;
+    height: auto !important;
+}
+div#confirmModal select {
+    background-color: #fafafa;
+}
+
+.check label span{
+    display: inline-block;
+    margin-left: 2em;
+}
+div#confirmModal i.fa.fa-question-circle-o {
+    font-size: 15px;
+    margin-left: 10px;
+}
+div#confirmModal {
+    max-height: 83%;
+}
+div#confirmModal .modal-header {
+    padding-top: 0;
+}
+
+
 /* modal css */
 /* order css */
 /* Responsive css */
@@ -229,9 +262,15 @@ div#accountModal .modal-header {
 div#accountModal {
   width: 100%;
 }
+div#confirmModal {
+    width: 100%;
+  }
 }
 @media only screen and (min-width: 768px) and (max-width: 1024px){
 div#accountModal {
+    max-height: 50%;
+}
+div#confirmModal {
     max-height: 50%;
 }
 }
@@ -239,6 +278,26 @@ div#accountModal {
     div#accountModal {
         max-height: 39%;
     }
+    div#confirmModal {
+        max-height: 39%;
     }
+    }
+    
 /* Responsive css */
-
+.modal {
+    display: none;
+    position: fixed;
+    left: 0;
+    right: 0;
+    background-color: transparent;
+    padding: 0;
+    box-shadow: none;
+}
+div#confirmModal .modal-footer {
+    border-radius: 0 0 2px 2px;
+    background-color: #fff;
+    padding: 4px 6px;
+    height: 56px;
+    width: 100%;
+    text-align: center;
+}
