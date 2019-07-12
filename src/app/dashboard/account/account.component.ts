@@ -275,12 +275,34 @@ export class AccountComponent implements OnInit {
 
 
   del(id) {
-this.userService.deleteAccount(id).subscribe(result=>{
-console.log(result);
-this.getaccountlist1()
-},
-err=>{
-  console.log(err)
-})
+
+    var result = confirm("Want to delete?");
+    if (result) {
+    this.userService.deleteAccount(id).subscribe(result=>{
+    console.log(result);
+    this.getaccountlist1()
+    },
+    err=>{
+      console.log(err)
+    })}
+
+  }
+
+  editaccount(id){
+    let data={
+      accountId:id,
+      opening_account:'',
+      type:''
+    }
+    this.userService.updateaccount(data).subscribe(result=>{
+      console.log(result);
+      this.toastr.success('success', 'Account Updated');
+      this.getaccountlist1()
+    },
+    err=>{
+      console.log(err);
+      this.toastr.success('Error', 'Account Update Failed')
+
+    })
   }
 }

@@ -76,6 +76,7 @@ export class UserService {
 
 
 
+
   journalcreat(data){
     console.log('dkfgdhzjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjg',data)
     return this.httpClient.post(APIURL + 'journal/create',data)
@@ -129,6 +130,12 @@ accountbytype(data){
 deleteAccount(accountId){
   return this.httpClient.delete(APIURL + 'account/delete?accountId='+accountId)
 }
+updateaccount(data){
+  return this.httpClient.put(APIURL + 'account/update',data)
+
+}
+
+
 
 /*****************GET ACCOUNT LIST BY PARENT ACCOUNTNAME AND ACCOUNT TYPE */
 // getAccountDetail(parentAccount,accountType){
