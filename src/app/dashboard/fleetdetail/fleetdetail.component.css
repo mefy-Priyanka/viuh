@@ -1,0 +1,302 @@
+/* fleet css */
+.ft h1 {
+    font-size: 34px;
+    padding: 19px 0;
+    padding-left: 20px;
+    margin:0;
+  }
+section.fleet {
+    /* margin-left: -2em; */
+}
+.ft {
+    background: #fff;
+}
+select {
+    display: block;
+    height: 2.7rem;
+    color: #9e9e9e;
+}
+.fleetForm {
+    padding: 2em 4em;
+}
+button.submitBtn {
+    height: 44px;
+    width: 120px;
+    background: #32b1f8;
+    margin-right:1em;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 5px;
+}
+.card.fleetCard{
+    margin-left: 2em;
+    margin-right: 2em;
+    margin-top: 3em;
+    border-left: 7px solid #32b1f8;
+    margin-bottom: 2em;
+}
+button.addBtn {
+    border-radius: 50px;
+    border: none;
+    background: #32b1f8;
+    color: #fff;
+    height: 35px;
+    width: 35px;
+    font-size: 21px;
+    margin-top: 37px;
+    font-weight: 600;
+}
+.padding-o {
+    padding: 0;
+}
+.padding-r {
+    padding-right: 0;
+}
+.card.fleetCard input[type="file"] {
+    /* line-height: 39px; */
+    width: 100%;
+    border: 1px solid #f2f2f2;
+}
+.input-field.toet input {
+    border: 1px solid #f2f2f2;
+    text-indent: 20px;
+}
+.input-field.col.s6.toet {
+    padding: 0;
+    margin-bottom: 0;
+}
+p.docType {
+    font-size: 15px;
+    font-weight: 600;
+    color: #25364b;
+    font-family: 'Montserrat', sans-serif;
+}
+.card.fleetCard .input-field.col label {
+    left: 0;
+}
+.fleetForm input {
+    border: 1px solid #f2f2f2 !important;
+    text-indent: 12px;
+    height: 2.7rem !important;
+}
+span.blue_star {
+    color: #32b1f8;
+}
+.input-field.myFilet.aeto {
+    margin-top: 0 !important;
+    padding-left: 0;
+}
+.input-field.myFilet {
+    outline:none;
+    margin: 0 !important;
+}
+input.fileType {
+    /* width: 15vw; */
+    padding-top: 7px;
+    display: flex;
+    padding-left: 6px;
+}
+.contractorButton {
+    padding-left: 5em;
+}
+button.cancelBtn {
+    height: 44px;
+    width: 120px;
+    background: transparent;
+    border: 1px solid #7b839c;
+    outline: none;
+    color: #7b839c;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-right: 1em;
+}
+.row.at {
+    margin: 0;
+}
+p.docType.ae {
+    color: #9E9E9E;
+    font-size: 14px;
+    font-weight: 500;
+}
+/* fleet css */
+
+/* user order */
+.ft h1 {
+    font-size: 34px;
+    padding: 19px 0;
+    padding-left: 20px;
+    margin:0;
+  }
+section.corder {
+    /* margin-left: -2em; */
+}
+.ft {
+    background: #fff;
+}
+button.addItema {
+    border: 2px solid #32b1f8;
+    background: transparent;
+    color: #32b1f8;
+    height: 35px;
+    font-size: 15px;
+    border-radius: 2px;
+    width: 90px;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    margin-left: 1em;
+}
+button.addItema i {
+    font-size: 17px;
+    margin-right: 7px;
+}
+
+
+
+.tableide .table-bordered>tbody>tr>td{
+    border: none;
+    /* padding: 1em; */
+    color: #000;
+    font-weight: 600;
+    text-align: center;
+}
+.tableide .table-bordered>thead>tr>th {
+    border: none;
+    padding: 1em;
+    background: #fafafa;
+    color:#7b95a1;
+    text-align: center;
+}
+.tableide tr {
+    border-bottom: none;
+    background: #fff;
+}
+.tableide .table-bordered {
+    border: none;
+}
+/* fleet css */
+@media only screen and (max-width: 800px) {
+    
+    /* Force table to not be like tables anymore */
+	#no-more-tables table, 
+	#no-more-tables thead, 
+	#no-more-tables tbody, 
+	#no-more-tables th, 
+	#no-more-tables td, 
+	#no-more-tables tr { 
+		display: block; 
+	}
+ 
+	/* Hide table headers (but not display: none;, for accessibility) */
+	#no-more-tables thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+ 
+	#no-more-tables tr { border: 1px solid #ccc; }
+ 
+	#no-more-tables td { 
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #eee; 
+		position: relative;
+		padding-left: 50%; 
+		white-space: normal;
+		text-align:left;
+	}
+ 
+	#no-more-tables td:before { 
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+		text-align:left;
+		font-weight: bold;
+	}
+ 
+	/*
+	Label the data
+	*/
+	#no-more-tables td:before { content: attr(data-title); }
+}
+.tableide {
+    /* padding: 1em 2em; */
+}
+.tableide .table-bordered>tbody>tr>td{
+    border: none;
+    padding: 1em;
+    color: #000;
+    font-weight: 600;
+}
+.tableide .table-bordered>thead>tr>th {
+    border: none;
+    padding: 1em;
+    background: #fff;
+    color:#7b95a1;
+}
+table, th, td {
+    border: 1px solid #5544442b !important;
+}
+.tableide .table-bordered > thead > tr > th {
+    border: none;
+    padding: 1em;
+    background: #fafafa;
+    color: #7b95a1;
+    text-align: center;
+}
+.tableide tr {
+    border-bottom: 1px solid #eee;
+    /* background: #f6fbfc; */
+}
+.tableide .table-bordered {
+    border: none;
+}
+.card.margina {
+    margin: 2em;
+    box-shadow: none;
+    border-radius: 5px;
+}
+td.thname {
+    color: #2f65a1 !important;
+    font-weight: 600 !important;
+}
+td.thno {
+    color: #90979b !important;
+}
+button.caretn {
+    background: transparent;
+    color: #b1c0c7;
+    border: 2px solid #b1c0c7;
+    height: 29px;
+    width: 29px;
+    border-radius: 4px;
+}
+i.fa.fa-question-circle-o {
+    font-size: 27px;
+}
+/* table css */
+/* fleet css */
+/* Responsive css */
+@media only screen and (min-width: 320px) and (max-width: 767px){
+    .fleetForm {
+        padding: 0;
+    }
+    .contractorButton {
+        padding-left: 0;
+        text-align: center;
+    }
+    .card.fleetCard .input-field.col label {
+        font-size: 10px !important;
+    }
+}
+/* Responsive css */
+
+
+
+
