@@ -22,7 +22,7 @@
                 <th>ACCOUNT CODE</th>
                 <th>Opening Balance</th>
                 <th>Type</th>
-                <th>del</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -35,7 +35,10 @@
 
                 <td class="thname" data-title="NAME">{{list.opening_account}}</td>
                 <td class="thname" data-title="VAT ID">{{list.type}}</td>
-                <td class="thname" data-title="VAT ID" (click)="del(list._id)">del</td>
+                <td class="thname" data-title="VAT ID">
+                  <i class="fa fa-pencil" aria-hidden="true" data-toggle="modal" data-target="#confirmModal"></i>
+                  <i class="fa fa-trash" (click)="del(list._id)" aria-hidden="true"></i>
+                </td>
 
               </tr>
 
@@ -234,3 +237,61 @@
   </div>
 </div>
 <!-- Modal -->
+<!-- Confirm Modal -->
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="vertical-alignment-helper">
+    <div class="modal-dialog vertical-align-center">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+              class="sr-only">Close</span>
+
+          </button>
+          <h4 class="modal-title accountTitle">Account</h4>
+
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="accountForm">
+            
+
+
+
+            <div class="row">
+              <div class="input-field col s3">
+                <label>Opening Balance</label>
+              </div>
+              <div class="input-field col s7">
+                  <input type="text" class="validate" formControlName="opening_account">
+
+
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s3">
+                <label>Choose type</label>
+              </div>
+              <div class="input-field col s7">
+                <select formControlName="type">
+                  <option value="" disabled selected>Choose your option</option>
+
+                  <option value="credit">Credit</option>
+                  <option value="debit">Debit</option>
+
+
+                </select>
+              
+              </div>
+            </div>
+
+            <div class="modal-footer">
+              <button type="button" class="saveBtn" (click)="submit()">Save</button>
+              <button type="button" class="cancelBtn" data-dismiss="modal" id='cancel'>Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Confirm Modal -->
