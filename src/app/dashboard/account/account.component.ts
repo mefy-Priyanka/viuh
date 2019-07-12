@@ -34,7 +34,7 @@ export class AccountComponent implements OnInit {
   levelteoacnt = [];
   accountlist1 = [];
   superparent = '';
-  accountFormErrors: { accountName: any; parent: any; description: any; };
+  accountFormErrors: { accountName: any; parent: any; description: any; opening_account: any; type: any; };
 
   constructor(private formBuilder: FormBuilder, private userService: UserService, private toastr: ToastrService) {
     this.userId = localStorage.getItem('userId');
@@ -45,7 +45,9 @@ export class AccountComponent implements OnInit {
       accountName: {},
       parent: {},
 
-      description: {}
+      description: {},
+      opening_account: {},
+      type: {}
       // accountCode: {},
     };
   }
@@ -55,7 +57,8 @@ export class AccountComponent implements OnInit {
       accountName: ['', Validators.required],
       parent: ['', Validators.required],
       description: ['', Validators.required],
-      // accountCode: ['', Validators.required],
+      opening_account: ['', Validators.required],
+      type: ['', Validators.required],
     });
   }
 
@@ -96,26 +99,26 @@ export class AccountComponent implements OnInit {
       console.log(this.accountlist1);
 
       this.accountlist = (something.result);
-      if (this.accountlist.length != 0 ) {
+      if (this.accountlist.length != 0) {
         for (i = 0; i < this.accountlist.length; i++) {
-          if (this.accountlist[i].accountType == "Asset" && this.accountlist[i].parentAccount==null) {
+          if (this.accountlist[i].accountType == "Asset" && this.accountlist[i].parentAccount == null) {
             this.assets.push(this.accountlist[i].accountName)
           }
-          if (this.accountlist[i].accountType == "Equity" && this.accountlist[i].parentAccount==null) {
+          if (this.accountlist[i].accountType == "Equity" && this.accountlist[i].parentAccount == null) {
             this.equity.push(this.accountlist[i].accountName)
           }
-          if (this.accountlist[i].accountType == "Expense" && this.accountlist[i].parentAccount==null) {
+          if (this.accountlist[i].accountType == "Expense" && this.accountlist[i].parentAccount == null) {
             this.expenses.push(this.accountlist[i].accountName)
           }
-          if (this.accountlist[i].accountType == "Revenue" && this.accountlist[i].parentAccount==null) {
+          if (this.accountlist[i].accountType == "Revenue" && this.accountlist[i].parentAccount == null) {
             this.revenue.push(this.accountlist[i].accountName)
           }
-          if (this.accountlist[i].accountType == "Liability" && this.accountlist[i].parentAccount==null) {
+          if (this.accountlist[i].accountType == "Liability" && this.accountlist[i].parentAccount == null) {
             this.liabilities.push(this.accountlist[i].accountName)
           }
         }
       }
-      console.log(this.assets,this.expenses,  this.revenue, this.liabilities,this.equity, )
+      console.log(this.assets, this.expenses, this.revenue, this.liabilities, this.equity)
 
     },
       err => {
@@ -168,7 +171,7 @@ export class AccountComponent implements OnInit {
         let data = {
           parent: this.accountForm.value.parent,
           id: localStorage.getItem('SuperAdmin'),
-          super_parent_Account: this.superparent
+          super_parent_Account: ''
         }
         this.userService.getlistbyparent(data).subscribe(value => {
 
@@ -236,6 +239,8 @@ export class AccountComponent implements OnInit {
         accountType: accounttype,
         description: this.accountForm.value.description,
         // accountCode: this.accountForm.value.accountCode,
+        opening_account: this.accountForm.value.opening_account,
+        type: this.accountForm.value.type,
         organisation: this.organisation,
         userId: this.userId,
         parentAccount: this.accountForm.value.parent,
@@ -269,5 +274,13 @@ export class AccountComponent implements OnInit {
   }
 
 
-
+  del(id) {
+this.userService.deleteAccount(id).subscribe(result=>{
+console.log(result);
+this.getaccountlist1()
+},
+err=>{
+  console.log(err)
+})
+  }
 }

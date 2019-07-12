@@ -1,4 +1,3 @@
-
 <section class="corder">
   <a href="#" class="floatEa">
     <i class="fa fa-envelope-o my-float"></i>
@@ -21,6 +20,9 @@
                 <th>PARENT ACCOUNT</th>
                 <th>NAME</th>
                 <th>ACCOUNT CODE</th>
+                <th>Opening Balance</th>
+                <th>Type</th>
+                <th>del</th>
               </tr>
             </thead>
             <tbody>
@@ -30,7 +32,11 @@
                 <td class="thname" data-title="NAME">{{list.parentAccount}}</td>
                 <td class="thname" data-title="NAME">{{list.accountName}}</td>
                 <td class="thname" data-title="VAT ID">{{list.accountCode}}</td>
-                
+
+                <td class="thname" data-title="NAME">{{list.opening_account}}</td>
+                <td class="thname" data-title="VAT ID">{{list.type}}</td>
+                <td class="thname" data-title="VAT ID" (click)="del(list._id)">del</td>
+
               </tr>
 
             </tbody>
@@ -65,76 +71,76 @@
                 <label>Account Type <span class="blue_star">*</span></label>
               </div>
               <div class="input-field col s7">
-                  <div class="check">
-                      <input type="checkbox" id="check" (change)=inputcheck($event)>
-                      <label for="check"> <span>Make this a parent-account<i class="fa fa-question-circle-o"
-                            aria-hidden="true"></i></span></label>
-                    </div>
+                <div class="check">
+                  <input type="checkbox" id="check" (change)=inputcheck($event)>
+                  <label for="check"> <span>Make this a Super-account<i class="fa fa-question-circle-o"
+                        aria-hidden="true"></i></span></label>
+                </div>
 
-                    
 
-                    <select formControlName="parent" *ngIf='parentbool'>
-                        <option value="" disabled selected>Choose your option</option>
 
-                        <option value="Asset"  >Assets</option>
-                        <option value="Expense" >Expenses</option>
-                        <option value="Liability" >Liability</option>
-  
-                        <option value="Revenue" >Revenue</option>
-                        <option value="Equity" >Equity</option>
+                <select formControlName="parent" *ngIf='parentbool'>
+                  <option value="" disabled selected>Choose your option</option>
+
+                  <option value="Asset">Assets</option>
+                  <option value="Expense">Expenses</option>
+                  <option value="Liability">Liability</option>
+
+                  <option value="Revenue">Revenue</option>
+                  <option value="Equity">Equity</option>
                 </select>
 
 
                 <select formControlName="parent" *ngIf='!parentbool' (change)=selecttype()>
-                    
-                      
-                 
-                      <option value="" disabled selected>Choose your option</option>
-                      <!-- <option *ngFor="let list of accountypelist" [value]='list._id'>{{list.accountName}}</option> -->
-    
-                      <option value="Asset" disabled>Assets</option>
-                      <option *ngFor="let list of assets" [value]='list'>{{list}}</option>
-    
-                      <option value="Expense" disabled>Expenses</option>
-                      <option *ngFor="let list of expenses" [value]='list'>{{list}}</option>
 
-    
-                      <option value="Liability" disabled>Liability</option>
-                      <option *ngFor="let list of liabilities" [value]='list'>{{list}}</option>
 
-                      <option value="Revenue" disabled>Revenue</option>
-                      <option *ngFor="let list of revenue" [value]='list'>{{list}}</option>
-    
-                      <option value="Equity" disabled>Equity</option>
-                      <option *ngFor="let list of equity" [value]='list'>{{list}}</option>
 
-                
-                 
+                  <option value="" disabled selected>Choose your option</option>
+                  <!-- <option *ngFor="let list of accountypelist" [value]='list._id'>{{list.accountName}}</option> -->
+
+                  <option value="Asset" disabled>Assets</option>
+                  <option *ngFor="let list of assets" [value]='list'>{{list}}</option>
+
+                  <option value="Expense" disabled>Expenses</option>
+                  <option *ngFor="let list of expenses" [value]='list'>{{list}}</option>
+
+
+                  <option value="Liability" disabled>Liability</option>
+                  <option *ngFor="let list of liabilities" [value]='list'>{{list}}</option>
+
+                  <option value="Revenue" disabled>Revenue</option>
+                  <option *ngFor="let list of revenue" [value]='list'>{{list}}</option>
+
+                  <option value="Equity" disabled>Equity</option>
+                  <option *ngFor="let list of equity" [value]='list'>{{list}}</option>
+
+
+
 
                 </select>
 
-               
+
                 <p class="errormessage"
                   *ngIf="accountFormErrors.parent.required || (accountForm.controls.parent.pristine && submitted)">
                   Please choose one option</p>
 
-                  <div class="check" *ngIf='!parentbool'>
-                      <input type="checkbox" id="check1" (change)=inputcheck1($event) >
-                      <label for="check1"> <span>Make this a sub-account<i class="fa fa-question-circle-o"
-                            aria-hidden="true"></i></span></label>
-                    </div>
+                <div class="check" *ngIf='!parentbool'>
+                  <input type="checkbox" id="check1" (change)=inputcheck1($event)>
+                  <label for="check1"> <span>Make this a Child-account<i class="fa fa-question-circle-o"
+                        aria-hidden="true"></i></span></label>
+                </div>
 
-                    <select formControlName="parent"  *ngIf='childbool'>
-                        <option value="" disabled selected>Choose your option</option>
-                        
-                        <option *ngFor="let list of levelteoacnt" [value]='list.accountName'>{{list.accountName}}</option>
+                <select formControlName="parent" *ngIf='childbool'>
+                  <option value="" disabled selected>Choose your option</option>
+
+                  <option *ngFor="let list of levelteoacnt" [value]='list.accountName'>{{list.accountName}}</option>
 
                 </select>
               </div>
             </div>
 
 
-         
+
 
 
             <div class="row">
@@ -153,7 +159,7 @@
 
 
 
-              <!-- <div class="row">
+            <!-- <div class="row">
                 <div class="input-field col s3">
                   <label>Account Code</label>
                 </div>
@@ -176,14 +182,49 @@
                   Description can't be empty</p>
 
 
-                <div class="check">
+                <!-- <div class="check">
                   <input type="checkbox" id="checka">
                   <label for="checka"> <span> Add to the watchlist on my dashboard</span></label>
-                </div>
+                </div> -->
               </div>
             </div>
+
+
+
+            <div class="row">
+              <div class="input-field col s3">
+                <label>Opening Balance</label>
+              </div>
+              <div class="input-field col s7">
+                  <input type="text" class="validate" formControlName="opening_account">
+                <p class="errormessage"
+                  *ngIf="accountFormErrors.opening_account.required || (accountForm.controls.opening_account.pristine && submitted)">
+                  Description can't be empty</p>
+
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="input-field col s3">
+                <label>Choose type</label>
+              </div>
+              <div class="input-field col s7">
+                <select formControlName="type">
+                  <option value="" disabled selected>Choose your option</option>
+
+                  <option value="credit">Credit</option>
+                  <option value="debit">Debit</option>
+
+
+                </select>
+                <p class="errormessage"
+                  *ngIf="accountFormErrors.type.required || (accountForm.controls.type.pristine && submitted)">
+                  Description can't be empty</p>
+              </div>
+            </div>
+
             <div class="modal-footer">
-              <button type="button"  class="saveBtn" (click)="submit()">Save</button>
+              <button type="button" class="saveBtn" (click)="submit()">Save</button>
               <button type="button" class="cancelBtn" data-dismiss="modal" id='cancel'>Cancel</button>
             </div>
           </form>

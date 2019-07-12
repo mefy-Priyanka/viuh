@@ -16,5 +16,8 @@ export class AppComponent {
     if(!this.userId){
       this.router.navigate(['/login']);
     }
+    else{
+      this.router.navigate(['/dashboard'])
+    }
   }
 }

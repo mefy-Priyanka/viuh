@@ -333,7 +333,7 @@ uploadImage(event){
       accountName:this.customerForm.value.name,
       accountType:'Asset',
       organisation:localStorage.getItem('organisation'),
-      parentAccount:'Account Receivable',
+      parentAccount:'Account Receivables',
       userId:this.userId,
       super_parent_Account:'Current Assets'
 

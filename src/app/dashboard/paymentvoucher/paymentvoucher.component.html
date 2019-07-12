@@ -1,10 +1,10 @@
 <!-- Payment Voucher -->
 <section class="createcontract">
   <div class="ft">
-    <h1>Payment Voucher | Create
+    <h1 (click)="click()">Payment Voucher | Create
     </h1>
   </div>
-  <form class="createContractorForm" >
+  <form class="createContractorForm" [formGroup]="payForm">
     <div class="row">
       <div class="col-md-12">
         <!-- input type -->
@@ -16,85 +16,99 @@
                 <div class="row">
                   <div class="input-field col s6">
                     <p><label>To</label></p>
-                    <select >
+                    <select formControlName="to" (ngModelChange)="changeto($event)">
                       <option value="" disabled selected>Select</option>
-                      <option value="a">Contractor</option>
-                      <option value="a">Vendor</option>
-                      <option value="a">Driver</option>
-                      <option value="a">Employee</option>
+
+                      <option *ngFor="let contact of contactlist " [value]='contact._id'>{{contact.name}}
+                        ({{contact.contact_type}})</option>
+                      <option *ngFor="let fleet of fleetDetail " [value]='fleet.contractId._id'>
+                        {{fleet.contractId.companyName}} (Contractor)</option>
+
+
                     </select>
                   </div>
                   <div class="input-field col s6">
                     <p><label>Voc#</label></p>
-                    <input type="text" class="validate">
+                    <input type="text" class="validate" [readonly]='true'>
                   </div>
                 </div>
 
                 <div class="row">
-                  <div class="input-field col s6">
+                  <div class="input-field col s6" *ngIf="trucknumber!=''">
                     <p><label>Truck#</label></p>
-                    <select >
+                    <select [(ngModel)]="trucknumber"  [ngModelOptions]="{standalone: true}" >
                       <option value="" disabled selected>Select</option>
-                      <option value="a">WB 1234</option>
-                      <option value="a">UP 4567</option>
+                      <option *ngFor="let truck of truckarray " [value]="truck.fleetid">{{truck.truckno}}</option>
                     </select>
+
+                    <!-- <div class="input-field col s6">
+                      <div >
+                        <p><label>Truck</label></p>
+                        <input type="text" class="validate" [(ngModel)]="trucknumber"
+                          [ngModelOptions]="{standalone: true}" [readonly]='true'>
+
+                      </div>
+                    </div> -->
                   </div>
                   <div class="input-field col s6">
                     <p><label>Payment Mode</label></p>
-                    <select >
+                    <select [(ngModel)]='paymode'  [ngModelOptions]="{standalone: true}"  (ngModelChange)="changemode($event)">
                       <option value="" disabled selected>Select</option>
-                      <option value="a">Bank</option>
-                      <option value="a">Cash</option>
-                      <option value="a">Cheque</option>
+                      <option value="bank" >Bank</option>
+                      <option value="cash" >Cash</option>
+                      <option value="cheque" >Cheque</option>
                     </select>
                   </div>
 
-                  <!-- <div class="input-field col s6">
-                      <p><label>Date</label></p>
-                      <input type="date" class="validate" formControlName="date">
-                    </div> -->
+
 
 
                 </div>
                 <div class="row">
                   <div class="input-field col s6">
                     <p><label>Date</label></p>
-                    <input type="date" class="validate" >
+                    <input type="date" class="validate" formControlName="date">
                   </div>
                   <div class="input-field col s6">
                     <p><label>Payment Type</label></p>
-                    <select >
+                    <select formControlName="paytype">
                       <option value="" disabled selected>Select</option>
-                      <option value="a">Diesel</option>
-                      <option value="a">Toll</option>
-                      <option value="a">Price</option>
-                      <option value="a">Expense</option>
+                      <option value="'diesel_price'">Diesel</option>
+                      <option value="'toll_price'">Toll</option>
+                      <option value="'driver_expense'">Price</option>
+                      <!-- <option value="a">Expense</option>
                       <option value="a">Advance</option>
-                      <option value="a">Other</option>
+                      <option value="a">Other</option> -->
                     </select>
                   </div>
                 </div>
                 <div class="row">
-                    <div class="input-field col s6">
-                        <p><label>Bank</label></p>
-                        <select >
-                          <option value="" disabled selected>Select</option>
-                          <option value="a">State Bank Of India</option>
-                          <option value="a">Axis Bank</option>
-                          <option value="a">HDFC</option>
-                          <option value="a">Other</option>
-                        </select>
-                      </div>
-                    <div class="input-field col s6">
-                      <p><label>Denomination</label></p>
-                      <input type="text" class="validate" >
-                    </div>
-                   
+
+                  {{bankselect}}
+                  <div class="input-field col s6" *ngIf="bankselect">
+                    <p><label>Bank</label></p>
+                    <select formControlName="bank">
+                      <option value="" disabled selected>Select</option>
+                      <option *ngFor="let bank of banklist" [value]="bank._id">{{bank.bank_name}}</option>
+                    
+                    </select>
                   </div>
+                  <div class="input-field col s6" *ngIf="payForm.value.paymode=='cheque'">
+                    <div >
+                      <p><label>Cheque</label></p>
+                      <input type="text" class="validate" [(ngModel)]="checkno"
+                        [ngModelOptions]="{standalone: true}" >
+
+                    </div>
+                  </div>
+
+
+
+                </div>
                 <div class="row">
                   <div class="input-field col s6">
                     <p><label>Amount</label></p>
-                    <input type="number" class="validate" >
+                    <input type="number" class="validate" formControlName="amount">
                   </div>
                 </div>
 
@@ -104,7 +118,7 @@
           </div>
           <div class="row">
             <div class="contractorButton">
-              <button class="submitBtn" >Submit</button>
+              <button class="submitBtn" (click)="submit()">Submit</button>
               <button class="cancelBtn">Cancel</button>
             </div>
           </div>
@@ -123,6 +137,99 @@
     </div>
 
   </form>
+  <!-- Payment Voucher -->
+
+
+<a id="models" data-toggle="modal" data-target="#journalModal"></a>
+
+
+<!-- Modal -->
+<div class="modal fade" id="journalModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="vertical-alignment-helper">
+    <div class="modal-dialog modal-lg vertical-align-center">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+              class="sr-only">Close</span>
+
+          </button>
+          <!-- <h4 class="modal-title accountTitle">Add Denominations</h4> -->
+
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="denomForm">
+
+            <div class="tableide">
+              <div class="row">
+                <div id="no-more-tables">
+                  <table class="col-md-12 table-bordered table-striped table-condensed cf">
+                    <thead class="cf">
+                      <tr>
+                        <th>DENOMINATION</th>
+                        <th>COUNT</th>
+                        <th>AMOUNT</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="thno">10<span class="closT">&times;</span></td>
+                        <td class="thname"><input type="number" formControlName="note10"></td>
+                        <td class="thname">
+                          {{denomForm.value.note10*10}}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="thno">20<span class="closT">&times;</span></td>
+                        <td class="thname"><input type="number" formControlName="note20"></td>
+                        <td class="thname">{{denomForm.value.note20*20}}</td>
+                      </tr>
+                      <tr>
+                        <td class="thno">50<span class="closT">&times;</span></td>
+                        <td class="thname"><input type="number" formControlName="note50"></td>
+                        <td class="thname">{{denomForm.value.note50*50}}</td>
+                      </tr>
+                      <tr>
+                        <td class="thno">100<span class="closT">&times;</span></td>
+                        <td class="thname"><input type="number" formControlName="note100"></td>
+                        <td class="thname">{{denomForm.value.note100*100}}</td>
+                      </tr>
+                      <tr>
+                        <td class="thno">200<span class="closT">&times;</span></td>
+                        <td class="thname"><input type="number" formControlName="note200"></td>
+                        <td class="thname">{{denomForm.value.note200*200}}</td>
+                      </tr>
+                      <tr>
+                        <td class="thno">500<span class="closT">&times;</span></td>
+                        <td class="thname"><input type="number" formControlName="note500"></td>
+                        <td class="thname">{{denomForm.value.note500*500}}</td>
+                      </tr>
+                      <tr>
+                        <td class="thno">2000<span class="closT">&times;</span></td>
+                        <td class="thname"><input type="number" formControlName="note2000"></td>
+                        <td class="thname">{{denomForm.value.note2000*2000}}</td>
+                      </tr>
+                      <tr>
+                        <td class="thno" colspan="2" style="background:#eee;text-align: center">Total</td>
+
+                        <td class="thname" style="background:#fff">{{total}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="saveBtn" (click)="submitmodel()">Save</button>
+              <button type="button" class="cancelBtn" id="cancel" data-dismiss="modal"
+                (click)="cancelmodel()">Cancel</button>
+                <a id="cancels" data-dismiss="modal"></a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal -->
 </section>
 
-<!-- Payment Voucher -->

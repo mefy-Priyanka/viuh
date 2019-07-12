@@ -58,6 +58,7 @@ export class UserService {
 
 
   getlistbyparent(data){
+    console.log(APIURL + 'account/accountByParent?parentAccount='+data.parent+'&super_parent_Account='+data.super_parent_Account+'&superAdminId='+data.id)
     return this.httpClient.get(APIURL + 'account/accountByParent?parentAccount='+data.parent+'&super_parent_Account='+data.super_parent_Account+'&superAdminId='+data.id)
 
   }
