@@ -36,7 +36,7 @@
                 <td class="thname" data-title="NAME">{{list.opening_account}}</td>
                 <td class="thname" data-title="VAT ID">{{list.type}}</td>
                 <td class="thname" data-title="VAT ID">
-                  <i class="fa fa-pencil" aria-hidden="true" data-toggle="modal" data-target="#confirmModal"></i>
+                  <i class="fa fa-pencil" aria-hidden="true" data-toggle="modal" data-target="#confirmModal" (click)="editaccount(list)"></i>
                   <i class="fa fa-trash" (click)="del(list._id)" aria-hidden="true"></i>
                 </td>
 
@@ -238,7 +238,7 @@
 </div>
 <!-- Modal -->
 <!-- Confirm Modal -->
-<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade modelss" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="vertical-alignment-helper">
     <div class="modal-dialog vertical-align-center">
       <div class="modal-content">
@@ -251,7 +251,7 @@
 
         </div>
         <div class="modal-body">
-          <form [formGroup]="accountForm">
+          
             
 
 
@@ -261,7 +261,7 @@
                 <label>Opening Balance</label>
               </div>
               <div class="input-field col s7">
-                  <input type="text" class="validate" formControlName="opening_account">
+                  <input type="text" class="validate" [(ngModel)]="editbalance">
 
 
               </div>
@@ -272,7 +272,7 @@
                 <label>Choose type</label>
               </div>
               <div class="input-field col s7">
-                <select formControlName="type">
+                <select [(ngModel)]="edittype">
                   <option value="" disabled selected>Choose your option</option>
 
                   <option value="credit">Credit</option>
@@ -285,10 +285,10 @@
             </div>
 
             <div class="modal-footer">
-              <button type="button" class="saveBtn" (click)="submit()">Save</button>
-              <button type="button" class="cancelBtn" data-dismiss="modal" id='cancel'>Cancel</button>
+              <button type="button" class="saveBtn" (click)="submitedit()">Save</button>
+              <button type="button" class="cancelBtn" data-dismiss="modal" id='cancels'>Cancel</button>
             </div>
-          </form>
+          
         </div>
       </div>
     </div>

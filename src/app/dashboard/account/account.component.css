@@ -284,14 +284,9 @@ div#confirmModal {
     }
     
 /* Responsive css */
-.modal {
-    display: none;
-    position: fixed;
-    left: 0;
-    right: 0;
-    background-color: transparent;
-    padding: 0;
-    box-shadow: none;
+#confirmModal .modal-content {
+ width: auto;
+ height: 100%;
 }
 div#confirmModal .modal-footer {
     border-radius: 0 0 2px 2px;

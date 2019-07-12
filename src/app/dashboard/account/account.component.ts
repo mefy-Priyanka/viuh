@@ -10,7 +10,8 @@ import { resource } from 'selenium-webdriver/http';
   styleUrls: ['./account.component.css']
 })
 export class AccountComponent implements OnInit {
-
+  editbalance='';
+  edittype=''
 
   userId: string;
   role: string;
@@ -35,6 +36,7 @@ export class AccountComponent implements OnInit {
   accountlist1 = [];
   superparent = '';
   accountFormErrors: { accountName: any; parent: any; description: any; opening_account: any; type: any; };
+  selectedid: any;
 
   constructor(private formBuilder: FormBuilder, private userService: UserService, private toastr: ToastrService) {
     this.userId = localStorage.getItem('userId');
@@ -288,16 +290,23 @@ export class AccountComponent implements OnInit {
 
   }
 
-  editaccount(id){
+  editaccount(list){
+    this.edittype=list.type;
+    this.editbalance=list.opening_account
+    this.selectedid=list._id
+  }
+
+  submitedit(){
     let data={
-      accountId:id,
-      opening_account:'',
-      type:''
+      accountId:this.selectedid,
+      opening_account:this.editbalance,
+      type:this.edittype
     }
     this.userService.updateaccount(data).subscribe(result=>{
       console.log(result);
       this.toastr.success('success', 'Account Updated');
-      this.getaccountlist1()
+      this.getaccountlist1();
+      document.getElementById('cancels').click()
     },
     err=>{
       console.log(err);
