@@ -1,269 +1,243 @@
-<!-- <section class="createcontract">
-    <div class="ft">
-      <h1>Journal Detail
-      </h1>
-      
-    </div>
-    <div class="createContractorForm">
-      <div class="row">
-        <div class="col-md-12">
-          <div>
-            <div class="card corCard">
-              <div class="row">
-  
-                <div class="nota">
-                  <div class="row">
-  
-                    <div class="input-field col s6">
-                      <p><label>Date <span class="blue_star">*</span></label></p>
-                      <p>10/07/2019</p>
-  
-                    </div>
-                    <div class="input-field col s6">
-                      <p><label>Journal# <span class="blue_star">*</span></label></p>
-                      <p>J -1234</p>
-  
-                    </div>
-  
+<section class="createcontract">
+  <div class="ft">
+    <h1>Journal Detail
+    </h1>
+
+  </div>
+  <div class="createContractorForm">
+    <div class="row">
+      <div class="col-md-12">
+        <div>
+          <div class="card corCard">
+            <div class="row">
+
+              <div class="nota">
+                <div class="row">
+
+                  <div class="input-field col s6">
+                    <p><label>Date <span class="blue_star">*</span></label></p>
+                    <p>{{sharenav.date}}</p>
+
                   </div>
-                  <div class="row">
-  
-  
-                    <div class="input-field col s6">
-                      <p><label>Reference</label></p>
-                      <p>AT -1234</p>
-  
-                    </div>
-  
-                    <div class="input-field col s6">
-                      <p><label>Currency<span class="blue_star">*</span></label></p>
-                   <p>Rupees</p>
-                    </div>
-  
-  
-  
-  
-  
+                  <div class="input-field col s6">
+                    <p><label>Journal# <span class="blue_star">*</span></label></p>
+                    <p>{{sharenav.journalNumber}}</p>
+
                   </div>
-                  <div class="row">
-  
-                    <div class="input-field col s6">
-                      <p><label>Notes</label></p>
-                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard</p>
-                    </div>
-  
-  
+
+                </div>
+                <div class="row">
+
+
+                  <div class="input-field col s6">
+                    <p><label>Reference</label></p>
+                    <p>{{sharenav.reference}}</p>
+
                   </div>
-  
-                  <div class="row">
-  
-                    <div class="input-field col s6">
-                      <p ><label>Journal Type</label></p>
-                      <p>Cash based Journal</p>
-                     
-                    </div>
-  
-  
-  
+
+                  <div class="input-field col s6">
+                    <p><label>Currency<span class="blue_star">*</span></label></p>
+                    <p>Rupees</p>
                   </div>
-  
-                  <div >
-  
-                    <div class="tableide journalTable">
-                      <div class="row">
-                        <div id="no-more-tables">
-                          <table class="col-md-12 table-bordered table-striped table-condensed cf">
-                            <thead class="cf">
-                              <tr>
-                                <th>ACCOUNT</th>
-                                <th>DESCRIPTION</th>
-                                <th>CONTACT(INR)</th>
-                                <th>CREDITS</th>
-                                <th>DEBITS</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-  
-                                <td class="thno">
-                                a
-                                </td>
-                                <td class="thname"><textarea style="border:none !important">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard</textarea></td>
-                                <td class="thno">a</td>
-  
-                                <td class="thname">100</td>
-                                <td class="thname">0</td>
-                              </tr>
-                            </tbody>
-                          </table>
-  
-                          <div class="row">
-                            <div class="col-md-6">
-                              <div class="thno">
-                              </div>
+
+
+
+
+
+                </div>
+                <div class="row">
+
+                  <div class="input-field col s6">
+                    <p><label>Notes</label></p>
+                    <p>{{sharenav.notes}}</p>
+                  </div>
+
+
+                </div>
+
+                <div class="row">
+
+                  <div class="input-field col s6">
+                    <p><label>Journal Type</label></p>
+                    <p *ngIf="sharenav.denomination==null">Bank</p>
+                    <p *ngIf="sharenav.denomination!=null">Cash <i class="fas fa-eye" id="models" data-toggle="modal" data-target="#journalModal"></i>
+                    </p>
+                  </div>
+
+
+
+                </div>
+
+                <div>
+
+                  <div class="tableide journalTable">
+                    <div class="row">
+                      <div id="no-more-tables">
+                        <table class="col-md-12 table-bordered table-striped table-condensed cf">
+                          <thead class="cf">
+                            <tr>
+                              <th>ACCOUNT</th>
+                              <th>DESCRIPTION</th>
+                              <th>CONTACT(INR)</th>
+                              <th>CREDITS</th>
+                              <th>DEBITS</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let item of sharenav.detail">
+
+                              <td class="thno">
+                                {{item.accountId.accountName}}
+                              </td>
+                              <td class="thname">
+                                <p>{{item.description}}</p>
+                              </td>
+                              <td class="thno">{{item.contactPersonId.account_holder_name}}</td>
+
+                              <td class="thname"><p *ngIf="item.credit">{{item.credit}}</p><p *ngIf="!item.credit">0</p> </td>
+                              <td class="thname"><p *ngIf="item.debit">{{item.debit}}</p><p *ngIf="!item.debit">0</p> </td>
+                            </tr>
+                          </tbody>
+                        </table>
+
+                        <div class="row">
+                          <div class="col-md-6">
+                            <div class="thno">
                             </div>
-                            <div>
-                              <div class="col-md-6 hrTag">
-                                <div class="row total">
-                                  <div class="col-md-6">
-                                    <div class="thno">
-                                     <strong>Total</strong>
-                                    </div>
+                          </div>
+                          <div>
+                            <div class="col-md-6 hrTag">
+                              <div class="row total">
+                                <div class="col-md-6">
+                                  <div class="thno">
+                                    <strong>Total</strong>
                                   </div>
-                                  <div class="col-md-3">
-                                    <div class="thno">
-                                      400
-                                    </div>
-                                  </div>
-                                  <div class="col-md-3">
-                                    <div class="thno">
-                                      500
-                                    </div>
-                                  </div>
-  
                                 </div>
+                                <div class="col-md-3">
+                                  <div class="thno">
+                                    {{sharenav.total}}
+                                  </div>
+                                </div>
+                                <div class="col-md-3">
+                                  <div class="thno">
+                                      {{sharenav.total}}
+                                  </div>
+                                </div>
+
                               </div>
                             </div>
                           </div>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
-  
                         </div>
-  
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                       </div>
+
+
                     </div>
                   </div>
-  
-  
                 </div>
-  
+
+
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+
+
+
+
+
+
+
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<div class="modal fade" id="journalModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="vertical-alignment-helper">
+    <div class="modal-dialog modal-lg vertical-align-center">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+              class="sr-only">Close</span>
+
+          </button>
+
+        </div>
+        <div class="modal-body">
+          <form>
+
+            <div class="tableide">
+              <div class="row">
+                <div id="no-more-tables">
+                  <table class="col-md-12 table-bordered table-striped table-condensed cf">
+                    <thead class="cf">
+                      <tr>
+                        <th>DENOMINATION</th>
+                        <th>COUNT</th>
+                        <th>AMOUNT</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let denom of sharenav.denomination">
+                        <td class="thno">{{denom.type}}</td>
+                        <td class="thname"><p>{{denom.count}}</p></td>
+                        <td class="thname">
+                            {{denom.amount}}
+                        </td>
+                      </tr>
+                      
+                      <tr>
+                        <td class="thno" colspan="2" style="background:#eee;text-align: center">Total</td>
+
+                        <td class="thname" style="background:#fff">{{sharenav.total}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
-            
-          </div>
-  
-  
-  
-  
-  
-  
-  
-  
-  
-        </div>
-      </div>
-  
-    </div>
-  </section>
-  
-
-  <div class="modal fade" id="journalModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="vertical-alignment-helper">
-      <div class="modal-dialog modal-lg vertical-align-center">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
-                class="sr-only">Close</span>
-  
-            </button>
-  
-          </div>
-          <div class="modal-body">
-            <form >
-  
-              <div class="tableide">
-                <div class="row">
-                  <div id="no-more-tables">
-                    <table class="col-md-12 table-bordered table-striped table-condensed cf">
-                      <thead class="cf">
-                        <tr>
-                          <th>DENOMINATION</th>
-                          <th>COUNT</th>
-                          <th>AMOUNT</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td class="thno">10<span class="closT">&times;</span></td>
-                          <td class="thname"><input type="number" ></td>
-                          <td class="thname">
-                           i
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="thno">20<span class="closT">&times;</span></td>
-                          <td class="thname"><input type="number" ></td>
-                          <td class="thname">6</td>
-                        </tr>
-                        <tr>
-                          <td class="thno">50<span class="closT">&times;</span></td>
-                          <td class="thname"><input type="number" ></td>
-                          <td class="thname">7</td>
-                        </tr>
-                        <tr>
-                          <td class="thno">100<span class="closT">&times;</span></td>
-                          <td class="thname"><input type="number" ></td>
-                          <td class="thname">8</td>
-                        </tr>
-                        <tr>
-                          <td class="thno">200<span class="closT">&times;</span></td>
-                          <td class="thname"><input type="number" ></td>
-                          <td class="thname">8</td>
-                        </tr>
-                        <tr>
-                          <td class="thno">500<span class="closT">&times;</span></td>
-                          <td class="thname"><input type="number" ></td>
-                          <td class="thname">9</td>
-                        </tr>
-                        <tr>
-                          <td class="thno">2000<span class="closT">&times;</span></td>
-                          <td class="thname"><input type="number" ></td>
-                          <td class="thname">5</td>
-                        </tr>
-                        <tr>
-                          <td class="thno" colspan="2" style="background:#eee;text-align: center">Total</td>
-  
-                          <td class="thname" style="background:#fff">8</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="saveBtn" (click)="submitmodel()">Save</button>
-                <button type="button" class="cancelBtn" id="cancel" data-dismiss="modal" (click)="cancelmodel()">Cancel</button>
-              </div>
-            </form>
-          </div>
+            <!-- <div class="modal-footer">
+              <button type="button" class="saveBtn" (click)="submitmodel()">Save</button>
+              <button type="button" class="cancelBtn" id="cancel" data-dismiss="modal"
+                (click)="cancelmodel()">Cancel</button>
+            </div> -->
+          </form>
         </div>
       </div>
     </div>
   </div>
-  -->
+</div>

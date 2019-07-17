@@ -68,7 +68,7 @@ export class JournalComponent implements OnInit {
       description: '',
       contactPersonId: '',
       credit: 0,
-      dabit: 0
+      debit: 0
     }
     this.jdata.push(temp)
     console.log(this.jdata)
@@ -213,7 +213,7 @@ export class JournalComponent implements OnInit {
         console.log('all equal')
       }
       else {
-        alert('please make sure credit is equal to dabit');
+        alert('please make sure credit is equal to debit');
         return;
       }
     }
@@ -224,7 +224,7 @@ export class JournalComponent implements OnInit {
         delete this.maindata['denomination'];
       }
       else {
-        alert('please make sure credit is equal to dabit');
+        alert('please make sure credit is equal to debit');
         return;
       }
     }
@@ -246,21 +246,21 @@ export class JournalComponent implements OnInit {
   check(index, field) {
 
     console.log(index)
-    if (field == 'dabit') {
+    if (field == 'debit') {
       this.jdata[index].credit = 0;
     }
     if (field == 'credit') {
-      this.jdata[index].dabit = 0;
+      this.jdata[index].debit = 0;
     }
     let i = 0;
     this.ctotal = 0;
     this.dtotal = 0;
     for (i = 0; i < this.jdata.length; i++) {
       this.ctotal = this.ctotal + this.jdata[i].credit;
-      this.dtotal = this.dtotal + this.jdata[i].dabit;
+      this.dtotal = this.dtotal + this.jdata[i].debit;
     }
     console.log('credit: ' + this.ctotal);
-    console.log('dabit: ' + this.dtotal)
+    console.log('debit: ' + this.dtotal)
 
   }
 
@@ -327,7 +327,7 @@ export class JournalComponent implements OnInit {
         console.log('all equal')
       }
       else {
-        alert('please make sure credit is equal to dabit')
+        alert('please make sure credit is equal to debit')
       }
     }
     else if (!this.cashcheck) {
@@ -337,7 +337,7 @@ export class JournalComponent implements OnInit {
         delete this.maindata['denomination'];
       }
       else {
-        alert('please make sure credit is equal to dabit')
+        alert('please make sure credit is equal to debit')
       }
     }
     console.log(this.maindata);
