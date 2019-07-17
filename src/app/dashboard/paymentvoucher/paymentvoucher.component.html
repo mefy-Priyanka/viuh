@@ -73,9 +73,10 @@
                     <p><label>Payment Type</label></p>
                     <select formControlName="paytype">
                       <option value="" disabled selected>Select</option>
-                      <option value="'diesel_price'">Diesel</option>
-                      <option value="'toll_price'">Toll</option>
-                      <option value="'driver_expense'">Price</option>
+                      <option value="diesel_price">Diesel</option>
+                      <option value="toll_price">Toll</option>
+                      <option value="driver_expense">Price</option>
+                      <option value="others">Other</option>
                       <!-- <option value="a">Expense</option>
                       <option value="a">Advance</option>
                       <option value="a">Other</option> -->
@@ -93,7 +94,7 @@
                     
                     </select>
                   </div>
-                  <div class="input-field col s6" *ngIf="payForm.value.paymode=='cheque'">
+                  <div class="input-field col s6" *ngIf="paymode=='cheque'">
                     <div >
                       <p><label>Cheque</label></p>
                       <input type="text" class="validate" [(ngModel)]="checkno"
@@ -149,10 +150,10 @@
     <div class="modal-dialog modal-lg vertical-align-center">
       <div class="modal-content">
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+          <!-- <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
               class="sr-only">Close</span>
 
-          </button>
+          </button> -->
           <!-- <h4 class="modal-title accountTitle">Add Denominations</h4> -->
 
         </div>

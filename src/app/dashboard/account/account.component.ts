@@ -38,6 +38,8 @@ export class AccountComponent implements OnInit {
   accountFormErrors: { accountName: any; parent: any; description: any; opening_account: any; type: any; };
   selectedid: any;
 
+  htmlaccount:any=[];
+
   constructor(private formBuilder: FormBuilder, private userService: UserService, private toastr: ToastrService) {
     this.userId = localStorage.getItem('userId');
     this.role = localStorage.getItem('role');
@@ -99,7 +101,14 @@ export class AccountComponent implements OnInit {
       this.accountlist1 = (something.result);
 
       console.log(this.accountlist1);
-
+      for(var i=0; i<this.accountlist1.length;i++){
+        if(this.accountlist1[i].super_parent_Account!=null ){
+          if(this.accountlist1[i].parentAccount!=null){
+            this.htmlaccount.push(this.accountlist1[i])
+          }
+        }
+      }
+      // htmlaccount
       this.accountlist = (something.result);
       if (this.accountlist.length != 0) {
         for (i = 0; i < this.accountlist.length; i++) {

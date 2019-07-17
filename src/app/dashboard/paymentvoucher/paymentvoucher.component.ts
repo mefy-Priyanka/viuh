@@ -313,9 +313,15 @@ export class PaymentvoucherComponent implements OnInit {
       userId: localStorage.getItem('userId')
     }
     console.log(data)
-    console.log(this.total,data.amount_paid , data.payment )
-    if (this.total != data.amount_paid && data.payment == 'cash') {
+    console.log(this.total, data.amount_paid, data.payment)
+    if (this.total != data.amount_paid && data.payment_mode == 'cash') {
       alert('not matched')
     }
+    this.userService.creatvoucher(data).subscribe(result => {
+      console.log(result)
+    },
+      err => {
+        console.log(err)
+      })
   }
 }
