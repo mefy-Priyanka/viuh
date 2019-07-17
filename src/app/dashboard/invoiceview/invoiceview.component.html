@@ -1,7 +1,8 @@
 <!-- invoice -->
 <section class="createcontract">
   <div class="ft">
-    <h1>Invoice | Create
+    <h1>Invoice Detail
+        <button class="addItema"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</button>
     </h1>
   </div>
   <form class="createContractorForm" [formGroup]="myForm">
@@ -120,7 +121,7 @@
                             </tr>
                           </thead>
                           <tbody>
-                            <tr *ngFor="let phone of phoneForms.controls; let i=index" [formGroupName]="i">
+                            <tr>
 
                               <td class="thname"><input type="text" style="border: none !important"
                                   formControlName="serial_number"></td>
@@ -149,9 +150,9 @@
 
                         <div class="row">
                           <div class="col-md-6">
-                            <div class="thno">
+                            <!-- <div class="thno">
                               <button class="At" (click)="addPhone()">+&nbsp;&nbsp;Add Another Line</button>
-                            </div>
+                            </div> -->
                           </div>
                           <div>
                             <div class="col-md-6 hrTag">
@@ -250,8 +251,7 @@
           </div>
           <div class="row">
             <div class="contractorButton">
-              <button class="submitBtn" (click)="submit()">Save as Draft</button>
-              <button class="submitBtn" >Save and Send</button>
+              <button class="submitBtn" >Save</button>
               <button class="cancelBtn" >Cancel</button>
             </div>
           </div>
