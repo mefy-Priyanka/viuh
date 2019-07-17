@@ -181,7 +181,22 @@ button.At {
 .row.a_t {
     padding: 9px 0;
 }
-
+button.addItema {
+    border: 2px solid #32b1f8;
+    background: transparent;
+    color: #32b1f8;
+    height: 35px;
+    font-size: 15px;
+    border-radius: 2px;
+    width: 90px;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    margin-left: 1em;
+}
+button.addItema i {
+    font-size: 17px;
+    margin-right: 7px;
+}
 /* table css */
 table.col-md-12.table-bordered.table-striped.table-condensed.cf {
     /* display: block; */

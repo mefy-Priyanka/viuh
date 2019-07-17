@@ -1,0 +1,335 @@
+
+  
+  
+  
+  <!-- bill -->
+  <section class="createcontract">
+    <div class="ft">
+      <h1>Bill Detail
+          <button class="addItema"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</button>
+      </h1>
+    </div>
+    <form class="createContractorForm" [formGroup]="billForm">
+      <div class="row">
+        <div class="col-md-12">
+          <!-- input type -->
+          <div>
+            <div class="card corCard">
+              <div class="row">
+  
+                <div class="nota">
+                  <div class="row">
+  
+                    <div class="input-field col s6">
+                      <p><label>Vendor Name <span class="blue_star">*</span></label></p>
+                      <select formControlName="vendorId" (ngModelChange)="onChangeObj($event)">
+                        <option value="" disabled selected>vender</option>
+                        <option *ngFor="let data of vendorlist" [value]='data._id'>{{data.name}}</option>
+                        <option value="" disabled selected>contractor</option>
+  
+                        <option *ngFor="let contractor of contractorDetail" [value]='contractor._id'>{{contractor.companyName}}</option>
+  
+                        
+                      </select>
+  
+                    </div>
+                    <div class="input-field col s6">
+                      <p><label>Bill #<span class="blue_star">*</span></label></p>
+                      <input type="text" class="validate" [readonly]=true>
+                    </div>
+  
+                  </div>
+                  <div class="row">
+  
+  
+                    <div class="input-field col s6">
+                      <p><label>Work order </label></p>
+                      <select formControlName="work_order">
+                        <option value="" disabled selected>Select</option>
+                        <!-- <option value="work">Work order</option> -->
+                        <option *ngFor="let work of worklist" [value]="work._id">{{work.tender_number}}</option>
+  
+                      </select>
+                    </div>
+  
+                    <div class="input-field col s6">
+                      <p><label>Bill Date<span class="blue_star">*</span></label></p>
+                      <input type="date" class="validate" formControlName="bill_date">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="input-field col s6">
+                      <p><label>Terms</label></p>
+                      <select class="orga" formControlName="terms">
+                        <option value="" disabled selected>Due On Receipt</option>
+                        <option value="rupees">NET 15</option>
+                        <option value="rupees">NET 30</option>
+                        <option value="rupees">NET 45</option>
+                        <option value="rupees">NET 60</option>
+                        <option value="rupees">Due end of the month</option>
+                        <option value="rupees">Due end of next month</option>
+                        <option value="rupees">Due on receipt</option>
+                        <option value="rupees">Custom</option>
+  
+                      </select>
+                    </div>
+                    <div class="input-field col s6">
+                      <p><label>Due Date<span class="blue_star">*</span></label></p>
+                      <input type="date" class="validate" formControlName="due_date">
+                    </div>
+  
+                  </div>
+  
+                  <div class="row">
+  
+  
+                    <div class="input-field col s6">
+                      <p><label>Period (Start Date)</label></p>
+                      <input type="date" class="validate" formControlName="periodstart">
+  
+                    </div>
+  
+                    <div class="input-field col s6">
+                      <p><label>Period (End Date)</label></p>
+                      <input type="date" class="validate" formControlName="periodend">
+                    </div>
+  
+  
+  
+  
+  
+                  </div>
+  
+                  <div class="row">
+                    <div class="input-field col s6">
+                      <p><label>Reverse Change</label></p>
+                      <select class="orga" formControlName="reverse_change">
+                        <option value="" disabled selected>Reverse Change</option>
+                        <option value="yes">yes</option>
+                        <option value="no">No</option>
+  
+  
+                      </select>
+                    </div>
+  
+  
+                    <div class="input-field col s6">
+                      <p><label>Status</label></p>
+                      <select class="orga" formControlName="status">
+                        <option value="" disabled selected>status</option>
+                        <option value="paid">paid</option>
+                        <option value="unpaid">unpaid</option>
+  
+  
+                      </select>
+                    </div>
+  
+  
+                  </div>
+  
+  
+  
+                  <div class="row">
+                    <div class="input-field col s6">
+                      <p><label>Amount Paid</label></p>
+                      <input type="text" class="validate" formControlName="amount_paid">
+                    </div>
+                  </div>
+  
+  
+  
+  
+                  <!-- <form> -->
+  
+                  <div class="tableide journalTable">
+                    <div class="row">
+                      <div id="no-more-tables">
+                        <table class="col-md-12 table-bordered table-striped table-condensed cf billTable"
+                          formArrayName="arraydata">
+                          <thead class="cf">
+                            <tr>
+                              <th>S NO.</th>
+                              <th>CONSIGNMENT NOTE NO.</th>
+                              <th>DESCRIPTION</th>
+                              <th>AMOUNT</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td class="thname"><input type="text" style="border: none !important"
+                                  formControlName="serial_number"></td>
+                              <td class="thname">
+                                <select formControlName="cosignmentId">
+                                  <option value="" disabled selected>Select</option>
+                                  <option *ngFor="let data of consigmentDetail" [value]='data._id'>
+                                    {{data.consignmentNumber}}</option>
+                                </select>
+                              </td>
+                              <td class="thname"><input type="text" style="border: none !important"
+                                  formControlName="description"></td>
+                              <td class="thname"><input type="text" style="border: none !important"
+                                  formControlName="amount"></td>
+  
+                            </tr>
+                          </tbody>
+                        </table>
+  
+  
+  
+                        <div class="row">
+                          <div class="col-md-6">
+                            <!-- <div class="thno">
+                              <button class="At" (click)="addPhone()">+&nbsp;&nbsp;Add Another Line</button>
+                            </div> -->
+                          </div>
+                          <div>
+                            <div class="col-md-6 hrTag">
+                              <div class="row total">
+                                <div class="col-md-6">
+                                  <div class="thno">
+                                    Sub Total
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="thno">
+                                    {{billForm.value.sub_total}}
+                                  </div>
+                                </div>
+                              </div>
+                              <hr>
+                              <!-- <div class="row a_t">
+                                  <div class="col-md-6">
+                                    <div class="thno" style="margin-top:9px">
+                                      Discount
+                                    </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <div class="thno">
+                                      <select>
+                                        <option disabled>₹</option>
+                                        <option>%</option>
+                                      </select>
+                                      <input type="text">
+                                    </div>
+  
+                                  </div>
+                                </div> -->
+                              <hr>
+                              <div class="row a_t">
+                                <div class="col-md-6">
+                                  <div class="thno" style="margin-top:9px">
+                                    TDS
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="row">
+                                    <div class="col-md-6" style="padding:0">
+                                      <div class="thno">
+                                        <input type="text" placeholder="rate" style="margin:0" formControlName="tdsrate">
+                                      </div>
+                                    </div>
+                                    <div class="col-md-6" style="padding-right:0">
+                                      <div class="thno">
+                                        {{billForm.value.tdsamount}} </div>
+                                    </div>
+                                  </div>
+  
+                                </div>
+                              </div>
+                              <hr>
+                              <div class="row a_t">
+                                <div class="col-md-6">
+                                  <div class="thno" style="margin-top:9px">
+                                    Adjustment
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="thno">
+                                    <input type="text" placeholder="amount" style="margin:0" formControlName="adjustment">
+                                  </div>
+                                </div>
+                              </div>
+  
+  
+                              <hr>
+                              <div class="row a_t">
+                                
+                                <div class="col-md-12">
+                                  <div class="input-field col s6">
+                                    <p><label>Discount</label></p>
+                                    <select class="orga" formControlName="discount">
+                                      <option value="" disabled selected>discount</option>
+                                      <option value="%">%</option>
+                                      <option value="INR">INR</option>
+                
+                
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
+  
+  
+  
+                              <hr>
+                              <div class="row" style="padding-top:1em">
+                                <div class="col-md-6">
+                                  <div class="thno">
+                                    Total ( ₹ )
+                                  </div>
+                                </div>
+                                <div class="col-md-6">
+                                  <div class="thno">
+                                    {{billForm.value.amount}}
+                                  </div>
+                                </div>
+                              </div>
+  
+                            </div>
+                          </div>
+                        </div>
+  
+                        <hr style="border-top:1px dotted ">
+                        <div class="row">
+                          <div class="col-md-6">
+                            <label>Notes</label>
+                            <textarea rows="4" cols="50" style="height:6em" formControlName="notes"></textarea>
+                          </div>
+                        </div>
+  
+  
+                      </div>
+  
+  
+                    </div>
+                  </div>
+                  <!-- </form> -->
+  
+  
+                </div>
+  
+              </div>
+            </div>
+            <div class="row">
+              <div class="contractorButton">
+                <button class="submitBtn" (click)="submitDraft()">Save</button>
+                <button class="cancelBtn" (click)="cancel()">Cancel</button>
+              </div>
+            </div>
+          </div>
+  
+  
+  
+  
+          <!-- input type -->
+  
+  
+  
+  
+  
+        </div>
+      </div>
+  
+    </form>
+  </section>
+  
+  <!-- bill -->

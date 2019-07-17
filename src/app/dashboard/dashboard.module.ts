@@ -38,6 +38,8 @@ import { MainComponent } from './main/main.component';
 import { PaymentvoucherComponent } from './paymentvoucher/paymentvoucher.component';
 import { JournalviewComponent } from './journalview/journalview.component';
 import { FleetdetailComponent } from './fleetdetail/fleetdetail.component';
+import { InvoiceviewComponent } from './invoiceview/invoiceview.component';
+import { BilldetailComponent } from './billdetail/billdetail.component';
 // import { ExpenseComponent } from './expense/expense.component';
 // import { EmployeeComponent } from './employee/employee.component';
 
@@ -107,6 +109,8 @@ const routes: Routes = [
         PaymentvoucherComponent,
         JournalviewComponent,
         FleetdetailComponent,
+        InvoiceviewComponent,
+        BilldetailComponent,
         // ExpenseComponent,
         // EmployeeComponent
 

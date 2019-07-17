@@ -1,4 +1,4 @@
-/* invoice css */
+/* journal css */
 .ft h1 {
     font-size: 34px;
     padding: 19px 0;
@@ -88,7 +88,7 @@ input#checka {
     pointer-events: auto;
     bottom: -7px;
 }
-/* invoice css */
+/* journal css */
 
 
 .tableide {
@@ -181,13 +181,44 @@ button.At {
 .row.a_t {
     padding: 9px 0;
 }
-
+button.addItema {
+    border: 2px solid #32b1f8;
+    background: transparent;
+    color: #32b1f8;
+    height: 35px;
+    font-size: 15px;
+    border-radius: 2px;
+    width: 90px;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    margin-left: 1em;
+}
+button.addItema i {
+    font-size: 17px;
+    margin-right: 7px;
+}
 /* table css */
-table.col-md-12.table-bordered.table-striped.table-condensed.cf {
+table.col-md-12.table-bordered.table-striped.table-condensed.cf.billTable {
     /* display: block; */
     overflow-x: auto;
     white-space: nowrap;
     padding-left:0;
+}
+button.addItema {
+    border: 2px solid #32b1f8;
+    background: transparent;
+    color: #32b1f8;
+    height: 35px;
+    font-size: 15px;
+    border-radius: 2px;
+    width: 90px;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    margin-left: 1em;
+}
+button.addItema i {
+    font-size: 17px;
+    margin-right: 7px;
 }
 /* Responsive css */
 @media only screen and (min-width: 320px) and (max-width: 1024px){
