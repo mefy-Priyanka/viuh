@@ -375,7 +375,6 @@ uploadImage(event){
     }
 
     console.log('let data be', data);
-    alert('payable');
     this.userService.creataccount(data).subscribe(value => {
       console.log('user', value)
       let result: any = {}
