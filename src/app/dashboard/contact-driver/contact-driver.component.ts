@@ -273,7 +273,7 @@ uploadImage(event){
       this. driverAccount();
       this.loader=false;
       this.toastr.success('Driver created')     
-      this.driverForm.reset();
+      // this.driverForm.reset();
       this.SharedService.abc('contact')
     },
     err=>{
@@ -302,7 +302,7 @@ uploadImage(event){
       this.contactId=result.result._id
       this. driverAccount();
       this.loader=false;
-      this.driverForm.reset();
+      // this.driverForm.reset();
       this.SharedService.abc('contact')
     },
     err=>{
@@ -345,7 +345,7 @@ uploadImage(event){
     this.userService.creataccount(data).subscribe(result=>{
       this.loader=false;
       console.log('resultttt',result);
-      this.creataccountinpayable()
+      this.creataccountinpayable();
     },
     err=>{
       console.log('account err',err)
@@ -375,6 +375,7 @@ uploadImage(event){
     }
 
     console.log('let data be', data);
+    alert('payable');
     this.userService.creataccount(data).subscribe(value => {
       console.log('user', value)
       let result: any = {}
