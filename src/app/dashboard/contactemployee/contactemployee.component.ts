@@ -249,7 +249,7 @@ export class ContactemployeeComponent implements OnInit {
           let result:any={}
           result=value
           this.accountId=result.result._id
-          this.employeeAccount();
+          this.creatcheckaccount();
           this.loader = false;
           this.toastr.success('Employee created')
           this.SharedService.abc('contact')
@@ -281,7 +281,7 @@ export class ContactemployeeComponent implements OnInit {
           let result:any={}
           result=value
           this.accountId=result.result._id
-          this.employeeAccount();
+          this.creatcheckaccount();
           this.loader = false;
           this.toastr.success('Employee created')
           this.SharedService.abc('contact')
@@ -305,6 +305,68 @@ export class ContactemployeeComponent implements OnInit {
     this.SharedService.abc('contact')
   }
 /**************CRATE ACCOUNT AGAINST EMPLOYEE ***********************/
+
+
+creatcheckaccount() {
+
+  let data = {
+    accountName: 'Current Liability',
+    accountType: "Liability",
+    description: "description",
+    // accountCode: this.bankForm.value.account_number,
+    organisation: localStorage.getItem('organisation'),
+    userId: this.userId,
+    parentAccount: "",
+    super_parent_Account: '',
+    opening_account: 0,
+    type: 'credit',
+  }
+
+  console.log('let data be', data);
+  this.userService.creataccount(data).subscribe(value => {
+    console.log(value)
+    this.creatcheckaccount1()
+
+  },
+    err => {
+      console.log(err)
+
+      this.toastr.error('Error!', 'Server Error')
+    })
+}
+
+creatcheckaccount1() {
+
+  let data = {
+    accountName: 'Account Payable',
+    accountType: "Liability",
+    description: "description",
+    // accountCode: this.bankForm.value.account_number,
+    organisation: localStorage.getItem('organisation'),
+    userId: this.userId,
+    parentAccount: "Current Liability",
+    super_parent_Account: '',
+    opening_account: 0,
+    type: 'credit',
+  }
+
+  console.log('let data be', data);
+  this.userService.creataccount(data).subscribe(value => {
+    console.log(value)
+    this.employeeAccount()
+
+  },
+    err => {
+      console.log(err)
+
+      this.toastr.error('Error!', 'Server Error')
+    })
+}
+
+
+
+
+
 employeeAccount(){
   let data={
     accountName:this.employForm.value.name,

@@ -40,6 +40,7 @@ import { JournalviewComponent } from './journalview/journalview.component';
 import { FleetdetailComponent } from './fleetdetail/fleetdetail.component';
 import { InvoiceviewComponent } from './invoiceview/invoiceview.component';
 import { BilldetailComponent } from './billdetail/billdetail.component';
+import { PaymentvoucherlistComponent } from './paymentvoucherlist/paymentvoucherlist.component';
 // import { ExpenseComponent } from './expense/expense.component';
 // import { EmployeeComponent } from './employee/employee.component';
 
@@ -111,6 +112,7 @@ const routes: Routes = [
         FleetdetailComponent,
         InvoiceviewComponent,
         BilldetailComponent,
+        PaymentvoucherlistComponent,
         // ExpenseComponent,
         // EmployeeComponent
 

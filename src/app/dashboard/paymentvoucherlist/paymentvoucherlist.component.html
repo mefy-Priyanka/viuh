@@ -1,0 +1,45 @@
+<section class="corder">
+  <a href="#" class="floatEa">
+      <i class="fa fa-envelope-o my-float"></i>
+      </a>
+  <div class="ft">
+    <h1>Payment Voucher          <button class="addItema" (click)="add()"><i class="fa fa-plus-circle" aria-hidden="true"></i>Add</button>
+
+    </h1>
+
+  </div>
+  <div class="card margina">
+      <div class="tableide">
+          <div class="row">
+              <div id="no-more-tables">
+                  <table class="col-md-12 table-bordered table-striped table-condensed cf">
+                  <thead class="cf">
+                    <tr>
+                        <th>Date</th>
+                     
+                      <th>Type</th>
+                      <th>Payment Date</th>
+                      <th>Payment Mode</th>
+                      <th>Payment No</th>
+                      <th>Amount</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let list of voucherlist">
+                      <td class="thno" data-title="NO.">{{list.createdDate}}</td>
+                      <td class="thname" data-title="NAME">{{list.payment}}</td>
+                      <td class="thname" data-title="VAT ID">{{list.payment_date}}</td>
+                      <td data-title="ADDRESS" class="numeric">{{list.payment_mode}}</td>
+                      <td data-title="VAT ID" class="numeric">{{list.payment_number}}</td>
+                      <td data-title="VAT ID" class="numeric">{{list.amount_paid}}</td>
+
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+          </div>
+      </div>
+
+  </div>
+  </section>
+  

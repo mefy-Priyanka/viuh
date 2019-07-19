@@ -168,4 +168,10 @@ export class CompanyService {
   paybill(data){
     return this.httpClient.put(APIURL+'bill/paid',data)
   }
+
+  // voucher payment
+  getpayvoucher(id){
+    return this.httpClient.get(APIURL+'payment/paymentList?superAdminId='+id)
+
+  }
 }

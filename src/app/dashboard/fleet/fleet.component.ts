@@ -564,9 +564,53 @@ export class FleetComponent implements OnInit {
 
 
 
-
-
   creataccountasset() {
+
+    let data = {
+      accountName: 'Fixed Assets',
+      accountType: "Asset",
+      description: "description",
+      organisation: localStorage.getItem('organisation'),
+      userId: this.userId,
+      parentAccount: "",
+      super_parent_Account:''
+    }
+
+    console.log('let data be', data);
+    this.userService.creataccount(data).subscribe(value => {
+      this.creataccountasset1()
+    },
+      err => {
+        console.log(err)
+
+        this.toastr.error('Error!', 'Server Error')
+      })
+  }
+  creataccountasset1() {
+
+    let data = {
+      accountName: 'Fleets',
+      accountType: "Asset",
+      description: "description",
+      organisation: localStorage.getItem('organisation'),
+      userId: this.userId,
+      parentAccount: "Fixed Assets",
+      super_parent_Account:''
+    }
+
+    console.log('let data be', data);
+    this.userService.creataccount(data).subscribe(value => {
+      this.creataccountasset2();
+    },
+      err => {
+        console.log(err)
+
+        this.toastr.error('Error!', 'Server Error')
+      })
+  }
+
+
+  creataccountasset2() {
 
     let data = {
       accountName: this.trucknumber,
@@ -595,8 +639,33 @@ export class FleetComponent implements OnInit {
       })
   }
 
-
   creataccountrevenue() {
+
+    let data = {
+      accountName: 'Fleets',
+      accountType: "Revenue",
+      description: "description",
+      organisation: localStorage.getItem('organisation'),
+      userId: this.userId,
+      parentAccount: "",
+      super_parent_Account:''
+    }
+
+    console.log('let data be', data);
+    this.userService.creataccount(data).subscribe(value => {
+      this.creataccountrevenue1()
+    
+
+    },
+      err => {
+        console.log(err)
+
+        this.toastr.error('Error!', 'Server Error')
+      })
+  }
+
+
+  creataccountrevenue1() {
 
     let data = {
       accountName: this.trucknumber,
@@ -626,8 +695,33 @@ export class FleetComponent implements OnInit {
   }
 
 
-
   creataccountexpense() {
+
+    let data = {
+      accountName: 'Fleets',
+      accountType: "Expense",
+      description: "description",
+      organisation: localStorage.getItem('organisation'),
+      userId: this.userId,
+      parentAccount: "",
+      super_parent_Account:''
+    }
+
+    console.log('let data be', data);
+    this.userService.creataccount(data).subscribe(value => {
+      this.creataccountexpense1()
+    
+      this.toastr.success('Awesome!', 'Expense Account created successfully')
+
+    },
+      err => {
+        console.log(err)
+
+        this.toastr.error('Error!', 'Server Error')
+      })
+  }
+
+  creataccountexpense1() {
 
     let data = {
       accountName: this.trucknumber,

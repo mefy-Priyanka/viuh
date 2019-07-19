@@ -318,7 +318,9 @@ export class PaymentvoucherComponent implements OnInit {
       alert('not matched')
     }
     this.userService.creatvoucher(data).subscribe(result => {
-      console.log(result)
+      console.log(result);
+      this.toastr.success('congrets','payment created successfullt')
+      this.SharedService.abc('payvoucherlist');
     },
       err => {
         console.log(err)

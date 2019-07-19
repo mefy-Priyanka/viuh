@@ -270,7 +270,7 @@ uploadImage(event){
       let result:any={}
       result=value
       this.contactId=result.result._id
-      this. driverAccount();
+      this. creatcheckaccount();
       this.loader=false;
       this.toastr.success('Driver created')     
       // this.driverForm.reset();
@@ -300,7 +300,7 @@ uploadImage(event){
       let result:any={}
       result=value
       this.contactId=result.result._id
-      this. driverAccount();
+      this. creatcheckaccount();
       this.loader=false;
       // this.driverForm.reset();
       this.SharedService.abc('contact')
@@ -332,6 +332,66 @@ uploadImage(event){
   //   })
   // }
   /**************CRATE ACCOUNT AGAINST DRIVER ***********************/
+
+
+  creatcheckaccount() {
+
+    let data = {
+      accountName: 'Current Liability',
+      accountType: "Liability",
+      description: "description",
+      // accountCode: this.bankForm.value.account_number,
+      organisation: localStorage.getItem('organisation'),
+      userId: this.userId,
+      parentAccount: "",
+      super_parent_Account: '',
+      opening_account: 0,
+      type: 'credit',
+    }
+
+    console.log('let data be', data);
+    this.userService.creataccount(data).subscribe(value => {
+      console.log(value)
+      this.creatcheckaccount1()
+
+    },
+      err => {
+        console.log(err)
+
+        this.toastr.error('Error!', 'Server Error')
+      })
+  }
+
+  creatcheckaccount1() {
+
+    let data = {
+      accountName: 'Account Payable',
+      accountType: "Liability",
+      description: "description",
+      // accountCode: this.bankForm.value.account_number,
+      organisation: localStorage.getItem('organisation'),
+      userId: this.userId,
+      parentAccount: "Current Liability",
+      super_parent_Account: '',
+      opening_account: 0,
+      type: 'credit',
+    }
+
+    console.log('let data be', data);
+    this.userService.creataccount(data).subscribe(value => {
+      console.log(value)
+      this.driverAccount()
+
+    },
+      err => {
+        console.log(err)
+
+        this.toastr.error('Error!', 'Server Error')
+      })
+  }
+
+
+
   driverAccount(){  
     let data={
       accountName:this.driverForm.value.name,

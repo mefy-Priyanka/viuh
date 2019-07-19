@@ -272,7 +272,7 @@ uploadImage(event){
       let result:any={}
       result=value
       this.contactId=result.result._id;
-      this.customerAccount();
+      this.creatcheckaccount();
       this.loader=false;
       this.toastr.success('Customer created')
       this.SharedService.abc('contact')
@@ -304,7 +304,7 @@ uploadImage(event){
       let result:any={}
       result=value
       this.contactId=result.result._id
-      this.customerAccount()
+      this.creatcheckaccount()
       this.loader=false;
       this.toastr.success('Customer created')
       this.SharedService.abc('contact')
@@ -328,6 +328,67 @@ uploadImage(event){
     this.SharedService.abc('contact')
   }
   /**************CRATE ACCOUNT AGAINST CUSTOMER ***********************/
+
+
+  creatcheckaccount() {
+
+    let data = {
+      accountName: 'Current Assets',
+      accountType: "Asset",
+      description: "description",
+      // accountCode: this.bankForm.value.account_number,
+      organisation: localStorage.getItem('organisation'),
+      userId: this.userId,
+      parentAccount: "",
+      super_parent_Account: '',
+      opening_account: 0,
+      type: 'credit',
+    }
+  
+    console.log('let data be', data);
+    this.userService.creataccount(data).subscribe(value => {
+      console.log(value)
+      this.creatcheckaccount1()
+  
+    },
+      err => {
+        console.log(err)
+  
+        this.toastr.error('Error!', 'Server Error')
+      })
+  }
+  
+  creatcheckaccount1() {
+  
+    let data = {
+      accountName: 'Account Receivables',
+      accountType: "Asset",
+      description: "description",
+      // accountCode: this.bankForm.value.account_number,
+      organisation: localStorage.getItem('organisation'),
+      userId: this.userId,
+      parentAccount: "Current Assets",
+      super_parent_Account: '',
+      opening_account: 0,
+      type: 'credit',
+    }
+  
+    console.log('let data be', data);
+    this.userService.creataccount(data).subscribe(value => {
+      console.log(value)
+      this.customerAccount()
+  
+    },
+      err => {
+        console.log(err)
+  
+        this.toastr.error('Error!', 'Server Error')
+      })
+  }
+
+
+
+
   customerAccount(){
     let data={
       accountName:this.customerForm.value.name,
@@ -345,7 +406,6 @@ uploadImage(event){
       let value:any
       value=result
       this.accountId=value.user._id
-      // this.creataccountinpayable()
     
     },
     err=>{
@@ -363,35 +423,7 @@ uploadImage(event){
   }
 
 
-  creataccountinpayable() {    
 
-    let data = {
-      accountName:this.customerForm.value.name,
-      accountType: "Liability",
-      description: "description",
-      // accountCode: this.contractorForm.value.account_number,
-      organisation: localStorage.getItem('organisation'),
-      userId: this.userId,
-      parentAccount: "Account Payable",
-      super_parent_Account:'Current Liability'
-    }
-
-    console.log('let data be', data);
-    this.userService.creataccount(data).subscribe(value => {
-      console.log('user', value)
-      let result: any = {}
-      result = value
-      console.log(result)
-
-      this.toastr.success('Awesome!', 'Contractor created successfully')
-
-    },
-      err => {
-        console.log(err)
-
-        this.toastr.error('Error!', 'Server Error')
-      })
-  }
   /********** ENDS ************** */
   /****************FIRST TIME ACCOUNT CREATION **************************/
 // account(){

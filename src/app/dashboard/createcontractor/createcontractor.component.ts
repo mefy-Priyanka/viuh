@@ -158,7 +158,8 @@ export class CreatecontractorComponent implements OnInit {
           console.log('user', value)
         let result: any = {}
         result = value;
-        this.creataccount();
+        // this.creataccount();
+        this.creatcheckaccount()
         // this.creataccountinpayable()
         this.contractorForm.reset();
         this.loader = false;
@@ -244,6 +245,61 @@ export class CreatecontractorComponent implements OnInit {
 
   }
 
+  creatcheckaccount() {
+
+    let data = {
+      accountName: 'Current Liability',
+      accountType: "Liability",
+      description: "description",
+      // accountCode: this.bankForm.value.account_number,
+      organisation: localStorage.getItem('organisation'),
+      userId: this.userId,
+      parentAccount: "",
+      super_parent_Account: '',
+      opening_account: 0,
+      type: 'credit',
+    }
+
+    console.log('let data be', data);
+    this.userService.creataccount(data).subscribe(value => {
+      console.log(value)
+      this.creatcheckaccount1()
+
+    },
+      err => {
+        console.log(err)
+
+        this.toastr.error('Error!', 'Server Error')
+      })
+  }
+
+  creatcheckaccount1() {
+
+    let data = {
+      accountName: 'Account Payable',
+      accountType: "Liability",
+      description: "description",
+      // accountCode: this.bankForm.value.account_number,
+      organisation: localStorage.getItem('organisation'),
+      userId: this.userId,
+      parentAccount: "Current Liability",
+      super_parent_Account: '',
+      opening_account: 0,
+      type: 'credit',
+    }
+
+    console.log('let data be', data);
+    this.userService.creataccount(data).subscribe(value => {
+      console.log(value)
+      this.creataccount()
+
+    },
+      err => {
+        console.log(err)
+
+        this.toastr.error('Error!', 'Server Error')
+      })
+  }
 
   creataccount() {    
 
@@ -255,16 +311,17 @@ export class CreatecontractorComponent implements OnInit {
       organisation: localStorage.getItem('organisation'),
       userId: this.userId,
       parentAccount: "",
-      super_parent_Account:''
+      super_parent_Account:'',
+      opening_account: 0,
+      type: 'credit',
     }
-    this.creataccountinpayable()
     console.log('let data be', data);
     this.userService.creataccount(data).subscribe(value => {
       console.log('user', value)
       let result: any = {}
       result = value
       console.log(result)
-
+      this.creataccountinpayable()
       this.toastr.success('Awesome!', 'Contractor created successfully')
 
     },
@@ -286,7 +343,9 @@ export class CreatecontractorComponent implements OnInit {
       organisation: localStorage.getItem('organisation'),
       userId: this.userId,
       parentAccount: "Account Payable",
-      super_parent_Account:'Current Liability'
+      super_parent_Account:'Current Liability',
+      opening_account: 0,
+      type: 'credit',
     }
 
     console.log('let data be', data);
