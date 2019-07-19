@@ -1,8 +1,7 @@
-
+<!-- 
   
   
   
-  <!-- bill -->
   <section class="createcontract">
     <div class="ft">
       <h1>Bill Detail
@@ -12,7 +11,6 @@
     <form class="createContractorForm" [formGroup]="billForm">
       <div class="row">
         <div class="col-md-12">
-          <!-- input type -->
           <div>
             <div class="card corCard">
               <div class="row">
@@ -46,7 +44,6 @@
                       <p><label>Work order </label></p>
                       <select formControlName="work_order">
                         <option value="" disabled selected>Select</option>
-                        <!-- <option value="work">Work order</option> -->
                         <option *ngFor="let work of worklist" [value]="work._id">{{work.tender_number}}</option>
   
                       </select>
@@ -139,7 +136,6 @@
   
   
   
-                  <!-- <form> -->
   
                   <div class="tableide journalTable">
                     <div class="row">
@@ -178,9 +174,9 @@
   
                         <div class="row">
                           <div class="col-md-6">
-                            <!-- <div class="thno">
+                            <div class="thno">
                               <button class="At" (click)="addPhone()">+&nbsp;&nbsp;Add Another Line</button>
-                            </div> -->
+                            </div>
                           </div>
                           <div>
                             <div class="col-md-6 hrTag">
@@ -197,7 +193,7 @@
                                 </div>
                               </div>
                               <hr>
-                              <!-- <div class="row a_t">
+                              <div class="row a_t">
                                   <div class="col-md-6">
                                     <div class="thno" style="margin-top:9px">
                                       Discount
@@ -213,7 +209,7 @@
                                     </div>
   
                                   </div>
-                                </div> -->
+                                </div>
                               <hr>
                               <div class="row a_t">
                                 <div class="col-md-6">
@@ -302,7 +298,6 @@
   
                     </div>
                   </div>
-                  <!-- </form> -->
   
   
                 </div>
@@ -320,7 +315,6 @@
   
   
   
-          <!-- input type -->
   
   
   
@@ -331,5 +325,4 @@
   
     </form>
   </section>
-  
-  <!-- bill -->
+   -->

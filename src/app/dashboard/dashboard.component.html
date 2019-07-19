@@ -42,9 +42,9 @@
         <app-tender *ngIf="sharenav=='tender'"></app-tender>
         <app-banktransfer *ngIf="sharenav=='banktransfer'"></app-banktransfer>
         <app-paymentvoucher *ngIf="sharenav=='paymentvoucher'"></app-paymentvoucher>
-        
-        <!-- <app-fleetdetail></app-fleetdetail> -->
-        <!-- <app-journalview></app-journalview> -->
+        <app-journalview *ngIf="sharenav=='journalview'"></app-journalview>
+
+        <app-fleetdetail *ngIf="sharenav=='fleetedit'"></app-fleetdetail>
         <!-- <app-invoiceview></app-invoiceview> -->
         <!-- <app-billdetail></app-billdetail> -->
 

@@ -39,4 +39,14 @@ export class JournalistComponent implements OnInit {
       })
   }
 
+  gotoview(data){
+    let data1={
+      page:'journal',
+      data:data
+    }
+    this.SharedService.datatravel(data1);
+
+    this.SharedService.abc('journalview');
+
+  }
 }

@@ -7,6 +7,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class SharedService {
   abcd:BehaviorSubject<any> = new BehaviorSubject({});
+  somedata:BehaviorSubject<any> = new BehaviorSubject({});
 
   constructor() { }
   abc(params){
@@ -14,4 +15,8 @@ export class SharedService {
     console.log("hi there");
   }
 
+  datatravel(params){
+    this.somedata.next(params)  
+    console.log(params);
+  }
 }
