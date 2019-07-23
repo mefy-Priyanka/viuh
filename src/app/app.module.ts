@@ -25,6 +25,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { UserService } from './service/user.service';
 import { SharedService } from './service/shared.service';
 import { ContactService } from './service/contact.service';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 
 // import { JournalComponent } from './journal/journal.component';
 // import { ContactlistComponent } from './contactlist/contactlist.component';
@@ -33,6 +34,7 @@ import { ContactService } from './service/contact.service';
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
  { path: 'login', component: LoginComponent },
+ { path: 'password', component: ForgotpasswordComponent },
 
 
  { 
@@ -56,6 +58,7 @@ const routes: Routes = [
     // UserComponent,
     // OrderComponent,
     InviteComponent,
+    ForgotpasswordComponent,
     // JournalComponent,
     // ContactlistComponent,
     // AccountComponent,
