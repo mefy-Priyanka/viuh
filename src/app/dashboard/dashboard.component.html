@@ -50,12 +50,12 @@
 
         <app-fleetdetail *ngIf="sharenav=='fleetedit'"></app-fleetdetail>
         <!-- <app-invoiceview></app-invoiceview> -->
-        <!-- <app-billdetail></app-billdetail> -->
+        <app-billdetail *ngIf="sharenav=='billview'"></app-billdetail>
 
 
         <app-paymentvoucherlist *ngIf="sharenav=='payvoucherlist'"></app-paymentvoucherlist>
 
-
+        <app-viewdriver *ngIf="sharenav=='viewdriver'"></app-viewdriver>
 
 
 

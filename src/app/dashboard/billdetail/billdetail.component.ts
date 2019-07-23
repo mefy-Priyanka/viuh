@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedService } from 'src/app/service/shared.service';
 
 @Component({
   selector: 'app-billdetail',
@@ -7,7 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BilldetailComponent implements OnInit {
 
-  constructor() { }
+  billdetail: any = [];
+  constructor(private SharedService: SharedService, ) {
+    this.SharedService.somedata.subscribe(data => {
+      console.log('data', data);
+      this.billdetail = data.data;
+      console.log(this.billdetail)
+    });
+  }
 
   ngOnInit() {
   }

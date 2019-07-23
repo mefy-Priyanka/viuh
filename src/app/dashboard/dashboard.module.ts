@@ -44,6 +44,7 @@ import { PaymentvoucherlistComponent } from './paymentvoucherlist/paymentvoucher
 // import { ExpenseComponent } from './expense/expense.component';
 // import { EmployeeComponent } from './employee/employee.component';
 import { InvoicelistComponent } from './invoicelist/invoicelist.component';
+import { ViewdriverComponent } from './viewdriver/viewdriver.component';
 
 const routes: Routes = [
     {
@@ -117,6 +118,7 @@ const routes: Routes = [
         PaymentvoucherlistComponent,
         // ExpenseComponent,
         // EmployeeComponent
+        ViewdriverComponent,
 
     ]
 })
