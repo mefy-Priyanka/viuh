@@ -32,8 +32,12 @@ export class InvoiceComponent implements OnInit {
       periodstart: '',
       periodend: '',
       reverse_change: '',
-      gstamount: 0,
-      gstrate: 0,
+      igstamount: 0,
+      igstrate: 0,
+      cgstamount: 0,
+      cgstrate: 0,
+      sgstamount: 0,
+      sgstrate: 0,
       amount: '',
       arraydata: this.fb.array([])
     })
@@ -120,10 +124,13 @@ export class InvoiceComponent implements OnInit {
 
     var adjustedval = eval(this.myForm.value.sub_total + parseInt(this.myForm.value.adjustment))
     console.log(adjustedval)
-    this.myForm.value.gstamount = (this.myForm.value.gstrate * adjustedval) / 100;
+    this.myForm.value.igstamount = (this.myForm.value.igstrate * adjustedval) / 100;
+    this.myForm.value.cgstamount = (this.myForm.value.cgstrate * adjustedval) / 100;
 
-    this.myForm.value.amount = this.myForm.value.gstamount + adjustedval;
+    this.myForm.value.sgstamount = (this.myForm.value.sgstrate * adjustedval) / 100;
 
+
+    this.myForm.value.amount = this.myForm.value.igstamount + adjustedval+this.myForm.value.sgstamount+this.myForm.value.cgstamount;
 
   }
   addPhone() {
@@ -159,10 +166,20 @@ export class InvoiceComponent implements OnInit {
         end_date: this.myForm.value.periodend,
       },
       reverse_change: this.myForm.value.reverse_change,
-      gst: {
-        rate: this.myForm.value.gstrate,
-        amount: this.myForm.value.gstamount,
+      igst: {
+        rate: this.myForm.value.igstrate,
+        amount: this.myForm.value.igstamount,
       },
+      cgst: {
+        rate: this.myForm.value.cgstrate,
+        amount: this.myForm.value.cgstamount,
+      },
+
+      sgst: {
+        rate: this.myForm.value.sgstrate,
+        amount: this.myForm.value.sgstamount,
+      },
+
       items_details: this.myForm.value.arraydata,
       userId: localStorage.getItem('userId'),
     }
@@ -264,7 +281,7 @@ export class InvoiceComponent implements OnInit {
     console.log(result);
     this.toastr.success('Awesome!', 'Journal created suceesfully');
     console.log(result);
-    this.SharedService.abc('journal');
+    this.SharedService.abc('invoice');
    
   },
     err => {

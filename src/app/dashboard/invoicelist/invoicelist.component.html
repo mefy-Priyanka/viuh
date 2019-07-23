@@ -1,0 +1,47 @@
+<section class="corder">
+  <a href="#" class="floatEa">
+      <i class="fa fa-envelope-o my-float"></i>
+      </a>
+  <div class="ft">
+    <h1>Invoice
+      <button class="addItema" (click)="add()"><i class="fa fa-plus-circle" aria-hidden="true"></i>Add</button>
+    </h1>
+  </div>
+  <div class="card margina">
+      <div class="tableide">
+          <div class="row">
+              <div id="no-more-tables">
+                  <table class="col-md-12 table-bordered table-striped table-condensed cf">
+                  <thead class="cf">
+                    <tr>
+                      <th>DATE</th>
+                      <th>INVOICE #</th>
+                      <!-- <th>ORDER NUMBER</th> -->
+                      <th>CUSTOMER NAME</th>
+                      <th>STATUS</th>
+                      <th>DUE DATE</th>
+                      <th>TOTAL</th>
+                      <th>AMOUNT PAID</th>
+                      <th>BALANCE DUE</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr data-toggle="modal" data-target="#paymentModal" *ngFor="let invoice of invoicelists" (click)="view(invoice)">
+                      <td class="thno" data-title="NO.">{{invoice.createdDate}}</td>
+                      <td class="thname" data-title="NAME">{{invoice.invoice_number}}</td>
+                      <!-- <td class="thname" data-title="VAT ID">{{invoice.invoice_number}}</td> -->
+                      <td data-title="ADDRESS" class="numeric"> {{invoice.userId.name}}</td>
+                      <td data-title="VAT ID" class="numeric">{{invoice.status}}</td>
+                      <td data-title="VAT ID" class="numeric">{{invoice.due_date}}</td>
+                      <td data-title="VAT ID" class="numeric">{{invoice.total}} </td>
+                      <td data-title="VAT ID" class="numeric">{{invoice.amount_paid}} </td>
+                      <td data-title="VAT ID" class="numeric">{{invoice.amount_due}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+          </div>
+      </div>
+
+  </div>
+  </section>

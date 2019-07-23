@@ -43,6 +43,7 @@ import { BilldetailComponent } from './billdetail/billdetail.component';
 import { PaymentvoucherlistComponent } from './paymentvoucherlist/paymentvoucherlist.component';
 // import { ExpenseComponent } from './expense/expense.component';
 // import { EmployeeComponent } from './employee/employee.component';
+import { InvoicelistComponent } from './invoicelist/invoicelist.component';
 
 const routes: Routes = [
     {
@@ -83,6 +84,7 @@ const routes: Routes = [
         OrderComponent,
         CompanycreateComponent,
         // ContactComponent,
+        InvoicelistComponent,
         SidenavComponent,
         MaprouteComponent,
         ContractorListComponent,
