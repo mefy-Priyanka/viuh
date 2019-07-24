@@ -38,15 +38,25 @@
                       <th>COMPANY NAME</th>
                       <th>PHONE NUMBER</th>
                       <th>CURRENCY</th>
+                      <th>ACTION</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let contractor of contractorDetail; index as i">
-                      <td class="thno" data-title="NO.">{{contractor.contactPersonName}}</td>
+                    <tr *ngFor="let contractor of contractorDetail; index as i" >
+                      <td class="thno" data-title="NO." >{{contractor.contactPersonName}}</td>
                       <td class="thname" data-title="NAME">{{contractor.email}}</td>
                       <td class="thname" data-title="VAT ID">{{contractor.companyName}}</td>
                       <td data-title="ADDRESS" class="numeric">{{contractor.phoneNumber}}</td>
                       <td data-title="VAT ID" class="numeric">{{contractor.currency}}</td>
+                      <td data-title="VAT ID" class="numeric" >
+                        
+                        
+                          <i class="fa fa-pencil" aria-hidden="true" (click)="view(contractor)"></i>
+                          <i style="margin: 1em;" class="fa fa-trash" aria-hidden="true" (click)="delete(contractor._id)"></i>
+                        
+
+
+                      </td>
                     </tr>
                   </tbody>
                 </table>

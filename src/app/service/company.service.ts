@@ -25,7 +25,14 @@ export class CompanyService {
     console.log(data);
     return this.httpClient.post(APIURL + 'contractor/create', data)
   }
+  updateContractor(data) {
+    console.log(data);
+    return this.httpClient.put(APIURL + 'contractor/update', data)
+  }
+  deletecontractor(id){
+    return this.httpClient.delete(APIURL + 'contractor/delete?contractorId=' + id)
 
+  }
   fleetcreation(data) {
     console.log(data);
     return this.httpClient.post(APIURL + 'fleet/create', data)

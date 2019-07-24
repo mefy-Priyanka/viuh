@@ -38,4 +38,28 @@ export class ContractorListComponent implements OnInit {
 
       })
   }
+
+
+  view(contractor){
+    let data1={
+      page:'journal',
+      data:contractor
+    }
+    this.SharedService.datatravel(data1);
+
+    this.SharedService.abc('viewcontractor');
+  }
+
+  delete(id){
+
+    var result = confirm("Want to delete?");
+    if (result) {
+    this.CompanyService.deletecontractor(id).subscribe(result=>{
+    console.log(result);
+    this.getContractorList()
+    },
+    err=>{
+      console.log(err)
+    })}
+  }
 }
