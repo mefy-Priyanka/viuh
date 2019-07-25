@@ -43,7 +43,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let contact of contactList; index as i">
+              <tr *ngFor="let contact of contactList; index as i" (click)="view(contact)">
                 <td class="thno" data-title="NO.">{{contact?.contact_type}}</td>
                 <td class="thname" data-title="NAME">{{contact?.name}}</td>
                 <td class="thname" data-title="NAME">{{contact?.email}}</td>

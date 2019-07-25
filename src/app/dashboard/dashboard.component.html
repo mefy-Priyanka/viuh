@@ -32,7 +32,7 @@
         <app-contactemployee *ngIf="sharenav=='Employee'"></app-contactemployee>
         <app-contactvendor *ngIf="sharenav=='Vendor'"></app-contactvendor>
         <app-contactcustomer *ngIf="sharenav=='Customer'"></app-contactcustomer>
-        
+
         <app-invoice *ngIf="sharenav=='invoice'"></app-invoice>
         <app-invoicelist *ngIf="sharenav=='invoicelist'"></app-invoicelist>
         <app-invoiceview *ngIf="sharenav=='invoiceview'"></app-invoiceview>
@@ -50,13 +50,15 @@
 
         <app-fleetdetail *ngIf="sharenav=='fleetedit'"></app-fleetdetail>
         <!-- <app-invoiceview></app-invoiceview> -->
-        <!-- <app-billdetail></app-billdetail> -->
+        <app-billdetail *ngIf="sharenav=='billview'"></app-billdetail>
 
 
         <app-paymentvoucherlist *ngIf="sharenav=='payvoucherlist'"></app-paymentvoucherlist>
 
 <app-petrolform2></app-petrolform2>
 
+        <app-viewdriver *ngIf="sharenav=='viewdriver'"></app-viewdriver>
+        <app-viewcontractor *ngIf="sharenav=='viewcontractor'"></app-viewcontractor>
 
 
 

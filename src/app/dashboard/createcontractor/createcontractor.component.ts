@@ -46,12 +46,11 @@ export class CreatecontractorComponent implements OnInit {
     this.superadminid = localStorage.getItem('SuperAdmin');
 
     this.userId = localStorage.getItem('userId');
-    console.log(this.superadminid, this.userId)
     this.contractorFormErrors = {
       email: {},
       contactPersonName: {},
       companyName: {},
-      Address: {},
+      address: {},
       regNo: {},
       phoneNumber: {},
       currency: {},
@@ -81,7 +80,7 @@ export class CreatecontractorComponent implements OnInit {
       tradeLicenseNo: [''],
       invoiceNo: ['',],
       panCard: ['', Validators.required],
-      Address: ['', Validators.required],
+      address: ['', Validators.required],
       currency: ['', Validators.required],
       phoneNumber: ['', Validators.required],
 
@@ -94,7 +93,12 @@ export class CreatecontractorComponent implements OnInit {
     });
   }
   showContent() {
-    this.fieldinput = !this.fieldinput;
+    this.submitted = true;
+    if (this.contractorForm.valid) {
+      this.fieldinput = !this.fieldinput;
+      this.submitted = false;
+    }
+
   }
   ngOnInit() {
     this.contractorForm = this.createContractorForm()
@@ -104,6 +108,7 @@ export class CreatecontractorComponent implements OnInit {
   }
 
   onContractorFormValuesChanged() {
+    
     for (const field in this.contractorFormErrors) {
       if (!this.contractorFormErrors.hasOwnProperty(field)) {
         continue;
@@ -120,7 +125,6 @@ export class CreatecontractorComponent implements OnInit {
   }
 
   FormSubmit() {
-    console.log(this.contractorForm.value)
     this.submitted = true;
     this.loader = true;
     if (this.contractorForm.valid) {
@@ -138,7 +142,7 @@ export class CreatecontractorComponent implements OnInit {
         invoiceId: this.invoice,
         panCard: this.contractorForm.value.panCard,
         panId: this.pan,
-        Address: this.contractorForm.value.Address,
+        address: this.contractorForm.value.address,
         companyLogo: this.companyId,
         currency: this.contractorForm.value.currency,
         phoneNumber: this.contractorForm.value.phoneNumber,
@@ -154,14 +158,14 @@ export class CreatecontractorComponent implements OnInit {
       console.log('let data be', data);
       this.companyService.createContractor(data).subscribe(value => {
         this.submitted = false;
-        this.toastr.success('Congo!', 'Successfully Created'),
+        this.toastr.success('Congo!', 'Successfully Created');
           console.log('user', value)
         let result: any = {}
         result = value;
         // this.creataccount();
         this.creatcheckaccount()
         // this.creataccountinpayable()
-        this.contractorForm.reset();
+        // this.contractorForm.reset();
         this.loader = false;
         this.SharedService.abc('contractorlist');
       },
@@ -172,7 +176,6 @@ export class CreatecontractorComponent implements OnInit {
           this.toastr.error('Error!', 'Server Error')
           this.contractorForm.reset();
         })
-      console.log("data", data);
     }
   }
 
@@ -260,7 +263,7 @@ export class CreatecontractorComponent implements OnInit {
       type: 'credit',
     }
 
-    console.log('let data be', data);
+    console.log('account 1', data);
     this.userService.creataccount(data).subscribe(value => {
       console.log(value)
       this.creatcheckaccount1()
@@ -288,7 +291,7 @@ export class CreatecontractorComponent implements OnInit {
       type: 'credit',
     }
 
-    console.log('let data be', data);
+    console.log('account 12', data);
     this.userService.creataccount(data).subscribe(value => {
       console.log(value)
       this.creataccount()
@@ -301,7 +304,7 @@ export class CreatecontractorComponent implements OnInit {
       })
   }
 
-  creataccount() {    
+  creataccount() {
 
     let data = {
       accountName: this.contractorForm.value.companyName,
@@ -311,11 +314,11 @@ export class CreatecontractorComponent implements OnInit {
       organisation: localStorage.getItem('organisation'),
       userId: this.userId,
       parentAccount: "",
-      super_parent_Account:'',
+      super_parent_Account: '',
       opening_account: 0,
       type: 'credit',
     }
-    console.log('let data be', data);
+    console.log('account 13', data);
     this.userService.creataccount(data).subscribe(value => {
       console.log('user', value)
       let result: any = {}
@@ -333,7 +336,7 @@ export class CreatecontractorComponent implements OnInit {
   }
 
 
-  creataccountinpayable() {    
+  creataccountinpayable() {
 
     let data = {
       accountName: this.contractorForm.value.companyName,
@@ -343,12 +346,12 @@ export class CreatecontractorComponent implements OnInit {
       organisation: localStorage.getItem('organisation'),
       userId: this.userId,
       parentAccount: "Account Payable",
-      super_parent_Account:'Current Liability',
+      super_parent_Account: 'Current Liability',
       opening_account: 0,
       type: 'credit',
     }
 
-    console.log('let data be', data);
+    console.log('account 14', data);
     this.userService.creataccount(data).subscribe(value => {
       console.log('user', value)
       let result: any = {}
@@ -364,4 +367,7 @@ export class CreatecontractorComponent implements OnInit {
         this.toastr.error('Error!', 'Server Error')
       })
   }
+  
+
+
 }

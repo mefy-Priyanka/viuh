@@ -1,0 +1,295 @@
+<!-- create contractor -->
+<div class="loading" *ngIf="loader">
+  <div class="sk-circle">
+    <div class="sk-circle1 sk-child"></div>
+    <div class="sk-circle2 sk-child"></div>
+    <div class="sk-circle3 sk-child"></div>
+    <div class="sk-circle4 sk-child"></div>
+    <div class="sk-circle5 sk-child"></div>
+    <div class="sk-circle6 sk-child"></div>
+    <div class="sk-circle7 sk-child"></div>
+    <div class="sk-circle8 sk-child"></div>
+    <div class="sk-circle9 sk-child"></div>
+    <div class="sk-circle10 sk-child"></div>
+    <div class="sk-circle11 sk-child"></div>
+    <div class="sk-circle12 sk-child"></div>
+  </div>
+</div>
+
+<section class="createcontract">
+  <div class="ft">
+    <h1>Contractor | Create
+    </h1>
+  </div>
+  <form class="createContractorForm" [formGroup]="contractorForm">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- input type -->
+        <div *ngIf="fieldinput">
+          <div class="card corCard">
+            <div class="row">
+
+              <div class="nota">
+                <div class="row">
+                  <div class="input-field col s4">
+                    <p><label>Contact person</label></p>
+                    <input type="text" class="validate" formControlName="contactPersonName" [readonly]="true">
+                    <p class="errormessage"
+                      *ngIf="contractorFormErrors.contactPersonName.required || (contractorForm.controls.contactPersonName.pristine && submitted)">
+                      Contact person name can not be empty</p>
+
+                  </div>
+                  <div class="input-field col s4">
+                    <p><label>Email <span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" formControlName="email">
+                    <p class="errormessage"
+                      *ngIf="contractorFormErrors.email.required || contractorFormErrors.email.email || (contractorForm.controls.email.pristine && submitted)">
+                      Enter Valid Email</p>
+
+                  </div>
+                  <div class="input-field col s4">
+                    <p><label>Company Name</label></p>
+                    <input type="text" class="validate" formControlName="companyName" [readonly]="true" >
+                    <p class="errormessage"
+                      *ngIf="contractorFormErrors.companyName.required || (contractorForm.controls.companyName.pristine && submitted)">
+                      Company Name can not be empty</p>
+
+                  </div>
+
+                </div>
+                <div class="row">
+                  <div class="input-field col s4">
+                    <p><label>Address</label></p>
+                    <input type="text" class="validate" formControlName="address">
+                    <p class="errormessage"
+                      *ngIf="contractorFormErrors.address.required || (contractorForm.controls.address.pristine && submitted)">
+                      Address can not be empty</p>
+
+                  </div>
+                  <div class="input-field col s4">
+                    <p><label>Registration No. <span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" formControlName="regNo">
+                    <p class="errormessage"
+                      *ngIf="contractorFormErrors.regNo.required || (contractorForm.controls.regNo.pristine && submitted)">
+                      Registration No. can not be empty</p>
+
+                  </div>
+                  <div class="input-field col s4">
+                    <p><label>Phone Number</label></p>
+                    <input type="text" class="validate" formControlName="phoneNumber">
+                    <p class="errormessage"
+                      *ngIf="contractorFormErrors.phoneNumber.required || (contractorForm.controls.phoneNumber.pristine && submitted)">
+                      Phone Number can not be empty</p>
+
+                  </div>
+
+                </div>
+                <div class="row">
+                  <div class="input-field col s4">
+                    <p><label>Currency</label></p>
+                    <input type="text" class="validate" formControlName="currency">
+                    <p class="errormessage"
+                      *ngIf="contractorFormErrors.currency.required || (contractorForm.controls.currency.pristine && submitted)">
+                      Currency can not be empty</p>
+
+                  </div>
+                  <div class="input-field col s4">
+                    <p><label>GST No. <span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" formControlName="gstNo">
+                    <p class="errormessage"
+                      *ngIf="contractorFormErrors.gstNo.required || (contractorForm.controls.gstNo.pristine && submitted)">
+                      GST No. can not be empty</p>
+
+                  </div>
+                  <div class="input-field col s4">
+                    <p><label>Trade License No. <span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate " formControlName="tradeLicenseNo">
+                    <p class="errormessage"
+                      *ngIf="contractorFormErrors.tradeLicenseNo.required || (contractorForm.controls.tradeLicenseNo.pristine && submitted)">
+                      Trade License No. can not be empty</p>
+
+                  </div>
+
+                </div>
+
+                <div class="row">
+                  <div class="input-field col s4">
+                    <p><label>Invoice No. <span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" formControlName="invoiceNo">
+                    <p class="errormessage"
+                      *ngIf="contractorFormErrors.invoiceNo.required || (contractorForm.controls.invoiceNo.pristine && submitted)">
+                      Invoice No. can not be empty</p>
+
+                  </div>
+                  <div class="input-field col s4">
+                    <p><label>PAN No. <span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" formControlName="panCard">
+                    <p class="errormessage"
+                      *ngIf="contractorFormErrors.panCard.required || (contractorForm.controls.panCard.pristine && submitted)">
+                      PAN No. can not be empty</p>
+
+                  </div>
+                </div>
+
+
+
+
+                <div class="row">
+                  <div class="input-field col s4">
+                    <p><label>Bank Name</label></p>
+                    <input type="text" class="validate" formControlName="bank_name">
+                    <p class="errormessage"
+                      *ngIf="contractorFormErrors.bank_name.required || (contractorForm.controls.bank_name.pristine && submitted)">
+                      Bank Name can not be empty</p>
+
+                  </div>
+                  <div class="input-field col s4">
+                    <p><label>Branch Name<span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" formControlName="branch_name">
+                    <p class="errormessage"
+                      *ngIf="contractorFormErrors.branch_name.required || (contractorForm.controls.branch_name.pristine && submitted)">
+                      Branch Name can not be empty</p>
+
+                  </div>
+                  <div class="input-field col s4">
+                    <p><label>Account Holder Name <span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" formControlName="account_holder_name">
+                    <p class="errormessage"
+                      *ngIf="contractorFormErrors.account_holder_name.required || (contractorForm.controls.account_holder_name.pristine && submitted)">
+                      Account holder Name can not be empty</p>
+
+                  </div>
+
+                </div>
+
+
+
+
+
+                <div class="row">
+                  <div class="input-field col s4">
+                    <p><label>Account Number <span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" formControlName="account_number">
+                    <p class="errormessage"
+                      *ngIf="contractorFormErrors.account_number.required || (contractorForm.controls.account_number.pristine && submitted)">
+                      Account No. can not be empty</p>
+
+                  </div>
+                  <div class="input-field col s4">
+                    <p><label>IFSC</label></p>
+                    <input type="text" class="validate" formControlName="ifsc">
+                    <p class="errormessage"
+                      *ngIf="contractorFormErrors.ifsc.required || (contractorForm.controls.ifsc.pristine && submitted)">
+                      IFSC can not be empty</p>
+
+                  </div>
+
+
+
+                </div>
+
+
+
+              </div>
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="contractorButton">
+              <button class="submitBtn" (click)="showContent()">Next</button>
+              <!-- <button class="cancelBtn" (click)="FormSubmit()">Cancel</button> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+
+
+
+  <!-- input type -->
+  <!-- uploadfiles -->
+  <div *ngIf="!fieldinput">
+    <div class="card corCard">
+      <div class="row">
+
+        <div class="imgFile">
+          <p><span class="blue_star">******Upload Files*********</span></p>
+          <div class="row">
+            <div class="input-field col s4">
+              <p><label>Company Logo</label></p>
+              <div class="input-field col s7 myFilet aeto">
+                file id:{{contractor.companyLogo}}
+              
+                <input type="file" class="validate" class="fileType" #companyLogo
+                  (change)="upload($event,'companyLogo')">
+              </div>
+            </div>
+            <div class="input-field col s4">
+              <p><label>Trade License</label></p>
+              
+              <div class="input-field col s7 myFilet aeto">
+                  file id:{{contractor.tradeLicenseId}}
+                  <input type="file" class="validate" class="fileType"
+                  #tradeLicenseId (change)="upload($event,'tradeLicenseId')">
+              </div>
+            </div>
+            <div class="input-field col s4">
+              <p><label>GST</label></p>
+              <div class="input-field col s7 myFilet aeto">
+                  file id:{{contractor.gstId}}
+                  <input type="file" class="validate" class="fileType" #gstId
+                  (change)="upload($event,'gstId')">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+
+            <div class="input-field col s4">
+              <p><label>Invoice</label></p>
+              <div class="input-field col s7 myFilet aeto">
+                  file id:{{contractor.invoiceId}}
+                  <input type="file" class="validate" class="fileType"
+                  #invoiceId (change)="upload($event,'invoiceId')">
+              </div>
+            </div>
+            <div class="input-field col s4">
+              <p><label>PAN</label></p>
+              <div class="input-field col s7 myFilet aeto">
+
+                  file id:{{contractor.panId}}
+                <input type="file" class="validate" class="fileType" #panId
+                  (change)="upload($event,'panId')">
+              </div>
+            </div>
+            <div class="input-field col s4">
+              <p><label>Registration</label></p>
+              <div class="input-field col s7 myFilet aeto">
+                  file id:{{contractor.regId}}
+                  <input type="file" class="validate" class="fileType" #regId
+                  (change)="upload($event,'regId')">
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="contractorButton">
+        <button class="submitBtn" (click)="FormSubmit()">Update</button>
+        <button class="cancelBtn" (click)="showContent()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <!-- uploadfiles -->
+
+
+</section>
+
+<!-- create contractor -->

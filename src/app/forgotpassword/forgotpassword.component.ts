@@ -11,6 +11,7 @@ export class ForgotpasswordComponent implements OnInit {
 public email: boolean = true;
 public password: boolean ;
 public otp: boolean ;
+loader=false
   ngOnInit() {
   }
   nextpaswd(){

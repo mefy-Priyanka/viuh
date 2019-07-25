@@ -21,6 +21,7 @@ export class BillComponent implements OnInit {
   firstaccountid: any;
   venderid: any;
   contractorid: any;
+  billlists: any = [];
   constructor(private fb: FormBuilder, private SharedService: SharedService, private userService: UserService, private toastr: ToastrService, private companyService: CompanyService) { }
 
   ngOnInit() {
@@ -41,8 +42,8 @@ export class BillComponent implements OnInit {
       tdsrate: 0,
       amount: '',
       notes: '',
-      status: '',
-      amount_paid: 0,
+      // status: '',
+      // amount_paid: 0,
       arraydata: this.fb.array([])
     })
 
@@ -53,8 +54,37 @@ export class BillComponent implements OnInit {
     this.addPhone();
     this.getConsignmentList();
     this.vendorList();
-    this.getContractorList()
+    this.getContractorList();
+    this.billlist();
+
   }
+
+
+  billlist() {
+    console.log(localStorage.getItem('SuperAdmin'))
+    this.companyService.getbill(localStorage.getItem('SuperAdmin')).subscribe(data => {
+
+      let result: any = {}
+      result = data;
+      this.billlists = result.result
+      console.log(this.billlists);
+    },
+      error => {
+        console.log(error);
+
+      })
+  }
+
+  view(bill){
+    let data1={
+      page:'journal',
+      data:bill
+    }
+    this.SharedService.datatravel(data1);
+
+    this.SharedService.abc('billview');
+  }
+
   onbillFormValuesChanged() {
     let i = 0;
     var amounts = 0;
@@ -212,25 +242,25 @@ export class BillComponent implements OnInit {
   check() {
 
     for (var i = 0; i < this.vendorlist.length; i++) {
-      if(this.vendorlist[i]._id==this.billForm.value.vendorId){
+      if (this.vendorlist[i]._id == this.billForm.value.vendorId) {
         console.log('vender');
-        this.venderid=this.vendorlist[i]._id;
-        this.contractorid=''
+        this.venderid = this.vendorlist[i]._id;
+        this.contractorid = ''
       }
-      else{
+      else {
         console.log('contractor');
-        this.contractorid=this.vendorlist[i]._id;
-        this.venderid=''
+        this.contractorid = this.vendorlist[i]._id;
+        this.venderid = ''
       }
     }
   }
   submit() {
     this.check()
     console.log(this.billForm.value);
-   
+
     let data = {
       vendorId: this.venderid,
-      contractId:this.contractorid,
+      contractId: this.contractorid,
       work_order: this.billForm.value.work_order,
       bill_date: moment(this.billForm.value.bill_date).toISOString(),
       terms: this.billForm.value.terms,
@@ -238,8 +268,8 @@ export class BillComponent implements OnInit {
       due_date: moment(this.billForm.value.due_date).toISOString(),
       sub_total: this.billForm.value.sub_total,
       total: this.billForm.value.amount,
-      amount_paid: this.billForm.value.amount_paid,
-      status: this.billForm.value.status,
+      amount_paid:0,
+      status: 'unpaid',
       discount: this.billForm.value.discount,
       adjustment: {
         amount: this.billForm.value.adjustment,
@@ -258,7 +288,7 @@ export class BillComponent implements OnInit {
       userId: localStorage.getItem('userId'),
     }
     console.log(data);
-    
+
     this.userService.createbill(data).subscribe(result => {
       console.log(data);
       this.toastr.success('Awesome!', 'Bill saved suceesfully');

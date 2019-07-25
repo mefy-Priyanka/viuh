@@ -45,4 +45,20 @@ this.getContactlist();
       })
   }
 /**********************END*****************/
+
+
+
+
+
+view(data){
+  if(data.contact_type=='driver'){
+    let data1={
+      page:'journal',
+      data:data
+    }
+    this.SharedService.datatravel(data1);
+
+    this.SharedService.abc('viewdriver');
+  }
+}
 }
