@@ -44,6 +44,7 @@ import { PaymentvoucherlistComponent } from './paymentvoucherlist/paymentvoucher
 // import { ExpenseComponent } from './expense/expense.component';
 // import { EmployeeComponent } from './employee/employee.component';
 import { InvoicelistComponent } from './invoicelist/invoicelist.component';
+import { Petrolform2Component } from './petrolform2/petrolform2.component';
 
 const routes: Routes = [
     {
@@ -115,6 +116,7 @@ const routes: Routes = [
         InvoiceviewComponent,
         BilldetailComponent,
         PaymentvoucherlistComponent,
+        Petrolform2Component,
         // ExpenseComponent,
         // EmployeeComponent
 
