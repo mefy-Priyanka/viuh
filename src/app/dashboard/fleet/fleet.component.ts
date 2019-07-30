@@ -525,14 +525,14 @@ export class FleetComponent implements OnInit {
     console.log(this.maindata);
     this.companyService.fleetcreation(this.maindata).subscribe(result => {
       console.log(result);
-      this.reset();
-      this.creataccountasset()
+      if(localStorage.getItem('SuperAdmin')==this.ownership){
+        this.creataccountasset();
+      }
       this.creataccountexpense();
       this.creataccountrevenue();
       this.getfleetList();
       this.createFleet();
       this.toastr.success('Awesome!', 'fleet created successfully');
-
     },
       err => {
         console.log(err)
@@ -684,7 +684,8 @@ export class FleetComponent implements OnInit {
       let result: any = {}
       result = value
       console.log(result)
-    
+      this.reset();
+
 
     },
       err => {

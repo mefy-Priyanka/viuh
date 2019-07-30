@@ -31,7 +31,9 @@ export class CompanyService {
   }
   deletecontractor(id){
     return this.httpClient.delete(APIURL + 'contractor/delete?contractorId=' + id)
-
+  }
+  deletecontact(id){
+    return this.httpClient.delete(APIURL + 'contact/delete?contactId=' + id)
   }
   fleetcreation(data) {
     console.log(data);
@@ -179,6 +181,12 @@ export class CompanyService {
   // voucher payment
   getpayvoucher(id){
     return this.httpClient.get(APIURL+'payment/paymentList?superAdminId='+id)
+
+  }
+  // destinationby customer id4\
+
+  getdestination(id){
+    return this.httpClient.get(APIURL+'destination/destinationByCustomer?customerId='+id)
 
   }
 }

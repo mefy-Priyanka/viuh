@@ -151,6 +151,7 @@ export class DestinationComponent implements OnInit {
       this.loader = false;
       this.toastr.success('Awesome!', 'Destination created successfully');
       this.createDestination();
+      this.tableList()
     },
       error => {
         console.log(error);

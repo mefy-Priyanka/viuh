@@ -50,7 +50,7 @@
                 <td class="thname" data-title="VAT ID">{{contact?.company_name}}</td>
                 <td data-title="ADDRESS" class="numeric">{{contact?.phoneNumber}}</td>
                 <td data-title="VAT ID" class="numeric">{{contact.website}}</td>
-                <td><i class="fa fa-trash" aria-hidden="true" ></i>
+                <td><i (click)="del(contact._id)" class="fa fa-trash" aria-hidden="true" ></i>
                 </td>
               </tr>
             </tbody>

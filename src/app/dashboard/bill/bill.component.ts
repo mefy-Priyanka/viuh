@@ -196,7 +196,7 @@ export class BillComponent implements OnInit {
 
 
   addPhone() {
-
+    console.log('sdhmfvshdfgvshdf')
     const phone = this.fb.group({
       serial_number: [this.phoneForms.value.length + 1],
       cosignmentId: [],

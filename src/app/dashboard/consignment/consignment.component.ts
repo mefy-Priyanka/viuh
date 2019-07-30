@@ -21,6 +21,8 @@ export class ConsignmentComponent implements OnInit {
   submitted = false;
   consigmentDetail = [];
   contactlist = [];
+  fleetDetail=[]
+  destinationlist: any = [];
   constructor(private formBuilder: FormBuilder, private userService: UserService, private companyService: CompanyService, private toastr: ToastrService) {
     this.userId = localStorage.getItem('userId');
     this.role = localStorage.getItem('role');
@@ -97,6 +99,7 @@ export class ConsignmentComponent implements OnInit {
 
 
   ngOnInit() {
+    this.getfleetList()
     this.consignmentForm = this.createconsignmentForm()
     this.consignmentForm.valueChanges.subscribe(() => {
       this.onconsignmentFormValuesChanged();
@@ -144,6 +147,19 @@ export class ConsignmentComponent implements OnInit {
       })
   }
 
+  getfleetList() {
+    this.companyService.getfleetlist(localStorage.getItem('SuperAdmin')).subscribe(data => {
+      console.log(data)
+      let result: any = {}
+      result = data;
+      this.fleetDetail = result.result
+     
+    },
+      error => {
+        console.log(error);
+
+      })
+  }
 
   submit() {
     console.log(this.consignmentForm.value)
@@ -183,12 +199,14 @@ export class ConsignmentComponent implements OnInit {
       console.log('let data be', data);
       this.userService.consignmentcreat(data).subscribe(value => {
         this.submitted = false;
-        this.toastr.success('Congo!', 'account Successfully Created'),
-          console.log('user', value)
-        let result: any = {}
-        result = value
-        this.consignmentForm.reset();
-        this.toastr.success('Awesome!', 'Account created successfully');
+        this.paymentdiesel()
+
+        this.toastr.success('Congo!', 'Consignment Successfully Created'),
+        //   console.log('user', value)
+        // let result: any = {}
+        // result = value
+        // this.consignmentForm.reset();
+        // this.toastr.success('Awesome!', 'Account created successfully');
         this.getConsignmentList();
         this.at();
       },
@@ -201,12 +219,72 @@ export class ConsignmentComponent implements OnInit {
 
   }
 
+  paymentdiesel() {
+    let data = {
+      contactId: this.consignmentForm.value.consignor,
+      payment_date: moment(this.consignmentForm.value.challan_date).toISOString(),
+      payment_mode: 'cash',
+      fleetId: this.consignmentForm.value.truck_number,
+      payment: "diesel_price",
+      amount_paid: this.consignmentForm.value.diesel_expenses,
+      userId: localStorage.getItem('userId')
+    }
+    console.log(data);
+    this.userService.creatvoucher(data).subscribe(result => {
+      this.paymentdriver()
+    },
+      err => {
+        console.log(err)
+      })
+  }
 
+  paymentdriver() {
+    let data = {
+      contactId: this.consignmentForm.value.consignor,
+      payment_date: moment(this.consignmentForm.value.challan_date).toISOString(),
+      payment_mode: 'cash',
+      fleetId: this.consignmentForm.value.truck_number,
+      payment: 'driver_expense',
+      amount_paid: this.consignmentForm.value.driver_expenses,
+      userId: localStorage.getItem('userId')
+    }
+    console.log(data)
+    this.userService.creatvoucher(data).subscribe(result => {
+    this.paymenttoll()
+    },
+      err => {
+        console.log(err)
+      })
+  }
+
+  paymenttoll() {
+    let data = {
+      contactId: this.consignmentForm.value.consignor,
+      payment_date: moment(this.consignmentForm.value.challan_date).toISOString(),
+      payment_mode: 'cash',
+      fleetId: this.consignmentForm.value.truck_number,
+      payment: 'toll_price',
+      amount_paid: this.consignmentForm.value.toll_expenses,
+      userId: localStorage.getItem('userId')
+    }
+    console.log(data)
+    this.userService.creatvoucher(data).subscribe(result => {
+   
+    },
+      err => {
+        console.log(err)
+      })
+
+  }
 
   customerList() {
-  
-    this.companyService.getcontact(localStorage.getItem('SuperAdmin')).subscribe(data => {
-     
+
+    let data = {
+      id: localStorage.getItem('SuperAdmin'),
+      contact_type: 'customer'
+    }
+    this.companyService.getcustomer(data).subscribe(data => {
+
       let result: any = {}
       result = data;
       this.contactlist = result.result
@@ -217,5 +295,22 @@ export class ConsignmentComponent implements OnInit {
 
       })
   }
+  onChangeObj(id) {
+    this.destinationlist = [];
+    this.companyService.getdestination(id).subscribe(result => {
+      console.log(result);
+      let some: any = result;
+      for (var i = 0; i < some.result.length; i++) {
+        for (var j = 0; j < some.result[i].details.length; j++) {
+          this.destinationlist.push(some.result[i].details[j])
+        }
+      }
 
+      console.log(this.destinationlist)
+    },
+      err => {
+        console.log(err)
+      })
+
+  }
 }

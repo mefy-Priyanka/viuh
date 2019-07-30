@@ -76,7 +76,7 @@
 
                   <div class="input-field col s6">
                       <p><label>Consignor<span class="blue_star">*</span></label></p>
-                      <select class="orga" formControlName="consignor">
+                      <select class="orga" formControlName="consignor" (ngModelChange)="onChangeObj($event)">
   
                         <option value="" disabled selected>Choose Consignor</option>
                         <option *ngFor="let list of contactlist" [value]='list._id'>{{list.name}}</option>
@@ -92,7 +92,7 @@
                         <select class="orga" formControlName="consignee">
     
                           <option value="" disabled selected>Choose Consignee</option>
-                          <option *ngFor="let list of contactlist" [value]='list._id'>{{list.name}}</option>
+                          <option *ngFor="let list of destinationlist" [value]='list.location_name'>{{list.location_name}}</option>
                         </select>
                         <p class="errormessage"
                       *ngIf="consignmentFormErrors.consignee.required || (consignmentForm.controls.consignee.pristine && submitted)">
@@ -139,7 +139,13 @@
 
                   <div class="input-field col s6">
                     <p><label>Truck No.<span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate" formControlName="truck_number">
+                    <!-- <input type="text" class="validate" formControlName="truck_number">fleetDetail -->
+                    <select class="orga" formControlName="truck_number">
+    
+                        <option value="" disabled selected>Choose Truck</option>
+                        <option *ngFor="let list of fleetDetail"[value]='list._id'>{{list?.truck_number}}</option>
+                      </select>
+
                     <p class="errormessage"
                       *ngIf="consignmentFormErrors.truck_number.required || (consignmentForm.controls.truck_number.pristine && submitted)">
                       truck_number can't be empty</p>

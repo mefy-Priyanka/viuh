@@ -21,8 +21,8 @@
 
                       <option *ngFor="let contact of contactlist " [value]='contact._id'>{{contact.name}}
                         ({{contact.contact_type}})</option>
-                      <option *ngFor="let fleet of fleetDetail " [value]='fleet.contractId._id'>
-                        {{fleet.contractId.companyName}} (Contractor)</option>
+                      <option *ngFor="let fleet of fleetDetail " [value]='fleet._id'>
+                        {{fleet?.contractId?.companyName}}(Contractor)</option>
 
 
                     </select>
