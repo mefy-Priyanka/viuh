@@ -6,6 +6,7 @@ import { ContactService } from '../.././service/contact.service';
 import { CompanyService } from '../.././service/company.service';
 import { UserService } from '../.././service/user.service';
 import { ToastrService } from 'ngx-toastr';
+import * as moment from 'moment';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 
 
@@ -28,6 +29,7 @@ export class ContactDriverComponent implements OnInit {
   public licenceData: any = {};
   public othersData: any = [];
   public accountDetail:any=[];
+  public docDetail:any=[];
   public inputField: Boolean = false;
   public show:Boolean=true
   public imageUpload:any={};
@@ -121,43 +123,50 @@ public mask = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\
       }
       console.log(data)
       this.aadharData = data
+      this.docDetail.push( { docname:'Aadhar',number: data.aadhar.number  })
       console.log('data', this.aadharData)
+      // console.log('dadocDetailta', this.docDetail)
+
+      
     }
     else if (this.selecteValue == 'licence') {
       let data = {
         licence: {
           number: this.driverForm.value.number,
-          valid_upto: this.driverForm.value.valid_upto,
+          valid_upto: moment(this.driverForm.value.valid_upto).toISOString(),
           doc: this.imageUpload,
         }
       }
-      console.log(data)
       this.licenceData = data
+      this.docDetail.push( { docname:'Licence',number: data.licence.number ,valid_upto:data.licence.valid_upto})
       console.log('data', this.licenceData)
     }
     else if (this.selecteValue == 'training_certificate') {
       let data = {
         training_certificate: {
           number: this.driverForm.value.number,
-          valid_upto: this.driverForm.value.valid_upto,
+          valid_upto:  moment(this.driverForm.value.valid_upto).toISOString(),
           doc: this.imageUpload,
         }
 
       }
       console.log(data)
       this.trainingData = data
+      this.docDetail.push( { docname:'Training Certificate',number: data.training_certificate.number ,valid_upto:data.training_certificate.valid_upto })
+
       console.log('data', this.trainingData)
     }
     else if (this.selecteValue == 'police_verification') {
       let data = {
         police_verification: {
           number: this.driverForm.value.number,
-          valid_upto: this.driverForm.value.valid_upto,
+          valid_upto:  moment(this.driverForm.value.valid_upto).toISOString(),
           doc: this.imageUpload,
         }
       }
       console.log(data)
       this.policeData = data
+      this.docDetail.push( { docname:'Police Verification ',number: data.police_verification.number ,valid_upto:data.police_verification.valid_upto })
       console.log('data', this.policeData)
 
     }
@@ -166,11 +175,14 @@ public mask = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\
         others: {
           doc_name: this.driverForm.value.name,
           number: this.driverForm.value.number,
-          valid_upto: this.driverForm.value.valid_upto,
+          valid_upto: moment(this.driverForm.value.valid_upto).toISOString(),
           doc: this.imageUpload,
         }
       }
       this.othersData.push(data.others)
+      for(let i =0;i < this.othersData.length; i++){
+        this.docDetail.push({docname:this.othersData[i].doc_name,number:this.othersData[i].number?this.othersData[i].number:null,valid_upto:this.othersData[i].valid_upto})
+   }
       console.log('push', this.othersData)
     } 
     this.driverForm.controls['doc_name'].reset()

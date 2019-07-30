@@ -6,6 +6,7 @@ import { ContactService } from '../.././service/contact.service';
 import { CompanyService } from '../.././service/company.service';
 import { UserService } from '../.././service/user.service';
 import { ToastrService } from 'ngx-toastr';
+import * as moment from 'moment';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 
 @Component({
@@ -30,6 +31,7 @@ export class ContactemployeeComponent implements OnInit {
   public error: any;
   public imgUrlPrefix: any;
   public accountId:any;
+  public docDetail:any=[];
   public userId = localStorage.getItem('userId');
   public mask = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/] // Phone number validation 
   public account = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/,/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/] // Account number validation 
@@ -121,18 +123,20 @@ export class ContactemployeeComponent implements OnInit {
         }
         console.log(data)
         this.aadharData = data
+      this.docDetail.push( { docname:'Aadhar',number: data.aadhar.number  })
         console.log('data', this.aadharData)
       }
       else if (this.selecteValue == 'voterId') {
         let data = {
           voterId: {
             number: this.employForm.value.number,
-            valid_upto: this.employForm.value.valid_upto,
+            valid_upto: moment(this.employForm.value.valid_upto).toISOString(),
             doc: this.imageUpload,
           }
         }
         console.log(data)
         this.voterIdDate = data
+      this.docDetail.push( { docname:'Voter Id',number: data.voterId.number ,valid_upto:data.voterId.valid_upto})
         console.log('data', this.voterIdDate)
       }
 
@@ -141,11 +145,14 @@ export class ContactemployeeComponent implements OnInit {
           others: {
             doc_name: this.employForm.value.name,
             number: this.employForm.value.number,
-            valid_upto: this.employForm.value.valid_upto,
+            valid_upto: moment(this.employForm.value.valid_upto).toISOString(),
             doc: this.imageUpload,
           }
         }
         this.othersData.push(data.others)
+        for(let i =0;i < this.othersData.length; i++){
+          this.docDetail.push({docname:this.othersData[i].doc_name,number:this.othersData[i].number?this.othersData[i].number:null,valid_upto:this.othersData[i].valid_upto})
+     }
         console.log('push', this.othersData)
       }
       else {

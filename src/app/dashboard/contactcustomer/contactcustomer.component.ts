@@ -7,6 +7,7 @@ import { CompanyService } from '../.././service/company.service';
 import { UserService } from '../.././service/user.service';
 import { ToastrService } from 'ngx-toastr';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
+import * as moment from 'moment';
 @Component({
   selector: 'app-contactcustomer',
   templateUrl: './contactcustomer.component.html',
@@ -24,6 +25,7 @@ export class ContactcustomerComponent implements OnInit {
   public tanData: any = {};
   public gstData: any = {};
   public othersData: any = [];
+  public docDetail:any=[];
   public inputField: Boolean = false;
   public show:Boolean=true
   public imageUpload:any={};
@@ -119,43 +121,49 @@ public mask = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\
       }
       console.log(data)
       this.aadharData = data
+      this.docDetail.push( { docname:'Aadhar',number: data.aadhar.number  })
       console.log('data', this.aadharData)
     }
     else if (this.selecteValue == 'gst') {
       let data = {
         gst: {
           number: this.customerForm.value.number,
-          valid_upto: this.customerForm.value.valid_upto,
+          valid_upto: moment(this.customerForm.value.valid_upto).toISOString(),
           doc: this.imageUpload,
         }
       }
       console.log(data)
       this.gstData = data
+      this.docDetail.push( { docname:'Gst',number: data.gst.number ,valid_upto:data.gst.valid_upto})
+
       console.log('data', this.gstData)
     }
     else if (this.selecteValue == 'pan') {
       let data = {
         pan: {
           number: this.customerForm.value.number,
-          valid_upto: this.customerForm.value.valid_upto,
+          valid_upto: moment(this.customerForm.value.valid_upto).toISOString(),
           doc: this.imageUpload,
         }
 
       }
       console.log(data)
       this.panData = data
+      this.docDetail.push( { docname:'Pan',number: data.pan.number ,valid_upto:data.pan.valid_upto})
+
       console.log('data', this.panData)
     }
     else if (this.selecteValue == 'tan') {
       let data = {
         tan: {
           number: this.customerForm.value.number,
-          valid_upto: this.customerForm.value.valid_upto,
+          valid_upto: moment(this.customerForm.value.valid_upto).toISOString(),
           doc: this.imageUpload,
         }
       }
       console.log(data)
       this.tanData = data
+      this.docDetail.push( { docname:'Tan',number: data.tan.number ,valid_upto:data.tan.valid_upto})
       console.log('data', this.tanData)
 
     }
@@ -164,12 +172,15 @@ public mask = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\
         others: {
           doc_name: this.customerForm.value.name,
           number: this.customerForm.value.number,
-          valid_upto: this.customerForm.value.valid_upto,
+          valid_upto: moment(this.customerForm.value.valid_upto).toISOString(),
           doc: this.imageUpload,
         }
       }
       this.othersData.push(data.others)
       console.log('push', this.othersData)
+      for(let i =0;i < this.othersData.length; i++){
+        this.docDetail.push({docname:this.othersData[i].doc_name,number:this.othersData[i].number?this.othersData[i].number:null,valid_upto:this.othersData[i].valid_upto})
+   }
     } 
     else {
       console.log('hey',this.selecteValue)

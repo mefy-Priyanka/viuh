@@ -133,6 +133,34 @@
                     <button class="addBtn">+</button>
                   </div> -->
     
+                  <div class="row at">
+                    <div class="col-md-4">
+                      <p class="docType">DOC Type</p>
+      
+                    </div>
+                    <div class="col-md-4">
+                      <p class="docType">DOC Number</p>
+      
+                    </div>
+                    <div class="col-md-4">
+                      <p class="docType">VALID UPTO</p>
+      
+                    </div>
+                  </div>
+                  <div class="row at" *ngFor='let list of docDetail'>
+                    <div class="col-md-4">
+                      <p class="docType ae">{{list?.docname}}</p>
+      
+                    </div>
+                    <div class="col-md-4">
+                      <p class="docType ae">{{list?.number}}</p>
+      
+                    </div>
+                    <div class="col-md-4">
+                      <p class="docType ae">{{list?.valid_upto| date: 'yyyy-MM-dd' }}</p>
+      
+                    </div>
+                  </div>
                 </div>
               </div>
 

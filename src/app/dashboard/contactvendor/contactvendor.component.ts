@@ -6,6 +6,7 @@ import { ContactService } from '../.././service/contact.service';
 import { CompanyService } from '../.././service/company.service';
 import { UserService } from '../.././service/user.service';
 import { ToastrService } from 'ngx-toastr';
+import * as moment from 'moment';
 import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browser';
 @Component({
   selector: 'app-contactvendor',
@@ -24,6 +25,7 @@ export class ContactvendorComponent implements OnInit {
   public tanData: any = {};
   public gstData: any = {};
   public othersData: any = [];
+  public docDetail:any=[];
   public inputField: Boolean = false;
   public show: Boolean = true
   public imageUpload: any = {};
@@ -124,43 +126,47 @@ export class ContactvendorComponent implements OnInit {
         }
         console.log(data)
         this.aadharData = data
+      this.docDetail.push( { docname:'Aadhar',number: data.aadhar.number  })
         console.log('data', this.aadharData)
       }
       else if (this.selecteValue == 'gst') {
         let data = {
           gst: {
             number: this.vendorForm.value.number,
-            valid_upto: this.vendorForm.value.valid_upto,
+            valid_upto: moment(this.vendorForm.value.valid_upto).toISOString(),
             doc: this.imageUpload,
           }
         }
         console.log(data)
         this.gstData = data
+      this.docDetail.push( { docname:'Gst',number: data.gst.number ,valid_upto:data.gst.valid_upto})
         console.log('data', this.gstData)
       }
       else if (this.selecteValue == 'pan') {
         let data = {
           pan: {
             number: this.vendorForm.value.number,
-            valid_upto: this.vendorForm.value.valid_upto,
+            valid_upto: moment(this.vendorForm.value.valid_upto).toISOString(),
             doc: this.imageUpload,
           }
 
         }
         console.log(data)
         this.panData = data
+      this.docDetail.push( { docname:'Pan',number: data.pan.number ,valid_upto:data.pan.valid_upto})
         console.log('data', this.panData)
       }
       else if (this.selecteValue == 'tan') {
         let data = {
           tan: {
             number: this.vendorForm.value.number,
-            valid_upto: this.vendorForm.value.valid_upto,
+            valid_upto: moment(this.vendorForm.value.valid_upto).toISOString(),
             doc: this.imageUpload,
           }
         }
         console.log(data)
         this.tanData = data
+      this.docDetail.push( { docname:'Tan',number: data.tan.number ,valid_upto:data.tan.valid_upto})
         console.log('data', this.tanData)
 
       }
@@ -169,11 +175,14 @@ export class ContactvendorComponent implements OnInit {
           others: {
             doc_name: this.vendorForm.value.name,
             number: this.vendorForm.value.number,
-            valid_upto: this.vendorForm.value.valid_upto,
+            valid_upto: moment(this.vendorForm.value.valid_upto).toISOString(),
             doc: this.imageUpload,
           }
         }
         this.othersData.push(data.others)
+        for(let i =0;i < this.othersData.length; i++){
+          this.docDetail.push({docname:this.othersData[i].doc_name,number:this.othersData[i].number?this.othersData[i].number:null,valid_upto:this.othersData[i].valid_upto})
+     }
         console.log('push', this.othersData)
       }
       else {
