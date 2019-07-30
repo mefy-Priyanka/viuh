@@ -144,4 +144,13 @@ export class UserService {
   creatvoucher(data) {
     return this.httpClient.post(APIURL + 'payment/create', data)
   }
+
+  // petrol
+  petrolsetprice(data){
+    return this.httpClient.post(APIURL + 'diesel/petrolPrice', data)
+  }
+  getpetrol(id){
+    return this.httpClient.get(APIURL + 'diesel/currentPetrolList?superAdminId='+ id)
+
+  }
 }

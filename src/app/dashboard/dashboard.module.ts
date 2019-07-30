@@ -47,6 +47,7 @@ import { InvoicelistComponent } from './invoicelist/invoicelist.component';
 import { Petrolform2Component } from './petrolform2/petrolform2.component';
 import { ViewdriverComponent } from './viewdriver/viewdriver.component';
 import { ViewcontractorComponent } from './viewcontractor/viewcontractor.component';
+import { PetrolformviewComponent } from './petrolformview/petrolformview.component';
 
 const routes: Routes = [
     {
@@ -123,6 +124,7 @@ const routes: Routes = [
         // EmployeeComponent
         ViewdriverComponent,
         ViewcontractorComponent,
+        PetrolformviewComponent,
 
     ]
 })

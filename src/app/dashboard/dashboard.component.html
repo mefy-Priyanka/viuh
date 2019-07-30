@@ -55,8 +55,8 @@
 
         <app-paymentvoucherlist *ngIf="sharenav=='payvoucherlist'"></app-paymentvoucherlist>
 
-<app-petrolform2></app-petrolform2>
-
+        <app-petrolform2 *ngIf="sharenav=='petrolsadd'"></app-petrolform2>
+        <app-petrolformview *ngIf="sharenav=='petrols'"></app-petrolformview>
         <app-viewdriver *ngIf="sharenav=='viewdriver'"></app-viewdriver>
         <app-viewcontractor *ngIf="sharenav=='viewcontractor'"></app-viewcontractor>
 
