@@ -1,8 +1,6 @@
 <!-- consignment-->
 <section class="corder" *ngIf="cdata">
-  <a href="#" class="floatEa">
-    <i class="fa fa-envelope-o my-float"></i>
-  </a>
+ 
   <div class="ft">
     <h1>Consignment
       <button class="addItema" (click)="at()"><i class="fa fa-plus-circle" aria-hidden="true"></i>Add</button>
@@ -14,7 +12,7 @@
         <div id="no-more-tables">
           <table class="col-md-12 table-bordered table-striped table-condensed cf">
             <thead class="cf">
-              <tr >
+              <tr>
                 <th class="numeric">TL.NO.</th>
                 <th>LOCATION NO.</th>
                 <th>CHALLAN NO.</th>
@@ -61,8 +59,8 @@
             <div class="row">
 
               <div class="nota">
-                  <div class="row">
-                <!-- <div class="row">
+                <div class="row">
+                  <!-- <div class="row">
                   <div class="input-field col s6">
                     <p><label>Consignor <span class="blue_star">*</span></label></p>
                     <input type="text" class="validate" formControlName="consignor">
@@ -75,29 +73,30 @@
                   </div> -->
 
                   <div class="input-field col s6">
-                      <p><label>Consignor<span class="blue_star">*</span></label></p>
-                      <select class="orga" formControlName="consignor" (ngModelChange)="onChangeObj($event)">
-  
-                        <option value="" disabled selected>Choose Consignor</option>
-                        <option *ngFor="let list of contactlist" [value]='list._id'>{{list.name}}</option>
-                      </select>
-                      <p class="errormessage"
+                    <p><label>Consignor<span class="blue_star">*</span></label></p>
+                    <select class="orga" formControlName="consignor" (ngModelChange)="onChangeObj($event)">
+
+                      <option value="" disabled selected>Choose Consignor</option>
+                      <option *ngFor="let list of contactlist" [value]='list._id'>{{list.name}}</option>
+                    </select>
+                    <p class="errormessage"
                       *ngIf="consignmentFormErrors.consignor.required || (consignmentForm.controls.consignor.pristine && submitted)">
                       consignor can't be empty</p>
-                    </div>
+                  </div>
 
 
-                    <div class="input-field col s6">
-                        <p><label>Consignee<span class="blue_star">*</span></label></p>
-                        <select class="orga" formControlName="consignee">
-    
-                          <option value="" disabled selected>Choose Consignee</option>
-                          <option *ngFor="let list of destinationlist" [value]='list.location_name'>{{list.location_name}}</option>
-                        </select>
-                        <p class="errormessage"
+                  <div class="input-field col s6">
+                    <p><label>Consignee<span class="blue_star">*</span></label></p>
+                    <select class="orga" formControlName="consignee">
+
+                      <option value="" disabled selected>Choose Consignee</option>
+                      <option *ngFor="let list of destinationlist" [value]='list.location_name'>{{list.location_name}}
+                      </option>
+                    </select>
+                    <p class="errormessage"
                       *ngIf="consignmentFormErrors.consignee.required || (consignmentForm.controls.consignee.pristine && submitted)">
                       consignee can't be empty</p>
-                      </div>
+                  </div>
 
 
                 </div>
@@ -140,11 +139,11 @@
                   <div class="input-field col s6">
                     <p><label>Truck No.<span class="blue_star">*</span></label></p>
                     <!-- <input type="text" class="validate" formControlName="truck_number">fleetDetail -->
-                    <select class="orga" formControlName="truck_number">
-    
-                        <option value="" disabled selected>Choose Truck</option>
-                        <option *ngFor="let list of fleetDetail"[value]='list._id'>{{list?.truck_number}}</option>
-                      </select>
+                    <select class="orga" formControlName="truck_number" (ngModelChange)="changetruck($event)">
+
+                      <option value="" disabled selected>Choose Truck</option>
+                      <option *ngFor="let list of fleetDetail" [value]='list._id'>{{list?.truck_number}}</option>
+                    </select>
 
                     <p class="errormessage"
                       *ngIf="consignmentFormErrors.truck_number.required || (consignmentForm.controls.truck_number.pristine && submitted)">
@@ -175,6 +174,20 @@
 
                 </div>
                 <div class="row">
+                  <div class="input-field col s6">
+                    <p><label>Driver Name<span class="blue_star">*</span></label></p>
+                    <!-- <input type="text" class="validate" formControlName="driver_name">driverlist -->
+                    <select class="orga" formControlName="driver_name" >
+
+                      <option value="" disabled selected>Choose Driver</option>
+                      <option *ngFor="let list of driverlist" [value]='list._id'>{{list.name}}</option>
+                    </select>
+
+                    <p class="errormessage"
+                      *ngIf="consignmentFormErrors.driver_name.required || (consignmentForm.controls.driver_name.pristine && submitted)">
+                      driver_name can't be empty</p>
+
+                  </div>
 
                   <div class="input-field col s6">
                     <p><label>Driving Lic. No<span class="blue_star">*</span></label></p>
@@ -185,14 +198,7 @@
 
                   </div>
 
-                  <div class="input-field col s6">
-                    <p><label>Driver Name<span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate" formControlName="driver_name">
-                    <p class="errormessage"
-                      *ngIf="consignmentFormErrors.driver_name.required || (consignmentForm.controls.driver_name.pristine && submitted)">
-                      driver_name can't be empty</p>
 
-                  </div>
 
 
                 </div>
@@ -244,12 +250,11 @@
 
 
 
-                            <td class="thname"> 
-                              <tr>
-                                  <input type="file" class="validate" class="fileType" #mydoc
-                                  (change)="upload($event,selectedOption)" 
-                                 >
-                               </tr>
+                            <td class="thname">
+                          <tr>
+                            <input type="file" class="validate" class="fileType" #mydoc
+                              (change)="upload($event,selectedOption)">
+                          </tr>
                           <tr>
                             <input type="text" style="border: none !important" formControlName="challan_number">
                             <p class="errormessage"
