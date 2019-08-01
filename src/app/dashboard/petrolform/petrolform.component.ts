@@ -17,21 +17,23 @@ export class PetrolformComponent implements OnInit {
   submitted: boolean;
   petrols = [];
   openbool: boolean;
-  driverlist=[];
-  trucklist=[];
+  driverlist = [];
+  trucklist = [];
   petrolFormErrors: { pumpname: any; truckno: any; date: any; diesel: any; other: any; driver: any; };
   vendorlist: any;
   firstaccountid: any;
   dieselrate: any;
   truckaccountid: any;
-  constructor(private formBuilder: FormBuilder,private SharedService :SharedService,private userService: UserService,  private CompanyService: CompanyService, private toastr: ToastrService) {
+  lists: any = [];
+  total: any;
+  constructor(private formBuilder: FormBuilder, private SharedService: SharedService, private userService: UserService, private CompanyService: CompanyService, private toastr: ToastrService) {
     this.petrolFormErrors = {
       pumpname: {},
       truckno: {},
       date: {},
       diesel: {},
-      other:{},
-      driver:{}
+      other: {},
+      driver: {}
     };
   }
 
@@ -44,10 +46,11 @@ export class PetrolformComponent implements OnInit {
     this.gettruck();
     this.getdriver();
     this.vendorList();
-    this.getdiesel()
+    // this.getdiesel()
+    // this.getpetrolprice()
   }
 
- 
+
   createAccountForm() {
     return this.formBuilder.group({
       pumpname: ['', Validators.required],
@@ -55,7 +58,7 @@ export class PetrolformComponent implements OnInit {
       driver: ['', Validators.required],
       date: ['', Validators.required],
       diesel: ['', Validators.required],
-      other:[''],
+      other: [''],
     });
   }
 
@@ -74,16 +77,16 @@ export class PetrolformComponent implements OnInit {
       }
     }
   }
-  submit() {
-    
+  createpayment() {
+
     this.submitted = true;
-    
+
     if (this.petrolForm.valid) {
 
       let data = {
         pumpname: this.petrolForm.value.pumpname,
         truckno: this.petrolForm.value.truckno,
-        driver:this.petrolForm.value.driver,
+        driver: this.petrolForm.value.driver,
         date: moment(this.petrolForm.value.date).toISOString,
         diesel: this.petrolForm.value.diesel,
         other: this.petrolForm.value.other,
@@ -96,7 +99,10 @@ export class PetrolformComponent implements OnInit {
           console.log('user', value)
         let result: any = {}
         result = value
-        this.createjournal();
+        // this.submit();
+        this.petrolForm.reset();
+
+        this.SharedService.abc('journal');
       },
         err => {
           console.log(err)
@@ -109,12 +115,12 @@ export class PetrolformComponent implements OnInit {
   }
 
   vendorList() {
-    let data={
-      id:localStorage.getItem('SuperAdmin'),
-      contact_type:'vendor'
+    let data = {
+      id: localStorage.getItem('SuperAdmin'),
+      contact_type: 'vendor'
     }
     this.CompanyService.getvendor(data).subscribe(data => {
-     
+
       let result: any = {}
       result = data;
       this.vendorlist = result.result
@@ -126,162 +132,201 @@ export class PetrolformComponent implements OnInit {
       })
   }
 
-  getdriver(){
-    let data={
-      id:localStorage.getItem('SuperAdmin'),
-      contact_type:'driver'
+  getdriver() {
+    let data = {
+      id: localStorage.getItem('SuperAdmin'),
+      contact_type: 'driver'
     }
-    this.CompanyService.getdriver(data).subscribe(data=>{
+    this.CompanyService.getdriver(data).subscribe(data => {
       console.log(data);
-      let something:any;
-      something=data;
-      this.driverlist=something.result
+      let something: any;
+      something = data;
+      this.driverlist = something.result
     },
-    err=>{
-      console.log(err);
-    })
+      err => {
+        console.log(err);
+      })
   }
 
-  gettruck(){
-   
-    this.CompanyService.getfleetlist(localStorage.getItem('SuperAdmin')).subscribe(data=>{
+  gettruck() {
+
+    this.CompanyService.getfleetlist(localStorage.getItem('SuperAdmin')).subscribe(data => {
       console.log(data);
-      let something:any;
-      something=data;
-      this.trucklist=something.result
-      
+      let something: any;
+      something = data;
+      this.trucklist = something.result
+
     },
-    err=>{
-      console.log(err);
-    })
+      err => {
+        console.log(err);
+      })
   }
 
-  
 
-  truckaccount(data){
+
+  truckaccount(data) {
     console.log(data);
-    var accounttype='Expense'
-    var account='';
-    var parent='Fleet';
+    var accounttype = 'Expense'
+    var account = '';
+    var parent = 'Fleets';
 
     console.log(this.trucklist)
-    for(var i=0;i<this.trucklist.length;i++){
-      if(this.trucklist[i]._id==data){
-        account=this.trucklist[i].truck_number;        
+    for (var i = 0; i < this.trucklist.length; i++) {
+      if (this.trucklist[i]._id == data) {
+        account = this.trucklist[i].truck_number;
         break;
       }
     }
 
-  
-    let datas={
-      accounttype:accounttype,
-      account:account,
-      parent:parent
+
+    let datas = {
+      accounttype: accounttype,
+      account: account,
+      parent: parent,
+      superAdminId: localStorage.getItem('SuperAdmin')
     }
     console.log(datas);
 
-      this.userService.accountbytype(datas).subscribe(result => {
-        console.log(result);
-        let something:any;
-        something=result
-        if(something.result.lenght!=0){
-          this.truckaccountid=something.result[0]._id
-        }
-        console.log(this.truckaccountid)
-      },
-        err => {
-          console.log(err)
-  
-        })
-    }
-
-  onChangeObj(data){
-    console.log(data);
-    var accounttype='Expense'
-    var account='';
-    var parent='Vendors';
-
-    
-    for(var i=0;i<this.vendorlist.length;i++){
-      if(this.vendorlist[i]._id==data){
-        account=this.vendorlist[i].name;        
-        break;
-      }
-    }
-
-  
-    let datas={
-      accounttype:accounttype,
-      account:account,
-      parent:parent
-    }
-    console.log(datas);
-
-      this.userService.accountbytype(datas).subscribe(result => {
-        console.log(result);
-        let something:any;
-        something=result
-        if(something.result.lenght!=0){
-          this.firstaccountid=something.result[0]._id
-        }
-        console.log(this.firstaccountid)
-      },
-        err => {
-          console.log(err)
-  
-        })
-    }
-    getdiesel() {
+    this.userService.accountbytype(datas).subscribe(result => {
+      console.log(result);
       let something: any;
-      let i = 0;
-      this.CompanyService.getdiesel(localStorage.getItem('SuperAdmin')).subscribe(result => {
-        console.log(result);
-        something = result;
-        this.dieselrate = something.result[something.result.length - 1].diesel_price;  
-      },
-        err => {
-          console.log(err)
-        })
-  
+      something = result
+      if (something.result.length != 0) {
+        this.truckaccountid = something.result[0]._id
+      }
+      console.log(this.truckaccountid)
+    },
+      err => {
+        console.log(err)
+
+      })
+  }
+
+  onChangeObj(data) {
+    console.log(data);
+    var accounttype = 'Liability'
+    var account = '';
+    var parent = 'Account Payable';
+
+
+    for (var i = 0; i < this.vendorlist.length; i++) {
+      if (this.vendorlist[i]._id == data) {
+        account = this.vendorlist[i].name;
+        break;
+      }
     }
 
-  createjournal(){
-   var total=this.dieselrate*parseFloat(this.petrolForm.value.diesel)
-   console.log(total)
-    let data={
-      date:new Date().toISOString(),
-      reference:this.petrolForm.value.driver,
-      notes:'',
-      total:total,
-      userId:localStorage.getItem('userId'),
-      detail:[{
-        accountId:this.firstaccountid,
-        debit:total,
-        description:'description'
+
+    let datas = {
+      accounttype: accounttype,
+      account: account,
+      parent: parent,
+      superAdminId: localStorage.getItem('SuperAdmin')
+
+    }
+    console.log(datas);
+
+    this.userService.accountbytype(datas).subscribe(result => {
+      console.log(result);
+      let something: any;
+      something = result
+      if (something.result.length != 0) {
+        this.firstaccountid = something.result[0]._id
+      }
+      console.log(this.firstaccountid)
+    },
+      err => {
+        console.log(err)
+
+      })
+  }
+  // getdiesel() {
+  //   let something: any;
+  //   let i = 0;
+  //   this.CompanyService.getdiesel(localStorage.getItem('SuperAdmin')).subscribe(result => {
+  //     console.log(result);
+  //     something = result;
+  //     this.dieselrate = something.result[something.result.length - 1].diesel_price;  
+  //   },
+  //     err => {
+  //       console.log(err)
+  //     })
+
+  // }
+  submit() {
+    this.userService.getpetrol(localStorage.getItem('SuperAdmin')).subscribe(result => {
+      console.log(result);
+      let somethidng: any = result;
+      this.lists = somethidng.result;
+      console.log(this.lists)
+      console.log(this.petrolForm.value.pumpname)
+      console.log(this.lists.length)
+
+      for (var i = 0; i < this.lists.length; i++) {
+        console.log('sjhfvcbh')
+        console.log(this.lists[i].user, this.lists[i].user.length)
+        for (var j = 0; j < this.lists[i].user.length; j++) {
+
+          console.log(this.lists[i].user[j].vendorId);
+          if (this.petrolForm.value.pumpname == this.lists[i].user[j].vendorId._id) {
+
+            this.total = this.lists[i].user[j].diesel_price
+            this.final();
+            return
+          }
+          // else {
+          //   alert('make sure every thing is all right');
+          //   return;
+          // }
+        }
+
+      }
+
+      alert('make sure every thing is all right');
+      return
+    },
+      err => {
+        console.log(err);
+        this.toastr.error('oops', 'server error')
+      })
+  }
+
+  final() {
+    var total = this.total * parseFloat(this.petrolForm.value.diesel)
+    console.log(total)
+    let data = {
+      date: new Date().toISOString(),
+      reference: this.petrolForm.value.driver,
+      notes: '',
+      total: total,
+      userId: localStorage.getItem('userId'),
+      detail: [{
+        accountId: this.firstaccountid,
+        credit: total,
+        description: 'description'
       },
       {
-        accountId:this.truckaccountid,
-        credit:total,
-        description:'description'
+        accountId: this.truckaccountid,
+        debit: total,
+        description: 'description'
       }
-    ]
-  }
-  console.log(data);
+      ]
+    }
+    console.log(data);
 
-  this.userService.journalcreat(data).subscribe(result => {
-    console.log(result);
-    this.toastr.success('Awesome!', 'Journal created suceesfully');
-    console.log(result);
-    this.petrolForm.reset();
+    this.userService.journalcreat(data).subscribe(result => {
+      console.log(result);
+      this.toastr.success('Awesome!', 'Journal created suceesfully');
+      console.log(result);
+      this.createpayment();
 
-    this.SharedService.abc('journal');
-   
-  },
-    err => {
-      console.log(err)
-      this.toastr.error('Error!', 'Server Error')
 
-    })
+    },
+      err => {
+        console.log(err)
+        this.toastr.error('Error!', 'Server Error')
+
+      })
   }
 
 }

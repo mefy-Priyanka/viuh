@@ -18,6 +18,7 @@ export class InvoiceComponent implements OnInit {
   contactlist=[];
   worklist=[];
   firstaccountid: any;
+  fleetaccount: any;
   constructor(private fb: FormBuilder,   private SharedService :SharedService, private userService: UserService, private toastr: ToastrService,private companyService:CompanyService) { }
 
   ngOnInit() {
@@ -196,9 +197,7 @@ export class InvoiceComponent implements OnInit {
     })
   }
   onChangeObj(data){
-  var accounttype='Asset'
-  var account='';
-  var parent='Customer';
+    var account:any;
   for(var i=0;i<this.contactlist.length;i++){
     if(this.contactlist[i]._id==data){
       // parent=this.contactlist[i].contact_type;
@@ -206,15 +205,14 @@ export class InvoiceComponent implements OnInit {
       break;
     }
   }
-  if(parent=='customer'){
-    accounttype='Revenue'
-  }
-  let datas={
-    accounttype:accounttype,
-    account:account,
-    parent:parent,
-    superAdminId:localStorage.getItem('SuperAdmin')
-  }
+
+    let datas={
+      accounttype:"Asset",
+      account:account,
+      parent:"Account Receivables",
+      super_parent_Account:"Current Assets",
+      superAdminId:localStorage.getItem('SuperAdmin')
+    }
   console.log(datas)
     this.userService.accountbytype(datas).subscribe(result => {
       console.log(result);
@@ -230,23 +228,22 @@ export class InvoiceComponent implements OnInit {
   }
 
   get(){
-   
+  
     let datas={
       accounttype:"Revenue",
-      account:"Fleet",
-      parent:null,
+      account:"Fleets",
+     
       superAdminId:localStorage.getItem('SuperAdmin')
     }
   
-      this.userService.accountbytype(datas).subscribe(result => {
+      this.userService.accountbyname(datas).subscribe(result => {
         console.log(result);
         let something:any;
         something=result
         if(something.result.length!=0){
-          this.firstaccountid=something.result[0]._id
-
+          this.fleetaccount=something.result[0]._id
         }
-        console.log(this.firstaccountid)
+        console.log('fleet account',this.fleetaccount)
       },
         err => {
           console.log(err)
@@ -269,7 +266,7 @@ export class InvoiceComponent implements OnInit {
         description:'description'
       },
       {
-        accountId:"5d258fff4dcc2d146b764fb9",
+        accountId:this.fleetaccount,
         credit:this.myForm.value.amount,
         description:'description'
       }

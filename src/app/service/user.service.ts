@@ -122,8 +122,13 @@ export class UserService {
 
   // account for customer,vender etc
   accountbytype(data) {
-    console.log(APIURL + 'account/accountDetail?accountName=' + data.account + '&accountType=' + data.accounttype + '&parentAccount=' + data.parent + '&superAdminId=' + data.superAdminId)
-    return this.httpClient.get(APIURL + 'account/accountDetail?accountName=' + data.account + '&accountType=' + data.accounttype + '&parentAccount=' + data.parent + '&superAdminId=' + data.superAdminId)
+    var url = APIURL + 'account/accountDetail?accountName=' + data.account + '&accountType=' + data.accounttype + '&parentAccount=' + data.parent + '&superAdminId=' + data.superAdminId
+    // console.log(APIURL + 'account/accountDetail?accountName=' + data.account + '&accountType=' + data.accounttype + '&parentAccount=' + data.parent + '&superAdminId=' + data.superAdminId)
+    return this.httpClient.get(url)
+  }
+  accountbyname(data) {
+    var url = APIURL + 'account/getAccount?accountType=' + data.accounttype + '&accountName=' + data.account + '&superAdminId=' + data.superAdminId
+    return this.httpClient.get(url)
   }
 
   /*******************DELETE ACCOUNT BY ACCOUNTID***********************/
@@ -146,11 +151,11 @@ export class UserService {
   }
 
   // petrol
-  petrolsetprice(data){
+  petrolsetprice(data) {
     return this.httpClient.post(APIURL + 'diesel/petrolPrice', data)
   }
-  getpetrol(id){
-    return this.httpClient.get(APIURL + 'diesel/currentPetrolList?superAdminId='+ id)
+  getpetrol(id) {
+    return this.httpClient.get(APIURL + 'diesel/currentPetrolList?superAdminId=' + id)
 
   }
 }

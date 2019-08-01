@@ -85,15 +85,15 @@ export class PaymentvoucherComponent implements OnInit {
       let result: any = {}
       result = data;
       this.fleetDetail = result.result
-      for (var i = 0; i < this.fleetDetail.length; i++) {
-        console.log(i)
-        if (this.fleetDetail[i].contractId == null) {
-          this.fleetDetail.splice(i, 1);
-          i = i - 1;
-        }
-        console.log(this.fleetDetail);
+      // for (var i = 0; i < this.fleetDetail.length; i++) {
+      //   console.log(i)
+      //   if (this.fleetDetail[i].contractId == null) {
+      //     this.fleetDetail.splice(i, 1);
+      //     i = i - 1;
+      //   }
+      //   console.log(this.fleetDetail);
 
-      }
+      // }
     },
       error => {
         console.log(error);
