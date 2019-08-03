@@ -25,6 +25,11 @@ export class PaymentvoucherComponent implements OnInit {
   banklist = [];
   paymode = 'bank'
   truckarray = [];
+  contact: any;
+  contractor: string;
+  own: string;
+  creditaccount: any;
+  dabtaccount: any;
   constructor(private formBuilder: FormBuilder, private userService: UserService,
     private SharedService: SharedService, private toastr: ToastrService, private companyService: CompanyService) {
     this.denomFormErrors = {
@@ -261,8 +266,8 @@ export class PaymentvoucherComponent implements OnInit {
     console.log(value);
     this.truckarray = [];
     for (var i = 0; i < this.fleetDetail.length; i++) {
-      if (this.fleetDetail[i].contractId._id == value) {
-        console.log(i, this.fleetDetail[i].contractId._id, value)
+      if (this.fleetDetail[i]._id == value) {
+        // console.log(i, this.fleetDetail[i].contractId._id, value)
         this.payForm.value.truck = this.fleetDetail[i]._id;
         this.trucknumber = this.fleetDetail[i].truck_number;
 
@@ -270,14 +275,15 @@ export class PaymentvoucherComponent implements OnInit {
           fleetid: this.fleetDetail[i]._id,
           truckno: this.fleetDetail[i].truck_number
         }
-        this.truckarray.push(data)
+        this.truckarray.push(data);
+
       }
       else {
         this.payForm.value.truck = null;
         this.trucknumber = ''
       }
     }
-
+    console.log(this.truckarray)
   }
 
   changemode(val) {
@@ -296,12 +302,46 @@ export class PaymentvoucherComponent implements OnInit {
     }
 
   }
+  filter() {
+    for (var i = 0; i < this.contactlist.length; i++) {
+      if (this.payForm.value.to == this.contactlist[i]._id) {
+        this.contact = this.contactlist[i]._id;
+        this.contractor = "";
+        this.own = ""
+        return;
+      }
+    }
+
+    for (var i = 0; i < this.fleetDetail.length; i++) {
+      if (this.payForm.value.to == this.fleetDetail[i]._id) {
+
+        if (this.fleetDetail[i].contractId == null) {
+          this.contact = ''
+          this.contractor = "";
+          this.own = this.fleetDetail[i].ownId._id;
+          return;
+        }
+        else if (this.fleetDetail[i].ownId == null) {
+          this.contact = ''
+          this.contractor = this.fleetDetail[i].contractId._id;
+          this.own = ''
+          return;
+        }
+
+      }
+    }
+
+  }
   submit() {
     // this.changemode(this.payForm.value.paymode)
-    console.log(this.payForm.value)
-
+    this.filter()
+    if (this.paymode == 'cash') {
+      this.payForm.value.bankId = ''
+    }
     let data = {
-      contactId: this.payForm.value.to,
+      contactId: this.contact,
+      contractId: this.contractor,
+      ownerId: this.own,
       payment_date: this.payForm.value.date,
       payment_mode: this.paymode,
       fleetId: this.trucknumber,
@@ -312,18 +352,199 @@ export class PaymentvoucherComponent implements OnInit {
       denomination: this.denom,
       userId: localStorage.getItem('userId')
     }
+
     console.log(data)
-    console.log(this.total, data.amount_paid, data.payment)
+
+    // this.getdabitaccount()
+    // console.log(this.total, data.amount_paid, data.payment)
     if (this.total != data.amount_paid && data.payment_mode == 'cash') {
-      alert('not matched')
+      alert('not matched');
+      return;
     }
     this.userService.creatvoucher(data).subscribe(result => {
       console.log(result);
-      this.toastr.success('congrets','payment created successfullt')
+      this.toastr.success('congrets', 'payment created successfullt');
+      this.getcreditaccount();
       this.SharedService.abc('payvoucherlist');
     },
       err => {
         console.log(err)
       })
   }
+  getdabitaccount() {
+    var parent = 'Current Assets'
+    var account = '';
+    var accounttype = 'Asset'
+
+    for (var i = 0; i < this.contactlist.length; i++) {
+      if (this.payForm.value.to == this.contactlist[i]._id) {
+        if (this.contactlist[i].contact_type == 'customer') {
+          parent = 'Account Receivables';
+          account = this.contactlist[i].name
+          break;
+        }
+        if (this.contactlist[i].contact_type == 'driver') {
+          parent = '';
+          account = this.contactlist[i].name;
+          accounttype = 'Expense'
+          break;
+        }
+        if (this.contactlist[i].contact_type == 'employee') {
+          parent = '';
+          account = this.contactlist[i].name;
+          accounttype = 'Expense'
+          break;
+        }
+        if (this.contactlist[i].contact_type == 'vendor') {
+          parent = '';
+          account = this.contactlist[i].name;
+          accounttype = 'Expense'
+          break;
+        }
+
+      }
+    }
+
+    for (var i = 0; i < this.fleetDetail.length; i++) {
+      if (this.payForm.value.to == this.fleetDetail[i]._id) {
+
+        parent = 'Fleets';
+        account = this.fleetDetail[i].truck_number;
+        accounttype = 'Expense'
+        break
+
+      }
+    }
+
+
+
+
+    if (accounttype == 'Expense') {
+      let datas = {
+        accounttype: accounttype,
+        account: account,
+        // parent: parent,
+        superAdminId: localStorage.getItem('SuperAdmin')
+      }
+
+      this.userService.accountbyname(datas).subscribe(result => {
+        console.log(result);
+        let something: any;
+        something = result
+        if (something.result.length != 0) {
+          this.dabtaccount = something.result[0]._id
+        }
+        console.log(this.dabtaccount);
+        this.creatjournal()
+      },
+        err => {
+          console.log(err)
+
+        })
+    }
+    else {
+      
+      let datas = {
+        accounttype: accounttype,
+        account: account,
+        parent: parent,
+        superAdminId: localStorage.getItem('SuperAdmin')
+      }
+      this.userService.accountbytype(datas).subscribe(result => {
+        console.log(result);
+        let something: any;
+        something = result
+        if (something.result.length != 0) {
+          this.dabtaccount = something.result[0]._id
+        }
+        console.log(this.dabtaccount);
+        this.creatjournal()
+      },
+        err => {
+          console.log(err)
+
+        })
+    }
+
+
+  }
+
+
+  getcreditaccount() {
+    var parent = 'Current Assets'
+    var account = '';
+    var accounttype = 'Asset'
+    console.log(this.paymode)
+    if (this.paymode == 'cash') {
+      account = 'Cash'
+    }
+    else {
+      account = 'Bank'
+    }
+
+
+    let datas = {
+      accounttype: accounttype,
+      account: account,
+      parent: parent,
+      superAdminId: localStorage.getItem('SuperAdmin')
+
+    }
+    console.log(datas)
+    this.userService.accountbytype(datas).subscribe(result => {
+      console.log(result);
+      let something: any;
+      something = result
+      if (something.result.length != 0) {
+        this.creditaccount = something.result[0]._id
+      }
+      console.log(this.creditaccount)
+      this.getdabitaccount()
+
+    },
+      err => {
+        console.log(err)
+
+      })
+
+  }
+
+
+  creatjournal() {
+
+    let data = {
+      date: new Date().toISOString(),
+      reference: '',
+      notes: '',
+      total: this.payForm.value.amount,
+      userId: localStorage.getItem('userId'),
+      detail: [{
+        accountId: this.creditaccount,
+        credit: this.payForm.value.amount,
+        description: 'description'
+      },
+      {
+        accountId: this.dabtaccount,
+        debit: this.payForm.value.amount,
+        description: 'description'
+      }
+      ]
+    }
+    console.log(data);
+    // return;
+    this.userService.journalcreat(data).subscribe(result => {
+      console.log(result);
+      this.toastr.success('Awesome!', 'Journal created suceesfully');
+      console.log(result);
+
+
+    },
+      err => {
+        console.log(err)
+        this.toastr.error('Error!', 'Server Error')
+
+      })
+  }
+
+
 }

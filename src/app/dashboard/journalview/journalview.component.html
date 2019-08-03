@@ -92,7 +92,7 @@
                               <td class="thname">
                                 <p>{{item.description}}</p>
                               </td>
-                              <td class="thno">{{item.contactPersonId.account_holder_name}}</td>
+                              <td class="thno">{{item?.contactPersonId?.account_holder_name}}</td>
 
                               <td class="thname"><p *ngIf="item.credit">{{item.credit}}</p><p *ngIf="!item.credit">0</p> </td>
                               <td class="thname"><p *ngIf="item.debit">{{item.debit}}</p><p *ngIf="!item.debit">0</p> </td>

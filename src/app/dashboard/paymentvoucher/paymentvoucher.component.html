@@ -22,7 +22,7 @@
                       <option *ngFor="let contact of contactlist " [value]='contact._id'>{{contact.name}}
                         ({{contact.contact_type}})</option>
                       <option *ngFor="let fleet of fleetDetail " [value]='fleet._id'>
-                        {{fleet?.contractId?.companyName}}(Contractor)</option>
+                        {{fleet?.contractId?.companyName}} {{fleet?.ownId?.name}}(Contractor)</option>
 
 
                     </select>
@@ -34,7 +34,7 @@
                 </div>
 
                 <div class="row">
-                  <div class="input-field col s6" *ngIf="trucknumber!=''">
+                  <div class="input-field col s6" *ngIf="truckarray.length!=0">
                     <p><label>Truck#</label></p>
                     <select [(ngModel)]="trucknumber"  [ngModelOptions]="{standalone: true}" >
                       <option value="" disabled selected>Select</option>
@@ -85,11 +85,11 @@
                 </div>
                 <div class="row">
 
-                  {{bankselect}}
-                  <div class="input-field col s6" *ngIf="bankselect">
+                  
+                  <div class="input-field col s6" *ngIf="bankselect || paymode=='cheque'">
                     <p><label>Bank</label></p>
                     <select formControlName="bank">
-                      <option value="" disabled selected>Select</option>
+                      <option value="" disabled >Select Bank</option>
                       <option *ngFor="let bank of banklist" [value]="bank._id">{{bank.bank_name}}</option>
                     
                     </select>
