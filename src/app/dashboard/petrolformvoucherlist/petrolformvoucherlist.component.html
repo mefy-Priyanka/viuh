@@ -59,7 +59,7 @@
 
                 <td class="thname" data-title="VAT ID">{{item.diesel}}</td>
                 <td data-title="ADDRESS" class="numeric">{{item?.actual_diesel}}</td>
-                <td data-title="VAT ID" class="numeric">{{item.confirmed}}</td>
+                <td data-title="VAT ID" class="numeric"> <span *ngIf="!item.confirmed">Pending</span> <span *ngIf="item.confirmed">Confirmed</span></td>
 
               </tr>
             </tbody>

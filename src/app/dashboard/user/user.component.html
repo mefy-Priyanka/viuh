@@ -50,8 +50,8 @@
                 <td class="thname" data-title="VAT ID">{{user.organisation}}</td>
 
                 <td class="thname" data-title="VAT ID">{{user.role}}</td>                <td data-title="ADDRESS" class="numeric">{{user.createdDate | date}}</td>
-                <td data-title="VAT ID" class="numeric" *ngIf='role=="superAdmin"'> <i class="fa fa-trash"
-                    aria-hidden="true" (click)="delete(user._id)"></i>
+                <td data-title="VAT ID" class="numeric" *ngIf='role=="superAdmin"'>
+                   <i class="fa fa-trash"  aria-hidden="true" (click)="delete(user._id)"></i>
                 </td>
               </tr>
 
