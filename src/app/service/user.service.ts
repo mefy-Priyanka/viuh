@@ -154,8 +154,23 @@ export class UserService {
   petrolsetprice(data) {
     return this.httpClient.post(APIURL + 'diesel/petrolPrice', data)
   }
-  getpetrol(id) {
-    return this.httpClient.get(APIURL + 'diesel/currentPetrolList?superAdminId=' + id)
+  getpetrol(data) {
+    return this.httpClient.get(APIURL + 'diesel/petrolListByDate?superAdminId=' + data.superAdminId + '&date=' + data.date)
+
+  }
+
+  // get diesel voucher list
+  getdieselvoucher(data) {
+    return this.httpClient.get(APIURL + 'diesel/dieselList?superAdminId=' + data.superAdminId)
+
+  }
+  // get diesel voucher list as per dates
+  getdieselvoucherdates(data) {
+    return this.httpClient.get(APIURL + 'diesel/dieselBetweenDate?superAdminId=' + data.superAdminId + '&startDate=' + data.startDate + '&endDate=' + data.endDate)
+
+  }
+  updatedieselvoucher(data) {
+    return this.httpClient.put(APIURL + 'diesel/updateDiesel', data)
 
   }
 }

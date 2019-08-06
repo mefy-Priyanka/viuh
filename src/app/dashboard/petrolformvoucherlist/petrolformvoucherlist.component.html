@@ -1,0 +1,127 @@
+<!-- journalist -->
+<section class="corder">
+
+  <div class="ft">
+    <h1>Diesel Voucher
+      <button class="addItema" (click)="add()"><i class="fa fa-plus-circle" aria-hidden="true"></i>Add</button>
+    </h1>
+  </div>
+  <div class="card margina">
+    <div class="tableide">
+      <div class="row">
+        <div class="input-field col s3">
+          <p><label>Start date</label></p>
+          <input type="date" class="validate" [(ngModel)]="startDate">
+        </div>
+
+        <div class="input-field col s3">
+          <p><label>End date</label></p>
+          <input type="date" class="validate" [(ngModel)]="endDate">
+
+        </div>
+        <div class="input-field col s2">
+          <button (click)="datewiselist()"> &#x2714;</button>
+        </div>
+        <div class="input-field col s4">
+
+          <select (change)="choosestatus(status)" [(ngModel)]="status">
+            <option value="pending">Pending</option>
+            <option value="confirmed">Confirmed</option>
+          </select>
+
+
+        </div>
+      </div>
+      <div class="row">
+        <div id="no-more-tables">
+          <table class="col-md-12 table-bordered table-striped table-condensed cf">
+            <thead class="cf">
+              <tr>
+                <th>NAME </th>
+                <th class="numeric">CREATED DATE</th>
+                <th class="numeric">UPDATED DATE</th>
+                <th>TRUCK NO. </th>
+                <th>DIESEL </th>
+                <th>ACTUAL DIESEL </th>
+                <th>STATUS</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <a data-toggle="modal" data-target="#dieselModal" id='openmodel'></a>
+              <tr *ngFor="let item of htmllist; index as i" 
+                (click)="update(item)">
+                <td class="thno" data-title="NO.">{{item?.pump_name?.name}}</td>
+                <td class="thno" data-title="NO.">{{item.date | date :mediumDate}}</td>
+                <td class="thname" data-title="NAME">{{item.updatedDate | date :mediumDate}}</td>
+
+                <td class="thname" data-title="NAME">{{item?.truckId?.truck_number}}</td>
+
+                <td class="thname" data-title="VAT ID">{{item.diesel}}</td>
+                <td data-title="ADDRESS" class="numeric">{{item?.actual_diesel}}</td>
+                <td data-title="VAT ID" class="numeric">{{item.confirmed}}</td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- journalist -->
+<!-- Modal -->
+<!-- Confirm Modal -->
+<div class="modal fade modelss" id="dieselModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="vertical-alignment-helper">
+    <div class="modal-dialog vertical-align-center">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+              class="sr-only">Close</span>
+
+          </button>
+          <h4 class="modal-title accountTitle">Diesel Voucher Update</h4>
+
+        </div>
+        <div class="modal-body">
+
+
+
+
+
+          <div class="row">
+            <div class="input-field col s3">
+              <label>Actual Diesel</label>
+            </div>
+            <div class="input-field col s7">
+              <input type="text" class="validate" [(ngModel)]="actual_diesel">
+
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s3">
+              <label>Date</label>
+            </div>
+            <div class="input-field col s7">
+              <input type="date" class="validate" [(ngModel)]="actual_date">
+
+
+            </div>
+          </div>
+
+
+          <div class="modal-footer">
+            <button type="button" class="saveBtn" (click)="submitedit()">Save</button>
+            <button type="button" class="cancelBtn" data-dismiss="modal" id='cancels'>Cancel</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Confirm Modal -->

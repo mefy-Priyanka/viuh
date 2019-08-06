@@ -12,6 +12,7 @@ import { SharedService } from 'src/app/service/shared.service';
 export class PetrolformviewComponent implements OnInit {
 
   lists = []
+  date: any;
   constructor(private SharedService: SharedService, private userService: UserService, private CompanyService: CompanyService, private toastr: ToastrService) {
 
   }
@@ -19,14 +20,23 @@ export class PetrolformviewComponent implements OnInit {
 
 
   ngOnInit() {
+    this.date=new Date();
     this.getpetrolprice()
   }
 
   add() {
     this.SharedService.abc('petrolsadd');
   }
+  updatediesel(){
+    this.getpetrolprice()
+  }
+
   getpetrolprice() {
-    this.userService.getpetrol(localStorage.getItem('SuperAdmin')).subscribe(result => {
+    let data={
+      date: this.date,
+      superAdminId:localStorage.getItem('SuperAdmin')
+    }
+    this.userService.getpetrol(data).subscribe(result => {
       console.log(result);
       let somethidng: any = result;
       this.lists = somethidng.result;

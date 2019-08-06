@@ -26,6 +26,7 @@ export class PetrolformComponent implements OnInit {
   truckaccountid: any;
   lists: any = [];
   total: any;
+  date: Date;
   constructor(private formBuilder: FormBuilder, private SharedService: SharedService, private userService: UserService, private CompanyService: CompanyService, private toastr: ToastrService) {
     this.petrolFormErrors = {
       pumpname: {},
@@ -38,6 +39,8 @@ export class PetrolformComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.date=new Date();
+
     this.petrolForm = this.createAccountForm()
 
     this.petrolForm.valueChanges.subscribe(() => {
@@ -77,19 +80,19 @@ export class PetrolformComponent implements OnInit {
       }
     }
   }
-  createpayment() {
+  submit() {
 
     this.submitted = true;
 
     if (this.petrolForm.valid) {
 
       let data = {
-        pumpname: this.petrolForm.value.pumpname,
-        truckno: this.petrolForm.value.truckno,
-        driver: this.petrolForm.value.driver,
-        date: moment(this.petrolForm.value.date).toISOString,
+        pump_name: this.petrolForm.value.pumpname,
+        truckId: this.petrolForm.value.truckno,
+        driverId: this.petrolForm.value.driver,
+        date: new Date((this.petrolForm.value.date)).toISOString(),
         diesel: this.petrolForm.value.diesel,
-        other: this.petrolForm.value.other,
+        notes: this.petrolForm.value.other,
         userId: localStorage.getItem('userId')
       }
       console.log('let data be', data);
@@ -102,7 +105,7 @@ export class PetrolformComponent implements OnInit {
         // this.submit();
         this.petrolForm.reset();
 
-        this.SharedService.abc('journal');
+        this.SharedService.abc('petrolvoucherlist');
       },
         err => {
           console.log(err)
@@ -165,6 +168,7 @@ export class PetrolformComponent implements OnInit {
 
 
   truckaccount(data) {
+
     console.log(data);
     var accounttype = 'Expense'
     var account = '';
@@ -253,8 +257,13 @@ export class PetrolformComponent implements OnInit {
   //     })
 
   // }
-  submit() {
-    this.userService.getpetrol(localStorage.getItem('SuperAdmin')).subscribe(result => {
+  submit1() {
+    let data={
+      date: this.date,
+      superAdminId:localStorage.getItem('SuperAdmin')
+    }
+      
+    this.userService.getpetrol(data).subscribe(result => {
       console.log(result);
       let somethidng: any = result;
       this.lists = somethidng.result;
@@ -318,7 +327,7 @@ export class PetrolformComponent implements OnInit {
       console.log(result);
       this.toastr.success('Awesome!', 'Journal created suceesfully');
       console.log(result);
-      this.createpayment();
+      // this.createpayment1();
 
 
     },

@@ -21,17 +21,24 @@ export class Petrolform2Component implements OnInit {
   vendors: any;
   final: any = [];
   addeddata: any = [];
+  date: any;
   constructor(private formBuilder: FormBuilder, private SharedService: SharedService, private userService: UserService, private CompanyService: CompanyService, private toastr: ToastrService) { }
 
   ngOnInit() {
+    this.date=new Date();
+    
     this.vendorList();
-
   }
-
+  updatediesel(){
+    this.getpetrolprice()
+  }
   getpetrolprice() {
     var matches = [];
-
-    this.userService.getpetrol(localStorage.getItem('SuperAdmin')).subscribe(result => {
+    let data={
+      date: this.date,
+      superAdminId:localStorage.getItem('SuperAdmin')
+    }
+    this.userService.getpetrol(data).subscribe(result => {
       console.log(result);
       let something: any = result;
 
@@ -145,12 +152,18 @@ export class Petrolform2Component implements OnInit {
   }
 
   submit() {
+    if(!this.date)
+    {
+      alert('Provide date');
+      return
+    }
     let data = {
       user: this.final,
       userId: localStorage.getItem('userId'),
-      date: new Date().toISOString()
+      date: this.date
     }
     console.log(data)
+    // return;
     this.userService.petrolsetprice(data).subscribe(result => {
       console.log(result);
       this.toastr.success('Congo!', 'Price Updated Successfully');

@@ -26,6 +26,7 @@ import { UserService } from './service/user.service';
 import { SharedService } from './service/shared.service';
 import { ContactService } from './service/contact.service';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+// import { PetrolformvoucherlistComponent } from './dashboard/petrolformvoucherlist/petrolformvoucherlist.component';
 
 // import { JournalComponent } from './journal/journal.component';
 // import { ContactlistComponent } from './contactlist/contactlist.component';
@@ -64,7 +65,7 @@ const routes: Routes = [
     // AccountComponent,
     // CreatecontractorComponent,
     // CompanycreateComponent,
-
+    // PetrolformvoucherlistComponent
   ],
   imports: [
     BrowserModule,
