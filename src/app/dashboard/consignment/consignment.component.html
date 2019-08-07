@@ -164,7 +164,13 @@
 
                   <div class="input-field col s6">
                     <p><label>Authorised person<span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate" formControlName="authorize_person">
+                  
+                    <select class="orga"  formControlName="authorize_person" >
+
+                      <option value="" disabled selected>Choose Employee</option>
+                      <option *ngFor="let list of employeelist" [value]='list._id'>{{list.name}}</option>
+                    </select>
+
                     <p class="errormessage"
                       *ngIf="consignmentFormErrors.authorize_person.required || (consignmentForm.controls.authorize_person.pristine && submitted)">
                       authorize_person can't be empty</p>

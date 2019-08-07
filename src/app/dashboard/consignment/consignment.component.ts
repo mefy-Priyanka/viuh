@@ -26,6 +26,7 @@ export class ConsignmentComponent implements OnInit {
   driverlist: any = [];
   consignerpay: any;
   postdata: any = [];
+  employeelist: any;
   constructor(private formBuilder: FormBuilder, private userService: UserService, private companyService: CompanyService, private toastr: ToastrService) {
     this.userId = localStorage.getItem('userId');
     this.role = localStorage.getItem('role');
@@ -102,6 +103,7 @@ export class ConsignmentComponent implements OnInit {
 
 
   ngOnInit() {
+    this.employeeList()
     this.getfleetList();
     this.driverList()
     this.consignmentForm = this.createconsignmentForm()
@@ -317,6 +319,24 @@ export class ConsignmentComponent implements OnInit {
       let result: any = {}
       result = data;
       this.driverlist = result.result
+      console.log(this.driverlist);
+    },
+      error => {
+        console.log(error);
+
+      })
+  }
+  employeeList() {
+
+    let data = {
+      id: localStorage.getItem('SuperAdmin'),
+      contact_type: 'employee'
+    }
+    this.companyService.getcustomer(data).subscribe(data => {
+
+      let result: any = {}
+      result = data;
+      this.employeelist = result.result
       console.log(this.driverlist);
     },
       error => {
