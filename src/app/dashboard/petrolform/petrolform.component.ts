@@ -309,6 +309,7 @@ export class PetrolformComponent implements OnInit {
       notes: '',
       total: total,
       userId: localStorage.getItem('userId'),
+      journal_base:'other',
       detail: [{
         accountId: this.firstaccountid,
         credit: total,

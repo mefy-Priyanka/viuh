@@ -16,21 +16,24 @@
                   <thead class="cf">
                     <tr>
                         <th>Date</th>
-                     
+                        <th>Payment To</th>
                       <th>Type</th>
                       <th>Payment Date</th>
                       <th>Payment Mode</th>
                       <th>Payment No</th>
+                      <th>Reference</th>
                       <th>Amount</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr *ngFor="let list of voucherlist">
                       <td class="thno" data-title="NO.">{{list.createdDate}}</td>
+                      <td class="thname" data-title="VAT ID">{{list?.contactId?.name}} {{list?.ownerId?.name}}{{list?.contractId?.companyName}}</td>
                       <td class="thname" data-title="NAME">{{list.payment}}</td>
                       <td class="thname" data-title="VAT ID">{{list.payment_date}}</td>
                       <td data-title="ADDRESS" class="numeric">{{list.payment_mode}}</td>
                       <td data-title="VAT ID" class="numeric">{{list.payment_number}}</td>
+                      <td data-title="VAT ID" class="numeric">{{list?.reference_number}}</td>
                       <td data-title="VAT ID" class="numeric">{{list.amount_paid}}</td>
 
                     </tr>

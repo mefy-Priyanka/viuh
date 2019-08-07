@@ -101,6 +101,7 @@ export class PaymentreceivedComponent implements OnInit {
       notes:'',
       total:this.amount,
       userId:localStorage.getItem('userId'),
+      journal_base:'bank',
       detail:[{
         accountId:this.firstaccountid,
         credit:this.amount,

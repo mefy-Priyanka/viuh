@@ -183,7 +183,13 @@ export class JournalComponent implements OnInit {
 
   }
   submit() {
-
+    if(!this.cashcheck){
+      Object.assign(this.maindata, { journal_base: 'bank' })
+    }
+    else if(this.cashcheck){
+      Object.assign(this.maindata, { journal_base: 'cash' })
+    }
+    
     if (this.date == '') {
       alert('date is not seleted');
       return
@@ -196,6 +202,8 @@ export class JournalComponent implements OnInit {
       alert('notes is not seleted');
       return
     }
+   
+  
     Object.assign(this.maindata, { detail: this.jdata })
     Object.assign(this.maindata, { total: this.ctotal });
     Object.assign(this.maindata, { date: moment(this.date).toISOString() });

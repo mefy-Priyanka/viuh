@@ -260,6 +260,7 @@ export class InvoiceComponent implements OnInit {
       notes:'',
       total:this.myForm.value.amount,
       userId:localStorage.getItem('userId'),
+      journal_base:'bank',
       detail:[{
         accountId:this.firstaccountid,
         debit:this.myForm.value.amount,

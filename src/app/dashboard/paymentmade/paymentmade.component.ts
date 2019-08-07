@@ -104,6 +104,7 @@ export class PaymentmadeComponent implements OnInit {
       notes:'',
       total:this.amount,
       userId:localStorage.getItem('userId'),
+      journal_base:'bank',
       detail:[{
         accountId:'5d2583ef8de29212f49cf200',
         credit:this.amount,

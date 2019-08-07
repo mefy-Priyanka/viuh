@@ -253,6 +253,7 @@ export class PetrolformvoucherlistComponent implements OnInit {
       notes: '',
       total: this.actual_amount * parseFloat(this.actual_diesel),
       userId: localStorage.getItem('userId'),
+      journal_base:'other',
       detail: [{
         accountId: this.firstaccountid,
         credit: this.actual_amount * parseFloat(this.actual_diesel),

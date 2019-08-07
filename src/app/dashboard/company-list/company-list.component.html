@@ -33,7 +33,6 @@
                   <table class="col-md-12 table-bordered table-striped table-condensed cf">
                   <thead class="cf">
                     <tr>
-                  
                       <th>EMAIL</th>
                       <th>COMPANY NAME</th>
                       <th>PHONE NUMBER</th>
@@ -44,10 +43,10 @@
                   <tbody>
                     <tr *ngFor="let company of companyDetail; index as i" >
                       <td class="thno" data-title="NO.">{{company.email}}</td>
-                      <td class="thname" data-title="NAME"> {{company.companyName}} </td>
+                      <td class="thname" data-title="NAME"> {{company.organisation}} </td>
                       <td class="thname" data-title="VAT ID">{{company.phoneNumber}}</td>
                       <td data-title="ADDRESS" class="numeric">{{company.currency}}</td>
-                      <td data-title="VAT ID" class="numeric">{{company.panCard}}</td>
+                      <td data-title="VAT ID" class="numeric">{{company?.pan?.number}}</td>
                     </tr>
                   </tbody>
                 </table>

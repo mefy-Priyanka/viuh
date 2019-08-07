@@ -16,7 +16,7 @@ export class PaymentvoucherComponent implements OnInit {
   payForm: any;
   total: number;
   denom = [];
-  payFormErrors: { to: {}; truck: {}; date: {}; paytype: {}; bank: {}; amount: {}; };
+  payFormErrors: { to: {}; truck: {}; date: {}; paytype: {}; bank: {}; amount: {}; reference: {} };
   contactlist = [];
   fleetDetail = [];
   trucknumber = '';
@@ -44,7 +44,7 @@ export class PaymentvoucherComponent implements OnInit {
     this.payFormErrors = {
       to: {},
       truck: {},
-
+      reference: {},
       date: {},
       paytype: {},
       bank: {},
@@ -138,6 +138,7 @@ export class PaymentvoucherComponent implements OnInit {
       paytype: ['', Validators.required],
       bank: ['', Validators.required],
       amount: ['', Validators.required],
+      reference: [''],
     });
   }
 
@@ -350,7 +351,8 @@ export class PaymentvoucherComponent implements OnInit {
       bankId: this.payForm.value.bank,
       amount_paid: this.payForm.value.amount,
       denomination: this.denom,
-      userId: localStorage.getItem('userId')
+      userId: localStorage.getItem('userId'),
+      reference_number: this.payForm.value.reference
     }
 
     console.log(data)
@@ -443,7 +445,7 @@ export class PaymentvoucherComponent implements OnInit {
         })
     }
     else {
-      
+
       let datas = {
         accounttype: accounttype,
         account: account,
@@ -511,13 +513,20 @@ export class PaymentvoucherComponent implements OnInit {
 
 
   creatjournal() {
-
+    var journalbase = '';
+    if (this.paymode=='cash') {
+      journalbase='cash'
+    }
+    else{
+      journalbase='bank'
+    }
     let data = {
       date: new Date().toISOString(),
       reference: '',
       notes: '',
       total: this.payForm.value.amount,
       userId: localStorage.getItem('userId'),
+      journal_base:journalbase,
       detail: [{
         accountId: this.creditaccount,
         credit: this.payForm.value.amount,

@@ -1,47 +1,47 @@
 <!-- fleetlist-->
 <section class="corder" *ngIf="fleet">
-    <!-- <a href="#" class="floatEa">
+  <!-- <a href="#" class="floatEa">
         <i class="fa fa-envelope-o my-float"></i>
         </a> -->
-    <div class="ft">
-      <h1>Fleet
-        <button class="addItema" (click)="createFleet()"><i class="fa fa-plus-circle" aria-hidden="true"></i>Add</button>
-      </h1>
-    </div>
-    <div class="card margina">
-        <div class="tableide">
-            <div class="row">
-                <div id="no-more-tables">
-                    <table class="col-md-12 table-bordered table-striped table-condensed cf">
-                    <thead class="cf">
-                      <tr>
-                        <th class="numeric">TRUCK NUMBER</th>
-                        <th>TRUCK CAPACITY</th>
-                        <!-- <th>CONTRACTOR/TRANSPORTS</th> -->
-                        <th>OWNER</th>
-                        <th><i class="fa fa-question-circle-o" aria-hidden="true"></i></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr *ngFor="let fleet of fleetDetail">
-                        <td class="thno" data-title="NO.">{{fleet.truck_number}}</td>
-                        <td class="thname" data-title="NAME">{{fleet.capacity}}</td>
-                        <!-- <td class="thname" data-title="VAT ID">{{fleet}}</td> -->
-                        <td data-title="ADDRESS" class="numeric" *ngIf="fleet.ownId">{{fleet.ownId.name}}</td>
-                        <td data-title="ADDRESS" class="numeric" *ngIf="fleet.contractId">{{fleet.contractId.companyName}}</td>
-                        <td data-title="VAT ID" class="numeric" (click)="delete(fleet._id)">
-                          <!-- <i class="fa fa-trash" aria-hidden="true"></i> -->
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-            </div>
+  <div class="ft">
+    <h1>Fleet
+      <button class="addItema" (click)="createFleet()"><i class="fa fa-plus-circle" aria-hidden="true"></i>Add</button>
+    </h1>
+  </div>
+  <div class="card margina">
+    <div class="tableide">
+      <div class="row">
+        <div id="no-more-tables">
+          <table class="col-md-12 table-bordered table-striped table-condensed cf">
+            <thead class="cf">
+              <tr>
+                <th class="numeric">TRUCK NUMBER</th>
+                <th>TRUCK CAPACITY</th>
+                <!-- <th>CONTRACTOR/TRANSPORTS</th> -->
+                <th>OWNER</th>
+                <th><i class="fa fa-question-circle-o" aria-hidden="true"></i></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let fleet of fleetDetail">
+                <td class="thno" data-title="NO.">{{fleet.truck_number}}</td>
+                <td class="thname" data-title="NAME">{{fleet.capacity}} {{fleet?.unit}}</td>
+                <!-- <td class="thname" data-title="VAT ID">{{fleet}}</td> -->
+                <td data-title="ADDRESS" class="numeric" *ngIf="fleet.ownId">{{fleet.ownId.name}}</td>
+                <td data-title="ADDRESS" class="numeric" *ngIf="fleet.contractId">{{fleet.contractId.companyName}}</td>
+                <td data-title="VAT ID" class="numeric" (click)="delete(fleet._id)">
+                  <!-- <i class="fa fa-trash" aria-hidden="true"></i> -->
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-
+      </div>
     </div>
-    </section>
-    <!-- fleetlist -->
+
+  </div>
+</section>
+<!-- fleetlist -->
 
 
 
@@ -67,19 +67,38 @@
                 <p class="errormessage" *ngIf="truckerr">Truck number can't be empty</p>
               </div>
 
-              <div class="input-field col s4">
-                  <p><label>Truck Capacity(Cal)</label></p>
-                  <input type="text" class="validate" [(ngModel)]="truckcapacity" [ngModelOptions]="{standalone: true}"
-                    (keyup)="check('truckcapacity')">
-                  <p class="errormessage" *ngIf="caperr">Truck capacity can't be empty</p>
-                </div>
+              <div class="input-field col s3">
+                <p><label>Truck Capacity</label></p>
+                <input type="number" class="validate" [(ngModel)]="truckcapacity" [ngModelOptions]="{standalone: true}"
+                  (keyup)="check('truckcapacity')">
 
-              <div class="input-field col s4">
+                <p class="errormessage" *ngIf="caperr">Truck capacity can't be empty</p>
+              </div>
+              <div class="input-field col s2">
+                <p><label>UNIT</label></p>
+                <!-- <input type="number" class="validate" [(ngModel)]="unit" [ngModelOptions]="{standalone: true}"
+                  (keyup)="check('unit')"> -->
+
+                <select [(ngModel)]="unit" [ngModelOptions]="{standalone: true}" (ngModelChange)="check('unit')">
+                  <option value="" disabled>Choose Unit</option>
+                  <option value='pices'>Piece</option>
+                  <option value='kl'>KL</option>
+                  <option value='ton'>TON</option>
+
+                </select>
+
+
+                <p class="errormessage" *ngIf="uniterr">Unit can't be empty</p>
+              </div>
+
+              <div class="input-field col s3">
                 <p><label>Ownership <span class="blue_star">*</span></label></p>
-                <select [(ngModel)]="ownership" [ngModelOptions]="{standalone: true}" (ngModelChange)="check('ownership',$event)">
+                <select [(ngModel)]="ownership" [ngModelOptions]="{standalone: true}"
+                  (ngModelChange)="check('ownership',$event)">
                   <option value="" disabled selected>Ownership</option>
                   <option [value]='superadminid'>Owned</option>
-                  <option *ngFor="let contractor of contractorDetail" [value]='contractor._id'>{{contractor.companyName}}</option>
+                  <option *ngFor="let contractor of contractorDetail" [value]='contractor._id'>
+                    {{contractor.companyName}}</option>
 
                 </select>
                 <p class="errormessage" *ngIf="ownererr">please choose ownership</p>
@@ -120,8 +139,8 @@
 
               <div class="input-field col s2">
                 <p><label>Valid Upto</label></p>
-                <input (keyup)="check1('valid',selectedOption)"  id="first_name" type="date"
-                  [(ngModel)]="selected.valid" class="validate" [ngModelOptions]="{standalone: true}">
+                <input (keyup)="check1('valid',selectedOption)" id="first_name" type="date" [(ngModel)]="selected.valid"
+                  class="validate" [ngModelOptions]="{standalone: true}">
                 <p *ngIf="validerr">can't be empty</p>
               </div>
 

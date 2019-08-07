@@ -36,6 +36,8 @@ export class FleetComponent implements OnInit {
   loader: boolean = false;
   trucknumber = "";
   truckcapacity = '';
+  unit='';
+  uniterr: boolean=false;
   caperr = false;
   ownership = ""
   selecterr: boolean;
@@ -51,6 +53,7 @@ export class FleetComponent implements OnInit {
   fleetDetail = [];
   maindata = { userId: '', superadminid: '', others: [] };
   contractorDetail: any;
+
   constructor(private formBuilder: FormBuilder,
     private router: Router, private companyService:
       CompanyService, private toastr: ToastrService,private userService: UserService,) {
@@ -479,6 +482,15 @@ export class FleetComponent implements OnInit {
       }
     }
 
+    if (xy == 'unit') {
+      if (this.unit == '') {
+        this.uniterr = true;
+      }
+      else {
+        this.uniterr = false;
+      }
+    }
+
     if (xy == 'ownership') {
       if (this.ownership == '') {
         this.ownererr = true;
@@ -506,6 +518,10 @@ export class FleetComponent implements OnInit {
       this.caperr = true;
       return;
     }
+    if (this.unit == '') {
+      this.uniterr = true;
+      return;
+    }
     else if (this.ownership == '') {
       this.ownererr = true;
       return;
@@ -519,7 +535,7 @@ export class FleetComponent implements OnInit {
 
     Object.assign(this.maindata, { truck_number: this.trucknumber });
     Object.assign(this.maindata, { capacity: this.truckcapacity })
-
+    Object.assign(this.maindata, { unit: this.unit })
     // Object.assign(this.maindata, { ownership: this.ownership })
 
     console.log(this.maindata);
