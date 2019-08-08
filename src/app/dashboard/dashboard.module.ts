@@ -49,6 +49,7 @@ import { ViewdriverComponent } from './viewdriver/viewdriver.component';
 import { ViewcontractorComponent } from './viewcontractor/viewcontractor.component';
 import { PetrolformviewComponent } from './petrolformview/petrolformview.component';
 import { PetrolformvoucherlistComponent } from './petrolformvoucherlist/petrolformvoucherlist.component';
+import { RateComponent } from './rate/rate.component';
 
 const routes: Routes = [
     {
@@ -127,6 +128,7 @@ const routes: Routes = [
         ViewcontractorComponent,
         PetrolformviewComponent,
         PetrolformvoucherlistComponent,
+        RateComponent,
 
     ]
 })
