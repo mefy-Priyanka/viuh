@@ -173,4 +173,15 @@ export class UserService {
     return this.httpClient.put(APIURL + 'diesel/updateDiesel', data)
 
   }
+
+
+  // rates for consignment
+  saverate(data){
+    return this.httpClient.post(APIURL + 'rate/create', data)
+
+  }
+  getrate(id){
+    return this.httpClient.get(APIURL + 'rate/rateList?superAdminId=' + id)
+
+  }
 }

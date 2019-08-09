@@ -1,3 +1,23 @@
+
+
+
+<div class="loading" *ngIf="loader">
+  <div class="sk-circle">
+    <div class="sk-circle1 sk-child"></div>
+    <div class="sk-circle2 sk-child"></div>
+    <div class="sk-circle3 sk-child"></div>
+    <div class="sk-circle4 sk-child"></div>
+    <div class="sk-circle5 sk-child"></div>
+    <div class="sk-circle6 sk-child"></div>
+    <div class="sk-circle7 sk-child"></div>
+    <div class="sk-circle8 sk-child"></div>
+    <div class="sk-circle9 sk-child"></div>
+    <div class="sk-circle10 sk-child"></div>
+    <div class="sk-circle11 sk-child"></div>
+    <div class="sk-circle12 sk-child"></div>
+  </div>
+</div>
+<!-- Loader -->
 <!-- rate-->
 <section class="corder">
   <div class="ft">
@@ -57,31 +77,44 @@
                 <th>ADD KM / RATE</th>
                 <th>EFFECTIVE DATE FROM</th>
                 <th>EFFECTIVE DATE TO</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
+              <tr *ngFor="let item of ratelist">
+                  <td class="thno">{{item?.customerId?.name}}</td>
+                  <td class="thno">{{item?.base_km}}</td>
+                  <td class="thno">{{item?.base_rate}}</td>
+                  <td class="thno">{{item?.unit}}</td>
+                  <td class="thno">{{item?.add_km}}</td>
+                  <td class="thno">{{item?.add_km_rate}}</td>
+
+                  <td class="thno">{{item?.effactive_date_from | date:mediumDate}}</td>
+                  <td class="thno">{{item?.effactive_date_to  | date:mediumDate}}</td>
+              </tr>
               <tr>
                 <td class="thno" data-title="NO.">
-                  <select class="orga" [ngModel]="customer">
+                  <select class="orga" [(ngModel)]="customer">
                     <option value="" disabled selected>Select</option>
                     <option *ngFor="let list of contactlist" [value]="list._id">{{list.name}}</option>
 
                   </select>
                 </td>
-                <td class="thname" data-title="NAME"><input type="text" [ngModel]="basekm"></td>
-                <td class="thno" data-title="NO."><input type="text" [ngModel]="baserate"></td>
+                <td class="thname" data-title="NAME"><input type="text" [(ngModel)]="basekm"></td>
+                <td class="thno" data-title="NO."><input type="text" [(ngModel)]="baserate"></td>
                 <td class="thno" data-title="NO.">
-                  <select class="orga" [ngModel]="unit">
+                  <select class="orga" [(ngModel)]="unit">
                     <option value="" disabled selected>Select</option>
                     <option value="pices">Piece</option>
                     <option value="kl">KL</option>
                     <option value="ton">Ton</option>
                   </select>
                 </td>
-                <td class="thno" data-title="NO."><input type="text" [ngModel]="addkm"></td>
-                <td class="thno" data-title="NO."><input type="text" [ngModel]="addrate"></td>
-                <td class="thno" data-title="NO."><input type="date" [ngModel]="startdate"></td>
-                <td class="thno" data-title="NO."><input type="date" [ngModel]="enddate"></td>
+                <td class="thno" data-title="NO."><input type="text" [(ngModel)]="addkm"></td>
+                <td class="thno" data-title="NO."><input type="text" [(ngModel)]="addrate"></td>
+                <td class="thno" data-title="NO."><input type="date" [(ngModel)]="startdate"></td>
+                <td class="thno" data-title="NO."><input type="date" [(ngModel)]="enddate"></td>
+                <td class="thno" data-title="NO."><span (click)="submit()">&#10004;</span></td>
               </tr>
             </tbody>
           </table>
@@ -89,8 +122,8 @@
       </div>
     </div>
   </div>
-  <div class="row">
+  <!-- <div class="row">
     <button class="addBtna">+ Add</button>
-  </div>
+  </div> -->
 </section>
 <!-- rate -->
