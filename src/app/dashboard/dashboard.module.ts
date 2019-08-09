@@ -54,6 +54,7 @@ import { ContactcustomereditComponent } from './contactcustomeredit/contactcusto
 import { ContactemployeeditComponent } from './contactemployeedit/contactemployeedit.component';
 import { ContactvendoreditComponent } from './contactvendoredit/contactvendoredit.component';
 import { ContactdrivereditComponent } from './contactdriveredit/contactdriveredit.component';
+import { CompanyeditComponent } from './companyedit/companyedit.component';
 
 const routes: Routes = [
     {
@@ -137,6 +138,7 @@ const routes: Routes = [
         ContactemployeeditComponent,
         ContactvendoreditComponent,
         ContactdrivereditComponent,
+        CompanyeditComponent,
 
     ]
 })

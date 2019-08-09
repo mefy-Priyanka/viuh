@@ -1,0 +1,102 @@
+/* company create css */
+.ft h1 {
+    font-size: 34px;
+    padding: 19px 0;
+    padding-left: 20px;
+    margin:0;
+  }
+section.createcontract {
+    /* margin-left: -2em; */
+}
+.ft {
+    background: #fff;
+}
+.card.corCard{
+    margin-left: 1em;
+    margin-right: 1em;
+    border-left: 7px solid #32b1f8;
+    margin-top: 3em;
+    margin-bottom: 3em;
+    padding: 2em 2em;
+}
+span.blue_star {
+    color: #32b1f8;
+}
+button.submitBtn {
+    height: 44px;
+    width: 120px;
+    background: #32b1f8;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-right: 1em;
+}
+.contractorButton {
+    padding-left: 5em;
+}
+button.cancelBtn {
+    height: 44px;
+    width: 120px;
+    background: transparent;
+    border: 1px solid #7b839c;
+    outline: none;
+    color: #7b839c;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-right: 1em;
+}
+select {
+    display: block;
+}
+.createContractorForm input {
+    border: 1px solid #f2f2f2 !important;
+    text-indent: 12px;
+    height: 2.5rem !important;
+}
+input.fileType {
+    /* width: 15vw; */
+    height: 8vh;
+    padding-top: 7px;
+    display: flex;
+    padding-left: 6px;
+}
+.input-field.myFilet.aeto {
+    margin-top: 0 !important;
+    padding-left: 0;
+}
+.input-field.myFilet {
+    outline:none;
+    margin: 0 !important;
+}
+form.createContractorForm .row {
+    margin: 0;
+}
+.card.corCard .input-field {
+    margin: 0;
+}
+.imgFile {
+    margin: 2em;
+}
+button.submitBtn:disabled {
+    cursor: not-allowed;
+    background: #2d425b;
+}
+/* company create css */
+
+/* Responsive css */
+@media only screen and (min-width: 320px) and (max-width: 1024px){
+    .input-field.col.s4{
+        width: 100%;
+    }
+
+}
+
+@media only screen and (min-width: 320px) and (max-width: 767px){
+.contractorButton {
+    padding-left: 0;
+    text-align: center;
+}
+}
+/* Responsive css */

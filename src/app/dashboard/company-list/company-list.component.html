@@ -38,6 +38,7 @@
                       <th>PHONE NUMBER</th>
                       <th>CURRENCY</th>
                       <th>PAN NO.</th>
+                      <th>ACTION</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -47,6 +48,7 @@
                       <td class="thname" data-title="VAT ID">{{company.phoneNumber}}</td>
                       <td data-title="ADDRESS" class="numeric">{{company.currency}}</td>
                       <td data-title="VAT ID" class="numeric">{{company?.pan?.number}}</td>
+                      <td><i class="fa fa-pencil" aria-hidden="true" (click)="companyedit()"></i></td>
                     </tr>
                   </tbody>
                 </table>
