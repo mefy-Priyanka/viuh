@@ -126,18 +126,22 @@
                         <!-- {{cdetail.location_code.pristine}} -->
                         <!-- <p class="error" [ngStyle]="{'font-size':'12px'}" *ngIf=" && submitted)">Location Name Can't be empty</p> -->
                       </div>
-                      <div class="input-field col s3">
+                      <div class="input-field col s2">
                         <p><label>Location Code<span class="blue_star">*</span></label></p>
                         <input type="text" class="validate" formControlName="location_code">
                         <!-- <p class="error" [ngStyle]="{'font-size':'12px'}" *ngIf="destinationFormErrors.location_code.required || (destinationForm.controls.location_code.pristine && submitted)">Location Code Can't be empty</p> -->
                       </div>
-
                       <div class="input-field col s3">
+                        <p><label>Point Of Origin<span class="blue_star">*</span></label></p>
+                        <input type="text" class="validate" formControlName="km">
+                        <!-- <p class="error" [ngStyle]="{'font-size':'12px'}" *ngIf="destinationFormErrors.address.required || (destinationForm.controls.address.pristine && submitted)">Address Can't be empty</p> -->
+                      </div>
+                      <div class="input-field col s2">
                         <p><label>Address<span class="blue_star">*</span></label></p>
                         <input type="text" class="validate" formControlName="address">
                         <!-- <p class="error" [ngStyle]="{'font-size':'12px'}" *ngIf="destinationFormErrors.address.required || (destinationForm.controls.address.pristine && submitted)">Address Can't be empty</p> -->
                       </div>
-                      <div class="input-field col s3">
+                      <div class="input-field col s2">
                         <p><label>Distance<span class="blue_star">*</span></label></p>
                         <input type="text" class="validate" formControlName="km">
                         <!-- <p class="error" [ngStyle]="{'font-size':'12px'}" *ngIf="destinationFormErrors.address.required || (destinationForm.controls.address.pristine && submitted)">Address Can't be empty</p> -->
