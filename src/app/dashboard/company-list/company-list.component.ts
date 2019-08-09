@@ -20,6 +20,15 @@ export class CompanyListComponent implements OnInit {
     this.listCompany = false;
     this.SharedService.abc('companydetail');
   }
+  companyedit(company){
+    let data1={
+      page:'journal',
+      data:company
+    }
+    this.SharedService.datatravel(data1);
+
+    this.SharedService.abc('viewcompany');
+  }
   getCompanyList() {
     this.loader = true;
     this.CompanyService.companyList(localStorage.getItem('SuperAdmin')).subscribe(data => {

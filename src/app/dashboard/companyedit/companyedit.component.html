@@ -1,0 +1,483 @@
+<!-- create company -->
+<section class="createcontract">
+  <!-- Loader -->
+  <div class="loading" *ngIf="loader">
+    <div class="sk-circle">
+      <div class="sk-circle1 sk-child"></div>
+      <div class="sk-circle2 sk-child"></div>
+      <div class="sk-circle3 sk-child"></div>
+      <div class="sk-circle4 sk-child"></div>
+      <div class="sk-circle5 sk-child"></div>
+      <div class="sk-circle6 sk-child"></div>
+      <div class="sk-circle7 sk-child"></div>
+      <div class="sk-circle8 sk-child"></div>
+      <div class="sk-circle9 sk-child"></div>
+      <div class="sk-circle10 sk-child"></div>
+      <div class="sk-circle11 sk-child"></div>
+      <div class="sk-circle12 sk-child"></div>
+    </div>
+  </div>
+  <!-- Loader -->
+  <div class="ft">
+    <h1>Company | Edit
+    </h1>
+  </div>
+  <div class="createContractorForm">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- input type -->
+        <div *ngIf="fieldinput">
+          <div class="card corCard">
+            <div class="row">
+
+              <div class="nota">
+                <div class="row">
+                  <div class="input-field col s4">
+                    <p><label>Email <span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" (keyup)="keyup(inputdata.email,'email')"  [(ngModel)]="inputdata.email">
+
+                  </div>
+
+
+                  <div class="input-field col s4">
+                    <p><label>Registration No. <span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" (keyup)="keyup(inputdata.registration_certificate,'registration_certificate')"  [(ngModel)]="inputdata.registration_certificate">
+
+                  </div>
+
+                  <div class="input-field col s4">
+                    <p><label>Organisation</label></p>
+                    <select [(ngModel)]="inputdata.organisation" (change)="keyup(inputdata.organisation,'organisation')">
+                      <option value="" disabled selected>Choose your organisation</option>
+                      <option value="patro">patro</option>
+                      <option value="lalbaba">lalbaba</option>
+
+                    </select>
+
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s4">
+                    <p><label>Address</label></p>
+                    <input type="text" class="validate" (keyup)="keyup(inputdata.address,'address')"  [(ngModel)]="inputdata.address">
+
+                  </div>
+
+                  <div class="input-field col s4">
+                    <p><label>Phone Number</label></p>
+                    <input type="text" class="validate" (keyup)="keyup(inputdata.phoneNumber,'phoneNumber')"  [(ngModel)]="inputdata.phoneNumber">
+
+                  </div>
+                  <div class="input-field col s4">
+                    <p><label>PAN No. <span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" (keyup)="keyup(inputdata.pan,'pan')"  [(ngModel)]="inputdata.pan">
+
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s4">
+                    <p><label>Currency</label></p>
+                    <select>
+                      <option value="" disabled selected>Choose your option</option>
+                      <option value="Rupees">Rupees</option>
+                    </select>
+
+                  </div>
+                  <div class="input-field col s4">
+                    <p><label>GST No. <span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" (keyup)="keyup(inputdata.gst,'gst')"  [(ngModel)]="inputdata.gst">
+
+                  </div>
+                  <div class="input-field col s4">
+                    <p><label>Trade License A<span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" (keyup)="keyup(inputdata.tradeLicense_A,'tradeLicense_A')"  [(ngModel)]="inputdata.tradeLicense_A">
+
+                  </div>
+
+                </div>
+
+
+
+
+
+
+
+
+                <div class="row">
+                  <div class="input-field col s4">
+                    <p><label>Trade License B<span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" (keyup)="keyup(inputdata.tradeLicense_B,'tradeLicense_B')"  [(ngModel)]="inputdata.tradeLicense_B">
+
+                  </div>
+                  <div class="input-field col s4">
+                    <p><label>Professional Tax <span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" (keyup)="keyup(inputdata.professional_tax,'professional_tax')"  [(ngModel)]="inputdata.professional_tax">
+
+                  </div>
+                  <div class="input-field col s4">
+                    <p><label>ESI<span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" (keyup)="keyup(inputdata.esi,'esi')"  [(ngModel)]="inputdata.esi">
+
+                  </div>
+
+                </div>
+
+
+
+
+
+
+                <div class="row">
+                  
+
+                  <div class="input-field col s4">
+                    <p><label>PF<span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" (keyup)="keyup(inputdata.pf,'pf')"  [(ngModel)]="inputdata.pf">
+
+                  </div>
+
+                  <div class="input-field col s4">
+                    <p><label>Road Registration Certificate<span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" (keyup)="keyup(inputdata.road_registration_certificate,'road_registration_certificate')"  [(ngModel)]="inputdata.road_registration_certificate">
+                  </div>
+
+                  
+                  <div class="input-field col s4">
+                    <p><label>Invoice No. <span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" (keyup)="keyup(inputdata.invoice_number,'invoice_number')"   [(ngModel)]="inputdata.invoice_number" >
+                   
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s4">
+                    <p><label>Tan No.<span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" (keyup)="keyup(inputdata.tan,'tan')"  [(ngModel)]="inputdata.tan">
+                  </div>
+                  <div class="input-field col s4">
+                    <p><label>MSME<span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" (keyup)="keyup(inputdata.msme,'msme')"  [(ngModel)]="inputdata.msme">
+                  </div>
+                </div>
+
+
+              </div>
+            </div>
+            <div class="row">
+              <div class="contractorButton">
+                <button class="submitBtn" (click)="showContent()">Next</button>
+                <!-- <button class="cancelBtn">Cancel</button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+          <!-- input type -->
+          <!-- uploadfiles -->
+          <div *ngIf="imagefile">
+            <div class="card corCard">
+              <div class="row">
+
+                <div class="imgFile">
+                  <p><span class="blue_star">******Upload Files*********</span></p>
+                  <div class="row">
+
+
+                    <div class="input-field col s4">
+                      <p><label>Company Logo</label></p>
+                      <div class="input-field col s7 myFilet aeto"><input type="file" class="validate"
+                          (change)="upload($event,'companyLogo')" class="fileType">
+
+
+                      </div>
+                    </div>
+
+
+                    <div class="input-field col s4">
+                      <p><label>Trade License A </label></p>
+                      <div class="input-field col s7 myFilet aeto"><input type="file" class="validate"
+                          (change)="upload($event,'tradeLicenseAId')" class="fileType">
+
+
+                      </div>
+                    </div>
+
+
+                    <div class="input-field col s4">
+                      <p><label>Trade License B</label></p>
+                      <div class="input-field col s7 myFilet aeto"><input type="file" class="validate"
+                          (change)="upload($event,'tradeLicenseBId')" class="fileType">
+
+                      </div>
+                    </div>
+                  </div>
+
+
+
+                  <div class="row">
+                    <div class="input-field col s4">
+                      <p><label>GST</label></p>
+                      <div class="input-field col s7 myFilet aeto"><input type="file" class="validate"
+                          (change)="upload($event,'gstId')" class="fileType">
+
+
+                      </div>
+                    </div>
+
+
+                    <div class="input-field col s4">
+                      <p><label>MSME</label></p>
+                      <div class="input-field col s7 myFilet aeto"><input (change)="upload($event,'msme')"
+                          type="file" class="validate" class="fileType">
+
+
+                      </div>
+                    </div>
+
+
+
+                    <div class="input-field col s4">
+                      <p><label>PAN</label></p>
+                      <div class="input-field col s7 myFilet aeto"><input (change)="upload($event,'panId')" type="file"
+                          class="validate" class="fileType">
+
+
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <div class="row">
+                    <div class="input-field col s4">
+                      <p><label>Registration</label></p>
+                      <div class="input-field col s7 myFilet aeto"><input (change)="upload($event,'regId')" type="file"
+                          class="validate" class="fileType">
+
+
+                      </div>
+                    </div>
+
+
+                    <div class="input-field col s4">
+                      <p><label>Road Registration Certificate</label></p>
+                      <div class="input-field col s7 myFilet aeto"><input type="file" class="validate"
+                          (change)="upload($event,'road_registration_certificatedoc')" class="fileType">
+
+
+                      </div>
+                    </div>
+
+
+
+                    <div class="input-field col s4">
+                      <p><label>TAN</label></p>
+                      <div class="input-field col s7 myFilet aeto"><input type="file" class="validate"
+                          (change)="upload($event,'tandoc')" class="fileType">
+
+                      </div>
+                    </div>
+                  </div>
+
+
+
+
+
+
+
+                  <div class="row">
+                      <div class="input-field col s4">
+                        <p><label>Professional Tax</label></p>
+                        <div class="input-field col s7 myFilet aeto"><input (change)="upload($event,'professional_tax')" type="file"
+                            class="validate" class="fileType">
+  
+  
+                        </div>
+                      </div>
+  
+  
+                      <div class="input-field col s4">
+                        <p><label>PF</label></p>
+                        <div class="input-field col s7 myFilet aeto"><input type="file" class="validate"
+                            (change)="upload($event,'pf')" class="fileType">
+  
+  
+                        </div>
+                      </div>
+  
+  
+  
+                      <div class="input-field col s4">
+                        <p><label>ESI</label></p>
+                        <div class="input-field col s7 myFilet aeto"><input type="file" class="validate"
+                            (change)="upload($event,'esi')" class="fileType">
+  
+                        </div>
+                      </div>
+                    </div>
+
+
+
+
+
+
+
+
+                  <br>
+                  <hr style="border-top:1px dotted ">
+
+                  <div class="row">
+                    <div class="col-md-6">
+                      <p><span class="blue_star">******Balance Sheet*********</span></p>
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <p><label>For Year 1</label></p>
+                          <div class="input-field col s7 myFilet aeto"><input (change)="upload($event,'balsheet1doc')"
+                              type="file" class="validate" class="fileType">
+
+
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <p><label>For Year 2</label></p>
+                          <div class="input-field col s7 myFilet aeto"><input (change)="upload($event,'balsheet2doc')"
+                              type="file" class="validate" class="fileType">
+
+
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <p><label>For Year 3</label></p>
+                          <div class="input-field col s7 myFilet aeto"><input (change)="upload($event,'balsheet3doc')"
+                              type="file" class="validate" class="fileType">
+
+
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <p><label>For Year 4</label></p>
+                          <div class="input-field col s7 myFilet aeto"><input (change)="upload($event,'balsheet4doc')"
+                              type="file" class="validate" class="fileType">
+
+
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <p><label>For Year 5</label></p>
+                          <div class="input-field col s7 myFilet aeto"><input (change)="upload($event,'balsheet5doc')"
+                              type="file" class="validate" class="fileType">
+
+
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+
+
+
+                    <div class="col-md-6">
+                      <p><span class="blue_star">******ITR*********</span></p>
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <p><label>For Year 1</label></p>
+                          <div class="input-field col s7 myFilet aeto"><input (change)="upload($event,'itr1doc')"
+                              type="file" class="validate" class="fileType">
+
+
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <p><label>For Year 2</label></p>
+                          <div class="input-field col s7 myFilet aeto"><input (change)="upload($event,'itr2doc')"
+                              type="file" class="validate" class="fileType">
+
+
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <p><label>For Year 3</label></p>
+                          <div class="input-field col s7 myFilet aeto"><input (change)="upload($event,'itr3doc')"
+                              type="file" class="validate" class="fileType">
+
+
+                          </div>
+                        </div>
+                      </div>
+
+
+
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <p><label>For Year 4</label></p>
+                          <div class="input-field col s7 myFilet aeto"><input (change)="upload($event,'itr4doc')"
+                              type="file" class="validate" class="fileType">
+
+
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <p><label>For Year 5</label></p>
+                          <div class="input-field col s7 myFilet aeto"><input (change)="upload($event,'itr5doc')"
+                              type="file" class="validate" class="fileType">
+
+
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+            <div class="row">
+              <div class="contractorButton">
+                <button class="submitBtn" (click)="FormSubmit()">Update</button>
+                <button class="cancelBtn">Cancel</button>
+              </div>
+            </div>
+          </div>
+
+
+
+
+          <!-- uploadfiles -->
+
+
+
+
+
+        </div>
+      </div>
+
+  </div>
+</section>
+
+<!-- create company -->
