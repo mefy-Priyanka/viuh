@@ -7,45 +7,43 @@
   </div>
 
 
-      <div class="row customera">
-          <div class="input-field col s3">
-              <p><label>Customer <span class="blue_star">*</span></label></p>
-              <select class="orga">
-                  <option value="" disabled selected>Select</option>
-                  <option *ngFor="let list of contactlist" [value]="list._id">{{list.name}}</option>
+  <div class="row customera">
+    <div class="input-field col s3">
+      <p><label>Customer <span class="blue_star">*</span></label></p>
+      <select class="orga">
+        <option value="" disabled selected>Select</option>
+        <option *ngFor="let list of contactlist" [value]="list._id">{{list.name}}</option>
 
-                </select>
-            </div>
-            <div class="input-field col s3">
-                <p><label>Unit <span class="blue_star">*</span></label></p>
-                <select class="orga">
-                    <option value="" disabled selected>Select</option>
-                    <option value="pices">Piece</option>
-                        <option value="kl">KL</option>
-                        <option value="ton">Ton</option>
-                    
-                  </select>
-  
-              </div>
-              <div class="input-field col s3">
-                  <p><label>Start Date <span class="blue_star">*</span></label></p>
-                  <input type="date" class="validate">
-    
-                </div>
-                <div class="input-field col s2">
-                    <p><label>End Date <span class="blue_star">*</span></label></p>
-                    <input type="date" class="validate">
-      
-                  </div>
-                  <div class="input-field col s1">
-                      <button class="filter"><i class="fa fa-filter" aria-hidden="true"></i></button>
-        
-                    </div>
-        </div>
+      </select>
+    </div>
+    <div class="input-field col s3">
+      <p><label>Unit <span class="blue_star">*</span></label></p>
+      <select class="orga">
+        <option value="" disabled selected>Select</option>
+        <option value="pices">Piece</option>
+        <option value="kl">KL</option>
+        <option value="ton">Ton</option>
+      </select>
+    </div>
+    <div class="input-field col s3">
+      <p><label>Start Date <span class="blue_star">*</span></label></p>
+      <input type="date" class="validate">
+
+    </div>
+    <div class="input-field col s2">
+      <p><label>End Date <span class="blue_star">*</span></label></p>
+      <input type="date" class="validate">
+
+    </div>
+    <div class="input-field col s1">
+      <button class="filter"><i class="fa fa-filter" aria-hidden="true"></i></button>
+
+    </div>
+  </div>
   <div class="card margina">
 
     <div class="tableide">
-     
+
       <div class="row">
         <div id="no-more-tables">
           <table class="col-md-12 table-bordered table-striped table-condensed cf">
@@ -64,26 +62,26 @@
             <tbody>
               <tr>
                 <td class="thno" data-title="NO.">
-                    <select class="orga">
-                        <option value="" disabled selected>Select</option>
-                        <option *ngFor="let list of contactlist" [value]="list._id">{{list.name}}</option>
+                  <select class="orga" [ngModel]="customer">
+                    <option value="" disabled selected>Select</option>
+                    <option *ngFor="let list of contactlist" [value]="list._id">{{list.name}}</option>
 
-                      </select>
+                  </select>
                 </td>
-                <td class="thname" data-title="NAME"><input type="text"></td>
-                <td class="thno" data-title="NO."><input type="text"></td>
+                <td class="thname" data-title="NAME"><input type="text" [ngModel]="basekm"></td>
+                <td class="thno" data-title="NO."><input type="text" [ngModel]="baserate"></td>
                 <td class="thno" data-title="NO.">
-                    <select class="orga">
-                        <option value="" disabled selected>Select</option>
-                        <option value="pices">Piece</option>
-                        <option value="kl">KL</option>
-                        <option value="ton">Ton</option>
-                      </select>
+                  <select class="orga" [ngModel]="unit">
+                    <option value="" disabled selected>Select</option>
+                    <option value="pices">Piece</option>
+                    <option value="kl">KL</option>
+                    <option value="ton">Ton</option>
+                  </select>
                 </td>
-                <td class="thno" data-title="NO."><input type="text"></td>
-                <td class="thno" data-title="NO."><input type="text"></td>
-                <td class="thno" data-title="NO."><input type="date"></td>
-                <td class="thno" data-title="NO."><input type="date"></td>
+                <td class="thno" data-title="NO."><input type="text" [ngModel]="addkm"></td>
+                <td class="thno" data-title="NO."><input type="text" [ngModel]="addrate"></td>
+                <td class="thno" data-title="NO."><input type="date" [ngModel]="startdate"></td>
+                <td class="thno" data-title="NO."><input type="date" [ngModel]="enddate"></td>
               </tr>
             </tbody>
           </table>
