@@ -13,7 +13,7 @@
         <app-account *ngIf="sharenav=='accountdetail'"></app-account>
         <app-order *ngIf="sharenav=='orderdetail'"></app-order>
         <app-user *ngIf="sharenav=='user'"></app-user>
-<!-- <app-rate></app-rate> -->
+<app-rate *ngIf="sharenav=='map'"></app-rate>
 <!-- <app-contactcustomeredit></app-contactcustomeredit> -->
 <!-- <app-contactemployeedit></app-contactemployeedit> -->
 <!-- <app-contactvendoredit></app-contactvendoredit> -->
@@ -26,7 +26,7 @@
 
         <app-contactlist *ngIf="sharenav=='contact'"></app-contactlist>
         <!-- <app-contact *ngIf="sharenav=='contactdetail'"></app-contact> -->
-        <app-maproute *ngIf="sharenav=='map'"></app-maproute>
+        <!-- <app-maproute *ngIf="sharenav=='map'"></app-maproute> -->
         <app-journalist *ngIf="sharenav=='journal'"></app-journalist>
         <app-journal *ngIf="sharenav=='journalcreate'"></app-journal>
         <app-contact-driver *ngIf="sharenav=='Driver'"></app-contact-driver>
