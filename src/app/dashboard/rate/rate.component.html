@@ -1,6 +1,3 @@
-
-
-
 <div class="loading" *ngIf="loader">
   <div class="sk-circle">
     <div class="sk-circle1 sk-child"></div>
@@ -30,7 +27,7 @@
   <div class="row customera">
     <div class="input-field col s3">
       <p><label>Customer <span class="blue_star">*</span></label></p>
-      <select class="orga">
+      <select class="orga" [(ngModel)]="query">
         <option value="" disabled selected>Select</option>
         <option *ngFor="let list of contactlist" [value]="list._id">{{list.name}}</option>
 
@@ -70,48 +67,74 @@
             <thead class="cf">
               <tr>
                 <th class="numeric">CUSTOMER</th>
-                <th>BASE KM</th>
-                <th>BASE RATE</th>
+                <th>WITHIN STATE</th>
+                <th>TRUCK CONFIG</th>
+                <th>FROM KM</th>
+                <th>TO KM</th>
+                <th>RATE</th>
                 <th>UNIT</th>
-                <th>ADD KM</th>
-                <th>ADD KM / RATE</th>
                 <th>EFFECTIVE DATE FROM</th>
                 <th>EFFECTIVE DATE TO</th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let item of ratelist">
-                  <td class="thno">{{item?.customerId?.name}}</td>
-                  <td class="thno">{{item?.base_km}}</td>
-                  <td class="thno">{{item?.base_rate}}</td>
-                  <td class="thno">{{item?.unit}}</td>
-                  <td class="thno">{{item?.add_km}}</td>
-                  <td class="thno">{{item?.add_km_rate}}</td>
-
-                  <td class="thno">{{item?.effactive_date_from | date:mediumDate}}</td>
-                  <td class="thno">{{item?.effactive_date_to  | date:mediumDate}}</td>
+              <tr *ngFor="let item of ratelist ">
+                <td class="thno">{{item?.customerId?.name}}</td>
+                <td class="thno">{{item?.within_state}}</td>
+                <td class="thno">{{item?.truck_confg}}</td>
+                <td class="thno">{{item?.from_km}}</td>
+                <td class="thno">{{item?.to_km}}</td>
+                <td class="thno">{{item?.rate}}</td>
+                <td class="thno">{{item?.unit}}</td>
+                <td class="thno">{{item?.effactive_date_from | date:mediumDate}}</td>
+                <td class="thno">{{item?.effactive_date_to  | date:mediumDate}}</td>
               </tr>
               <tr>
                 <td class="thno" data-title="NO.">
-                  <select class="orga" [(ngModel)]="customer">
+                  <select class="orga" [(ngModel)]="customer" (change)="selectcustomer(customer)">
                     <option value="" disabled selected>Select</option>
                     <option *ngFor="let list of contactlist" [value]="list._id">{{list.name}}</option>
 
                   </select>
                 </td>
-                <td class="thname" data-title="NAME"><input type="text" [(ngModel)]="basekm"></td>
-                <td class="thno" data-title="NO."><input type="text" [(ngModel)]="baserate"></td>
+                <td class="thname" data-title="NAME">
+
+
+                  <select class="orga" [(ngModel)]="state">
+                    <option value="" disabled selected>Select</option>
+                    <option value=true>yes</option>
+                    <option value=false>no</option>
+                  </select>
+                </td>
+
+                <td class="thno" data-title="NO.">
+
+
+
+                  <select class="orga" [(ngModel)]="truckconfig">
+                    <option value="" disabled selected>Select</option>
+                    <option *ngFor="let item of tconfig" [value]="item">{{item}}</option>
+                  </select>
+
+
+                </td>
+                <td class="thno" data-title="NO.">
+                  <input type="text" [(ngModel)]="fromkm">
+
+
+                </td>
+
+                <td class="thno" data-title="NO."><input type="text" [(ngModel)]="tokm"></td>
+                <td class="thno" data-title="NO."><input type="text" [(ngModel)]="rate"></td>
+
                 <td class="thno" data-title="NO.">
                   <select class="orga" [(ngModel)]="unit">
                     <option value="" disabled selected>Select</option>
-                    <option value="pices">Piece</option>
-                    <option value="kl">KL</option>
-                    <option value="ton">Ton</option>
+                    <option *ngFor="let item of units" [value]="item">{{item}}</option>
                   </select>
-                </td>
-                <td class="thno" data-title="NO."><input type="text" [(ngModel)]="addkm"></td>
-                <td class="thno" data-title="NO."><input type="text" [(ngModel)]="addrate"></td>
+
+
                 <td class="thno" data-title="NO."><input type="date" [(ngModel)]="startdate"></td>
                 <td class="thno" data-title="NO."><input type="date" [(ngModel)]="enddate"></td>
                 <td class="thno" data-title="NO."><span (click)="submit()">&#10004;</span></td>

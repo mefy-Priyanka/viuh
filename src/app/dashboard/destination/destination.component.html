@@ -38,6 +38,8 @@
                           <td class="w30">Location code:</td>
                           <td class="w30">Location name</td>
                           <td class="w30">Address</td>
+                          <td class="w30">Point Of Origin</td>
+                          <td class="w30">Distance</td>
                         </tr>
                         </table>
                         </th>
@@ -52,9 +54,11 @@
 
                             <table cellspacing="0" cellpadding="0" class="t_c">
                                 <tr *ngFor="let data of customer.details">
-                                    <td class="thname" data-title="NAME" class="w30">{{data.location_code}}</td>
-                                    <td class="thname" data-title="NAME" class="w30">{{data.location_name}}</td>
-                                    <td class="thname" data-title="NAME" class="w30">{{data.address}}</td>
+                                    <td class="thname" data-title="NAME" class="w30">{{data?.location_code}}</td>
+                                    <td class="thname" data-title="NAME" class="w30">{{data?.location_name}}</td>
+                                    <td class="thname" data-title="NAME" class="w30">{{data?.address}}</td>
+                                    <td class="thname" data-title="NAME" class="w30">{{data?.point_of_origin}}</td>
+                                    <td class="thname" data-title="NAME" class="w30">{{data?.km}}</td>
                                   </tr>
                                 </table>
 
@@ -63,7 +67,7 @@
 
                         </td>
                         <td data-title="VAT ID" class="numeric" (click)="delete(customer._id)">
-                          <!-- <i class="fa fa-trash" aria-hidden="true"></i> -->
+                          <i class="fa fa-trash" aria-hidden="true"></i>
                         </td>
                       </tr>
                     </tbody>
@@ -133,7 +137,7 @@
                       </div>
                       <div class="input-field col s3">
                         <p><label>Point Of Origin<span class="blue_star">*</span></label></p>
-                        <input type="text" class="validate" formControlName="km">
+                        <input type="text" class="validate" formControlName="point_of_origin">
                         <!-- <p class="error" [ngStyle]="{'font-size':'12px'}" *ngIf="destinationFormErrors.address.required || (destinationForm.controls.address.pristine && submitted)">Address Can't be empty</p> -->
                       </div>
                       <div class="input-field col s2">
@@ -145,6 +149,7 @@
                         <p><label>Distance<span class="blue_star">*</span></label></p>
                         <input type="text" class="validate" formControlName="km">
                         <!-- <p class="error" [ngStyle]="{'font-size':'12px'}" *ngIf="destinationFormErrors.address.required || (destinationForm.controls.address.pristine && submitted)">Address Can't be empty</p> -->
+                        <span *ngIf="i==lForms.length-1 && i!=0" (click)="del()">x</span>
                       </div>
 
                     </div>

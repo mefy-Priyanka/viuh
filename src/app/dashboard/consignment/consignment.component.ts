@@ -3,7 +3,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { UserService } from 'src/app/service/user.service';
 import { CompanyService } from 'src/app/service/company.service';
 import { ToastrService } from 'ngx-toastr';
-import * as moment from 'moment';
+// import * as new Date from 'new Date';
+import * as $ from 'jquery';
 
 @Component({
   selector: 'app-consignment',
@@ -27,6 +28,10 @@ export class ConsignmentComponent implements OnInit {
   consignerpay: any;
   postdata: any = [];
   employeelist: any;
+  tconfig = [12, 19, 20, 24, 306, 450, 1];
+  distance: any;
+  totalval: number;
+  ratelist: any = [];
   constructor(private formBuilder: FormBuilder, private userService: UserService, private companyService: CompanyService, private toastr: ToastrService) {
     this.userId = localStorage.getItem('userId');
     this.role = localStorage.getItem('role');
@@ -45,6 +50,7 @@ export class ConsignmentComponent implements OnInit {
       destination: {},
       authorize_person: {},
       driver_license_number: {},
+      truckconfig: {},
       driver_name: {},
       gross_wt: {},
       tare_wt: {},
@@ -73,6 +79,7 @@ export class ConsignmentComponent implements OnInit {
       destination: ['', Validators.required],
       authorize_person: ['', Validators.required],
       driver_license_number: ['', Validators.required],
+      truckconfig: ['', Validators.required],
       driver_name: ['', Validators.required],
       gross_wt: [''],
       tare_wt: [''],
@@ -103,6 +110,7 @@ export class ConsignmentComponent implements OnInit {
 
 
   ngOnInit() {
+    this.getrate()
     this.employeeList()
     this.getfleetList();
     this.driverList()
@@ -168,6 +176,8 @@ export class ConsignmentComponent implements OnInit {
   }
 
   submit() {
+    this.calculation();
+    return;
     console.log(this.consignmentForm.value)
     this.submitted = true;
     console.log(this.consignmentForm.valid)
@@ -177,16 +187,17 @@ export class ConsignmentComponent implements OnInit {
         tl_number: this.consignmentForm.value.tl_number,
         location_number: this.consignmentForm.value.location_number,
         challan_number: this.consignmentForm.value.challan_number,
-        challan_date: moment(this.consignmentForm.value.challan_date).toISOString(),
+        challan_date: new Date(this.consignmentForm.value.challan_date).toISOString(),
         consignor: this.consignmentForm.value.consignor,
         consignee: this.consignmentForm.value.consignee,
-        consignment_date: moment(this.consignmentForm.value.consignment_date).toISOString(),
+        consignment_date: new Date(this.consignmentForm.value.consignment_date).toISOString(),
         reference_number: this.consignmentForm.value.reference_number,
         truck_number: this.consignmentForm.value.truck_number,
         origin_place: this.consignmentForm.value.origin_place,
         destination: this.consignmentForm.value.destination,
         authorize_person: this.consignmentForm.value.authorize_person,
         driver_license_number: this.consignmentForm.value.driver_license_number,
+        truck_confg: this.consignmentForm.value.truckconfig,
         driver_name: this.consignmentForm.value.driver_name,
         challan_doc: this.chalandoc,
         quantity: {
@@ -229,7 +240,7 @@ export class ConsignmentComponent implements OnInit {
     let data = {
       ownerId: this.postdata.ownerId,
       contractId: this.postdata.contractId,
-      payment_date: moment(this.consignmentForm.value.challan_date).toISOString(),
+      payment_date: new Date(this.consignmentForm.value.challan_date).toISOString(),
       payment_mode: 'cash',
       fleetId: this.consignmentForm.value.truck_number,
       payment: "diesel_price",
@@ -240,7 +251,7 @@ export class ConsignmentComponent implements OnInit {
 
 
     console.log(data);
-    
+
     this.userService.creatvoucher(data).subscribe(result => {
       this.paymentdriver()
     },
@@ -253,7 +264,7 @@ export class ConsignmentComponent implements OnInit {
     let data = {
       ownerId: this.postdata.ownerId,
       contractId: this.postdata.contractId,
-      payment_date: moment(this.consignmentForm.value.challan_date).toISOString(),
+      payment_date: new Date(this.consignmentForm.value.challan_date).toISOString(),
       payment_mode: 'cash',
       fleetId: this.consignmentForm.value.truck_number,
       payment: 'driver_expense',
@@ -273,7 +284,7 @@ export class ConsignmentComponent implements OnInit {
     let data = {
       ownerId: this.postdata.ownerId,
       contractId: this.postdata.contractId,
-      payment_date: moment(this.consignmentForm.value.challan_date).toISOString(),
+      payment_date: new Date(this.consignmentForm.value.challan_date).toISOString(),
       payment_mode: 'cash',
       fleetId: this.consignmentForm.value.truck_number,
       payment: 'toll_price',
@@ -363,7 +374,73 @@ export class ConsignmentComponent implements OnInit {
       })
 
   }
+  chengeconsignee(data) {
+    for (var j = 0; j < this.destinationlist.length; j++) {
+      if (this.destinationlist[j].location_name == data) {
+        this.distance = this.destinationlist[j].km;
+        console.log(this.distance)
+      }
+    }
+  }
+  getrate() {
+    this.userService.getrate(localStorage.getItem('SuperAdmin')).subscribe(data => {
+      let result: any = {}
+      result = data;
+      this.ratelist = result.result
+      console.log(this.driverlist);
+    },
+      error => {
+        console.log(error);
 
+      })
+  }
+  calculation() {
+    console.log(this.ratelist);
+    // var result = document.getElementsByClassName("switch-input")[0].checked ? 'yes' : 'no'
+    var result = jQuery('.switch-input').is(':checked') ? true : false;
+    console.log(result)
+    for (var i = 0; i < this.ratelist.length; i++) {
+      // console.log(i)
+
+      if (this.ratelist[i].truck_confg == this.consignmentForm.value.truckconfig) {
+
+        // console.log('config true')
+        // console.log(result, this.ratelist[i].within_state)
+        if (result == this.ratelist[i].within_state) {
+          // console.log(i);
+          // console.log('fromkm' + this.ratelist[i].from_km, 'dista' + this.distance, 'tokm' + this.ratelist[i].to_km)
+          console.log(this.ratelist[i].from_km <= this.distance, this.distance < this.ratelist[i].to_km)
+          if (parseInt(this.ratelist[i].from_km) <= parseInt(this.distance) && parseInt(this.distance) < parseInt(this.ratelist[i].to_km)) {
+            // console.log('distance true')
+
+            if ((this.ratelist[i].effactive_date_from <= this.consignmentForm.value.consignment_date && this.ratelist[i].effactive_date_to >= this.consignmentForm.value.consignment_date)) {
+              // console.log('date true')
+              alert('rate is ------' + this.ratelist[i].rate);
+              var rate = 10;
+              if (this.consignmentForm.value.truckconfig == 12 || this.consignmentForm.value.truckconfig == 19 || this.consignmentForm.value.truckconfig == 20 || this.consignmentForm.value.truckconfig == 24) {
+                this.totalval = this.consignmentForm.value.truckconfig * rate * this.distance;
+              }
+              else if (this.consignmentForm.value.truckconfig == 306 || this.consignmentForm.value.truckconfig == 450) {
+                if (this.distance <= 100) {
+                  this.totalval = this.consignmentForm.value.truckconfig * rate * this.distance;
+                }
+                else {
+                  this.totalval = this.consignmentForm.value.truckconfig * rate * this.distance * 2;
+                }
+              }
+              else if (this.consignmentForm.value.truckconfig == 1) {
+                this.totalval = this.distance * rate;
+              }
+              alert(this.totalval)
+              return
+            }
+
+          }
+        }
+      }
+    }
+
+  }
   changetruck(id) {
     console.log(id)
     for (var i = 0; i < this.fleetDetail.length; i++) {

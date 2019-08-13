@@ -98,6 +98,7 @@ export class UserService {
   }
 
   consignmentList(id) {
+    console.log(APIURL + 'consignment/consignmentList?superAdminId=' + id)
     return this.httpClient.get(APIURL + 'consignment/consignmentList?superAdminId=' + id)
   }
 
