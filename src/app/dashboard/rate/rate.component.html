@@ -73,6 +73,7 @@
                 <th>TO KM</th>
                 <th>RATE</th>
                 <th>UNIT</th>
+                <th>PRICE TYPE</th>
                 <th>EFFECTIVE DATE FROM</th>
                 <th>EFFECTIVE DATE TO</th>
                 <th></th>
@@ -87,6 +88,7 @@
                 <td class="thno">{{item?.to_km}}</td>
                 <td class="thno">{{item?.rate}}</td>
                 <td class="thno">{{item?.unit}}</td>
+                <td class="thno">{{item?.price_type}}</td>
                 <td class="thno">{{item?.effactive_date_from | date:mediumDate}}</td>
                 <td class="thno">{{item?.effactive_date_to  | date:mediumDate}}</td>
               </tr>
@@ -135,7 +137,13 @@
                   </select>
 
 
-                <td class="thno" data-title="NO."><input type="date" [(ngModel)]="startdate"></td>
+                  <td class="thno" data-title="NO.">
+                    <select class="orga" [(ngModel)]="price_type">
+                      <option value="" disabled selected>Select</option>
+                      <option value="fdz">fdz</option>
+                      <option value="bfdz">bfdz</option>
+                    </select>
+                  </td>                <td class="thno" data-title="NO."><input type="date" [(ngModel)]="startdate"></td>
                 <td class="thno" data-title="NO."><input type="date" [(ngModel)]="enddate"></td>
                 <td class="thno" data-title="NO."><span (click)="submit()">&#10004;</span></td>
               </tr>

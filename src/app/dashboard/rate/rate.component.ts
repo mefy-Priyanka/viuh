@@ -21,6 +21,7 @@ export class RateComponent implements OnInit {
   startdate = '';
   enddate = '';
   loader = false;
+  price_type: '';
   ratelist: any = [];
   tconfig = [12, 19, 20, 24, 306, 450, 1];
   units = ['ton', 'kl', 'kl/km', 'cyl', 'cyl/rtkm']
@@ -153,6 +154,7 @@ export class RateComponent implements OnInit {
       rate: this.rate,
       within_state: this.state,
       unit: this.unit,
+      price_type:this.price_type,
       truck_confg: this.truckconfig,
       effactive_date_from: new Date(this.startdate),
       effactive_date_to: new Date(this.enddate),
@@ -184,6 +186,7 @@ export class RateComponent implements OnInit {
     this.unit = '';
     this.startdate = '';
     this.enddate = '';
+    this.price_type= '';
   }
 
   selectcustomer(id) {
