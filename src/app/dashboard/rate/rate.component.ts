@@ -17,6 +17,7 @@ export class RateComponent implements OnInit {
   unit: '';
   addkm: '';
   addrate: '';
+  price_type: '';
   startdate: '';
   enddate: '';
   loader = false;
@@ -63,6 +64,7 @@ export class RateComponent implements OnInit {
       unit: this.unit,
       add_km: this.addkm,
       add_km_rate: this.addrate,
+      price_type:this.price_type,
       effactive_date_from:new Date(this.startdate).toISOString() ,
       effactive_date_to: new Date(this.enddate).toISOString() ,
       userId: localStorage.getItem('SuperAdmin')
@@ -91,6 +93,7 @@ export class RateComponent implements OnInit {
     this.unit= '';
     this.addkm= '';
     this.addrate= '';
+    this.price_type= '';
     this.startdate= '';
     this.enddate= '';
   }
