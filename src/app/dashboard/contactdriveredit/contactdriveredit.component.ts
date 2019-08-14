@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedService } from '../.././service/shared.service';
+import { FormBuilder, FormGroup, Validators, } from '@angular/forms';
 
 @Component({
   selector: 'app-contactdriveredit',
@@ -6,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contactdriveredit.component.css']
 })
 export class ContactdrivereditComponent implements OnInit {
-
+  public editDriverFormErrors: any;
+  public editDriverForm: FormGroup;
   constructor() { }
 
   ngOnInit() {

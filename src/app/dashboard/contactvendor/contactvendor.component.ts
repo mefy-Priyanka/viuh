@@ -25,7 +25,7 @@ export class ContactvendorComponent implements OnInit {
   public tanData: any = {};
   public gstData: any = {};
   public othersData: any = [];
-  public docDetail:any=[];
+  public docDetail: any = [];
   public inputField: Boolean = false;
   public show: Boolean = true
   public imageUpload: any = {};
@@ -33,11 +33,12 @@ export class ContactvendorComponent implements OnInit {
   public searchValue: any;
   public error: any;
   public imgUrlPrefix: any;
-  public accountId:any;
-  public contactId:any;
+  public accountId: any;
+  public contactId: any;
   public userId = localStorage.getItem('userId');
+  public incomingVendorDetail: any = {}
   public mask = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/] // Account number validation 
-  public account = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/,/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/] // Account number validation 
+  public account = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/] // Account number validation 
 
 
   document = ['aadhar', 'gst', 'pan', 'tan']
@@ -54,6 +55,16 @@ export class ContactvendorComponent implements OnInit {
       account_number: {}
     };
     /********** ENDS ************** */
+    /******************VENDOR DETAIL THROUGH SHARED SERVICES ************/
+    this.SharedService.contactData.subscribe(result => {
+      console.log('contact  edit VENDOR', result)
+      this.incomingVendorDetail = result;
+    },
+      err => {
+        console.log(' Vendor shared err', err)
+      })
+
+    /********** ENDS ************** */
   }
 
   ngOnInit() {
@@ -62,6 +73,7 @@ export class ContactvendorComponent implements OnInit {
       this.onvendorFormValuesChanged();
     });
     // this.account();
+    this.vendorProfile();
   }
   /***********IT CATCHES ALL CHANGES IN FORM*******/
   onvendorFormValuesChanged() {
@@ -126,7 +138,7 @@ export class ContactvendorComponent implements OnInit {
         }
         console.log(data)
         this.aadharData = data
-      this.docDetail.push( { docname:'Aadhar',number: data.aadhar.number  })
+        this.docDetail.push({ docname: 'Aadhar', number: data.aadhar.number })
         console.log('data', this.aadharData)
       }
       else if (this.selecteValue == 'gst') {
@@ -139,7 +151,7 @@ export class ContactvendorComponent implements OnInit {
         }
         console.log(data)
         this.gstData = data
-      this.docDetail.push( { docname:'Gst',number: data.gst.number ,valid_upto:data.gst.valid_upto})
+        this.docDetail.push({ docname: 'Gst', number: data.gst.number, valid_upto: data.gst.valid_upto })
         console.log('data', this.gstData)
       }
       else if (this.selecteValue == 'pan') {
@@ -153,7 +165,7 @@ export class ContactvendorComponent implements OnInit {
         }
         console.log(data)
         this.panData = data
-      this.docDetail.push( { docname:'Pan',number: data.pan.number ,valid_upto:data.pan.valid_upto})
+        this.docDetail.push({ docname: 'Pan', number: data.pan.number, valid_upto: data.pan.valid_upto })
         console.log('data', this.panData)
       }
       else if (this.selecteValue == 'tan') {
@@ -166,7 +178,7 @@ export class ContactvendorComponent implements OnInit {
         }
         console.log(data)
         this.tanData = data
-      this.docDetail.push( { docname:'Tan',number: data.tan.number ,valid_upto:data.tan.valid_upto})
+        this.docDetail.push({ docname: 'Tan', number: data.tan.number, valid_upto: data.tan.valid_upto })
         console.log('data', this.tanData)
 
       }
@@ -180,9 +192,7 @@ export class ContactvendorComponent implements OnInit {
           }
         }
         this.othersData.push(data.others)
-        for(let i =0;i < this.othersData.length; i++){
-          this.docDetail.push({docname:this.othersData[i].doc_name,number:this.othersData[i].number?this.othersData[i].number:null,valid_upto:this.othersData[i].valid_upto})
-     }
+        this.docDetail.push({ docname: data.others.doc_name, number: data.others.number ? data.others.number : null, valid_upto: data.others.valid_upto })
         console.log('push', this.othersData)
       }
       else {
@@ -261,84 +271,89 @@ export class ContactvendorComponent implements OnInit {
 
   /*********************CREATE VENDOR***************** */
   createVendor() {
-    this.loader = true;
-    if (this.vendorForm.valid) {
-      if (Object.keys(this.pictureUpload).length != 0 && this.pictureUpload.constructor != Object) {
-        console.log('valid')
-        let data = {
-          name: this.vendorForm.value.name,
-          phoneNumber: this.vendorForm.value.phoneNumber,
-          aadhar: this.aadharData.aadhar,
-          gst: this.gstData.gst,
-          pan: this.panData.pan,
-          tan: this.tanData.tan,
-          others: this.othersData,
-          picture: this.pictureUpload ? this.pictureUpload : null,
-          contact_type: "vendor",
-          bank_name: this.vendorForm.value.bank_name,
-          branch_name: this.vendorForm.value.branch_name,
-          account_holder_name: this.vendorForm.value.account_holder_name,
-          ifsc: this.vendorForm.value.ifsc,
-          account_number: this.vendorForm.value.account_number,
-          userId: this.userId
-        }
-        console.log(data)
-        this.contactService.contactCreate(data).subscribe(value => {
-          console.log('value', value)
-          let result: any = {}
-          result = value
-          this.contactId = result.result._id
-          this.creatcheckaccount();
-          this.loader = false;
-          this.toastr.success('Vendor created')
-          this.SharedService.abc('contact')
-        },
-          err => {
-            this.loader = false;
-            console.log(err)
-            this.toastr.error('Error!', 'Creation  failed')
-          })
-      }
-      else {
-        let data = {
-          name: this.vendorForm.value.name,
-          phoneNumber: this.vendorForm.value.phoneNumber,
-          aadhar: this.aadharData.aadhar,
-          gst: this.gstData.gst,
-          pan: this.panData.pan,
-          tan: this.tanData.tan,
-          others: this.othersData,
-          contact_type: "vendor",
-          bank_name: this.vendorForm.value.bank_name,
-          branch_name: this.vendorForm.value.branch_name,
-          account_holder_name: this.vendorForm.value.account_holder_name,
-          ifsc: this.vendorForm.value.ifsc,
-          account_number: this.vendorForm.value.account_number,
-          userId: this.userId
-        }
-        console.log(data)
-        this.contactService.contactCreate(data).subscribe(value => {
-          console.log('value', value)
-          let result: any = {}
-          result = value
-          this.contactId = result.result._id
-          this.creatcheckaccount();
-          this.loader = false;
-          this.toastr.success('Vendor created')
-          this.SharedService.abc('contact')
-        },
-          err => {
-            this.loader = false;
-            console.log(err)
-            this.toastr.error('Error!', 'Creation  failed')
-          })
-      }
+    if (Object.keys(this.incomingVendorDetail).length != 0) {
+      this.updateVendor();
     }
     else {
-      this.loader = false;
-      this.submitted = true
-      console.log('not valid')
-      this.toastr.warning('Not Valid')
+      this.loader = true;
+      if (this.vendorForm.valid) {
+        if (Object.keys(this.pictureUpload).length != 0 && this.pictureUpload.constructor != Object) {
+          console.log('valid')
+          let data = {
+            name: this.vendorForm.value.name,
+            phoneNumber: this.vendorForm.value.phoneNumber,
+            aadhar: this.aadharData.aadhar,
+            gst: this.gstData.gst,
+            pan: this.panData.pan,
+            tan: this.tanData.tan,
+            others: this.othersData,
+            picture: this.pictureUpload ? this.pictureUpload : null,
+            contact_type: "vendor",
+            bank_name: this.vendorForm.value.bank_name,
+            branch_name: this.vendorForm.value.branch_name,
+            account_holder_name: this.vendorForm.value.account_holder_name,
+            ifsc: this.vendorForm.value.ifsc,
+            account_number: this.vendorForm.value.account_number,
+            userId: this.userId
+          }
+          console.log(data)
+          this.contactService.contactCreate(data).subscribe(value => {
+            console.log('value', value)
+            let result: any = {}
+            result = value
+            this.contactId = result.result._id
+            this.creatcheckaccount();
+            this.loader = false;
+            this.toastr.success('Vendor created')
+            this.SharedService.abc('contact')
+          },
+            err => {
+              this.loader = false;
+              console.log(err)
+              this.toastr.error('Error!', 'Creation  failed')
+            })
+        }
+        else {
+          let data = {
+            name: this.vendorForm.value.name,
+            phoneNumber: this.vendorForm.value.phoneNumber,
+            aadhar: this.aadharData.aadhar,
+            gst: this.gstData.gst,
+            pan: this.panData.pan,
+            tan: this.tanData.tan,
+            others: this.othersData,
+            contact_type: "vendor",
+            bank_name: this.vendorForm.value.bank_name,
+            branch_name: this.vendorForm.value.branch_name,
+            account_holder_name: this.vendorForm.value.account_holder_name,
+            ifsc: this.vendorForm.value.ifsc,
+            account_number: this.vendorForm.value.account_number,
+            userId: this.userId
+          }
+          console.log(data)
+          this.contactService.contactCreate(data).subscribe(value => {
+            console.log('value', value)
+            let result: any = {}
+            result = value
+            this.contactId = result.result._id
+            this.creatcheckaccount();
+            this.loader = false;
+            this.toastr.success('Vendor created')
+            this.SharedService.abc('contact')
+          },
+            err => {
+              this.loader = false;
+              console.log(err)
+              this.toastr.error('Error!', 'Creation  failed')
+            })
+        }
+      }
+      else {
+        this.loader = false;
+        this.submitted = true
+        console.log('not valid')
+        this.toastr.warning('Not Valid')
+      }
     }
   }
   /********** ENDS ************** */
@@ -347,61 +362,61 @@ export class ContactvendorComponent implements OnInit {
   }
   /**************CREATE ACCOUNT AGAINST VENDOR ***********************/
 
-creatcheckaccount() {
+  creatcheckaccount() {
 
-  let data = {
-    accountName: 'Current Liability',
-    accountType: "Liability",
-    description: "description",
-    // accountCode: this.bankForm.value.account_number,
-    organisation: localStorage.getItem('organisation'),
-    userId: this.userId,
-    parentAccount: "",
-    super_parent_Account: '',
-    opening_account: 0,
-    type: 'credit',
+    let data = {
+      accountName: 'Current Liability',
+      accountType: "Liability",
+      description: "description",
+      // accountCode: this.bankForm.value.account_number,
+      organisation: localStorage.getItem('organisation'),
+      userId: this.userId,
+      parentAccount: "",
+      super_parent_Account: '',
+      opening_account: 0,
+      type: 'credit',
+    }
+
+    console.log('let data be', data);
+    this.userService.creataccount(data).subscribe(value => {
+      console.log(value)
+      this.creatcheckaccount1()
+
+    },
+      err => {
+        console.log(err)
+
+        this.toastr.error('Error!', 'Server Error')
+      })
   }
 
-  console.log('let data be', data);
-  this.userService.creataccount(data).subscribe(value => {
-    console.log(value)
-    this.creatcheckaccount1()
+  creatcheckaccount1() {
 
-  },
-    err => {
-      console.log(err)
+    let data = {
+      accountName: 'Account Payable',
+      accountType: "Liability",
+      description: "description",
+      // accountCode: this.bankForm.value.account_number,
+      organisation: localStorage.getItem('organisation'),
+      userId: this.userId,
+      parentAccount: "Current Liability",
+      super_parent_Account: '',
+      opening_account: 0,
+      type: 'credit',
+    }
 
-      this.toastr.error('Error!', 'Server Error')
-    })
-}
+    console.log('let data be', data);
+    this.userService.creataccount(data).subscribe(value => {
+      console.log(value)
+      this.vendorAccount()
 
-creatcheckaccount1() {
+    },
+      err => {
+        console.log(err)
 
-  let data = {
-    accountName: 'Account Payable',
-    accountType: "Liability",
-    description: "description",
-    // accountCode: this.bankForm.value.account_number,
-    organisation: localStorage.getItem('organisation'),
-    userId: this.userId,
-    parentAccount: "Current Liability",
-    super_parent_Account: '',
-    opening_account: 0,
-    type: 'credit',
+        this.toastr.error('Error!', 'Server Error')
+      })
   }
-
-  console.log('let data be', data);
-  this.userService.creataccount(data).subscribe(value => {
-    console.log(value)
-    this.vendorAccount()
-
-  },
-    err => {
-      console.log(err)
-
-      this.toastr.error('Error!', 'Server Error')
-    })
-}
 
 
   vendorAccount() {
@@ -413,44 +428,44 @@ creatcheckaccount1() {
       organisation: localStorage.getItem('organisation'),
       parentAccount: '',
       userId: this.userId,
-      super_parent_Account:''
+      super_parent_Account: ''
 
     }
     console.log(' account data', data)
     this.userService.creataccount(data).subscribe(result => {
       console.log('resultttt', result)
-      let value:any
-      value=result
-      this.accountId=value.user._id
-      this.loader=false;
+      let value: any
+      value = result
+      this.accountId = value.user._id
+      this.loader = false;
       this.creataccountinpayable();
     },
       err => {
         console.log('account err', err)
         this.toastr.error('Error!', 'Creation  failed')
-        this.contactService.deleteContact(this.contactId).subscribe(result=>{
+        this.contactService.deleteContact(this.contactId).subscribe(result => {
           console.log('delete result', result);
-          this.loader=false;
+          this.loader = false;
         },
           err => {
 
-            this.loader=false;
+            this.loader = false;
             console.log('delete err', err)
           })
       })
   }
 
-  creataccountinpayable() {    
+  creataccountinpayable() {
 
     let data = {
-      accountName:this.vendorForm.value.name,
+      accountName: this.vendorForm.value.name,
       accountType: "Liability",
       description: "description",
       // accountCode: this.contractorForm.value.account_number,
       organisation: localStorage.getItem('organisation'),
       userId: this.userId,
       parentAccount: "Account Payable",
-      super_parent_Account:'Current Liability'
+      super_parent_Account: 'Current Liability'
     }
 
     console.log('let data be', data);
@@ -470,7 +485,79 @@ creatcheckaccount1() {
       })
   }
   /********** ENDS ************** */
-/****************FIRST TIME ACCOUNT CREATION **************************/
+  /*****************************  VENDOR profile info**********************/
+  vendorProfile() {
+    console.log('vendor detai;', this.incomingVendorDetail);
+    if (Object.keys(this.incomingVendorDetail).length != 0) {
+      if (this.incomingVendorDetail.picture != null) {
+        this.show = false;
+        this.imgUrlPrefix = this.incomingVendorDetail.picture ? this.sanitizer.bypassSecurityTrustResourceUrl("http://ec2-52-66-250-48.ap-south-1.compute.amazonaws.com:4052/file/getImage?imageId=" + this.incomingVendorDetail.picture) : null;
+        console.log(' this.previewImage', this.imgUrlPrefix);
+        this.vendorForm.get('name').setValue(this.incomingVendorDetail.name);
+        this.vendorForm.get('phoneNumber').setValue(this.incomingVendorDetail.phoneNumber);
+        this.vendorForm.get('bank_name').setValue(this.incomingVendorDetail.bank_name);
+        this.vendorForm.get('branch_name').setValue(this.incomingVendorDetail.branch_name);
+        this.vendorForm.get('account_holder_name').setValue(this.incomingVendorDetail.account_holder_name);
+        this.vendorForm.get('ifsc').setValue(this.incomingVendorDetail.ifsc);
+        this.vendorForm.get('account_number').setValue(this.incomingVendorDetail.account_number);
+        this.incomingVendorDetail.gst ? this.docDetail.push({ docname: 'Gst', number: this.incomingVendorDetail.gst.number, valid_upto: this.incomingVendorDetail.gst.valid_upto }) : '';
+        this.incomingVendorDetail.aadhar ? this.docDetail.push({ docname: 'Aadhar', number: this.incomingVendorDetail.aadhar.number }) : ''
+        this.incomingVendorDetail.pan ? this.docDetail.push({ docname: 'Pan', number: this.incomingVendorDetail.pan.number, valid_upto: this.incomingVendorDetail.pan.valid_upto }) : '';
+        this.incomingVendorDetail.tan ? this.docDetail.push({ docname: 'Tan', number: this.incomingVendorDetail.tan.number, valid_upto: this.incomingVendorDetail.tan.valid_upto }) : '';
+        for (let i = 0; i < this.incomingVendorDetail.others.length; i++) {
+          this.docDetail.push({ docname: this.incomingVendorDetail.others[i].doc_name, number: this.incomingVendorDetail.others[i].number ? this.incomingVendorDetail.others[i].number : null, valid_upto: this.incomingVendorDetail.others[i].valid_upto })
+        }
+      }
+      else {
+        this.vendorForm.get('name').setValue(this.incomingVendorDetail.name);
+        this.vendorForm.get('phoneNumber').setValue(this.incomingVendorDetail.phoneNumber);
+        this.vendorForm.get('bank_name').setValue(this.incomingVendorDetail.bank_name);
+        this.vendorForm.get('branch_name').setValue(this.incomingVendorDetail.branch_name);
+        this.vendorForm.get('account_holder_name').setValue(this.incomingVendorDetail.account_holder_name);
+        this.vendorForm.get('ifsc').setValue(this.incomingVendorDetail.ifsc);
+        this.vendorForm.get('account_number').setValue(this.incomingVendorDetail.account_number);
+        this.incomingVendorDetail.gst ? this.docDetail.push({ docname: 'Gst', number: this.incomingVendorDetail.gst.number, valid_upto: this.incomingVendorDetail.gst.valid_upto }) : '';
+        this.incomingVendorDetail.aadhar ? this.docDetail.push({ docname: 'Aadhar', number: this.incomingVendorDetail.aadhar.number }) : ''
+        this.incomingVendorDetail.pan ? this.docDetail.push({ docname: 'Pan', number: this.incomingVendorDetail.pan.number, valid_upto: this.incomingVendorDetail.pan.valid_upto }) : '';
+        this.incomingVendorDetail.tan ? this.docDetail.push({ docname: 'Tan', number: this.incomingVendorDetail.tan.number, valid_upto: this.incomingVendorDetail.tan.valid_upto }) : '';
+        for (let i = 0; i < this.incomingVendorDetail.others.length; i++) {
+          this.docDetail.push({ docname: this.incomingVendorDetail.others[i].doc_name, number: this.incomingVendorDetail.others[i].number ? this.incomingVendorDetail.others[i].number : null, valid_upto: this.incomingVendorDetail.others[i].valid_upto })
+        }
+      }
+
+    }
+    else {
+      console.log('create')
+    }
+
+  }
+  /************************************************ ENDS ************************************************ */
+  /************************* UPDATE VENDOR PROFILE****************************/
+  updateVendor() {
+    console.log('others data incoming', this.incomingVendorDetail.others)
+    let data = {
+      phoneNumber: this.vendorForm.value.phoneNumber,
+      email: this.vendorForm.value.email,
+      aadhar: this.aadharData.aadhar ? this.aadharData.aadhar : this.incomingVendorDetail.aadhar,
+      gst: this.gstData.gst ? this.gstData.gst : this.incomingVendorDetail.gst,
+      pan: this.panData.pan ? this.panData.pan : this.incomingVendorDetail.pan,
+      tan: this.tanData.tan ? this.tanData.tan : this.incomingVendorDetail.tan,
+      // others: this.incomingVendorDetail.others?this.incomingVendorDetail.others.push(this.othersData):this.othersData,
+      picture: Object.keys(this.pictureUpload).length != 0 && this.pictureUpload.constructor != Object ? this.pictureUpload : this.incomingVendorDetail.picture,
+      contactId: this.incomingVendorDetail._id
+    }
+    console.log('data', data)
+    this.contactService.upadteContact(data).subscribe(result => {
+      console.log('result', result)
+      this.toastr.success('Driver updated')
+      this.SharedService.abc('contact')
+    },
+      error => {
+        this.toastr.success('Driver  not updated')
+        console.log('update error', error.message)
+      })
+  }
+  /****************FIRST TIME ACCOUNT CREATION **************************/
 
   // account(){
   //   let data={
@@ -490,6 +577,6 @@ creatcheckaccount1() {
   //   })
   // }
   /********** ENDS ************** */
- 
+
 
 }

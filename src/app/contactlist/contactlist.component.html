@@ -47,9 +47,9 @@
                 <td class="thname" data-title="NAME">{{contact?.email}}</td>
                 <td class="thname" data-title="VAT ID">{{contact?.company_name}}</td>
                 <td data-title="ADDRESS" class="numeric">{{contact?.phoneNumber}}</td>
-                <td data-title="VAT ID" class="numeric">{{contact.website}}</td>
+                <td data-title="VAT ID" class="numeric">{{contact?.website}}</td>
                 <td>
-                    <i class="fa fa-pencil" aria-hidden="true" ></i>
+                    <i class="fa fa-pencil" aria-hidden="true" (click)="editContact(contact)" ></i>
                   </td>
                 <!-- <td>
                   <i (click)="del(contact._id)" class="fa fa-trash" aria-hidden="true" ></i>

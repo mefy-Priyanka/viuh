@@ -21,7 +21,7 @@ export class ContactemployeeComponent implements OnInit {
   public loader: boolean;
   public selecteValue = {};
   public aadharData: any = {};
-  public voterIdDate: any = {};
+  public voterIdData: any = {};
   public othersData: any = [];
   public inputField: Boolean = false;
   public show: Boolean = true
@@ -30,16 +30,17 @@ export class ContactemployeeComponent implements OnInit {
   public searchValue: any;
   public error: any;
   public imgUrlPrefix: any;
-  public accountId:any;
-  public docDetail:any=[];
+  public accountId: any;
+  public docDetail: any = [];
+  public incomingEmployeeDetail: any = {};
   public userId = localStorage.getItem('userId');
   public mask = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/] // Phone number validation 
-  public account = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/,/\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/] // Account number validation 
+  public account = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/] // Account number validation 
 
 
   document = ['aadhar', 'voterId']
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private userService: UserService,private contactService: ContactService, private companyService: CompanyService, private SharedService: SharedService, private toastr: ToastrService, private sanitizer: DomSanitizer) {
+  constructor(private formBuilder: FormBuilder, private router: Router, private userService: UserService, private contactService: ContactService, private companyService: CompanyService, private SharedService: SharedService, private toastr: ToastrService, private sanitizer: DomSanitizer) {
     /*******ERRORS OF userForm ********* */
     this.employFormerrors = {
       name: {},
@@ -51,6 +52,16 @@ export class ContactemployeeComponent implements OnInit {
       account_number: {}
     };
     /********** ENDS ************** */
+    /******************EMPLOYEE DETAIL THROUGH SHARED SERVICES ************/
+    this.SharedService.contactData.subscribe(result => {
+      console.log('contact  edit Employee', result)
+      this.incomingEmployeeDetail = result;
+    },
+      err => {
+        console.log(' employee shared err', err)
+      })
+
+    /********** ENDS ************** */
   }
 
   ngOnInit() {
@@ -58,6 +69,7 @@ export class ContactemployeeComponent implements OnInit {
     this.employForm.valueChanges.subscribe(() => {
       this.onemployFormValuesChanged();
     });
+    this.employeeProfile();
     //  this.account();
   }
   /***********IT CATCHES ALL CHANGES IN FORM*******/
@@ -123,7 +135,7 @@ export class ContactemployeeComponent implements OnInit {
         }
         console.log(data)
         this.aadharData = data
-      this.docDetail.push( { docname:'Aadhar',number: data.aadhar.number  })
+        this.docDetail.push({ docname: 'Aadhar', number: data.aadhar.number })
         console.log('data', this.aadharData)
       }
       else if (this.selecteValue == 'voterId') {
@@ -135,9 +147,9 @@ export class ContactemployeeComponent implements OnInit {
           }
         }
         console.log(data)
-        this.voterIdDate = data
-      this.docDetail.push( { docname:'Voter Id',number: data.voterId.number ,valid_upto:data.voterId.valid_upto})
-        console.log('data', this.voterIdDate)
+        this.voterIdData = data
+        this.docDetail.push({ docname: 'Voter Id', number: data.voterId.number, valid_upto: data.voterId.valid_upto })
+        console.log('data', this.voterIdData)
       }
 
       else if (this.selecteValue == 'others') {
@@ -150,9 +162,7 @@ export class ContactemployeeComponent implements OnInit {
           }
         }
         this.othersData.push(data.others)
-        for(let i =0;i < this.othersData.length; i++){
-          this.docDetail.push({docname:this.othersData[i].doc_name,number:this.othersData[i].number?this.othersData[i].number:null,valid_upto:this.othersData[i].valid_upto})
-     }
+        this.docDetail.push({ docname: data.others.doc_name, number: data.others.number ? data.others.number : null, valid_upto: data.others.valid_upto })
         console.log('push', this.othersData)
       }
       else {
@@ -231,190 +241,195 @@ export class ContactemployeeComponent implements OnInit {
 
   /*********************CREATE EMPLOYEE ****************** */
   createEmployee() {
-    this.loader = true;
-    if (this.employForm.valid) {
-      if (Object.keys(this.pictureUpload).length != 0 && this.pictureUpload.constructor != Object) {
-        console.log('valid')
-        let data = {
-          name: this.employForm.value.name,
-          phoneNumber: this.employForm.value.phoneNumber,
-          aadhar: this.aadharData.aadhar,
-          voterId: this.voterIdDate.voterId,
-          others: this.othersData,
-          picture: this.pictureUpload ? this.pictureUpload : null,
-          contact_type: "employee",
-          bank_name: this.employForm.value.bank_name,
-          branch_name: this.employForm.value.branch_name,
-          account_holder_name: this.employForm.value.account_holder_name,
-          ifsc: this.employForm.value.ifsc,
-          account_number: this.employForm.value.account_number,
-          userId: this.userId
-        }
-        console.log(data)
-        this.contactService.contactCreate(data).subscribe(value => {
-          console.log('value', value)
-          let result:any={}
-          result=value
-          this.accountId=result.result._id
-          this.creatcheckaccount();
-          this.loader = false;
-          this.toastr.success('Employee created')
-          this.SharedService.abc('contact')
-        },
-          err => {
-            this.loader = false;
-            console.log(err)
-            this.toastr.error('Error!', 'Creation  failed')
-          })
-      }
-      else {
-        let data = {
-          name: this.employForm.value.name,
-          phoneNumber: this.employForm.value.phoneNumber,
-          aadhar: this.aadharData.aadhar,
-          voterId: this.voterIdDate.voterId,
-          others: this.othersData,
-          contact_type: "employee",
-          bank_name: this.employForm.value.bank_name,
-          branch_name: this.employForm.value.branch_name,
-          account_holder_name: this.employForm.value.account_holder_name,
-          ifsc: this.employForm.value.ifsc,
-          account_number: this.employForm.value.account_number,
-          userId: this.userId
-        }
-        console.log(data)
-        this.contactService.contactCreate(data).subscribe(value => {
-          console.log('value', value)
-          let result:any={}
-          result=value
-          this.accountId=result.result._id
-          this.creatcheckaccount();
-          this.loader = false;
-          this.toastr.success('Employee created')
-          this.SharedService.abc('contact')
-        },
-          err => {
-            this.loader = false;
-            console.log(err)
-            this.toastr.error('Error!', 'Creation  failed')
-          })
-      }
+    if (Object.keys(this.incomingEmployeeDetail).length != 0) {
+      this.updateEmployee();
     }
     else {
-      this.loader = false;
-      this.submitted = true
-      console.log('not valid')
-      this.toastr.warning('Not Valid')
+      this.loader = true;
+      if (this.employForm.valid) {
+        if (Object.keys(this.pictureUpload).length != 0 && this.pictureUpload.constructor != Object) {
+          console.log('valid')
+          let data = {
+            name: this.employForm.value.name,
+            phoneNumber: this.employForm.value.phoneNumber,
+            aadhar: this.aadharData.aadhar,
+            voterId: this.voterIdData.voterId,
+            others: this.othersData,
+            picture: this.pictureUpload ? this.pictureUpload : null,
+            contact_type: "employee",
+            bank_name: this.employForm.value.bank_name,
+            branch_name: this.employForm.value.branch_name,
+            account_holder_name: this.employForm.value.account_holder_name,
+            ifsc: this.employForm.value.ifsc,
+            account_number: this.employForm.value.account_number,
+            userId: this.userId
+          }
+          console.log(data)
+          this.contactService.contactCreate(data).subscribe(value => {
+            console.log('value', value)
+            let result: any = {}
+            result = value
+            this.accountId = result.result._id
+            this.creatcheckaccount();
+            this.loader = false;
+            this.toastr.success('Employee created')
+            this.SharedService.abc('contact')
+          },
+            err => {
+              this.loader = false;
+              console.log(err)
+              this.toastr.error('Error!', 'Creation  failed')
+            })
+        }
+        else {
+          let data = {
+            name: this.employForm.value.name,
+            phoneNumber: this.employForm.value.phoneNumber,
+            aadhar: this.aadharData.aadhar,
+            voterId: this.voterIdData.voterId,
+            others: this.othersData,
+            contact_type: "employee",
+            bank_name: this.employForm.value.bank_name,
+            branch_name: this.employForm.value.branch_name,
+            account_holder_name: this.employForm.value.account_holder_name,
+            ifsc: this.employForm.value.ifsc,
+            account_number: this.employForm.value.account_number,
+            userId: this.userId
+          }
+          console.log(data)
+          this.contactService.contactCreate(data).subscribe(value => {
+            console.log('value', value)
+            let result: any = {}
+            result = value
+            this.accountId = result.result._id
+            this.creatcheckaccount();
+            this.loader = false;
+            this.toastr.success('Employee created')
+            this.SharedService.abc('contact')
+          },
+            err => {
+              this.loader = false;
+              console.log(err)
+              this.toastr.error('Error!', 'Creation  failed')
+            })
+        }
+      }
+      else {
+        this.loader = false;
+        this.submitted = true
+        console.log('not valid')
+        this.toastr.warning('Not Valid')
+      }
     }
   }
   /********** ENDS ************** */
   cancel() {
     this.SharedService.abc('contact')
   }
-/**************CRATE ACCOUNT AGAINST EMPLOYEE ***********************/
+  /**************CRATE ACCOUNT AGAINST EMPLOYEE ***********************/
 
 
-creatcheckaccount() {
-
-  let data = {
-    accountName: 'Current Liability',
-    accountType: "Liability",
-    description: "description",
-    // accountCode: this.bankForm.value.account_number,
-    organisation: localStorage.getItem('organisation'),
-    userId: this.userId,
-    parentAccount: "",
-    super_parent_Account: '',
-    opening_account: 0,
-    type: 'credit',
-  }
-
-  console.log('let data be', data);
-  this.userService.creataccount(data).subscribe(value => {
-    console.log(value)
-    this.creatcheckaccount1()
-
-  },
-    err => {
-      console.log(err)
-
-      this.toastr.error('Error!', 'Server Error')
-    })
-}
-
-creatcheckaccount1() {
-
-  let data = {
-    accountName: 'Account Payable',
-    accountType: "Liability",
-    description: "description",
-    // accountCode: this.bankForm.value.account_number,
-    organisation: localStorage.getItem('organisation'),
-    userId: this.userId,
-    parentAccount: "Current Liability",
-    super_parent_Account: '',
-    opening_account: 0,
-    type: 'credit',
-  }
-
-  console.log('let data be', data);
-  this.userService.creataccount(data).subscribe(value => {
-    console.log(value)
-    this.employeeAccount()
-
-  },
-    err => {
-      console.log(err)
-
-      this.toastr.error('Error!', 'Server Error')
-    })
-}
-
-
-
-
-
-employeeAccount(){
-  let data={
-    accountName:this.employForm.value.name,
-    accountType:'Expense',
-    organisation:localStorage.getItem('organisation'),
-    parentAccount:'',
-    userId:this.userId,
-    super_parent_Account:''
-
-  }
-  console.log(' account data',data)
-    this.userService.creataccount(data).subscribe(result=>{
-      console.log('resultttt',result);
-      this.creataccountinpayable()
-      this.loader=false;
-    },
-    err=>{
-      console.log('account err',err)
-      this.toastr.error('Error!', 'Creation  failed')
-      this.userService.deleteAccount(this.accountId).subscribe(result=>{
-        this.loader=false;
-        console.log('delete result',result);
-      },
-      err=>{
-        this.loader=false;
-        console.log('delete err',err)
-      })
-    })
-  }
-
-  creataccountinpayable() {    
+  creatcheckaccount() {
 
     let data = {
-      accountName:this.employForm.value.name,
+      accountName: 'Current Liability',
+      accountType: "Liability",
+      description: "description",
+      // accountCode: this.bankForm.value.account_number,
+      organisation: localStorage.getItem('organisation'),
+      userId: this.userId,
+      parentAccount: "",
+      super_parent_Account: '',
+      opening_account: 0,
+      type: 'credit',
+    }
+
+    console.log('let data be', data);
+    this.userService.creataccount(data).subscribe(value => {
+      console.log(value)
+      this.creatcheckaccount1()
+
+    },
+      err => {
+        console.log(err)
+
+        this.toastr.error('Error!', 'Server Error')
+      })
+  }
+
+  creatcheckaccount1() {
+
+    let data = {
+      accountName: 'Account Payable',
+      accountType: "Liability",
+      description: "description",
+      // accountCode: this.bankForm.value.account_number,
+      organisation: localStorage.getItem('organisation'),
+      userId: this.userId,
+      parentAccount: "Current Liability",
+      super_parent_Account: '',
+      opening_account: 0,
+      type: 'credit',
+    }
+
+    console.log('let data be', data);
+    this.userService.creataccount(data).subscribe(value => {
+      console.log(value)
+      this.employeeAccount()
+
+    },
+      err => {
+        console.log(err)
+
+        this.toastr.error('Error!', 'Server Error')
+      })
+  }
+
+
+
+
+
+  employeeAccount() {
+    let data = {
+      accountName: this.employForm.value.name,
+      accountType: 'Expense',
+      organisation: localStorage.getItem('organisation'),
+      parentAccount: '',
+      userId: this.userId,
+      super_parent_Account: ''
+
+    }
+    console.log(' account data', data)
+    this.userService.creataccount(data).subscribe(result => {
+      console.log('resultttt', result);
+      this.creataccountinpayable()
+      this.loader = false;
+    },
+      err => {
+        console.log('account err', err)
+        this.toastr.error('Error!', 'Creation  failed')
+        this.userService.deleteAccount(this.accountId).subscribe(result => {
+          this.loader = false;
+          console.log('delete result', result);
+        },
+          err => {
+            this.loader = false;
+            console.log('delete err', err)
+          })
+      })
+  }
+
+  creataccountinpayable() {
+
+    let data = {
+      accountName: this.employForm.value.name,
       accountType: "Liability",
       description: "description",
       // accountCode: this.contractorForm.value.account_number,
       organisation: localStorage.getItem('organisation'),
       userId: this.userId,
       parentAccount: "Account Payable",
-      super_parent_Account:'Current Liability'
+      super_parent_Account: 'Current Liability'
     }
 
     console.log('let data be', data);
@@ -433,24 +448,91 @@ employeeAccount(){
         this.toastr.error('Error!', 'Server Error')
       })
   }
-/********** ENDS ************** */
-/****************FIRST TIME ACCOUNT CREATION **************************/
-// account(){
-//   let data={
-//     accountName:'Employee',
-//     accountType:'Expense',
-//     organisation:localStorage.getItem('organisation'),
-//     userId:this.userId
-//   }
-//   console.log(' account data',data)
-//   this.userService.creataccount(data).subscribe(result=>{
-//     this.loader=false;
-//     console.log('resultttt',result)
-//   },
-//   err=>{
-//     console.log('account err',err)
-//     this.toastr.error('Error!', 'Creation  failed')
-//   })
-// }
+  /********** ENDS ************** */
+  /*****************************  CUSTOMER profile info**********************/
+  employeeProfile() {
+    console.log('driber detai;', this.incomingEmployeeDetail);
+    // console.log('object',Object.keys(this.incomingEmployeeDetail))
+    if (Object.keys(this.incomingEmployeeDetail).length != 0) {
+
+      if (this.incomingEmployeeDetail.picture != null) {
+        this.show = false;
+        this.imgUrlPrefix = this.incomingEmployeeDetail.picture ? this.sanitizer.bypassSecurityTrustResourceUrl("http://ec2-52-66-250-48.ap-south-1.compute.amazonaws.com:4052/file/getImage?imageId=" + this.incomingEmployeeDetail.picture) : null;
+        console.log(' this.previewImage', this.imgUrlPrefix);
+        this.employForm.get('name').setValue(this.incomingEmployeeDetail.name);
+        this.employForm.get('phoneNumber').setValue(this.incomingEmployeeDetail.phoneNumber);
+        this.employForm.get('bank_name').setValue(this.incomingEmployeeDetail.bank_name);
+        this.employForm.get('branch_name').setValue(this.incomingEmployeeDetail.branch_name);
+        this.employForm.get('account_holder_name').setValue(this.incomingEmployeeDetail.account_holder_name);
+        this.employForm.get('ifsc').setValue(this.incomingEmployeeDetail.ifsc);
+        this.employForm.get('account_number').setValue(this.incomingEmployeeDetail.account_number);
+        this.incomingEmployeeDetail.aadhar ? this.docDetail.push({ docname: 'Aadhar', number: this.incomingEmployeeDetail.aadhar.number }) : ''
+        this.incomingEmployeeDetail.voterId ? this.docDetail.push({ docname: 'Voter Id', number: this.incomingEmployeeDetail.voterId.number, valid_upto: this.incomingEmployeeDetail.voterId.valid_upto }) : '';
+        for (let i = 0; i < this.incomingEmployeeDetail.others.length; i++) {
+          this.docDetail.push({ docname: this.incomingEmployeeDetail.others[i].doc_name, number: this.incomingEmployeeDetail.others[i].number ? this.incomingEmployeeDetail.others[i].number : null, valid_upto: this.incomingEmployeeDetail.others[i].valid_upto })
+        }
+      }
+      else {
+        this.employForm.get('name').setValue(this.incomingEmployeeDetail.name);
+        this.employForm.get('phoneNumber').setValue(this.incomingEmployeeDetail.phoneNumber);
+        this.employForm.get('bank_name').setValue(this.incomingEmployeeDetail.bank_name);
+        this.employForm.get('branch_name').setValue(this.incomingEmployeeDetail.branch_name);
+        this.employForm.get('account_holder_name').setValue(this.incomingEmployeeDetail.account_holder_name);
+        this.employForm.get('ifsc').setValue(this.incomingEmployeeDetail.ifsc);
+        this.employForm.get('account_number').setValue(this.incomingEmployeeDetail.account_number);
+        this.incomingEmployeeDetail.aadhar ? this.docDetail.push({ docname: 'Aadhar', number: this.incomingEmployeeDetail.aadhar.number }) : ''
+        this.incomingEmployeeDetail.voterId ? this.docDetail.push({ docname: 'Voter Id', number: this.incomingEmployeeDetail.voterId.number, valid_upto: this.incomingEmployeeDetail.voterId.valid_upto }) : '';
+        for (let i = 0; i < this.incomingEmployeeDetail.others.length; i++) {
+          this.docDetail.push({ docname: this.incomingEmployeeDetail.others[i].doc_name, number: this.incomingEmployeeDetail.others[i].number ? this.incomingEmployeeDetail.others[i].number : null, valid_upto: this.incomingEmployeeDetail.others[i].valid_upto })
+        }
+      }
+
+    }
+    else {
+      console.log('create')
+    }
+
+  }
+  /************************************************ ENDS ************************************************ */
+  /************************* UPDATE DRIVER PROFILE****************************/
+  updateEmployee() {
+    console.log('others data incoming', this.incomingEmployeeDetail.others)
+    let data = {
+      phoneNumber: this.employForm.value.phoneNumber,
+      aadhar: this.aadharData.aadhar ? this.aadharData.aadhar : this.incomingEmployeeDetail.aadhar,
+      voterId: this.voterIdData.voterId ? this.voterIdData.voterId : this.incomingEmployeeDetail.voterId,
+      // others: this.incomingEmployeeDetail.others?this.incomingEmployeeDetail.others.push(this.othersData):this.othersData,
+      picture: Object.keys(this.pictureUpload).length != 0 && this.pictureUpload.constructor != Object ? this.pictureUpload : this.incomingEmployeeDetail.picture,
+      contactId: this.incomingEmployeeDetail._id
+    }
+    console.log('data', data)
+    this.contactService.upadteContact(data).subscribe(result => {
+      console.log('result', result)
+      this.toastr.success('Driver updated')
+      this.SharedService.abc('contact')
+    },
+      error => {
+        this.toastr.success('Driver  not updated')
+        console.log('update error', error.message)
+      })
+  }
+  /****************FIRST TIME ACCOUNT CREATION **************************/
+  // account(){
+  //   let data={
+  //     accountName:'Employee',
+  //     accountType:'Expense',
+  //     organisation:localStorage.getItem('organisation'),
+  //     userId:this.userId
+  //   }
+  //   console.log(' account data',data)
+  //   this.userService.creataccount(data).subscribe(result=>{
+  //     this.loader=false;
+  //     console.log('resultttt',result)
+  //   },
+  //   err=>{
+  //     console.log('account err',err)
+  //     this.toastr.error('Error!', 'Creation  failed')
+  //   })
+  // }
   /********* ENDS ************** */
 }
