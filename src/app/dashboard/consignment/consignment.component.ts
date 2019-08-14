@@ -180,9 +180,9 @@ export class ConsignmentComponent implements OnInit {
       })
   }
 
-  submit() {
-    this.calculation1();
-    return;
+  calculation1() {
+    // this.calculation1();
+    
     console.log(this.consignmentForm.value)
     this.submitted = true;
     console.log(this.consignmentForm.valid)
@@ -400,7 +400,7 @@ export class ConsignmentComponent implements OnInit {
 
       })
   }
-  calculation1() {
+  submit() {
     var temp: any = [];
     console.log(this.ratelist);
     var result = jQuery('.switch-input').is(':checked') ? true : false;
