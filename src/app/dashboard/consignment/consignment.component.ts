@@ -49,9 +49,12 @@ export class ConsignmentComponent implements OnInit {
       origin_place: {},
       destination: {},
       authorize_person: {},
+      price_type: {},
+
       driver_license_number: {},
       truckconfig: {},
       driver_name: {},
+      amount:{},
       gross_wt: {},
       tare_wt: {},
       net_wt: {},
@@ -78,9 +81,11 @@ export class ConsignmentComponent implements OnInit {
       origin_place: ['', Validators.required],
       destination: ['', Validators.required],
       authorize_person: ['', Validators.required],
+      price_type: ['', Validators.required],
       driver_license_number: ['', Validators.required],
       truckconfig: ['', Validators.required],
       driver_name: ['', Validators.required],
+      amount:['',Validators.required],
       gross_wt: [''],
       tare_wt: [''],
       net_wt: ['',],
@@ -176,7 +181,7 @@ export class ConsignmentComponent implements OnInit {
   }
 
   submit() {
-    this.calculation();
+    this.calculation1();
     return;
     console.log(this.consignmentForm.value)
     this.submitted = true;
@@ -199,6 +204,7 @@ export class ConsignmentComponent implements OnInit {
         driver_license_number: this.consignmentForm.value.driver_license_number,
         truck_confg: this.consignmentForm.value.truckconfig,
         driver_name: this.consignmentForm.value.driver_name,
+        amount:this.consignmentForm.value.amount,
         challan_doc: this.chalandoc,
         quantity: {
           gross_wt: this.consignmentForm.value.gross_wt,
@@ -393,6 +399,59 @@ export class ConsignmentComponent implements OnInit {
         console.log(error);
 
       })
+  }
+  calculation1() {
+    var temp: any = [];
+    console.log(this.ratelist);
+    var result = jQuery('.switch-input').is(':checked') ? true : false;
+    for (var i = 0; i < this.ratelist.length; i++) {
+      if (this.ratelist[i].truck_confg == this.consignmentForm.value.truckconfig) {
+        if (result == this.ratelist[i].within_state) {
+          if (this.ratelist[i].price_type == this.consignmentForm.value.price_type) {
+            if (((new Date(this.ratelist[i].effactive_date_from).getTime()) <= (new Date(this.consignmentForm.value.consignment_date).getTime()) && (new Date(this.ratelist[i].effactive_date_to).getTime()) >= (new Date(this.consignmentForm.value.consignment_date).getTime()))) {
+              console.log('config and price type and date and state matched')
+              temp.push(this.ratelist[i]);
+              console.log(temp)
+            }
+          }
+        }
+      }
+    }
+
+
+
+    if (this.consignmentForm.value.truckconfig == 12 || this.consignmentForm.value.truckconfig == 19 || this.consignmentForm.value.truckconfig == 20 || this.consignmentForm.value.truckconfig == 24) {
+
+      if (temp[temp.length - 1].price_type == 'fdz') {
+        console.log(parseFloat(this.consignmentForm.value.truckconfig), parseFloat(temp[temp.length - 1].rate), temp[temp.length - 1].to_km, parseFloat(temp[temp.length - 1].to_km))
+        this.totalval = parseFloat(this.consignmentForm.value.truckconfig) * parseFloat(temp[temp.length - 1].rate);
+      }
+      else if (temp[temp.length - 1].price_type == 'bfdz') {
+        console.log(parseFloat(this.consignmentForm.value.truckconfig), parseFloat(temp[temp.length - 1].rate), parseFloat(this.distance))
+        this.totalval = parseFloat(this.consignmentForm.value.truckconfig) * parseFloat(temp[temp.length - 1].rate) * parseFloat(this.distance);
+      }
+
+
+    }
+    else if (this.consignmentForm.value.truckconfig == 306 || this.consignmentForm.value.truckconfig == 450) {
+
+      if (temp[temp.length - 1].price_type == 'fdz') {
+        this.totalval = parseFloat(this.consignmentForm.value.truckconfig) * parseFloat(temp[temp.length - 1].rate);
+      }
+      else if (temp[temp.length - 1].price_type == 'bfdz') {
+        this.totalval = parseFloat(this.consignmentForm.value.truckconfig) * parseFloat(temp[temp.length - 1].rate) * parseFloat(this.distance) * 2;
+      }
+
+    }
+    else if (this.consignmentForm.value.truckconfig == 1) {
+      this.totalval = parseFloat(this.distance) * parseFloat(temp[temp.length - 1].rate) * parseFloat(this.consignmentForm.onconsignmentFormValuesChanged.net_wt);
+    }
+    // alert(this.totalval)
+    this.consignmentForm.value.amount=this.totalval
+
+
+
+
   }
   calculation() {
     console.log(this.ratelist);

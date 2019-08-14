@@ -74,42 +74,43 @@ export class RateComponent implements OnInit {
     var start: any
     var distance: any;
     console.log(this.ratelist.length)
-    if(this.ratelist.length==0){
-      this.callapi();
-      return;
-    }
-    for (var i = 0; i < this.ratelist.length; i++) {
-      console.log(i, this.ratelist[i].customerId._id, this.customer)
-      if (this.ratelist[i].customerId._id == this.customer) {
-        console.log((this.ratelist[i].within_state), (this.state), (this.ratelist[i].truck_confg), (this.truckconfig))
+    // if(this.ratelist.length==0){
+    //   this.callapi();
+    //   return;
+    // }
+    this.callapi();
+    // for (var i = 0; i < this.ratelist.length; i++) {
+    //   console.log(i, this.ratelist[i].customerId._id, this.customer)
+    //   if (this.ratelist[i].customerId._id == this.customer) {
+    //     console.log((this.ratelist[i].within_state), (this.state), (this.ratelist[i].truck_confg), (this.truckconfig))
         
-        if ((this.ratelist[i].within_state == this.state) && (this.ratelist[i].truck_confg == this.truckconfig)) {
-          start = this.checkdate(this.ratelist[i].effactive_date_from, this.ratelist[i].effactive_date_to);
+    //     if ((this.ratelist[i].within_state == this.state) && (this.ratelist[i].truck_confg == this.truckconfig)) {
+    //       start = this.checkdate(this.ratelist[i].effactive_date_from, this.ratelist[i].effactive_date_to);
 
-          console.log(start)
-          if (start) {
+    //       console.log(start)
+    //       if (start) {
            
-            distance = this.checkdistance(this.ratelist[i].from_km, this.ratelist[i].to_km)
-            if (distance) {
-              this.callapi();
-              return
-            }
-            else {
-              alert('Effective dates already exists');
-              return;
-            }
-          }
-          else {
-            alert('Please check from and to km');
-            return;
-          }
-        }
-        else {
-         this.callapi();
-         return
-        }
-      }
-    }
+    //         distance = this.checkdistance(this.ratelist[i].from_km, this.ratelist[i].to_km)
+    //         if (distance) {
+    //           this.callapi();
+    //           return
+    //         }
+    //         else {
+    //           alert('Effective dates already exists');
+    //           return;
+    //         }
+    //       }
+    //       else {
+    //         alert('Please check from and to km');
+    //         return;
+    //       }
+    //     }
+    //     else {
+    //      this.callapi();
+    //      return
+    //     }
+    //   }
+    // }
   }
 
   checkdistance(formkm, tokm) {

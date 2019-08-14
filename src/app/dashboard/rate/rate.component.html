@@ -137,13 +137,14 @@
                   </select>
 
 
-                  <td class="thno" data-title="NO.">
-                    <select class="orga" [(ngModel)]="price_type">
-                      <option value="" disabled selected>Select</option>
-                      <option value="fdz">fdz</option>
-                      <option value="bfdz">bfdz</option>
-                    </select>
-                  </td>                <td class="thno" data-title="NO."><input type="date" [(ngModel)]="startdate"></td>
+                <td class="thno" data-title="NO.">
+                  <select class="orga" [(ngModel)]="price_type">
+                    <option value="" disabled selected>Select</option>
+                    <option value="fdz">fdz</option>
+                    <option value="bfdz">bfdz</option>
+                  </select>
+                </td>
+                <td class="thno" data-title="NO."><input type="date" [(ngModel)]="startdate"></td>
                 <td class="thno" data-title="NO."><input type="date" [(ngModel)]="enddate"></td>
                 <td class="thno" data-title="NO."><span (click)="submit()">&#10004;</span></td>
               </tr>
