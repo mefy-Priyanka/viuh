@@ -54,7 +54,7 @@ export class ConsignmentComponent implements OnInit {
       driver_license_number: {},
       truckconfig: {},
       driver_name: {},
-      amount:{},
+      amount: {},
       gross_wt: {},
       tare_wt: {},
       net_wt: {},
@@ -85,7 +85,7 @@ export class ConsignmentComponent implements OnInit {
       driver_license_number: ['', Validators.required],
       truckconfig: ['', Validators.required],
       driver_name: ['', Validators.required],
-      amount:['',Validators.required],
+      amount: ['', Validators.required],
       gross_wt: [''],
       tare_wt: [''],
       net_wt: ['',],
@@ -182,7 +182,7 @@ export class ConsignmentComponent implements OnInit {
 
   calculation1() {
     // this.calculation1();
-    
+
     console.log(this.consignmentForm.value)
     this.submitted = true;
     console.log(this.consignmentForm.valid)
@@ -204,7 +204,7 @@ export class ConsignmentComponent implements OnInit {
         driver_license_number: this.consignmentForm.value.driver_license_number,
         truck_confg: this.consignmentForm.value.truckconfig,
         driver_name: this.consignmentForm.value.driver_name,
-        amount:this.consignmentForm.value.amount,
+        amount: this.consignmentForm.value.amount,
         challan_doc: this.chalandoc,
         quantity: {
           gross_wt: this.consignmentForm.value.gross_wt,
@@ -447,8 +447,8 @@ export class ConsignmentComponent implements OnInit {
       this.totalval = parseFloat(this.distance) * parseFloat(temp[temp.length - 1].rate) * parseFloat(this.consignmentForm.onconsignmentFormValuesChanged.net_wt);
     }
     // alert(this.totalval)
-    this.consignmentForm.value.amount=this.totalval
-
+    this.consignmentForm.value.amount = this.totalval
+    alert(this.consignmentForm.value.amount)
 
 
 
