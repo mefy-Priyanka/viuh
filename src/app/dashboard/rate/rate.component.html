@@ -27,7 +27,7 @@
   <div class="row customera">
     <div class="input-field col s3">
       <p><label>Customer <span class="blue_star">*</span></label></p>
-      <select class="orga" [(ngModel)]="query">
+      <select class="orga" >
         <option value="" disabled selected>Select</option>
         <option *ngFor="let list of contactlist" [value]="list._id">{{list.name}}</option>
 

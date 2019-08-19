@@ -130,7 +130,7 @@ const routes: Routes = [
         PetrolformviewComponent,
         PetrolformvoucherlistComponent,
         CompanyeditComponent,
-
+        RateComponent
     ]
 })
 export class DashboardModule { }
