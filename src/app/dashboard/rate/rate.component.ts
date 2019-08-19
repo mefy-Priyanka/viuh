@@ -20,7 +20,7 @@ export class RateComponent implements OnInit {
   unit = '';
   startdate = '';
   enddate = '';
-  loader = false;
+  public loader = false;
   price_type: '';
   ratelist: any = [];
   tconfig = [12, 19, 20, 24, 306, 450, 1];
