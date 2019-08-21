@@ -129,7 +129,7 @@
 
 
                               <td class="thname">
-                                <select formControlName="cosignmentId">
+                                <select formControlName="cosignmentId"  (ngModelChange)="changeconsigner($event)">
                                   <option value="" disabled selected>Select</option>
                                   <option *ngFor="let data of consigmentDetail" [value]='data._id'>{{data.consignmentNumber}}</option>
                                 </select>
