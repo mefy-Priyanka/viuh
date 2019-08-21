@@ -303,8 +303,8 @@
                             <th>CHALLAN NO.</th>
                             <th>DATE</th>
                             <th>PRODUCT</th>
-                            <th>QTY
-                          <tr >
+                            <th class="qtya">QTY
+                          <tr class="tgn">
                             <th>tare</th>
                             <th>gross</th>
                             <th>net</th>
@@ -336,7 +336,7 @@
                               (change)="upload($event,selectedOption)">
                           </tr>
                           <tr>
-                            <input type="text" style="border: none !important" formControlName="challan_number">
+                            <input type="text" formControlName="challan_number">
                             <p class="errormessage"
                               *ngIf="consignmentFormErrors.challan_number.required || (consignmentForm.controls.challan_number.pristine && submitted)">
                               challan_number can't be empty</p>
@@ -347,13 +347,13 @@
 
 
 
-                          <td class="thname"><input type="date" style="border: none !important"
+                          <td class="thname"><input type="date" 
                               formControlName="challan_date"></td>
                           <p class="errormessage"
                             *ngIf="consignmentFormErrors.challan_date.required || (consignmentForm.controls.challan_date.pristine && submitted)">
                             challan_date can't be empty</p>
 
-                          <td class="thname"><input type="text" style="border: none !important"
+                          <td class="thname"><input type="text" 
                               formControlName="product"></td>
                           <p class="errormessage"
                             *ngIf="consignmentFormErrors.product.required || (consignmentForm.controls.product.pristine && submitted)">
@@ -361,11 +361,11 @@
 
                           <td class="thname">
                             <tr>
-                              <td> <input type="text" style="border: none !important" formControlName="tare_wt">
+                              <td> <input type="text"  formControlName="tare_wt">
                               </td>
-                              <td> <input type="text" style="border: none !important" formControlName="gross_wt">
+                              <td> <input type="text"  formControlName="gross_wt">
                               </td>
-                              <td> <input type="number" style="border: none !important" formControlName="net_wt">
+                              <td> <input type="number"  formControlName="net_wt">
                               </td>
                             </tr>
 
@@ -375,6 +375,7 @@
                           </tr>
                         </tbody>
                       </table>
+                      <button class="At">+&nbsp;&nbsp;Add Another Line</button>
                     </div>
                   </div>
                 </div>
