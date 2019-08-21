@@ -50,10 +50,6 @@ import { ViewcontractorComponent } from './viewcontractor/viewcontractor.compone
 import { PetrolformviewComponent } from './petrolformview/petrolformview.component';
 import { PetrolformvoucherlistComponent } from './petrolformvoucherlist/petrolformvoucherlist.component';
 import { RateComponent } from './rate/rate.component';
-import { ContactcustomereditComponent } from './contactcustomeredit/contactcustomeredit.component';
-import { ContactemployeeditComponent } from './contactemployeedit/contactemployeedit.component';
-import { ContactvendoreditComponent } from './contactvendoredit/contactvendoredit.component';
-import { ContactdrivereditComponent } from './contactdriveredit/contactdriveredit.component';
 import { CompanyeditComponent } from './companyedit/companyedit.component';
 
 const routes: Routes = [
@@ -133,13 +129,8 @@ const routes: Routes = [
         ViewcontractorComponent,
         PetrolformviewComponent,
         PetrolformvoucherlistComponent,
-        RateComponent,
-        ContactcustomereditComponent,
-        ContactemployeeditComponent,
-        ContactvendoreditComponent,
-        ContactdrivereditComponent,
         CompanyeditComponent,
-
+        RateComponent
     ]
 })
 export class DashboardModule { }

@@ -1,6 +1,6 @@
 <!-- consignment-->
 <section class="corder" *ngIf="cdata">
- 
+
   <div class="ft">
     <h1>Consignment
       <button class="addItema" (click)="at()"><i class="fa fa-plus-circle" aria-hidden="true"></i>Add</button>
@@ -87,7 +87,7 @@
 
                   <div class="input-field col s6">
                     <p><label>Consignee<span class="blue_star">*</span></label></p>
-                    <select class="orga" formControlName="consignee">
+                    <select class="orga" formControlName="consignee" (ngModelChange)="chengeconsignee($event)">
 
                       <option value="" disabled selected>Choose Consignee</option>
                       <option *ngFor="let list of destinationlist" [value]='list.location_name'>{{list.location_name}}
@@ -164,8 +164,8 @@
 
                   <div class="input-field col s6">
                     <p><label>Authorised person<span class="blue_star">*</span></label></p>
-                  
-                    <select class="orga"  formControlName="authorize_person" >
+
+                    <select class="orga" formControlName="authorize_person">
 
                       <option value="" disabled selected>Choose Employee</option>
                       <option *ngFor="let list of employeelist" [value]='list._id'>{{list.name}}</option>
@@ -183,7 +183,7 @@
                   <div class="input-field col s6">
                     <p><label>Driver Name<span class="blue_star">*</span></label></p>
                     <!-- <input type="text" class="validate" formControlName="driver_name">driverlist -->
-                    <select class="orga" formControlName="driver_name" >
+                    <select class="orga" formControlName="driver_name">
 
                       <option value="" disabled selected>Choose Driver</option>
                       <option *ngFor="let list of driverlist" [value]='list._id'>{{list.name}}</option>
@@ -201,13 +201,64 @@
                     <p class="errormessage"
                       *ngIf="consignmentFormErrors.driver_license_number.required || (consignmentForm.controls.driver_license_number.pristine && submitted)">
                       driver_license_number can't be empty</p>
+                  </div>
+                </div>
+
+
+                <div class="row">
+                  <div class="input-field col s6">
+                    <p><label>TRUCK CONFIG<span class="blue_star">*</span></label></p>
+                    <select class="orga" formControlName="truckconfig">
+                      <option value="" disabled selected>Choose option</option>
+                      <option *ngFor="let list of tconfig" [value]='list'>{{list}}</option>
+                    </select>
+                    <p class="errormessage"
+                      *ngIf="consignmentFormErrors.truckconfig.required || (consignmentForm.controls.truckconfig.pristine && submitted)">
+                      truck config can't be empty</p>
 
                   </div>
 
+                  <div class="input-field col s6">
+                    <p><label>within state<span class="blue_star">*</span></label></p>
+                    <label class="switch">
+                      <input class="switch-input" type="checkbox" />
+                      <span class="switch-label" data-on="Yes" data-off="No"></span> 
+                      <span class="switch-handle"></span> 
+                     </label>
 
+                    
 
-
+                  </div>
                 </div>
+
+
+                <div class="row">
+                  <div class="input-field col s6">
+                    <p><label>Price Type<span class="blue_star">*</span></label></p>
+                    <select class="orga" formControlName="price_type">
+                      <option value="" disabled selected>Select</option>
+                      <option value="fdz">fdz</option>
+                      <option value="bfdz">bfdz</option>
+                    </select>
+                    <p class="errormessage"
+                      *ngIf="consignmentFormErrors.price_type.required || (consignmentForm.controls.price_type.pristine && submitted)">
+                      truck config can't be empty</p>
+
+                  </div>
+
+                  <div class="input-field col s6">
+                    <p><label>Amount<span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" formControlName="amount" [readonly]="true">
+
+                    <p class="errormessage"
+                      *ngIf="consignmentFormErrors.price_type.required || (consignmentForm.controls.price_type.pristine && submitted)">
+                      truck config can't be empty</p>
+
+                  </div>
+
+                  </div>
+               
+
 
 
 
@@ -291,7 +342,7 @@
                               </td>
                               <td> <input type="text" style="border: none !important" formControlName="gross_wt">
                               </td>
-                              <td> <input type="text" style="border: none !important" formControlName="net_wt">
+                              <td> <input type="number" style="border: none !important" formControlName="net_wt">
                               </td>
                             </tr>
 

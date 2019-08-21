@@ -89,14 +89,17 @@ export class DestinationComponent implements OnInit {
 
       location_code: ['', Validators.required],
       address: ['', Validators.required],
-      km: ['', Validators.required],
+      km: ['', Validators.required], 
+      point_of_origin:['',Validators.required],
       serial_number:this.lForms.length+1
     })
   
     this.lForms.push(cdetail);
     
   }
-  
+  del(){
+    this.lForms.removeAt(this.lForms.length-1)
+  }
 
 
 
@@ -162,6 +165,7 @@ export class DestinationComponent implements OnInit {
       })
   }
   else {
+    alert('please provide all details')
     this.loader = false;
   }
   }
