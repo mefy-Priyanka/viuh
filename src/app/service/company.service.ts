@@ -189,4 +189,29 @@ export class CompanyService {
     return this.httpClient.get(APIURL+'destination/destinationByCustomer?customerId='+id)
 
   }
+
+//get billlist
+getdashboardbill(data){
+  console.log(APIURL+'bill/billBetweenDate?superAdminId='+data.superAdminId+'&from='+data.from)
+  return this.httpClient.get(APIURL+'bill/billBetweenDate?superAdminId='+data.superAdminId+'&from='+data.from)
+
+}
+//get fleetlist
+getdashfleet(data){
+  console.log(APIURL+'fleet/fleetBetweenDate?superAdminId='+data.superAdminId+'&to='+data.to)
+  return this.httpClient.get(APIURL+'fleet/fleetBetweenDate?superAdminId='+data.superAdminId+'&to='+data.to)
+
+}
+//get consignmentlist
+getdashconsign(data){
+  console.log(APIURL+'consignment/consignmentBetweenDate?superAdminId='+data.superAdminId+'&from='+data.from)
+  return this.httpClient.get(APIURL+'consignment/consignmentBetweenDate?superAdminId='+data.superAdminId+'&from='+data.from)
+
+}
+//get invoicelist
+getdashinvoice(data){
+  console.log(APIURL+'invoice/invoiceBetweenDate?superAdminId='+data.superAdminId+'&from='+data.from)
+  return this.httpClient.get(APIURL+'invoice/invoiceBetweenDate?superAdminId='+data.superAdminId+'&from='+data.from)
+
+}
 }
