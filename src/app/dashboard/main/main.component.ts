@@ -6,9 +6,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
+  date: any;
+  todaydate: any;
+  constructor() {
 
-  constructor() { }
+  }
 
+  ad() {
+    console.log("hi", this.date)
+    var previous = new Date(new Date().setDate(new Date().getDate() - this.date));
+    console.log("Fromdate", previous.toISOString())
+    console.log("hi", this.date)
+  }
+  
   ngOnInit() {
   }
 
