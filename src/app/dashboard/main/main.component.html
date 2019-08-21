@@ -9,7 +9,15 @@
   <div class="col-md-12">
     <div class="col-md-6">
       <div class="card mainCard">
-        <h1 class="mainHeader">Fleet Action</h1>
+        <h1 class="mainHeader">Fleet Action
+          <select class="orga" [(ngModel)]="fleetdate" (change)="fleetDate()">
+            <option value="" disabled selected>Days</option>
+            <option value=7>7</option>
+            <option value=15>15</option>
+            <option value=21>21</option>
+            <option value=28>28</option>
+          </select>
+        </h1>
         <div class="tableide">
             <div class="row">
                 <div id="no-more-tables">
@@ -23,16 +31,12 @@
                             <td>DOCUMENT</td>
                             <td>EXPIRY DATE</td>
                           </tr>
-                      <tr>
-                        <td class="thno" data-title="NO.">WB-1800 1023</td>
+                      <tr *ngFor="let list of fleetList; index as i">
+                        <td class="thno" data-title="NO.">{{list.truck_number}}</td>
                         <td class="thname" data-title="NAME">Sco</td>
                         <td data-title="ADDRESS" class="numeric">13/08/2020</td>
                       </tr>
-                      <tr>
-                          <td class="thno" data-title="NO.">MH-1800 200</td>
-                          <td class="thname" data-title="NAME">Rc</td>
-                          <td data-title="ADDRESS" class="numeric">19/05/2021</td>
-                        </tr>
+
                     </tbody>
                   </table>
                 </div>
@@ -42,7 +46,15 @@
     </div>
     <div class="col-md-6">
         <div class="card mainCard">
-            <h1 class="mainHeader">Bills</h1>
+            <h1 class="mainHeader">Bills
+              <select class="orga" [(ngModel)]="date" (change)="billDate()">
+                <option value="" disabled selected>Days</option>
+                <option value=7>7</option>
+                <option value=15>15</option>
+                <option value=21>21</option>
+                <option value=28>28</option>
+              </select>
+            </h1>
             <div class="tableide">
                 <div class="row">
                     <div id="no-more-tables">
@@ -56,16 +68,11 @@
                                 <td>VENDOR/CONTRACTOR</td>
                                 <td>AMOUNT</td>
                               </tr>
-                          <tr>
-                            <td class="thno" data-title="NO.">L-1000-3999</td>
-                            <td class="thname" data-title="NAME">Skyscraper</td>
-                            <td data-title="ADDRESS" class="numeric">20,000</td>
+                          <tr *ngFor="let list of billList; index as i">
+                            <td class="thno" data-title="NO.">{{list.bill_number}}</td>
+                            <td class="thname" data-title="NAME">{{list.vendorId}}</td>
+                            <td data-title="ADDRESS" class="numeric">{{list.total}}</td>
                           </tr>
-                          <tr>
-                              <td class="thno" data-title="NO.">T-4000-4199</td>
-                              <td class="thname" data-title="NAME">Marshall Brothers</td>
-                              <td data-title="ADDRESS" class="numeric">40,000</td>
-                            </tr>
                         </tbody>
                       </table>
                     </div>
@@ -86,7 +93,15 @@
     <div class="col-md-12">
       <div class="col-md-6">
         <div class="card mainCard">
-          <h1 class="mainHeader">Consignment Shipped</h1>
+          <h1 class="mainHeader">Consignment Shipped
+            <select class="orga"[(ngModel)]="consigndate" (change)="consignDate()">
+              <option value="" disabled selected>Days</option>
+                <option value=7>7</option>
+                <option value=15>15</option>
+                <option value=21>21</option>
+                <option value=28>28</option>
+            </select>
+          </h1>
           <div class="tableide">
               <div class="row">
                   <div id="no-more-tables">
@@ -101,18 +116,12 @@
                               <td>CONSIGNOR</td>
                               <td>PLACE</td>
                             </tr>
-                        <tr>
-                          <td class="thno" data-title="NO.">Vin</td>
-                          <td class="thname" data-title="NAME">15/02/2019</td>
-                          <td data-title="ADDRESS" class="numeric">tq</td>
-                          <td data-title="ADDRESS" class="thno">WB</td>
+                        <tr *ngFor="let list of consignList; index as i">
+                          <td class="thno" data-title="NO.">{{list.consignmentNumber}}</td>
+                          <td class="thname" data-title="NAME">{{list.consignment_date}}</td>
+                          <td data-title="ADDRESS" class="numeric">{{list.consignor.name}}</td>
+                          <td data-title="ADDRESS" class="thno">{{list.destination}}</td>
                         </tr>
-                        <tr>
-                            <td class="thno" data-title="NO.">Bar</td>
-                            <td class="thname" data-title="NAME">18/05/2019</td>
-                            <td data-title="ADDRESS" class="numeric">ac</td>
-                            <td data-title="ADDRESS" class="thno">Asn</td>
-                          </tr>
                       </tbody>
                     </table>
                   </div>
@@ -122,7 +131,15 @@
       </div>
       <div class="col-md-6">
           <div class="card mainCard">
-              <h1 class="mainHeader">Revenue/Credit</h1>
+              <h1 class="mainHeader">Revenue/Credit
+                <select class="orga" [(ngModel)]="invdate" (change)="invoiceDate()">
+                  <option value="" disabled selected>Days</option>
+                <option value=7>7</option>
+                <option value=15>15</option>
+                <option value=21>21</option>
+                <option value=28>28</option>
+                </select>
+              </h1>
               <div class="tableide">
                   <div class="row">
                       <div id="no-more-tables">
@@ -136,16 +153,11 @@
                                   <td>CUSTOMER</td>
                                   <td>AMOUNT</td>
                                 </tr>
-                            <tr>
-                              <td class="thno" data-title="NO.">T-8799</td>
-                              <td class="thname" data-title="NAME">Purge</td>
-                              <td data-title="ADDRESS" class="numeric">29,000</td>
+                            <tr *ngFor="let list of invoiceList; index as i">
+                              <td class="thno" data-title="NO.">{{list.invoice_number}}</td>
+                              <td class="thname" data-title="NAME">{{list.customerId.name}}</td>
+                              <td data-title="ADDRESS" class="numeric">{{list.total}}</td>
                             </tr>
-                            <tr>
-                                <td class="thno" data-title="NO.">T-8400</td>
-                                <td class="thname" data-title="NAME">Life</td>
-                                <td data-title="ADDRESS" class="numeric">25,000</td>
-                              </tr>
                           </tbody>
                         </table>
                       </div>

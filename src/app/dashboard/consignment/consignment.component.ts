@@ -22,7 +22,7 @@ export class ConsignmentComponent implements OnInit {
   submitted = false;
   consigmentDetail = [];
   contactlist = [];
-  fleetDetail = []
+  fleetDetail = [];
   destinationlist: any = [];
   driverlist: any = [];
   consignerpay: any;
@@ -32,14 +32,16 @@ export class ConsignmentComponent implements OnInit {
   distance: any;
   totalval: number;
   ratelist: any = [];
+  contactname: any;
+  freight: any;
   constructor(private formBuilder: FormBuilder, private userService: UserService, private companyService: CompanyService, private toastr: ToastrService) {
     this.userId = localStorage.getItem('userId');
     this.role = localStorage.getItem('role');
     this.organisation = localStorage.getItem('organisation');
 
     this.consignmentFormErrors = {
-      tl_number: {},
-      location_number: {},
+      // tl_number: {},
+      // location_number: {},
       challan_number: {},
       challan_date: {},
       consignor: {},
@@ -70,8 +72,8 @@ export class ConsignmentComponent implements OnInit {
   createconsignmentForm() {
     return this.formBuilder.group({
 
-      tl_number: ['', Validators.required],
-      location_number: ['', Validators.required],
+      // tl_number: ['', Validators.required],
+      // location_number: ['', Validators.required],
       challan_number: ['', Validators.required],
       challan_date: ['', Validators.required],
       consignor: ['', Validators.required],
@@ -180,7 +182,7 @@ export class ConsignmentComponent implements OnInit {
       })
   }
 
-  calculation1() {
+  apicall() {
     // this.calculation1();
 
     console.log(this.consignmentForm.value)
@@ -189,8 +191,8 @@ export class ConsignmentComponent implements OnInit {
     if (this.consignmentForm.valid) {
       console.log('sssssssssss')
       let data = {
-        tl_number: this.consignmentForm.value.tl_number,
-        location_number: this.consignmentForm.value.location_number,
+        // tl_number: this.consignmentForm.value.tl_number,
+        // location_number: this.consignmentForm.value.location_number,
         challan_number: this.consignmentForm.value.challan_number,
         challan_date: new Date(this.consignmentForm.value.challan_date).toISOString(),
         consignor: this.consignmentForm.value.consignor,
@@ -204,7 +206,7 @@ export class ConsignmentComponent implements OnInit {
         driver_license_number: this.consignmentForm.value.driver_license_number,
         truck_confg: this.consignmentForm.value.truckconfig,
         driver_name: this.consignmentForm.value.driver_name,
-        amount: this.consignmentForm.value.amount,
+        // amount: this.consignmentForm.value.amount,
         challan_doc: this.chalandoc,
         quantity: {
           gross_wt: this.consignmentForm.value.gross_wt,
@@ -363,6 +365,7 @@ export class ConsignmentComponent implements OnInit {
   }
 
   onChangeObj(id) {
+
     this.destinationlist = [];
     this.companyService.getdestination(id).subscribe(result => {
       console.log(result);
@@ -379,12 +382,22 @@ export class ConsignmentComponent implements OnInit {
         console.log(err)
       })
 
+    for (var k = 0; k < this.contactlist.length; k++) {
+      if (this.contactlist[k]._id == id) {
+        this.contactname = this.contactlist[k].name
+        console.log(this.contactname)
+      }
+    }
   }
   chengeconsignee(data) {
     for (var j = 0; j < this.destinationlist.length; j++) {
       if (this.destinationlist[j].location_name == data) {
         this.distance = this.destinationlist[j].km;
         console.log(this.distance)
+        if (this.destinationlist[j].freight) {
+          this.freight = this.destinationlist[j].freight
+          console.log(this.freight)
+        }
       }
     }
   }
@@ -401,6 +414,7 @@ export class ConsignmentComponent implements OnInit {
       })
   }
   submit() {
+    this.totalval = 0;
     var temp: any = [];
     console.log(this.ratelist);
     var result = jQuery('.switch-input').is(':checked') ? true : false;
@@ -418,88 +432,54 @@ export class ConsignmentComponent implements OnInit {
       }
     }
 
-
-
     if (this.consignmentForm.value.truckconfig == 12 || this.consignmentForm.value.truckconfig == 19 || this.consignmentForm.value.truckconfig == 20 || this.consignmentForm.value.truckconfig == 24) {
+      console.log(temp[temp.length - 1])
+      if (temp[temp.length - 1]) {
+        if (temp[temp.length - 1].price_type == 'fdz') {
+          console.log(parseFloat(this.consignmentForm.value.truckconfig), parseFloat(temp[temp.length - 1].rate), parseFloat(temp[temp.length - 1].to_km))
+          this.totalval = parseFloat(this.consignmentForm.value.truckconfig) * parseFloat(temp[temp.length - 1].rate);
+        }
+        else if (temp[temp.length - 1].price_type == 'bfdz') {
+          console.log(parseFloat(this.consignmentForm.value.truckconfig), parseFloat(temp[temp.length - 1].rate), parseFloat(this.distance))
+          this.totalval = parseFloat(this.consignmentForm.value.truckconfig) * parseFloat(temp[temp.length - 1].rate) * parseFloat(this.distance);
+        }
+      }
 
-      if (temp[temp.length - 1].price_type == 'fdz') {
-        console.log(parseFloat(this.consignmentForm.value.truckconfig), parseFloat(temp[temp.length - 1].rate), temp[temp.length - 1].to_km, parseFloat(temp[temp.length - 1].to_km))
-        this.totalval = parseFloat(this.consignmentForm.value.truckconfig) * parseFloat(temp[temp.length - 1].rate);
-      }
-      else if (temp[temp.length - 1].price_type == 'bfdz') {
-        console.log(parseFloat(this.consignmentForm.value.truckconfig), parseFloat(temp[temp.length - 1].rate), parseFloat(this.distance))
-        this.totalval = parseFloat(this.consignmentForm.value.truckconfig) * parseFloat(temp[temp.length - 1].rate) * parseFloat(this.distance);
-      }
 
 
     }
     else if (this.consignmentForm.value.truckconfig == 306 || this.consignmentForm.value.truckconfig == 450) {
-
-      if (temp[temp.length - 1].price_type == 'fdz') {
-        this.totalval = parseFloat(this.consignmentForm.value.truckconfig) * parseFloat(temp[temp.length - 1].rate);
-      }
-      else if (temp[temp.length - 1].price_type == 'bfdz') {
-        this.totalval = parseFloat(this.consignmentForm.value.truckconfig) * parseFloat(temp[temp.length - 1].rate) * parseFloat(this.distance) * 2;
+      if (temp[temp.length - 1]) {
+        if (temp[temp.length - 1].price_type == 'fdz') {
+          this.totalval = parseFloat(this.consignmentForm.value.truckconfig) * parseFloat(temp[temp.length - 1].rate);
+        }
+        else if (temp[temp.length - 1].price_type == 'bfdz') {
+          this.totalval = parseFloat(this.consignmentForm.value.truckconfig) * parseFloat(temp[temp.length - 1].rate) * parseFloat(this.distance) * 2;
+        }
       }
 
     }
-    else if (this.consignmentForm.value.truckconfig == 1) {
-      this.totalval = parseFloat(this.distance) * parseFloat(temp[temp.length - 1].rate) * parseFloat(this.consignmentForm.onconsignmentFormValuesChanged.net_wt);
+    if (this.contactname.match('emami')) {
+      console.log(parseFloat(this.freight), parseFloat(this.consignmentForm.value.net_wt))
+      this.totalval = parseFloat(this.freight) * parseFloat(this.consignmentForm.value.net_wt);
     }
     // alert(this.totalval)
     this.consignmentForm.value.amount = this.totalval
-    alert(this.consignmentForm.value.amount)
-
-
-
-  }
-  calculation() {
-    console.log(this.ratelist);
-    // var result = document.getElementsByClassName("switch-input")[0].checked ? 'yes' : 'no'
-    var result = jQuery('.switch-input').is(':checked') ? true : false;
-    console.log(result)
-    for (var i = 0; i < this.ratelist.length; i++) {
-      // console.log(i)
-
-      if (this.ratelist[i].truck_confg == this.consignmentForm.value.truckconfig) {
-
-        // console.log('config true')
-        // console.log(result, this.ratelist[i].within_state)
-        if (result == this.ratelist[i].within_state) {
-          // console.log(i);
-          // console.log('fromkm' + this.ratelist[i].from_km, 'dista' + this.distance, 'tokm' + this.ratelist[i].to_km)
-          console.log(this.ratelist[i].from_km <= this.distance, this.distance < this.ratelist[i].to_km)
-          if (parseInt(this.ratelist[i].from_km) <= parseInt(this.distance) && parseInt(this.distance) < parseInt(this.ratelist[i].to_km)) {
-            // console.log('distance true')
-
-            if ((this.ratelist[i].effactive_date_from <= this.consignmentForm.value.consignment_date && this.ratelist[i].effactive_date_to >= this.consignmentForm.value.consignment_date)) {
-              // console.log('date true')
-              alert('rate is ------' + this.ratelist[i].rate);
-              var rate = 10;
-              if (this.consignmentForm.value.truckconfig == 12 || this.consignmentForm.value.truckconfig == 19 || this.consignmentForm.value.truckconfig == 20 || this.consignmentForm.value.truckconfig == 24) {
-                this.totalval = this.consignmentForm.value.truckconfig * rate * this.distance;
-              }
-              else if (this.consignmentForm.value.truckconfig == 306 || this.consignmentForm.value.truckconfig == 450) {
-                if (this.distance <= 100) {
-                  this.totalval = this.consignmentForm.value.truckconfig * rate * this.distance;
-                }
-                else {
-                  this.totalval = this.consignmentForm.value.truckconfig * rate * this.distance * 2;
-                }
-              }
-              else if (this.consignmentForm.value.truckconfig == 1) {
-                this.totalval = this.distance * rate;
-              }
-              alert(this.totalval)
-              return
-            }
-
-          }
-        }
+    console.log(this.totalval)
+    if (this.totalval == 0) {
+      let xx = confirm('there is no rate defined')
+      if (xx) {
+        this.apicall()
       }
     }
+    else {
+      alert(this.consignmentForm.value.amount)
+      this.apicall()
+    }
+
 
   }
+
   changetruck(id) {
     console.log(id)
     for (var i = 0; i < this.fleetDetail.length; i++) {

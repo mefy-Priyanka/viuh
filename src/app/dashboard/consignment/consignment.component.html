@@ -13,8 +13,8 @@
           <table class="col-md-12 table-bordered table-striped table-condensed cf">
             <thead class="cf">
               <tr>
-                <th class="numeric">TL.NO.</th>
-                <th>LOCATION NO.</th>
+                <!-- <th class="numeric">TL.NO.</th> -->
+                <!-- <th>LOCATION NO.</th> -->
                 <th>CHALLAN NO.</th>
                 <th>CONSIGNMENT DATE</th>
                 <th>PRODUCT</th>
@@ -23,8 +23,8 @@
             </thead>
             <tbody>
               <tr *ngFor="let consigment of consigmentDetail">
-                <td class="thno" data-title="NO.">{{consigment.tl_number}}</td>
-                <td class="thname" data-title="NAME">{{consigment.location_number}}</td>
+                <!-- <td class="thno" data-title="NO.">{{consigment.tl_number}}</td> -->
+                <!-- <td class="thname" data-title="NAME">{{consigment.location_number}}</td> -->
                 <td class="thname" data-title="VAT ID">{{consigment.challan_number}}</td>
                 <td data-title="ADDRESS" class="numeric">{{consigment.consignment_date}}</td>
                 <td data-title="VAT ID" class="numeric">{{consigment.product}}</td>
@@ -222,11 +222,11 @@
                     <p><label>within state<span class="blue_star">*</span></label></p>
                     <label class="switch">
                       <input class="switch-input" type="checkbox" />
-                      <span class="switch-label" data-on="Yes" data-off="No"></span> 
-                      <span class="switch-handle"></span> 
-                     </label>
+                      <span class="switch-label" data-on="Yes" data-off="No"></span>
+                      <span class="switch-handle"></span>
+                    </label>
 
-                    
+
 
                   </div>
                 </div>
@@ -256,8 +256,38 @@
 
                   </div>
 
+                </div>
+
+                <div class="row">
+                  <div class="input-field col s6">
+                    <p><label>Price Type<span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" formControlName="diesel_expenses">
+                    <p class="errormessage"
+                      *ngIf="consignmentFormErrors.diesel_expenses.required || (consignmentForm.controls.diesel_expenses.pristine && submitted)">
+                      Diesel Expenses can't be empty</p>
                   </div>
-               
+                  <div class="input-field col s6">
+                    <p><label>Driver Expenses<span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" formControlName="driver_expenses">
+                    <p class="errormessage"
+                      *ngIf="consignmentFormErrors.driver_expenses.required || (consignmentForm.controls.driver_expenses.pristine && submitted)">
+                      Diesel Expenses can't be empty</p>
+
+                  </div>
+
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                    <p><label>Toll Expenses<span class="blue_star">*</span></label></p>
+                    <input type="text" class="validate" formControlName="toll_expenses">
+                    <p class="errormessage"
+                      *ngIf="consignmentFormErrors.toll_expenses.required || (consignmentForm.controls.toll_expenses.pristine && submitted)">
+                      Toll Expenses can't be empty</p>
+
+                  </div>
+
+
+                </div>
 
 
 
@@ -269,31 +299,24 @@
                       <table class="col-md-12 table-bordered table-striped table-condensed cf">
                         <thead class="cf">
                           <tr>
-                            <th class="numeric">TL.NO.</th>
-                            <th>LOCATION NO.</th>
+                        
                             <th>CHALLAN NO.</th>
                             <th>DATE</th>
                             <th>PRODUCT</th>
-                            <th>QTY.(KL)
-                          <tr>
+                            <th class="qtya">QTY
+                          <tr class="tgn">
                             <th>tare</th>
                             <th>gross</th>
                             <th>net</th>
                           </tr>
                           </th>
 
-                          <th>ADVANCE PAYMENT
-                            <tr>
-                              <th>DIESEL</th>
-                              <th>DRIVER</th>
-                              <th>TOLL</th>
-                            </tr>
-                          </th>
+                          
                           </tr>
                         </thead>
                         <tbody>
                           <tr>
-                            <td class="thname"><input type="text" style="border: none !important"
+                            <!-- <td class="thname"><input type="text" style="border: none !important"
                                 formControlName="tl_number"></td>
                             <p class="errormessage"
                               *ngIf="consignmentFormErrors.tl_number.required || (consignmentForm.controls.tl_number.pristine && submitted)">
@@ -303,7 +326,7 @@
                                 formControlName="location_number"></td>
                             <p class="errormessage"
                               *ngIf="consignmentFormErrors.location_number.required || (consignmentForm.controls.location_number.pristine && submitted)">
-                              location_number can't be empty</p>
+                              location_number can't be empty</p> -->
 
 
 
@@ -313,7 +336,7 @@
                               (change)="upload($event,selectedOption)">
                           </tr>
                           <tr>
-                            <input type="text" style="border: none !important" formControlName="challan_number">
+                            <input type="text" formControlName="challan_number">
                             <p class="errormessage"
                               *ngIf="consignmentFormErrors.challan_number.required || (consignmentForm.controls.challan_number.pristine && submitted)">
                               challan_number can't be empty</p>
@@ -324,13 +347,13 @@
 
 
 
-                          <td class="thname"><input type="date" style="border: none !important"
+                          <td class="thname"><input type="date" 
                               formControlName="challan_date"></td>
                           <p class="errormessage"
                             *ngIf="consignmentFormErrors.challan_date.required || (consignmentForm.controls.challan_date.pristine && submitted)">
                             challan_date can't be empty</p>
 
-                          <td class="thname"><input type="text" style="border: none !important"
+                          <td class="thname"><input type="text" 
                               formControlName="product"></td>
                           <p class="errormessage"
                             *ngIf="consignmentFormErrors.product.required || (consignmentForm.controls.product.pristine && submitted)">
@@ -338,29 +361,21 @@
 
                           <td class="thname">
                             <tr>
-                              <td> <input type="text" style="border: none !important" formControlName="tare_wt">
+                              <td> <input type="text"  formControlName="tare_wt">
                               </td>
-                              <td> <input type="text" style="border: none !important" formControlName="gross_wt">
+                              <td> <input type="text"  formControlName="gross_wt">
                               </td>
-                              <td> <input type="number" style="border: none !important" formControlName="net_wt">
+                              <td> <input type="number"  formControlName="net_wt">
                               </td>
                             </tr>
 
 
                           </td>
-                          <td>
-                            <tr>
-                              <td> <input type="text" style="border: none !important" formControlName="diesel_expenses">
-                              </td>
-                              <td> <input type="text" style="border: none !important" formControlName="driver_expenses">
-                              </td>
-                              <td> <input type="text" style="border: none !important" formControlName="toll_expenses">
-                              </td>
-                            </tr>
-                          </td>
+
                           </tr>
                         </tbody>
                       </table>
+                      <button class="At">+&nbsp;&nbsp;Add Another Line</button>
                     </div>
                   </div>
                 </div>

@@ -82,7 +82,7 @@
             <tbody>
               <tr *ngFor="let item of ratelist ">
                 <td class="thno">{{item?.customerId?.name}}</td>
-                <td class="thno">{{item?.within_state}}</td>
+                <td class="thno"> <span *ngIf="item.within_state">yes </span><span *ngIf="!item.within_state">No</span></td>
                 <td class="thno">{{item?.truck_confg}}</td>
                 <td class="thno">{{item?.from_km}}</td>
                 <td class="thno">{{item?.to_km}}</td>
