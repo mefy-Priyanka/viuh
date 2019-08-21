@@ -42,6 +42,7 @@
                           <td class="w30">Point Of Origin</td>
                           <td class="w30">Distance</td>
                           <td class="w30">Freight</td>
+                          <!-- <td></td> -->
                         </tr>
                         </table>
                         </th>
@@ -62,7 +63,7 @@
                                     <td class="thname" data-title="NAME" class="w30">{{data?.address}}</td>
                                     <td class="thname" data-title="NAME" class="w30">{{data?.point_of_origin}}</td>
                                     <td class="thname" data-title="NAME" class="w30">{{data?.km}}</td>
-                                    <td class="thname" data-title="NAME" class="w30">a</td>
+                                    <td class="thname" data-title="NAME" class="w30">{{data?.freight}}</td>
                                   </tr>
                                 </table>
 
@@ -141,7 +142,7 @@
                       </div>
                       <div class="input-field col s2">
                         <p><label>Freight<span class="blue_star">*</span></label></p>
-                        <input type="text" class="validate" formControlName="">
+                        <input type="text" class="validate" formControlName="freight">
                         <!-- <p class="error" [ngStyle]="{'font-size':'12px'}" *ngIf="destinationFormErrors.location_code.required || (destinationForm.controls.location_code.pristine && submitted)">Location Code Can't be empty</p> -->
                       </div>
                       <div class="input-field col s2">

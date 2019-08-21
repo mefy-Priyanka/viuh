@@ -90,6 +90,7 @@ export class DestinationComponent implements OnInit {
       location_code: ['', Validators.required],
       address: ['', Validators.required],
       km: ['', Validators.required], 
+      freight:['', Validators.required],
       point_of_origin:['',Validators.required],
       serial_number:this.lForms.length+1
     })
