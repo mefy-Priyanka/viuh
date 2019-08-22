@@ -175,6 +175,7 @@ export class ConsignmentComponent implements OnInit {
     for (var i = 0; i < this.arrayofobj.length; i++) {
       this.arrayofobj[i].challan_date = new Date(this.arrayofobj[i].challan_date).toISOString()
     }
+    var result = jQuery('.switch-input').is(':checked') ? true : false;
 
     console.log(this.consignmentForm.value)
     this.submitted = true;
@@ -196,6 +197,8 @@ export class ConsignmentComponent implements OnInit {
         price_type  : this.consignmentForm.value.price_type,  
         distance:this.distance,  
         freight:this.freight,
+        within_state:result,
+        
         advance_payment: {
           diesel_expenses: this.consignmentForm.value.diesel_expenses,
           driver_expenses: this.consignmentForm.value.driver_expenses,

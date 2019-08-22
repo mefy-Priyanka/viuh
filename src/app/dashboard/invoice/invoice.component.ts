@@ -23,6 +23,7 @@ export class InvoiceComponent implements OnInit {
   selectedconsignment: any;
   totalval: number;
   customername: any;
+  htmlval:any=[]
   constructor(private fb: FormBuilder, private SharedService: SharedService, private userService: UserService, private toastr: ToastrService, private companyService: CompanyService) { }
 
   ngOnInit() {
@@ -60,16 +61,24 @@ export class InvoiceComponent implements OnInit {
   }
 
 
-  change() {
+  change(j) {
+    console.log(this.phoneForms)
 
+    // this.phoneForms.controls[0].controls.amount.value=7
     this.totalval = 0;
     var temp: any = [];
-    console.log(this.ratelist);
-    var result = jQuery('.switch-input').is(':checked') ? true : false;
+    console.log(this.selectedconsignment);
+    // var result = jQuery('.switch-input').is(':checked') ? true : false;
     for (var i = 0; i < this.ratelist.length; i++) {
-      if (this.ratelist[i].truck_confg == this.selectedconsignment.truckconfig) {
-        if (result == this.ratelist[i].within_state) {
+      console.log('-------------------------------------------'+this.ratelist[i].truck_confg , this.selectedconsignment.truck_confg)
+      if (this.ratelist[i].truck_confg == this.selectedconsignment.truck_confg) {
+        console.log('config true')
+        if (this.selectedconsignment.within_state == this.ratelist[i].within_state) {
+          console.log('state true')
+
           if (this.ratelist[i].price_type == this.selectedconsignment.price_type) {
+            console.log('price  true')
+
             if (((new Date(this.ratelist[i].effactive_date_from).getTime()) <= (new Date(this.selectedconsignment.consignment_date).getTime()) && (new Date(this.ratelist[i].effactive_date_to).getTime()) >= (new Date(this.selectedconsignment.consignment_date).getTime()))) {
               console.log('config and price type and date and state matched')
               temp.push(this.ratelist[i]);
@@ -80,29 +89,29 @@ export class InvoiceComponent implements OnInit {
       }
     }
 
-    if (this.selectedconsignment.truckconfig == 12 || this.selectedconsignment.truckconfig == 19 || this.selectedconsignment.truckconfig == 20 || this.selectedconsignment.truckconfig == 24) {
+    if (this.selectedconsignment.truck_confg == 12 || this.selectedconsignment.truck_confg == 19 || this.selectedconsignment.truck_confg == 20 || this.selectedconsignment.truck_confg == 24) {
       console.log(temp[temp.length - 1])
       if (temp[temp.length - 1]) {
         if (temp[temp.length - 1].price_type == 'fdz') {
-          console.log(parseFloat(this.selectedconsignment.truckconfig), parseFloat(temp[temp.length - 1].rate), parseFloat(temp[temp.length - 1].to_km))
-          this.totalval = parseFloat(this.selectedconsignment.truckconfig) * parseFloat(temp[temp.length - 1].rate);
+          console.log(parseFloat(this.selectedconsignment.truck_confg), parseFloat(temp[temp.length - 1].rate), parseFloat(temp[temp.length - 1].to_km))
+          this.totalval = parseFloat(this.selectedconsignment.truck_confg) * parseFloat(temp[temp.length - 1].rate);
         }
         else if (temp[temp.length - 1].price_type == 'bfdz') {
-          console.log(parseFloat(this.selectedconsignment.truckconfig), parseFloat(temp[temp.length - 1].rate), parseFloat(this.selectedconsignment.distance))
-          this.totalval = parseFloat(this.selectedconsignment.truckconfig) * parseFloat(temp[temp.length - 1].rate) * parseFloat(this.selectedconsignment.distance);
+          console.log(parseFloat(this.selectedconsignment.truck_confg), parseFloat(temp[temp.length - 1].rate), parseFloat(this.selectedconsignment.distance))
+          this.totalval = parseFloat(this.selectedconsignment.truck_confg) * parseFloat(temp[temp.length - 1].rate) * parseFloat(this.selectedconsignment.distance);
         }
       }
 
 
 
     }
-    else if (this.selectedconsignment.truckconfig == 306 || this.selectedconsignment.truckconfig == 450) {
+    else if (this.selectedconsignment.truck_confg == 306 || this.selectedconsignment.truck_confg == 450) {
       if (temp[temp.length - 1]) {
         if (temp[temp.length - 1].price_type == 'fdz') {
-          this.totalval = parseFloat(this.selectedconsignment.truckconfig) * parseFloat(temp[temp.length - 1].rate);
+          this.totalval = parseFloat(this.selectedconsignment.truck_confg) * parseFloat(temp[temp.length - 1].rate);
         }
         else if (temp[temp.length - 1].price_type == 'bfdz') {
-          this.totalval = parseFloat(this.selectedconsignment.truckconfig) * parseFloat(temp[temp.length - 1].rate) * parseFloat(this.selectedconsignment.distance) * 2;
+          this.totalval = parseFloat(this.selectedconsignment.truck_confg) * parseFloat(temp[temp.length - 1].rate) * parseFloat(this.selectedconsignment.distance) * 2;
         }
       }
 
@@ -114,10 +123,17 @@ export class InvoiceComponent implements OnInit {
         net = net + parseInt(this.selectedconsignment.consignment[i].net_wt)
       }
       console.log( net)
-      this.totalval = parseFloat(this.selectedconsignment.freight) * net;
+      if(this.selectedconsignment.freight){
+        this.totalval = parseFloat(this.selectedconsignment.freight) * net;
+      }
+      else{
+        alert('there is no fright list ');
+        return;
+      }
     }
     // alert(this.totalval)
     this.selectedconsignment.amount = this.totalval
+
     console.log(this.totalval)
     if (this.totalval == 0) {
       let xx = confirm('there is no rate defined')
@@ -129,14 +145,15 @@ export class InvoiceComponent implements OnInit {
       alert(this.selectedconsignment.amount)
 
     }
+    this.htmlval[j]=(this.selectedconsignment.amount)
 
 
   }
-  changeconsigner(id) {
+  changeconsigner(id,j) {
     for (var i = 0; i < this.consigmentDetail.length; i++) {
       if (this.consigmentDetail[i]._id == id) {
         this.selectedconsignment = this.consigmentDetail[i];
-        this.change()
+        this.change(j)
         return;
       }
     }
@@ -194,7 +211,9 @@ export class InvoiceComponent implements OnInit {
     var amounts = 0;
     console.log(this.myForm.value.arraydata)
     if (this.myForm.value.arraydata.length != 0) {
+
       for (i = 0; i < this.myForm.value.arraydata.length; i++) {
+        
         amounts = (amounts) + parseInt(this.myForm.value.arraydata[i].amount)
       }
     }

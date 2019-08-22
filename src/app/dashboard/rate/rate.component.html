@@ -63,7 +63,7 @@
 
       <div class="row">
         <div id="no-more-tables">
-          <table class="col-md-12 table-bordered table-striped table-condensed cf">
+          <table class=" table-bordered table-striped table-condensed cf">
             <thead class="cf">
               <tr>
                 <th class="numeric">CUSTOMER</th>
@@ -74,9 +74,10 @@
                 <th>RATE</th>
                 <th>UNIT</th>
                 <th>PRICE TYPE</th>
-                <th>EFFECTIVE DATE FROM</th>
-                <th>EFFECTIVE DATE TO</th>
-                <th></th>
+                <th>EFF. DATE FROM</th>
+                <th>EFF. DATE TO</th>
+                <th>SUBMIT</th>
+                
               </tr>
             </thead>
             <tbody>
@@ -91,6 +92,7 @@
                 <td class="thno">{{item?.price_type}}</td>
                 <td class="thno">{{item?.effactive_date_from | date:mediumDate}}</td>
                 <td class="thno">{{item?.effactive_date_to  | date:mediumDate}}</td>
+                <td></td>
               </tr>
               <tr>
                 <td class="thno" data-title="NO.">
@@ -135,6 +137,7 @@
                     <option value="" disabled selected>Select</option>
                     <option *ngFor="let item of units" [value]="item">{{item}}</option>
                   </select>
+                </td>
 
 
                 <td class="thno" data-title="NO.">
