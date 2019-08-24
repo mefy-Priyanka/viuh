@@ -234,3 +234,177 @@ div#journalModal {
 }
 }
 /* Responsive css */
+/* modal css */
+/* modal css */
+.vertical-alignment-helper {
+    display:table;
+    height: 100%;
+    width: 100%;
+}
+.vertical-align-center {
+    display: table-cell;
+    vertical-align: middle;
+}
+.modal-content {
+    width:inherit;
+    height:inherit;
+    margin: 0 auto;
+}
+div#journalModal .modal-content {
+    padding: 0 1em 0 1em;
+    box-shadow: none;
+    background: #fff;
+    border: none;
+    width: 100%;
+}
+span.blue_star {
+    color: #32b1f8;
+}
+h4.modal-title.accountTitle {
+    font-size: 18px;
+}
+select {
+    display: block;
+}
+div#journalModal .row {
+    margin: 0;
+}
+div#journalModal .input-field {
+    margin: 1em 0 0 0;
+}
+div#journalModal .modal-footer {
+    text-align: center;
+    padding: 0;
+    padding-top: 1em;
+    margin-top: 10px;
+    background: #fff;
+    border: none;
+}
+button.saveBtn {
+    background: #2791fc;
+    border: none;
+    height: 38px;
+    width: 104px;
+    color: #fff;
+    margin-right: 1em;
+    font-weight: 600;
+    border-radius: 5px;
+}
+button.cancelBtn {
+    background: #9f9a9a;
+    border: none;
+    height: 38px;
+    width: 104px;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 5px;
+}
+div#journalModal .modal-body {
+    padding: 0;
+}
+div#journalModal input {
+    border: 1px solid #f2f2f2;
+    text-indent: 12px;
+    opacity:1;
+}
+div#journalModal textarea {
+    border: 1px solid #f2f2f2;
+    text-indent: 12px;
+    margin-bottom: 1em;
+    height: auto !important;
+}
+div#journalModal select {
+    background-color: #fafafa;
+}
+
+.check label span{
+    display: inline-block;
+    margin-left: 2em;
+}
+div#journalModal i.fa.fa-question-circle-o {
+    font-size: 15px;
+    margin-left: 10px;
+}
+div#journalModal {
+    /* max-height: 83%; */
+}
+div#journalModal .modal-header {
+    padding-top: 0;
+    border:none;
+}
+.modal-dialog.modal-lg.vertical-align-center {
+    background: #fff;
+}
+/* modal css */
+
+.tableide {
+    /* padding: 1em 2em; */
+}
+span.closT {
+    float: right;
+}
+.tableide .table-bordered>tbody>tr>td{
+    border: none;
+    /* padding: 1em; */
+    color: #000;
+    font-weight: 600;
+    text-align: center;
+}
+.tableide .table-bordered>thead>tr>th {
+    border: none;
+    padding: 1em;
+    background: #fafafa;
+    color:#7b95a1;
+    text-align: center;
+}
+div#journalModal input[type="text"] {
+    height: 31px;
+    width: 100px;
+    border: none;
+    margin: auto;
+    background: #fff;
+}
+div#journalModal {
+    max-height: 92%;
+}
+.tableide tr {
+    border-bottom: none;
+    background: #fff;
+}
+.tableide .table-bordered {
+    border: none;
+}
+.card.margina {
+    margin: 2em;
+    box-shadow: none;
+    border-radius: 5px;
+}
+td.thname {
+    color: #2f65a1 !important;
+    font-weight: 600 !important;
+}
+td.thno {
+    color: #90979b !important;
+}
+button.caretn {
+    background: transparent;
+    color: #b1c0c7;
+    border: 2px solid #b1c0c7;
+    height: 29px;
+    width: 29px;
+    border-radius: 4px;
+}
+i.fa.fa-question-circle-o {
+    font-size: 27px;
+}
+table {
+    border-collapse: collapse !important;
+  }
+  
+  table, th, td {
+    border: 1px solid #5544442b !important;
+  }
+  .tableide.journalTable {
+    margin-top: 2em;
+}
+/* modal css */

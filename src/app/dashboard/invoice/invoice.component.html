@@ -114,7 +114,7 @@
                           <thead class="cf">
                             <tr>
                               <th>S NO.</th>
-                              <th>INVOICE NO.</th>
+                              <th>CONSIGNMENT NO.</th>
                               <th>DESCRIPTION</th>
                               <th>AMOUNT</th>
                             </tr>
@@ -129,7 +129,7 @@
 
 
                               <td class="thname">
-                                <select formControlName="cosignmentId">
+                                <select formControlName="cosignmentId"  (ngModelChange)="changeconsigner($event,i)">
                                   <option value="" disabled selected>Select</option>
                                   <option *ngFor="let data of consigmentDetail" [value]='data._id'>{{data.consignmentNumber}}</option>
                                 </select>
@@ -137,7 +137,7 @@
                               <td class="thname"><input type="text" style="border: none !important"
                                   formControlName="description"></td>
                               <td class="thname"><input type="number" style="border: none !important"
-                                  formControlName="amount"></td>
+                                  formControlName="amount" [ngModel]="htmlval[i]"></td>
 
 
 

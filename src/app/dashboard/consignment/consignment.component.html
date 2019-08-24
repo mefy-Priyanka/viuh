@@ -25,10 +25,10 @@
               <tr *ngFor="let consigment of consigmentDetail">
                 <!-- <td class="thno" data-title="NO.">{{consigment.tl_number}}</td> -->
                 <!-- <td class="thname" data-title="NAME">{{consigment.location_number}}</td> -->
-                <td class="thname" data-title="VAT ID">{{consigment.challan_number}}</td>
+                <!-- <td class="thname" data-title="VAT ID">{{consigment.challan_number}}</td> -->
                 <td data-title="ADDRESS" class="numeric">{{consigment.consignment_date}}</td>
-                <td data-title="VAT ID" class="numeric">{{consigment.product}}</td>
-                <td data-title="VAT ID" class="numeric">{{consigment.quantity.net_wt}}</td>
+                <!-- <td data-title="VAT ID" class="numeric">{{consigment.product}}</td>
+                <td data-title="VAT ID" class="numeric">{{consigment.quantity.net_wt}}</td> -->
               </tr>
             </tbody>
           </table>
@@ -246,15 +246,7 @@
 
                   </div>
 
-                  <div class="input-field col s6">
-                    <p><label>Amount<span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate" formControlName="amount" [readonly]="true">
-
-                    <p class="errormessage"
-                      *ngIf="consignmentFormErrors.price_type.required || (consignmentForm.controls.price_type.pristine && submitted)">
-                      truck config can't be empty</p>
-
-                  </div>
+                  
 
                 </div>
 
@@ -299,7 +291,7 @@
                       <table class="col-md-12 table-bordered table-striped table-condensed cf">
                         <thead class="cf">
                           <tr>
-                        
+
                             <th>CHALLAN NO.</th>
                             <th>DATE</th>
                             <th>PRODUCT</th>
@@ -311,35 +303,21 @@
                           </tr>
                           </th>
 
-                          
+
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <!-- <td class="thname"><input type="text" style="border: none !important"
-                                formControlName="tl_number"></td>
-                            <p class="errormessage"
-                              *ngIf="consignmentFormErrors.tl_number.required || (consignmentForm.controls.tl_number.pristine && submitted)">
-                              tl_number can't be empty</p>
-
-                            <td class="thname"><input type="text" style="border: none !important"
-                                formControlName="location_number"></td>
-                            <p class="errormessage"
-                              *ngIf="consignmentFormErrors.location_number.required || (consignmentForm.controls.location_number.pristine && submitted)">
-                              location_number can't be empty</p> -->
-
+                          <tr *ngFor="let item of arrayofobj let i = index">
 
 
                             <td class="thname">
                           <tr>
                             <input type="file" class="validate" class="fileType" #mydoc
-                              (change)="upload($event,selectedOption)">
+                              (change)="upload($event,i)">
                           </tr>
                           <tr>
-                            <input type="text" formControlName="challan_number">
-                            <p class="errormessage"
-                              *ngIf="consignmentFormErrors.challan_number.required || (consignmentForm.controls.challan_number.pristine && submitted)">
-                              challan_number can't be empty</p>
+                            <input type="text" [(ngModel)]="item.challan_number" [ngModelOptions]="{standalone: true}">
+                          
 
                           </tr>
                           </td>
@@ -347,35 +325,29 @@
 
 
 
-                          <td class="thname"><input type="date" 
-                              formControlName="challan_date"></td>
-                          <p class="errormessage"
-                            *ngIf="consignmentFormErrors.challan_date.required || (consignmentForm.controls.challan_date.pristine && submitted)">
-                            challan_date can't be empty</p>
+                          <td class="thname"><input type="date" [(ngModel)]="item.challan_date"  [ngModelOptions]="{standalone: true}"></td>
+                       
 
-                          <td class="thname"><input type="text" 
-                              formControlName="product"></td>
-                          <p class="errormessage"
-                            *ngIf="consignmentFormErrors.product.required || (consignmentForm.controls.product.pristine && submitted)">
-                            product can't be empty</p>
+                          <td class="thname"><input type="text" [(ngModel)]="item.product"  [ngModelOptions]="{standalone: true}"></td>
+                          
 
                           <td class="thname">
                             <tr>
-                              <td> <input type="text"  formControlName="tare_wt">
+                              <td> <input type="text" [(ngModel)]="item.tare_wt"  [ngModelOptions]="{standalone: true}">
                               </td>
-                              <td> <input type="text"  formControlName="gross_wt">
+                              <td> <input type="text" [(ngModel)]="item.gross_wt"  [ngModelOptions]="{standalone: true}">
                               </td>
-                              <td> <input type="number"  formControlName="net_wt">
+                              <td> <input type="number" [(ngModel)]="item.net_wt"  [ngModelOptions]="{standalone: true}">
                               </td>
                             </tr>
-
+                            <i (click)="del(i)" class="fa fa-trash" aria-hidden="true" ></i>
 
                           </td>
 
                           </tr>
                         </tbody>
                       </table>
-                      <button class="At">+&nbsp;&nbsp;Add Another Line</button>
+                      <button class="At" (click)='add()'>+&nbsp;&nbsp;Add Another Line</button>
                     </div>
                   </div>
                 </div>
