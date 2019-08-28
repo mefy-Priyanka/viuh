@@ -53,6 +53,13 @@ h1.mainHeader {
     padding: 1px 0 0px 0;
     
 }
+div#no-more-tables {
+    overflow: scroll;
+    height: 207px;
+}
+.row {
+    margin: 0;
+}
 /* card css */
 /* table css */
 .tableide .table-bordered>tbody>tr>td{
