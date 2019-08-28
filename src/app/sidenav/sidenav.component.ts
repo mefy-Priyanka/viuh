@@ -38,6 +38,10 @@ export class SidenavComponent implements OnInit {
   ngOnInit() {
     this.getUserDetail();
   }
+  maindashboard(){
+    this.SharedService.abc('dashboard')
+
+  }
   // *****UserInfo***********
   getUserDetail() {
     this.userService.logininfo(this.userId).subscribe(data => {

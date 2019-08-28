@@ -66,9 +66,41 @@
 
 
          
+          <form>
 
+            <div class="tableide">
+              <div class="row">
+                <div id="no-more-tables">
+                  <table class="col-md-12 table-bordered table-striped table-condensed cf">
+                    <thead class="cf">
+                      <tr>
+                        <th>DENOMINATION</th>
+                        <th>COUNT</th>
+                        <th>AMOUNT</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td class="thno">a</td>
+                        <td class="thname"><p>a</p></td>
+                        <td class="thname">
+                          amount
+                        </td>
+                      </tr>
 
-            <div class="row">
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="modal-footer">
+              <button type="button" class="saveBtn" (click)="submitmodel()">Save</button>
+              <button type="button" class="cancelBtn" id="cancel" data-dismiss="modal"
+                (click)="cancelmodel()">Cancel</button>
+            </div> -->
+          </form>
+
+            <!-- <div class="row">
               <div class="input-field col s3">
                 <label>Pay Amount<span class="blue_star">*</span></label>
               </div>
@@ -87,10 +119,10 @@
                 <textarea cols="8" rows="4" placeholder="Max 500 characters" [(ngModel)]="description"></textarea>
 
               </div>
-            </div>
+            </div> -->
             <div class="modal-footer">
-              <button type="button"  class="saveBtn" (click)="submit()">Save</button>
-              <button type="button" class="cancelBtn" data-dismiss="modal" id="cancel" (click)="cancel()">Cancel</button>
+              <!-- <button type="button"  class="saveBtn" (click)="submit()">Save</button> -->
+              <!-- <button type="button" class="cancelBtn" data-dismiss="modal" id="cancel" (click)="cancel()">Cancel</button> -->
             </div>
           
         </div>
