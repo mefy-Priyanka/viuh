@@ -51,6 +51,7 @@ import { PetrolformviewComponent } from './petrolformview/petrolformview.compone
 import { PetrolformvoucherlistComponent } from './petrolformvoucherlist/petrolformvoucherlist.component';
 import { RateComponent } from './rate/rate.component';
 import { CompanyeditComponent } from './companyedit/companyedit.component';
+import { ReportComponent } from './report/report.component';
 
 const routes: Routes = [
     {
@@ -130,7 +131,8 @@ const routes: Routes = [
         PetrolformviewComponent,
         PetrolformvoucherlistComponent,
         CompanyeditComponent,
-        RateComponent
+        RateComponent,
+        ReportComponent
     ]
 })
 export class DashboardModule { }
