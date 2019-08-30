@@ -1,7 +1,7 @@
-<!-- report -->
+<!-- ledger -->
 <section class="createcontract">
   <div class="ft">
-    <h1>Report
+    <h1>Ledger
     </h1>
   </div>
   <div class="createContractorForm" >
@@ -13,16 +13,22 @@
 
               <div class="nota">
                 <div class="row">
-                  <div class="input-field col s12">
+                  <div class="input-field col s4">
+                    <p><label>Account Id</label></p>
                     <select  >
                       <option value="" disabled selected>Select</option>
                       <option value="" >Ledger</option>
-                      <option value="" >Payment Voucher</option>
-                      <option value="" >Diesel Voucher</option>
-                      <option value="" >Bill</option>
-                      <option value="" >Invoice</option>
-                      <option value="" >Last P&L and Balance Sheet</option>
                     </select>
+
+                  </div>
+                  <div class="input-field col s4">
+                    <p><label>Start Date</label></p>
+                    <input type="date" class="validate">
+
+                  </div>
+                  <div class="input-field col s4">
+                    <p><label>End Date</label></p>
+                    <input type="date" class="validate">
 
                   </div>
             
@@ -36,7 +42,7 @@
           </div>
           <div class="row">
             <div class="contractorButton">
-              <button class="submitBtn" (click)="submit()">Print</button>
+              <button class="submitBtn" (click)="submit()">Save</button>
               <button class="cancelBtn" (click)="createworkorder()">Cancel</button>
             </div>
           </div>
@@ -57,4 +63,4 @@
   </div>
 </section>
 
-<!-- report -->
+<!-- ledger -->

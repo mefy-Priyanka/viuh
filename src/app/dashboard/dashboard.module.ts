@@ -52,6 +52,7 @@ import { PetrolformvoucherlistComponent } from './petrolformvoucherlist/petrolfo
 import { RateComponent } from './rate/rate.component';
 import { CompanyeditComponent } from './companyedit/companyedit.component';
 import { ReportComponent } from './report/report.component';
+import { LedgerComponent } from './ledger/ledger.component';
 
 const routes: Routes = [
     {
@@ -132,7 +133,8 @@ const routes: Routes = [
         PetrolformvoucherlistComponent,
         CompanyeditComponent,
         RateComponent,
-        ReportComponent
+        ReportComponent,
+        LedgerComponent
     ]
 })
 export class DashboardModule { }

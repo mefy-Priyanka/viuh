@@ -149,7 +149,7 @@
 
          <div class="row leftCet" >
             <ul>
-               <li><i class="fa fa-area-chart" aria-hidden="true"></i></li>
+               <li><i class="fa fa-tachometer" aria-hidden="true"></i></li>
                <li class="order" (click)="abc('petrols')" >Petrol Pump</li>
             </ul>
          </div>
@@ -257,12 +257,46 @@
             </ul>
          </div>
          
-         <div class="row leftCet" >
+         <!-- <div class="row leftCet" (click)="abc('report')" >
             <ul>
                <li><i class="fa fa-area-chart" aria-hidden="true"></i></li>
                <li class="order" >Report</li>
             </ul>
+         </div> -->
+
+
+
+
+         <div class="panel panel-default chevrona">
+            <div class="panel-heading" role="tab" id="headingFiveaa">
+               <h4 class="panel-title">
+                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordionMenu"
+                     href="#collapsefiveaa" aria-expanded="false" aria-controls="collapsefiveaa">
+   
+                     <i class="fa fa-area-chart" aria-hidden="true"></i><span  >Report</span></a>
+               </h4>
+            </div>
+            <div id="collapsefiveaa" class="panel-collapse collapse" role="tabpanel"
+               aria-labelledby="headingFiveaa">
+               <div class="panel-body">
+                  <ul class="nav accordionae">
+                     <li class="order"   (click)="abc('report')"> <i class="fa fa-area-chart" aria-hidden="true"></i>Report</li>
+
+                     <li class="order"  (click)="abc('ledger')"><i class="fa fa-sliders" aria-hidden="true"></i>Ledger</li>
+   
+   
+                  </ul>
+               </div>
+            </div>
          </div>
+
+
+
+
+
+
+
+
          <div class="row leftCet" >
             <ul>
                <li><i class="fa fa-sign-out" aria-hidden="true"></i></li>
