@@ -49,6 +49,7 @@ export class CreatecontractorComponent implements OnInit {
     this.contractorFormErrors = {
       email: {},
       contactPersonName: {},
+      commision_percentage:{},
       companyName: {},
       address: {},
       regNo: {},
@@ -90,6 +91,7 @@ export class CreatecontractorComponent implements OnInit {
       account_holder_name: ['', Validators.required],
       account_number: ['', Validators.required],
       ifsc: ['', Validators.required],
+      commision_percentage:['', Validators.required],
     });
   }
   showContent() {
@@ -153,7 +155,7 @@ export class CreatecontractorComponent implements OnInit {
         ifsc: this.contractorForm.value.ifsc,
         userId: this.userId,
         superAdminId: this.superadminid,
-        // commision_percentage:''
+        commission_percent:this.contractorForm.value.commision_percentage
       }
       console.log('let data be', data);
       this.companyService.createContractor(data).subscribe(value => {

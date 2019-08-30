@@ -152,7 +152,12 @@
 
                       </div>
           
-          
+                      <div class="input-field col s4">
+                          <p><label>Commision Percentage</label></p>
+                          <input type="number" class="validate" formControlName="commision_percentage">
+                          <p class="errormessage" *ngIf="contractorFormErrors.commision_percentage.required || (contractorForm.controls.commision_percentage.pristine && submitted)">Commision Percentage can not be empty</p>
+  
+                        </div>
           
                     </div>
 

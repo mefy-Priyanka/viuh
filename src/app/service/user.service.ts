@@ -46,12 +46,17 @@ export class UserService {
     return this.httpClient.get(APIURL + 'account/accountBySuperAdminId?superAdminId=' + id)
 
   }
+
   getaccountlist(id) {
     // return this.httpClient.get(APIURL + 'account/accountByUserId?userId='+id);
     return this.httpClient.get(APIURL + 'account/accountType?parentAccount=' + '')
 
   }
+ getaccountlistbytype(data) {
+    // return this.httpClient.get(APIURL + 'account/accountByUserId?userId='+id);
+    return this.httpClient.get(APIURL + 'account/getAccount?accountType='+data.accounttype+'&accountName='+data.account +'&superAdminId='+data.superAdminId)
 
+  }
   delete(id) {
     return this.httpClient.delete(APIURL + 'user/delete?userId=' + id)
   }
@@ -150,7 +155,10 @@ export class UserService {
   creatvoucher(data) {
     return this.httpClient.post(APIURL + 'payment/create', data)
   }
+  updatepayment(data){
+    return this.httpClient.put(APIURL + 'payment/update', data)
 
+  }
   // petrol
   petrolsetprice(data) {
     return this.httpClient.post(APIURL + 'diesel/petrolPrice', data)
