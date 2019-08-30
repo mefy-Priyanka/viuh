@@ -286,15 +286,15 @@ uploadImage(event){
   /*********************CREATE DRIVER ****************** */
   createDriver() {
     this.loader=true;
+    console.log('dfbhflicendse data',this.licenceData)
     if (Object.keys(this.incomingDriverDetail).length != 0) {
       this.updateDriver();
     }
     else{
     if(this.driverForm.valid){
-    
- 
     console.log('valid')
-    if(Object.keys(this.pictureUpload).length != 0 && this.pictureUpload.constructor != Object){
+    // console.log('Object.getOwnPropertyNames(obj).length === 0',Object.getOwnPropertyNames(this.licenceData).length != 0)
+    if(Object.keys(this.pictureUpload).length != 0 && this.pictureUpload.constructor != Object && Object.getOwnPropertyNames(this.licenceData).length != 0){
       let data = {
       name: this.driverForm.value.name,
       phoneNumber: this.driverForm.value.phoneNumber,
@@ -325,7 +325,7 @@ uploadImage(event){
       this.toastr.error('Error!', 'Creation  failed')
     })
   }
-  else{
+  else if(Object.getOwnPropertyNames(this.licenceData).length != 0){
     let data = {
       name: this.driverForm.value.name,
       phoneNumber: this.driverForm.value.phoneNumber,
@@ -354,8 +354,11 @@ uploadImage(event){
       this.toastr.error('Error!', 'Creation  failed')
     })
   }
-}
-  
+  else{
+    this.toastr.error('Error!', 'Driving Licence is compulsory')
+    this.loader=false;
+  }
+}  
     else{
       this.loader=false;
       this.submitted=true
