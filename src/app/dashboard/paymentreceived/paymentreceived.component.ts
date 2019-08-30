@@ -39,6 +39,7 @@ export class PaymentreceivedComponent implements OnInit {
 
   pay(data) {
     this.userdata=data;
+    console.log("userdata",this.userdata)
     this.id=data._id;
     this.getaccount()
   }

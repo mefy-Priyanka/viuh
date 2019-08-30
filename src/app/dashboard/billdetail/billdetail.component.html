@@ -105,7 +105,7 @@
                           <tr *ngFor="let item of billdetail.items_details;let i= index">
                             <td class="thname">{{i}}</td>
                             <td class="thname">
-                              {{item.cosignmentId}}
+                              {{item.cosignmentId.consignmentNumber}}
                             </td>
                             <td class="thname">{{item.description}}</td>
                             <td class="thname">{{item.amount}}</td>
