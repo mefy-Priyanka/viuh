@@ -25,4 +25,9 @@ deleteContact(contactId){
   return this.httpClient.delete(APIURL+'contact/contactId?contactId='+contactId)
 
 }
+/************************UPADTE CONTACT ******************************/
+upadteContact(data){
+  return this.httpClient.put(APIURL+'contact/update',data)
+
+}
 }

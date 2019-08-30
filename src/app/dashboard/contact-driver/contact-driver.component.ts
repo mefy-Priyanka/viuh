@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, } from '@angular/forms';
 import { Router } from '@angular/router';
 import { SharedService } from '../.././service/shared.service';
@@ -17,7 +17,7 @@ import { DomSanitizer, SafeResourceUrl, SafeUrl } from '@angular/platform-browse
   templateUrl: './contact-driver.component.html',
   styleUrls: ['./contact-driver.component.css']
 })
-export class ContactDriverComponent implements OnInit {
+export class ContactDriverComponent implements OnDestroy,OnInit   {
   public driverFormErrors: any;
   public driverForm: FormGroup;
   public submitted: boolean = false;
@@ -38,13 +38,15 @@ export class ContactDriverComponent implements OnInit {
   public error:any;
   public imgUrlPrefix:any;
   public contactId:any;
+  public incomingDriverDetail:any={};
+  public updatedContactData:any;
   public userId = localStorage.getItem('userId');
 public mask = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/] // Account number validation 
 
 
   document = ['aadhar', 'licence', 'training_certificate', 'police_verification']
   currentURL: string;
-
+  
   constructor(private formBuilder: FormBuilder, private router: Router, private contactService: ContactService,private userService: UserService, private companyService: CompanyService,private SharedService: SharedService,private toastr: ToastrService,private sanitizer: DomSanitizer) {
     /*******ERRORS OF userForm ********* */
     this.driverFormErrors = {
@@ -52,6 +54,18 @@ public mask = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\
       phoneNumber: {}
     };
     /********** ENDS ************** */
+    /******************DRIVER DETAIL THROUGH SHARED SERVICES ************/
+this.SharedService.contactData.subscribe(result =>{
+      console.log('contact  edit driver',result)
+      this.incomingDriverDetail= result;
+    },
+    err=>{
+console.log(' driver shared err',err)
+    })
+ 
+    /********** ENDS ************** */
+
+  
   }
 
   ngOnInit() {
@@ -61,6 +75,16 @@ public mask = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\
     });
     // this.getAccountDetail();
     // this.account();
+    this.driverProfile(); 
+  }
+  ngOnDestroy(): void {
+    console.log('foo destroy')
+    if(this.incomingDriverDetail!=null){
+    console.log('detail destroy')
+    this.SharedService.contactData.next('');
+console.log(this.incomingDriverDetail)
+
+    }
   }
   /***********IT CATCHES ALL CHANGES IN FORM*******/
   onDriverFormValuesChanged() {
@@ -115,19 +139,19 @@ public mask = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\
     if(Object.keys(this.selecteValue).length != 0 && this.selecteValue.constructor != Object){
     if(this.driverForm.valid){
     if (this.selecteValue == 'aadhar') {
-      let data = {
-        aadhar: {
-          number: this.driverForm.value.number,
-          doc: this.imageUpload,
-        }      
-      }
-      console.log(data)
-      this.aadharData = data
-      this.docDetail.push( { docname:'Aadhar',number: data.aadhar.number  })
-      console.log('data', this.aadharData)
+        let data = {
+          aadhar: {
+            number: this.driverForm.value.number,
+            doc: this.imageUpload,
+          }      
+        }
+        console.log(data)
+        this.aadharData = data
+        this.docDetail.push( { docname:'Aadhar',number: data.aadhar.number  })
+        console.log('data', this.aadharData)
       // console.log('dadocDetailta', this.docDetail)
 
-      
+ 
     }
     else if (this.selecteValue == 'licence') {
       let data = {
@@ -166,23 +190,25 @@ public mask = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\
       }
       console.log(data)
       this.policeData = data
-      this.docDetail.push( { docname:'Police Verification ',number: data.police_verification.number ,valid_upto:data.police_verification.valid_upto })
+      this.docDetail.push( { docname:'Police Verification',number: data.police_verification.number ,valid_upto:data.police_verification.valid_upto })
       console.log('data', this.policeData)
 
     }
     else if (this.selecteValue == 'others') {
       let data = {
-        others: {
-          doc_name: this.driverForm.value.name,
+        others:{
+          doc_name: this.driverForm.value.doc_name,
           number: this.driverForm.value.number,
           valid_upto: moment(this.driverForm.value.valid_upto).toISOString(),
           doc: this.imageUpload,
         }
       }
       this.othersData.push(data.others)
-      for(let i =0;i < this.othersData.length; i++){
-        this.docDetail.push({docname:this.othersData[i].doc_name,number:this.othersData[i].number?this.othersData[i].number:null,valid_upto:this.othersData[i].valid_upto})
-   }
+  //     for(let i =0;i < this.othersData.length; i++){
+  //       this.docDetail.push({docname:this.othersData[i].doc_name,number:this.othersData[i].number?this.othersData[i].number:null,valid_upto:this.othersData[i].valid_upto})
+  //  }
+   this.docDetail.push({docname:data.others.doc_name,number:data.others.number?data.others.number:null,valid_upto:data.others.valid_upto})
+
       console.log('push', this.othersData)
     } 
     this.driverForm.controls['doc_name'].reset()
@@ -195,7 +221,7 @@ public mask = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\
     console.log('empty')
     this.toastr.warning( " can't be empty")
   }
-}
+    }
 else{
   console.log('hey',this.selecteValue)
   this.error='Document Type can not be empty'
@@ -259,11 +285,16 @@ uploadImage(event){
 
   /*********************CREATE DRIVER ****************** */
   createDriver() {
-
     this.loader=true;
+    console.log('dfbhflicendse data',this.licenceData)
+    if (Object.keys(this.incomingDriverDetail).length != 0) {
+      this.updateDriver();
+    }
+    else{
     if(this.driverForm.valid){
     console.log('valid')
-    if(Object.keys(this.pictureUpload).length != 0 && this.pictureUpload.constructor != Object){
+    // console.log('Object.getOwnPropertyNames(obj).length === 0',Object.getOwnPropertyNames(this.licenceData).length != 0)
+    if(Object.keys(this.pictureUpload).length != 0 && this.pictureUpload.constructor != Object && Object.getOwnPropertyNames(this.licenceData).length != 0){
       let data = {
       name: this.driverForm.value.name,
       phoneNumber: this.driverForm.value.phoneNumber,
@@ -294,7 +325,7 @@ uploadImage(event){
       this.toastr.error('Error!', 'Creation  failed')
     })
   }
-  else{
+  else if(Object.getOwnPropertyNames(this.licenceData).length != 0){
     let data = {
       name: this.driverForm.value.name,
       phoneNumber: this.driverForm.value.phoneNumber,
@@ -323,13 +354,18 @@ uploadImage(event){
       this.toastr.error('Error!', 'Creation  failed')
     })
   }
+  else{
+    this.toastr.error('Error!', 'Driving Licence is compulsory')
+    this.loader=false;
   }
+}  
     else{
       this.loader=false;
       this.submitted=true
       console.log('not valid')
       this.toastr.warning( 'Not Valid')
     }
+  }
   }
   /********** ENDS ************** */
   cancel(){
@@ -464,6 +500,92 @@ uploadImage(event){
   }
 
   /********* ENDS ************** */
+  /*****************************  DRIVER profile info**********************/
+  driverProfile() {
+console.log('driber detai;',this.incomingDriverDetail);
+// console.log('object',Object.keys(this.incomingDriverDetail))
+if(Object.keys(this.incomingDriverDetail).length != 0){
+
+ if(this.incomingDriverDetail.picture!=null){
+  this.show=false; 
+  this.imgUrlPrefix =this.incomingDriverDetail.picture? this.sanitizer.bypassSecurityTrustResourceUrl("http://ec2-52-66-250-48.ap-south-1.compute.amazonaws.com:4052/file/getImage?imageId="+this.incomingDriverDetail.picture):null;
+  console.log(' this.previewImage', this.imgUrlPrefix);
+  this.driverForm.get('name').setValue(this.incomingDriverDetail.name);
+  this.driverForm.get('phoneNumber').setValue(this.incomingDriverDetail.phoneNumber);
+  this.incomingDriverDetail.police_verification?this.docDetail.push( { docname:'Police Verification',number: this.incomingDriverDetail.police_verification.number ,valid_upto:this.incomingDriverDetail.police_verification.valid_upto}):'';
+  this.incomingDriverDetail.aadhar?this.docDetail.push( { docname:'Aadhar',number: this.incomingDriverDetail.aadhar.number}):''
+  this.incomingDriverDetail.licence?this.docDetail.push( { docname:'Licence',number: this.incomingDriverDetail.licence.number ,valid_upto:this.incomingDriverDetail.licence.valid_upto}):'';
+  this.incomingDriverDetail.training_certificate?this.docDetail.push( { docname:'training_certificate',number: this.incomingDriverDetail.training_certificate.number ,valid_upto:this.incomingDriverDetail.training_certificate.valid_upto}):'';
+  this.incomingDriverDetail.police_verification?this.docDetail.push( { docname:'Police Verification',number: this.incomingDriverDetail.police_verification?this.incomingDriverDetail.police_verification.number:'' ,valid_upto:this.incomingDriverDetail.police_verification.valid_upto}):'';
+  for(let i =0;i < this.incomingDriverDetail.others.length; i++){
+    this.docDetail.push({docname:this.incomingDriverDetail.others[i].doc_name,number:this.incomingDriverDetail.others[i].number?this.incomingDriverDetail.others[i].number:null,valid_upto:this.incomingDriverDetail.others[i].valid_upto})
+  }
+}
+else{
+  this.driverForm.get('name').setValue(this.incomingDriverDetail.name);
+this.driverForm.get('phoneNumber').setValue(this.incomingDriverDetail.phoneNumber);
+this.incomingDriverDetail.police_verification?this.docDetail.push( { docname:'Police Verification',number: this.incomingDriverDetail.police_verification.number ,valid_upto:this.incomingDriverDetail.police_verification.valid_upto}):'';
+this.incomingDriverDetail.aadhar?this.docDetail.push( { docname:'Aadhar',number: this.incomingDriverDetail.aadhar.number}):''
+this.incomingDriverDetail.licence?this.docDetail.push( { docname:'Licence',number: this.incomingDriverDetail.licence.number ,valid_upto:this.incomingDriverDetail.licence.valid_upto}):'';
+this.incomingDriverDetail.training_certificate?this.docDetail.push( { docname:'training_certificate',number: this.incomingDriverDetail.training_certificate.number ,valid_upto:this.incomingDriverDetail.training_certificate.valid_upto}):'';
+this.incomingDriverDetail.police_verification?this.docDetail.push( { docname:'Police Verification',number: this.incomingDriverDetail.police_verification?this.incomingDriverDetail.police_verification.number:'' ,valid_upto:this.incomingDriverDetail.police_verification.valid_upto}):'';
+for(let i =0;i < this.incomingDriverDetail.others.length; i++){
+  this.docDetail.push({docname:this.incomingDriverDetail.others[i].doc_name,number:this.incomingDriverDetail.others[i].number?this.incomingDriverDetail.others[i].number:null,valid_upto:this.incomingDriverDetail.others[i].valid_upto})
+}
+}
+
+    }
+    else{
+      console.log('create')
+    }
+ 
+  }
+  /************************************************ ENDS ************************************************ */
+  /************************* UPDATE DRIVER PROFILE****************************/
+ updateDriver(){
+  // console.log(this.incomingDriverDetail.others?this.incomingDriverDetail.others.push(this.othersData.others):this.othersData.others)
+  console.log('others data',this.othersData)
+  // console.log('others ush',this.incomingDriverDetail.others.push(this.othersData))
+  // for(let i =0;i < this.incomingDriverDetail.others.length; i++){
+    // console.log('this.othersData[i].doc_name',this.othersData[i].doc_name)
+    // this.incomingDriverDetail.others.push({doc_name:this.othersData[i].doc_name,number:this.othersData[i].number?this.othersData[i].number:null,valid_upto:this.othersData[i].valid_upto?this.othersData[i].valid_upto:null})
+// }
+console.log('others data incoming', this.incomingDriverDetail.others)
+   let data={
+    phoneNumber: this.driverForm.value.phoneNumber,
+    aadhar: this.aadharData.aadhar?this.aadharData.aadhar:this.incomingDriverDetail.aadhar,
+    licence: this.licenceData.licence?this.licenceData.licence:this.incomingDriverDetail.licence,
+    training_certificate: this.trainingData.training_certificate?this.trainingData.training_certificate:this.incomingDriverDetail.training_certificate,
+    police_verification: this.policeData.police_verification?this.policeData.police_verification:this.incomingDriverDetail.police_verification,
+    // others: this.incomingDriverDetail.others?this.incomingDriverDetail.others.push(this.othersData):this.othersData,
+    picture:Object.keys(this.pictureUpload).length != 0 && this.pictureUpload.constructor != Object?this.pictureUpload:this.incomingDriverDetail.picture,
+    contactId:this.incomingDriverDetail._id,
+
+    // others:this.incomingDriverDetail.others
+   } 
+  //  let others=[]
+  //   others=this.incomingDriverDetail.others.push({doc_name:this.othersData[0].doc_name,doc:this.othersData[0].doc?this.othersData[0].doc:null,number:this.othersData[0].number?this.othersData[0].number:null,valid_upto:this.othersData[0].valid_upto?this.othersData[0].valid_upto:null})
+  //   console.log('others',others)
+  //  console.log('fgfghhkjkljjvn',this.incomingDriverDetail)
+
+    
+    // console.log('kya kari',this.incomingDriverDetail.others.push({doc_name:this.othersData[0].doc_name,doc:this.othersData[0].doc?this.othersData[0].doc:null,number:this.othersData[0].number?this.othersData[0].number:null,valid_upto:this.othersData[0].valid_upto?this.othersData[0].valid_upto:null}))
+
+   console.log('data',data)
+  //  console.log('data.others',data.others)
+
+   this.contactService.upadteContact(data).subscribe(result=>{
+     console.log('result',result)
+     this.toastr.success('Driver updated')     
+     this.SharedService.abc('contact')
+   },
+   error=>{
+    this.toastr.success('Driver  not updated')     
+     console.log('update error',error.message)
+   })
+ }
+  /************************************************ ENDS ************************************************ */
+
 /****************FIRST TIME ACCOUNT CREATION **************************/
 // account(){
 //   let data={

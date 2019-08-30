@@ -9,44 +9,45 @@
     </h1>
   </div>
   <div class="card margina">
-      <div class="tableide">
-          <div class="row">
-              <div id="no-more-tables">
-                  <table class="col-md-12 table-bordered table-striped table-condensed cf">
-                  <thead class="cf">
-                    <tr>
-                      <th>DATE</th>
-                      <th>INVOICE #</th>
-                      <!-- <th>ORDER NUMBER</th> -->
-                      <th>CUSTOMER NAME</th>
-                      <th>STATUS</th>
-                      <th>DUE DATE</th>
-                      <th>TOTAL</th>
-                      <th>AMOUNT PAID</th>
-                      <th>BALANCE DUE</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr data-toggle="modal" data-target="#paymentModal" *ngFor="let invoice of invoicelists" (click)="pay(invoice)">
-                      <td class="thno" data-title="NO.">{{invoice.createdDate}}</td>
-                      <td class="thname" data-title="NAME">{{invoice.invoice_number}}</td>
-                      <!-- <td class="thname" data-title="VAT ID">{{invoice.invoice_number}}</td> -->
-                      <td data-title="ADDRESS" class="numeric"> {{invoice.userId.name}}</td>
-                      <td data-title="VAT ID" class="numeric">{{invoice.status}}</td>
-                      <td data-title="VAT ID" class="numeric">{{invoice.due_date}}</td>
-                      <td data-title="VAT ID" class="numeric">{{invoice.total}} </td>
-                      <td data-title="VAT ID" class="numeric">{{invoice.amount_paid}} </td>
-                      <td data-title="VAT ID" class="numeric">{{invoice.amount_due}}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-          </div>
+    <div class="tableide">
+      <div class="row">
+        <div id="no-more-tables">
+          <table class="col-md-12 table-bordered table-striped table-condensed cf">
+            <thead class="cf">
+              <tr>
+                <th>DATE</th>
+                <th>INVOICE #</th>
+                <!-- <th>ORDER NUMBER</th> -->
+                <th>CUSTOMER NAME</th>
+                <th>STATUS</th>
+                <th>DUE DATE</th>
+                <th>TOTAL</th>
+                <th>AMOUNT PAID</th>
+                <th>BALANCE DUE</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-toggle="modal" data-target="#paymentModal" *ngFor="let invoice of invoicelists"
+                (click)="pay(invoice)">
+                <td class="thno" data-title="NO.">{{invoice.createdDate}}</td>
+                <td class="thname" data-title="NAME">{{invoice.invoice_number}}</td>
+                <!-- <td class="thname" data-title="VAT ID">{{invoice.invoice_number}}</td> -->
+                <td data-title="ADDRESS" class="numeric"> {{invoice.userId.name}}</td>
+                <td data-title="VAT ID" class="numeric">{{invoice.status}}</td>
+                <td data-title="VAT ID" class="numeric">{{invoice.due_date}}</td>
+                <td data-title="VAT ID" class="numeric">{{invoice.total}} </td>
+                <td data-title="VAT ID" class="numeric">{{invoice.amount_paid}} </td>
+                <td data-title="VAT ID" class="numeric">{{invoice.amount_due}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
+    </div>
 
   </div>
-  </section>
-  <!-- paymentreceived -->
+</section>
+<!-- paymentreceived -->
 <!-- Modal -->
 <div class="modal fade" id="paymentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="vertical-alignment-helper">
@@ -61,46 +62,51 @@
 
         </div>
         <div class="modal-body">
-        
-   
 
 
-         
-          <form>
+
+
+
 
             <div class="tableide">
               <div class="row">
                 <div id="no-more-tables">
                   <table class="col-md-12 table-bordered table-striped table-condensed cf">
                     <thead class="cf">
-                      <tr>
-                        <th>DENOMINATION</th>
-                        <th>COUNT</th>
-                        <th>AMOUNT</th>
-                      </tr>
+                        <tr>
+                            <th>CONSIGNMENT</th>
+                            <th>AMOUNT</th>
+                            <th>AMOUNT PAID</th>
+                            <th>PAYMENT DATE</th>
+                          </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td class="thno">a</td>
-                        <td class="thname"><p>a</p></td>
-                        <td class="thname">
-                          amount
-                        </td>
-                      </tr>
+                        <tr>
+                            <td class="thno">
+                              <select (change)="consignment()" [(ngModel)]="consignmentNumber">
+                                <option value="" disabled selected>Select</option>
+                                <!-- <option *ngFor="let item of userdata" value='item._id'>{{item.cosignmentId.consignmentNumber}}</option> -->
+                              </select>
+                            </td>
+                            <td class="thname">
+                                <p>a</p>
+                              </td>
+                            <td class="thname">
+                              <p><input type="text" placeholder="Enter Amount"></p>
+                            </td>
+                            <td class="thname">
+                                <p><input type="date"></p>
+                            </td>
+                          </tr>
 
                     </tbody>
                   </table>
                 </div>
               </div>
             </div>
-            <!-- <div class="modal-footer">
-              <button type="button" class="saveBtn" (click)="submitmodel()">Save</button>
-              <button type="button" class="cancelBtn" id="cancel" data-dismiss="modal"
-                (click)="cancelmodel()">Cancel</button>
-            </div> -->
-          </form>
+      
 
-            <!-- <div class="row">
+          <!-- <div class="row">
               <div class="input-field col s3">
                 <label>Pay Amount<span class="blue_star">*</span></label>
               </div>
@@ -120,11 +126,11 @@
 
               </div>
             </div> -->
-            <div class="modal-footer">
-              <!-- <button type="button"  class="saveBtn" (click)="submit()">Save</button> -->
-              <!-- <button type="button" class="cancelBtn" data-dismiss="modal" id="cancel" (click)="cancel()">Cancel</button> -->
-            </div>
-          
+          <div class="modal-footer">
+            <!-- <button type="button"  class="saveBtn" (click)="submit()">Save</button> -->
+            <!-- <button type="button" class="cancelBtn" data-dismiss="modal" id="cancel" (click)="cancel()">Cancel</button> -->
+          </div>
+
         </div>
       </div>
     </div>

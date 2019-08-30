@@ -30,10 +30,10 @@
                             <td>DOCUMENT</td>
                             <td>EXPIRY DATE</td>
                           </tr>
-                      <tr *ngFor="let list of fleetList; index as i">
-                        <td class="thno" data-title="NO.">{{list.truck_number}}</td>
-                        <td class="thname" data-title="NAME">Sco</td>
-                        <td data-title="ADDRESS" class="numeric">13/08/2020</td>
+                      <tr *ngFor="let list of docList; index as i">
+                        <td class="thno" data-title="NO.">{{list.truck}}</td>
+                        <td class="thname" data-title="NAME">{{list.docname}}</td>
+                        <td data-title="ADDRESS" class="numeric">{{list.doc.valid_upto}}</td>
                       </tr>
 
                     </tbody>

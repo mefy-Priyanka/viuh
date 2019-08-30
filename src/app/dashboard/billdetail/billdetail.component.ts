@@ -13,7 +13,7 @@ export class BilldetailComponent implements OnInit {
     this.SharedService.somedata.subscribe(data => {
       console.log('data', data);
       this.billdetail = data.data;
-      console.log(this.billdetail)
+      console.log('bill details',this.billdetail)
     });
   }
 
