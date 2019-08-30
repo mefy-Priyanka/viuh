@@ -24,14 +24,15 @@ export class BillComponent implements OnInit {
   billlists: any = [];
   voucherlist: any = [];
   paymentamount: number = 0;
-  selectedcontractor={
-    commission_percent:0
+  selectedcontractor = {
+    commission_percent: 0
   };
   selectedconsignment: any;
-  htmlval: any=[];
+  htmlval: any = [];
   totalval: any;
-  ratelist: any=[];
+  ratelist: any = [];
   customername: any;
+  acntpayable: any;
   constructor(private fb: FormBuilder, private SharedService: SharedService, private userService: UserService, private toastr: ToastrService, private companyService: CompanyService) { }
 
   ngOnInit() {
@@ -69,6 +70,7 @@ export class BillComponent implements OnInit {
     this.getContractorList();
     this.billlist();
     this.getvoucherlist();
+    this.getaccountpayable()
   }
   getvoucherlist() {
     console.log(localStorage.getItem('SuperAdmin'))
@@ -76,7 +78,11 @@ export class BillComponent implements OnInit {
 
       let result: any = {}
       result = data;
-      this.voucherlist = result.result
+      for(var i=0;i<result.result.length;i++){
+        if(!result.result[i].adjusted){
+          this.voucherlist.push(result.result[i])
+        }
+      }
       console.log(this.voucherlist);
     },
       error => {
@@ -146,9 +152,9 @@ export class BillComponent implements OnInit {
     console.log(adjustedval)
     this.billForm.value.tdsamount = (this.billForm.value.tdsrate * adjustedval) / 100;
 
-    this.billForm.value.amount = adjustedval-this.billForm.value.tdsamount ;
+    this.billForm.value.amount = adjustedval - this.billForm.value.tdsamount;
     // console.log(this.billForm.value.amount)
-    this.billForm.value.amount=this.billForm.value.amount-(this.selectedcontractor.commission_percent*this.billForm.value.sub_total/100)
+    this.billForm.value.amount = this.billForm.value.amount - (this.selectedcontractor.commission_percent * this.billForm.value.sub_total / 100)
     console.log(this.billForm.value.amount)
   }
 
@@ -175,9 +181,9 @@ export class BillComponent implements OnInit {
 
 
   onChangeObj(data) {
-    this.selectedcontractor.commission_percent=0
+    this.selectedcontractor.commission_percent = 0
     this.check();
- 
+
     var accounttype = 'Expense'
     var account = '';
     var parent = 'Contractors';
@@ -200,12 +206,14 @@ export class BillComponent implements OnInit {
 
 
     let datas = {
-      accounttype: accounttype,
+      accounttype: "Expense",
       account: account,
-      parent: parent
+      parent: "",
+      super_parent_Account: "",
+      superAdminId: localStorage.getItem('SuperAdmin')
     }
     console.log(datas);
-    this.userService.accountbytype(datas).subscribe(result => {
+    this.userService.getaccountlistbytype(datas).subscribe(result => {
       console.log(result);
       let something: any;
       something = result
@@ -221,7 +229,27 @@ export class BillComponent implements OnInit {
       })
   }
 
+  getaccountpayable() {
+    let datas = {
+      accounttype: "Liability",
+      account: 'Account Payable',
+      parent: "Current Liability",
+      super_parent_Account: "",
+      superAdminId: localStorage.getItem('SuperAdmin')
+    }
+    console.log(datas)
+    this.userService.accountbytype(datas).subscribe(result => {
+      console.log(result);
+      let something: any;
+      something = result
+      this.acntpayable = something.result[0]._id
+      console.log('account payablessssss', this.acntpayable)
+    },
+      err => {
+        console.log(err)
 
+      })
+  }
 
   addPhone() {
     console.log('sdhmfvshdfgvshdf')
@@ -278,13 +306,13 @@ export class BillComponent implements OnInit {
       else {
         for (var i = 0; i < this.contractorDetail.length; i++) {
           if (this.contractorDetail[i]._id == this.billForm.value.vendorId) {
-          console.log('contractor');
-          this.contractorid = this.contractorDetail[i]._id;
-          this.selectedcontractor=this.contractorDetail[i]
-          this.venderid = ''
+            console.log('contractor');
+            this.contractorid = this.contractorDetail[i]._id;
+            this.selectedcontractor = this.contractorDetail[i]
+            this.venderid = ''
           }
         }
-     
+
       }
     }
   }
@@ -351,7 +379,7 @@ export class BillComponent implements OnInit {
         description: 'description'
       },
       {
-        accountId: "5d2590fc7c8f70150cbca388",
+        accountId: this.acntpayable,
         credit: this.billForm.value.amount,
         description: 'description'
       }
@@ -362,8 +390,8 @@ export class BillComponent implements OnInit {
     this.userService.journalcreat(data).subscribe(result => {
       console.log(result);
       this.toastr.success('Awesome!', 'Journal created suceesfully');
-      console.log(result);
-      this.SharedService.abc('journal');
+      this.callapi();
+      this.SharedService.abc('paymentmade');
 
     },
       err => {
@@ -387,6 +415,28 @@ export class BillComponent implements OnInit {
 
     }
   }
+  callapi() {
+    for (var i = 0; i < this.voucherlist.length; i++) {
+      if (this.voucherlist[i].adjusted) {
+        this.updatepayment(this.voucherlist[i])
+      }
+    }
+  }
+  updatepayment(datas) {
+    let data = {
+      adjusted: true,
+      paymentId: datas._id
+    }
+
+    this.userService.updatepayment(data).subscribe(result => {
+      console.log(result);
+    },
+      err => {
+        console.log(err)
+        this.toastr.error('Error!', 'Server Error')
+
+      })
+  }
   submitmodel() {
     console.log(this.paymentamount)
     document.getElementById('cancel').click()
@@ -394,20 +444,11 @@ export class BillComponent implements OnInit {
   cancelmodel() {
     this.paymentamount = 0;
     for (var i = 0; i < this.voucherlist.length; i++) {
-      this.voucherlist[i].adjusted = false;      
+      this.voucherlist[i].adjusted = false;
     }
 
     console.log(this.paymentamount)
   }
-
-
-
-
-
-
-
-
-
 
   change(j) {
     console.log(this.phoneForms)
@@ -418,7 +459,7 @@ export class BillComponent implements OnInit {
     console.log(this.selectedconsignment);
     // var result = jQuery('.switch-input').is(':checked') ? true : false;
     for (var i = 0; i < this.ratelist.length; i++) {
-      console.log('-------------------------------------------'+this.ratelist[i].truck_confg , this.selectedconsignment.truck_confg)
+      console.log('-------------------------------------------' + this.ratelist[i].truck_confg, this.selectedconsignment.truck_confg)
       if (this.ratelist[i].truck_confg == this.selectedconsignment.truck_confg) {
         console.log('config true')
         if (this.selectedconsignment.within_state == this.ratelist[i].within_state) {
@@ -467,14 +508,14 @@ export class BillComponent implements OnInit {
     if (this.customername.match('emami')) {
       var net = 0;
       for (var i = 0; i < this.selectedconsignment.consignment.length; i++) {
-        
+
         net = net + parseInt(this.selectedconsignment.consignment[i].net_wt)
       }
-      console.log( net)
-      if(this.selectedconsignment.freight){
+      console.log(net)
+      if (this.selectedconsignment.freight) {
         this.totalval = parseFloat(this.selectedconsignment.freight) * net;
       }
-      else{
+      else {
         alert('there is no fright list ');
         return;
       }
@@ -493,15 +534,15 @@ export class BillComponent implements OnInit {
       alert(this.selectedconsignment.amount)
 
     }
-    this.htmlval[j]=(this.selectedconsignment.amount)
+    this.htmlval[j] = (this.selectedconsignment.amount)
 
 
   }
-  changeconsigner(id,j) {
+  changeconsigner(id, j) {
     for (var i = 0; i < this.consigmentDetail.length; i++) {
       if (this.consigmentDetail[i]._id == id) {
         this.selectedconsignment = this.consigmentDetail[i];
-        this.customername=this.selectedconsignment.consignor.name
+        this.customername = this.selectedconsignment.consignor.name
         this.change(j)
         return;
       }
