@@ -74,4 +74,33 @@ export class ContactlistComponent implements OnInit {
       console.log(err)
     })}
   }
+  /*****************************EDIT CONTACT***************/
+  editContact(contact){
+    console.log('contact detaail',contact)
+    if(contact.contact_type=='driver'){
+      console.log('contact driver')
+      this.SharedService.contactDetail(contact)
+      this.SharedService.abc('Driver')
+    }
+    else if(contact.contact_type=='customer'){
+      console.log('contact Customer')
+      this.SharedService.contactDetail(contact)
+      this.SharedService.abc('Customer')
+
+    }
+    else if(contact.contact_type=='employee'){
+      console.log('contact Employee')
+      this.SharedService.contactDetail(contact)
+      this.SharedService.abc('Employee')
+
+    }
+    else {
+      console.log('contact vendor')
+      contact.contact_type=='vendor'
+      this.SharedService.contactDetail(contact)
+      this.SharedService.abc('Vendor')
+
+    }
+
+  }
 }
