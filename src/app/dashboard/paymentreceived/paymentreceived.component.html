@@ -68,43 +68,68 @@
 
 
 
-            <div class="tableide">
-              <div class="row">
-                <div id="no-more-tables">
-                  <table class="col-md-12 table-bordered table-striped table-condensed cf">
-                    <thead class="cf">
-                        <tr>
-                            <th>CONSIGNMENT</th>
-                            <th>AMOUNT</th>
-                            <th>AMOUNT PAID</th>
-                            <th>PAYMENT DATE</th>
-                          </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="thno">
-                              <select (change)="consignment()" [(ngModel)]="consignmentNumber">
-                                <option value="" disabled selected>Select</option>
-                                <!-- <option *ngFor="let item of userdata" value='item._id'>{{item.cosignmentId.consignmentNumber}}</option> -->
-                              </select>
-                            </td>
-                            <td class="thname">
-                                <p>a</p>
-                              </td>
-                            <td class="thname">
-                              <p><input type="text" placeholder="Enter Amount"></p>
-                            </td>
-                            <td class="thname">
-                                <p><input type="date"></p>
-                            </td>
-                          </tr>
+          <div class="tableide">
+            <div class="row">
+              <div id="no-more-tables" class="atea">
+                <table class="col-md-12 table-bordered table-striped table-condensed cf">
+                  <thead class="cf">
+                    <tr>
+                      <th>CONSIGNMENT</th>
+                      <th>AMOUNT</th>
+                      <th>AMOUNT PAID</th>
+                      <th>PAYMENT DATE</th>
+                      <th>DEDUCTIONS</th>
+                      <th>DEPARTMENTAL</th>
+                      <th>TDS</th>
+                      <th>SHORTAGE</th>
+                      <th>GST TDS</th>
+                      <th>CCMS</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="thno">
+                        <select (change)="consignment()" [(ngModel)]="consignmentNumber">
+                          <option value="" disabled selected>Select</option>
+                          <option *ngFor="let item of userdata.items_details" value="{{item._id}}">
+                            {{item.cosignmentId.consignmentNumber}}</option>
+                        </select>
+                      </td>
+                      <td class="thname">
+                        <p>{{selectedconsignment.amount}}</p>
+                      </td>
+                      <td class="thname">
+                        <p><input type="text" [(ngModel)]="amount_paid" placeholder="Enter Amount"></p>
+                      </td>
+                      <td class="thname">
+                        <p><input type="date" [(ngModel)]="paymentDate"></p>
+                      </td>
+                      <td class="thname">
+                        <p><input type="text" [(ngModel)]="deduction"></p>
+                      </td>
+                      <td class="thname">
+                        <p><input type="text" [(ngModel)]="departmental"></p>
+                      </td>
+                      <td class="thname">
+                        <p><input type="text" [(ngModel)]="tds"></p>
+                      </td>
+                      <td class="thname">
+                        <p><input type="text" [(ngModel)]="shortage"></p>
+                      </td>
+                      <td class="thname">
+                        <p><input type="text" [(ngModel)]="gst_tds"></p>
+                      </td>
+                      <td class="thname">
+                        <p><input type="text" [(ngModel)]="ccms"></p>
+                      </td>
+                    </tr>
 
-                    </tbody>
-                  </table>
-                </div>
+                  </tbody>
+                </table>
               </div>
             </div>
-      
+          </div>
+
 
           <!-- <div class="row">
               <div class="input-field col s3">
@@ -127,7 +152,7 @@
               </div>
             </div> -->
           <div class="modal-footer">
-            <!-- <button type="button"  class="saveBtn" (click)="submit()">Save</button> -->
+            <button type="button" class="saveBtn" (click)="submitmodal()">Save</button>
             <!-- <button type="button" class="cancelBtn" data-dismiss="modal" id="cancel" (click)="cancel()">Cancel</button> -->
           </div>
 

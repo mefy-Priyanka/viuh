@@ -13,14 +13,29 @@ export class PaymentreceivedComponent implements OnInit {
   amount = 0;
   description = '';
   id: any;
-  userdata:any;
+  userdata = {
+    items_details: [],
+    customerId: { name: '', _id: '' }
+  };
   firstaccountid: any;
-  constructor(private userService: UserService,  private SharedService :SharedService, private companyService: CompanyService,private toastr: ToastrService,) { }
+  consignmentNumber='';
+  selectedconsignment={amount:0};
+  constructor(private userService: UserService, private SharedService: SharedService, private companyService: CompanyService, private toastr: ToastrService, ) { }
 
   ngOnInit() {
     this.invoicelist();
   }
-
+  consignment() {
+    console.log(this.consignmentNumber)
+    console.log("userdata", this.userdata)
+    console.log("userdata", this.userdata.items_details)
+    for (let i = 0; i < this.userdata.items_details.length; i++) {
+      if(this.userdata.items_details[i]._id==this.consignmentNumber){
+        this.selectedconsignment=this.userdata.items_details[i];
+      }
+    }
+    console.log(this.selectedconsignment)
+  }
 
   invoicelist() {
     console.log(localStorage.getItem('SuperAdmin'))
@@ -38,96 +53,96 @@ export class PaymentreceivedComponent implements OnInit {
   }
 
   pay(data) {
-    this.userdata=data;
-    console.log("userdata",this.userdata)
-    this.id=data._id;
+    this.userdata = data;
+    console.log("userdata", this.userdata)
+    this.id = data._id;
     this.getaccount()
   }
-  submit(){
-    let data={
-      invoiceId:this.id,
-      amount_paid:this.amount
+  submit() {
+    let data = {
+      invoiceId: this.id,
+      amount_paid: this.amount
     }
     console.log(data);
-    this.companyService.paidinvoice(data).subscribe(result=>{
+    this.companyService.paidinvoice(data).subscribe(result => {
       console.log(result);
       this.toastr.success('Awesome!', 'invoice detail saved suceesfully');
       this.createjournal()
       this.invoicelist();
       document.getElementById("cancel").click();
     },
-    err=>{
-      console.log(err);
-      this.toastr.error('oops!', 'server error');
+      err => {
+        console.log(err);
+        this.toastr.error('oops!', 'server error');
 
-    })
+      })
   }
-  cancel(){
-    this.amount=0;
-    this.id=0;
+  cancel() {
+    this.amount = 0;
+    this.id = 0;
     document.getElementById("cancel").click();
 
   }
 
-  getaccount(){
-    var accounttype='Asset'
-    var parent='Customers';
-   
-    let datas={
-      accounttype:accounttype,
-      account:this.userdata.customerId.name,
-      parent:parent
+  getaccount() {
+    var accounttype = 'Asset'
+    var parent = 'Customers';
+
+    let datas = {
+      accounttype: accounttype,
+      account: this.userdata.customerId.name,
+      parent: parent
     }
     console.log(datas)
-      this.userService.accountbytype(datas).subscribe(result => {
-        console.log(result);
-        let something:any;
-        something=result
-        this.firstaccountid=something.result[0]._id
-        console.log(this.firstaccountid)
-      },
-        err => {
-          console.log(err)
-  
-        })
-    }
+    this.userService.accountbytype(datas).subscribe(result => {
+      console.log(result);
+      let something: any;
+      something = result
+      this.firstaccountid = something.result[0]._id
+      console.log(this.firstaccountid)
+    },
+      err => {
+        console.log(err)
+
+      })
+  }
 
 
 
-  createjournal(){
-    
-    let data={
-      date:new Date().toISOString(),
-      reference:this.userdata.customerId._id,
-      notes:'',
-      total:this.amount,
-      userId:localStorage.getItem('userId'),
-      journal_base:'bank',
-      detail:[{
-        accountId:this.firstaccountid,
-        credit:this.amount,
-        description:'description'
+  createjournal() {
+
+    let data = {
+      date: new Date().toISOString(),
+      reference: this.userdata.customerId._id,
+      notes: '',
+      total: this.amount,
+      userId: localStorage.getItem('userId'),
+      journal_base: 'bank',
+      detail: [{
+        accountId: this.firstaccountid,
+        credit: this.amount,
+        description: 'description'
       },
       {
-        accountId:"5d2583ef8de29212f49cf200",
-        debit:this.amount,
-        description:'description'
+        accountId: "5d2583ef8de29212f49cf200",
+        debit: this.amount,
+        description: 'description'
       }
-    ]
-  }
-  console.log(data);
+      ]
+    }
+    console.log(data);
 
-  this.userService.journalcreat(data).subscribe(result => {
-    console.log(result);
-    this.toastr.success('Awesome!', 'Journal created suceesfully');
-    console.log(result);
-    this.SharedService.abc('journal');
-   
-  },
-    err => {
-      console.log(err)
-      this.toastr.error('Error!', 'Server Error')
+    this.userService.journalcreat(data).subscribe(result => {
+      console.log(result);
+      this.toastr.success('Awesome!', 'Journal created suceesfully');
+      console.log(result);
+      this.SharedService.abc('journal');
 
-    })
+    },
+      err => {
+        console.log(err)
+        this.toastr.error('Error!', 'Server Error')
+
+      })
   }
 }

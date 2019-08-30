@@ -194,6 +194,11 @@ div#paymentModal .row {
 div#paymentModal .input-field {
     margin: 1em 0 0 0;
 }
+.atea{
+    overflow: scroll;
+    height: 207px;
+    width: 728px;
+}
 div#paymentModal .modal-footer {
     text-align: center;
     padding: 0;
