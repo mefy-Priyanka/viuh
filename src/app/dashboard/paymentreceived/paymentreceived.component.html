@@ -78,8 +78,8 @@
                       <th>AMOUNT</th>
                       <th>AMOUNT PAID</th>
                       <th>PAYMENT DATE</th>
-                      <th>DEDUCTIONS</th>
-                      <th>DEPARTMENTAL</th>
+                      
+                      <th>DEPARTMENTAL DEDUCTION</th>
                       <th>TDS</th>
                       <th>SHORTAGE</th>
                       <th>GST TDS</th>
@@ -99,28 +99,26 @@
                         <p>{{selectedconsignment.amount}}</p>
                       </td>
                       <td class="thname">
-                        <p><input type="text" [(ngModel)]="amount_paid" placeholder="Enter Amount"></p>
+                        <p><input type="number" [(ngModel)]="submitdata.amount_paid" placeholder="Enter Amount"></p>
                       </td>
                       <td class="thname">
-                        <p><input type="date" [(ngModel)]="paymentDate"></p>
+                        <p><input type="date" [(ngModel)]="submitdata.paymentDate"></p>
                       </td>
                       <td class="thname">
-                        <p><input type="text" [(ngModel)]="deduction"></p>
+                        <p><input type="number" [(ngModel)]="submitdata.departmental_deduction"></p>
+                      </td>
+                     
+                      <td class="thname">
+                        <p><input type="number" [(ngModel)]="submitdata.tds"></p>
                       </td>
                       <td class="thname">
-                        <p><input type="text" [(ngModel)]="departmental"></p>
+                        <p><input type="number" [(ngModel)]="submitdata.shortage"></p>
                       </td>
                       <td class="thname">
-                        <p><input type="text" [(ngModel)]="tds"></p>
+                        <p><input type="number" [(ngModel)]="submitdata.gst_tds"></p>
                       </td>
                       <td class="thname">
-                        <p><input type="text" [(ngModel)]="shortage"></p>
-                      </td>
-                      <td class="thname">
-                        <p><input type="text" [(ngModel)]="gst_tds"></p>
-                      </td>
-                      <td class="thname">
-                        <p><input type="text" [(ngModel)]="ccms"></p>
+                        <p><input type="number" [(ngModel)]="submitdata.ccms"></p>
                       </td>
                     </tr>
 
@@ -153,6 +151,7 @@
             </div> -->
           <div class="modal-footer">
             <button type="button" class="saveBtn" (click)="submitmodal()">Save</button>
+            <a data-dismiss="modal" id="cancel"></a>
             <!-- <button type="button" class="cancelBtn" data-dismiss="modal" id="cancel" (click)="cancel()">Cancel</button> -->
           </div>
 
