@@ -69,7 +69,7 @@
                               </tr>
                           <tr *ngFor="let list of billList; index as i">
                             <td class="thno" data-title="NO.">{{list.bill_number}}</td>
-                            <td class="thname" data-title="NAME">{{list.vendorId}}</td>
+                            <td class="thname" data-title="NAME">{{list.vendorId.name}}</td>
                             <td data-title="ADDRESS" class="numeric">{{list.total}}</td>
                           </tr>
                         </tbody>
