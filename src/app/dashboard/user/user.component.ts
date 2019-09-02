@@ -32,7 +32,7 @@ export class UserComponent implements OnInit {
         this.createuserFormErrors = {
             name: {},
             email: {},
-            password: {},
+            // password: {},
             organisation: {},
             role: {}
         };
@@ -85,7 +85,7 @@ export class UserComponent implements OnInit {
         return this.formBuilder.group({
             name: ['', Validators.required],
             email: ['', [Validators.required, Validators.email]],
-            password: ['', Validators.required],
+            // password: ['', Validators.required],
             organisation: ['', Validators.required],
             role: ['', Validators.required]
         });
@@ -99,16 +99,16 @@ export class UserComponent implements OnInit {
         this.loader = true;
         if (this.createUserForm.valid) {
             this.submitted = false;
-            this.pass = this.createUserForm.value.password;
-            console.log("password", this.pass.length)
-            if (this.pass.length < 6) {
-                console.log("error password");
-                window.alert('You have entered less than 6 characters for password');
-            }
+            // this.pass = this.createUserForm.value.password;
+            // console.log("password", this.pass.length)
+            // if (this.pass.length < 6) {
+            //     console.log("error password");
+            //     window.alert('You have entered less than 6 characters for password');
+            // }
             let data = {
                 name: this.createUserForm.value.name,
                 email: this.createUserForm.value.email,
-                password: this.createUserForm.value.password,
+                // password: this.createUserForm.value.password,
                 superAdminId: this.adminId,
                 organisation: this.createUserForm.value.organisation,
                 role: this.createUserForm.value.role

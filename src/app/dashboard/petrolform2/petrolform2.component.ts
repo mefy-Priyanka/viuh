@@ -30,9 +30,12 @@ export class Petrolform2Component implements OnInit {
     this.vendorList();
   }
   updatediesel(){
-    this.getpetrolprice()
+    this.vendorList();
+    // this.getpetrolprice();
+    
   }
   getpetrolprice() {
+    this.addeddata=[];
     var matches = [];
     let data={
       date: this.date,
@@ -41,6 +44,7 @@ export class Petrolform2Component implements OnInit {
     this.userService.getpetrol(data).subscribe(result => {
       console.log(result);
       let something: any = result;
+      console.log(this.addeddata)
 
       for (var i = 0; i < something.result.length; i++) {
         console.log('data', something.result[i].user.length, i)

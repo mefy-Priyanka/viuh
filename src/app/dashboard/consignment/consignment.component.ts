@@ -148,7 +148,7 @@ export class ConsignmentComponent implements OnInit {
       let result: any = {}
       result = data;
       this.consigmentDetail = result.result
-      console.log(this.consigmentDetail);
+      console.log('consignment',this.consigmentDetail);
     },
       error => {
         console.log(error);

@@ -398,7 +398,7 @@ export class InvoiceComponent implements OnInit {
       console.log(result);
       this.toastr.success('Awesome!', 'Journal created suceesfully');
       console.log(result);
-      this.SharedService.abc('invoice');
+      this.SharedService.abc('invoicelist');
 
     },
       err => {

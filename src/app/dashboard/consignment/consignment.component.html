@@ -13,22 +13,20 @@
           <table class="col-md-12 table-bordered table-striped table-condensed cf">
             <thead class="cf">
               <tr>
-                <!-- <th class="numeric">TL.NO.</th> -->
-                <!-- <th>LOCATION NO.</th> -->
-                <th>CHALLAN NO.</th>
+                <th>CONSIGNEE</th>
+                <th>CONSIGNMENT NO.</th>
                 <th>CONSIGNMENT DATE</th>
-                <th>PRODUCT</th>
-                <th>NET WT.</th>
+                <th>TRUCK CONFIG</th>
+                <!-- <th>NET WT.</th> -->
               </tr>
             </thead>
             <tbody>
               <tr *ngFor="let consigment of consigmentDetail">
-                <!-- <td class="thno" data-title="NO.">{{consigment.tl_number}}</td> -->
-                <!-- <td class="thname" data-title="NAME">{{consigment.location_number}}</td> -->
-                <!-- <td class="thname" data-title="VAT ID">{{consigment.challan_number}}</td> -->
+                <td class="thname" data-title="NAME">{{consigment.consignee}}</td>
+                <td class="thname" data-title="VAT ID">{{consigment.consignmentNumber}}</td>
                 <td data-title="ADDRESS" class="numeric">{{consigment.consignment_date}}</td>
-                <!-- <td data-title="VAT ID" class="numeric">{{consigment.product}}</td>
-                <td data-title="VAT ID" class="numeric">{{consigment.quantity.net_wt}}</td> -->
+                <td data-title="VAT ID" class="numeric">{{consigment.truck_confg}}</td>
+                <!-- <td data-title="VAT ID" class="numeric">{{consigment.quantity.net_wt}}</td> -->
               </tr>
             </tbody>
           </table>
