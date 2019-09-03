@@ -22,7 +22,7 @@ export class SidenavComponent implements OnInit {
     this.userId = localStorage.getItem('userId');   /************** LOGIN USER ID FECTCH FROM LOCAL STORAGE****/
    
     console.log("loginId", this.userId);
-    this.getdiesel();
+    // this.getdiesel();
     this.SharedService.abc('dashboard');
 
    
@@ -67,46 +67,46 @@ export class SidenavComponent implements OnInit {
   /* ************END**************/
 
 
-  savedieselrate() {
-    let data = {
-      diesel_price: this.dieselrate,
-      userId: localStorage.getItem('userId')
-    }
-    this.CompanyService.creatdiesel(data).subscribe(value => {
-      this.toastr.success('Congo!', 'diesel Created '),
-        console.log('user', value);
-        this.showbtn = false;
-      let result: any = {}
-      result = value;
-      this.getdiesel()
-    },
-      err => {
-        console.log(err)
+  // savedieselrate() {
+  //   let data = {
+  //     diesel_price: this.dieselrate,
+  //     userId: localStorage.getItem('userId')
+  //   }
+  //   this.CompanyService.creatdiesel(data).subscribe(value => {
+  //     this.toastr.success('Congo!', 'diesel Created '),
+  //       console.log('user', value);
+  //       this.showbtn = false;
+  //     let result: any = {}
+  //     result = value;
+  //     this.getdiesel()
+  //   },
+  //     err => {
+  //       console.log(err)
 
-        this.toastr.error('Error!', 'Server Error')
-      })
-  }
-  getdiesel() {
-    let something: any;
-    let i = 0;
-    this.CompanyService.getdiesel(localStorage.getItem('SuperAdmin')).subscribe(result => {
-      console.log(result);
-      something = result;
-      this.dieselrate = something.result[something.result.length - 1].diesel_price;
-      console.log(moment(something.result[something.result.length - 1].createdDate).format("MMM Do YY"));
-      console.log(moment(Date.now()).format("MMM Do YY"))
-      if (moment(something.result[something.result.length - 1].createdDate).format("MMM Do YY") == moment(Date.now()).format("MMM Do YY")) {
-        this.showbtn = false;
-      }
-      else{
-        this.showbtn=true;
-      }
-      console.log(this.showbtn)
+  //       this.toastr.error('Error!', 'Server Error')
+  //     })
+  // }
+  // getdiesel() {
+  //   let something: any;
+  //   let i = 0;
+  //   this.CompanyService.getdiesel(localStorage.getItem('SuperAdmin')).subscribe(result => {
+  //     console.log(result);
+  //     something = result;
+  //     this.dieselrate = something.result[something.result.length - 1].diesel_price;
+  //     console.log(moment(something.result[something.result.length - 1].createdDate).format("MMM Do YY"));
+  //     console.log(moment(Date.now()).format("MMM Do YY"))
+  //     if (moment(something.result[something.result.length - 1].createdDate).format("MMM Do YY") == moment(Date.now()).format("MMM Do YY")) {
+  //       this.showbtn = false;
+  //     }
+  //     else{
+  //       this.showbtn=true;
+  //     }
+  //     console.log(this.showbtn)
 
-    },
-      err => {
-        console.log(err)
-      })
+  //   },
+  //     err => {
+  //       console.log(err)
+  //     })
 
-  }
+  // }
 }

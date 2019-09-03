@@ -168,7 +168,10 @@ export class CompanyService {
   paidinvoice(data){
     return this.httpClient.put(APIURL+'invoice/paid',data)
   }
+  invoiceupdate(data){
+    return this.httpClient.put(APIURL+'invoice/invoiceUpdate',data)
 
+  }
 
   // bill
   getbill(id){

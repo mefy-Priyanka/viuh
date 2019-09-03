@@ -13,13 +13,24 @@ export class PaymentreceivedComponent implements OnInit {
   amount = 0;
   description = '';
   id: any;
+
+  submitdata: any = {
+    amount_paid: '',
+    paymentDate: '',
+    departmental_deduction: '',
+    tds: '',
+    shortage: '',
+    gst_tds: '',
+    ccms: ''
+  };
   userdata = {
     items_details: [],
-    customerId: { name: '', _id: '' }
+    customerId: { name: '', _id: '' },
+    _id: ''
   };
   firstaccountid: any;
-  consignmentNumber='';
-  selectedconsignment={amount:0};
+  consignmentNumber = '';
+  selectedconsignment: any = { amount: 0 };
   constructor(private userService: UserService, private SharedService: SharedService, private companyService: CompanyService, private toastr: ToastrService, ) { }
 
   ngOnInit() {
@@ -30,8 +41,8 @@ export class PaymentreceivedComponent implements OnInit {
     console.log("userdata", this.userdata)
     console.log("userdata", this.userdata.items_details)
     for (let i = 0; i < this.userdata.items_details.length; i++) {
-      if(this.userdata.items_details[i]._id==this.consignmentNumber){
-        this.selectedconsignment=this.userdata.items_details[i];
+      if (this.userdata.items_details[i]._id == this.consignmentNumber) {
+        this.selectedconsignment = this.userdata.items_details[i];
       }
     }
     console.log(this.selectedconsignment)
@@ -51,7 +62,45 @@ export class PaymentreceivedComponent implements OnInit {
 
       })
   }
+  submitmodal() {
+    var amount_status = 'incomplete'
+    if (parseInt(this.selectedconsignment.amount) - parseInt(this.submitdata.amount_paid) < 1) {
+      amount_status = 'complete'
+    }
 
+    let data = {
+      invoiceId: this.userdata._id,
+      amount_paid: this.submitdata.amount_paid,
+      paymentDate: new Date(this.submitdata.paymentDate).toISOString(),
+      due_amount: parseInt(this.selectedconsignment.amount) - parseInt(this.submitdata.amount_paid),
+      itemId: this.selectedconsignment._id,
+      amount_status: amount_status,
+      departmental_deduction: this.submitdata.departmental_deduction,
+      tds: this.submitdata.tds,
+      shortage: this.submitdata.shortage,
+      gst_tds: this.submitdata.gst_tds,
+      ccms: this.submitdata.ccms
+    }
+    console.log(data)
+    this.companyService.invoiceupdate(data).subscribe(data => {
+      this.toastr.success('success', 'invoice updated successfully');
+      document.getElementById("cancel").click();
+
+      this.submitdata = '';
+      this.selectedconsignment = ''
+      this.userdata = {
+        items_details: [],
+        customerId: { name: '', _id: '' },
+        _id: ''
+      };
+    },
+      error => {
+        console.log(error);
+        this.toastr.error('oops', 'server error')
+
+      })
+
+  }
   pay(data) {
     this.userdata = data;
     console.log("userdata", this.userdata)

@@ -100,7 +100,7 @@
                   Enter Valid Email</p>
               </div>
             </div>
-            <div class="row">
+            <!-- <div class="row">
               <div class="input-field col s3">
                 <label>Password</label>
               </div>
@@ -113,7 +113,7 @@
                   Password can not be empty</p>
 
               </div>
-            </div>
+            </div> -->
             <div class="row">
               <div class="input-field col s3">
                 <label>Organisation<span class="blue_star">*</span></label>
@@ -138,6 +138,7 @@
                   <option value="" disabled selected>Choose your option</option>
                   <option value="admin">Admin</option>
                   <option value="accounts">Accounts</option>
+                  <option value="siteIncharge">Site Incharge</option>
                 </select>
                 <p class="errormessage"
                   *ngIf="createuserFormErrors.role.required || (createUserForm.controls.role.pristine && submitted)">

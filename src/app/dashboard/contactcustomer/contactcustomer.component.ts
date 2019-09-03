@@ -53,15 +53,15 @@ export class ContactcustomerComponent implements OnInit {
     };
     /********** ENDS ************** */
     /******************CUSTOMER DETAIL THROUGH SHARED SERVICES ************/
-this.SharedService.contactData.subscribe(result =>{
-  console.log('contact  edit Customer',result)
-  this.incomingCustomerDetail= result;
-},
-err=>{
-console.log(' customer shared err',err)
-})
+    this.SharedService.contactData.subscribe(result => {
+      console.log('contact  edit Customer', result)
+      this.incomingCustomerDetail = result;
+    },
+      err => {
+        console.log(' customer shared err', err)
+      })
 
-/********** ENDS ************** */
+    /********** ENDS ************** */
   }
 
   ngOnInit() {
@@ -190,8 +190,8 @@ console.log(' customer shared err',err)
         }
         this.othersData.push(data.others)
         console.log('push', this.othersData)
-   this.docDetail.push({docname:data.others.doc_name,number:data.others.number?data.others.number:null,valid_upto:data.others.valid_upto})
-     
+        this.docDetail.push({ docname: data.others.doc_name, number: data.others.number ? data.others.number : null, valid_upto: data.others.valid_upto })
+
       }
       else {
         console.log('hey', this.selecteValue)
@@ -337,8 +337,14 @@ console.log(' customer shared err',err)
           },
             err => {
               this.loader = false;
-              console.log(err)
-              this.toastr.error('Error!', 'Creation  failed')
+              console.log(err);
+              if (err.error.message) {
+                this.toastr.error('Error!', err.error.message)
+              }
+              else {
+                this.toastr.error('Error!', 'Creation  failed')
+
+              }
             })
         }
       }
@@ -505,19 +511,19 @@ console.log(' customer shared err',err)
       pan: this.panData.pan ? this.panData.pan : this.incomingCustomerDetail.pan,
       tan: this.tanData.tan ? this.tanData.tan : this.incomingCustomerDetail.tan,
       // others: this.incomingCustomerDetail.others?this.incomingCustomerDetail.others.push(this.othersData):this.othersData,
-    picture:Object.keys(this.pictureUpload).length != 0 && this.pictureUpload.constructor != Object?this.pictureUpload:this.incomingCustomerDetail.picture,
+      picture: Object.keys(this.pictureUpload).length != 0 && this.pictureUpload.constructor != Object ? this.pictureUpload : this.incomingCustomerDetail.picture,
       contactId: this.incomingCustomerDetail._id
     }
     console.log('data', data)
-     this.contactService.upadteContact(data).subscribe(result=>{
-       console.log('result',result)
-       this.toastr.success('Driver updated')     
-       this.SharedService.abc('contact')
-     },
-     error=>{
-      this.toastr.success('Driver  not updated')     
-       console.log('update error',error.message)
-     })
+    this.contactService.upadteContact(data).subscribe(result => {
+      console.log('result', result)
+      this.toastr.success('Driver updated')
+      this.SharedService.abc('contact')
+    },
+      error => {
+        this.toastr.success('Driver  not updated')
+        console.log('update error', error.message)
+      })
   }
   /****************FIRST TIME ACCOUNT CREATION **************************/
   // account(){

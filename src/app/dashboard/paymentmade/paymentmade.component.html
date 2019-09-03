@@ -31,7 +31,7 @@
                       <td class="thno" data-title="NO.">{{bill.createdDate}}</td>
                       <td class="thname" data-title="NAME">{{bill.invoice_number}}</td>
                       <td class="thname" data-title="NAME">REFERENCE</td>
-                      <td class="thname" data-title="VAT ID">{{bill.vendorId}}</td>
+                      <td class="thname" data-title="VAT ID">{{bill.vendorId.name}}</td>
                       <td data-title="ADDRESS" class="numeric">{{bill.status}}</td>
                       <td data-title="VAT ID" class="numeric">{{bill.bill_date}}</td>
                       <td data-title="VAT ID" class="numeric">{{bill.total}}</td>
@@ -57,7 +57,7 @@
               class="sr-only">Close</span>
 
           </button>
-          <h4 class="modal-title accountTitle">Payment Received</h4>
+          <h4 class="modal-title accountTitle">Payment Made</h4>
 
         </div>
         <div class="modal-body">
