@@ -1,308 +1,244 @@
 <nav class="navbar navbar-inverse navbar-fixed-left">
-   <div class="">
-      <div class="navbar-header">
-         <span class="lalbabat">{{userDetail?.organisation}}</span>
-         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-            aria-controls="navbar">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-         </button>
+  <div class="">
+    <div class="navbar-header">
+      <span class="lalbabat">{{userDetail?.organisation}}</span>
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+        aria-controls="navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <div class="row bagColor">
+        <p class="headernav">{{userDetail?.organisation}}</p>
       </div>
-      <div id="navbar" class="navbar-collapse collapse">
-         <div class="row bagColor">
-            <p class="headernav">{{userDetail?.organisation}}</p>
-         </div>
-         <div class="row">
-            <div class="profileNav">
-               <ul>
-                  <li><i class="fa fa-user-o" aria-hidden="true"></i></li>
-                  <li>
-                     <p class="userWelcome">Welcome<br><span class="userName">{{userDetail?.name}}</span></p>
-                  </li>
-                  <!-- <li class="rightArrow"><i class="fa fa-chevron-down" aria-hidden="true"></i></li> -->
-                  <li class="dropdown rightArrow">
-                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
-                        <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
-                     <!-- <ul class="dropdown-menu sitetting">
+      <div class="row">
+        <div class="profileNav">
+          <ul>
+            <li><i class="fa fa-user-o" aria-hidden="true"></i></li>
+            <li>
+              <p class="userWelcome">Welcome<br><span class="userName">{{userDetail?.name}}</span></p>
+            </li>
+            <!-- <li class="rightArrow"><i class="fa fa-chevron-down" aria-hidden="true"></i></li> -->
+            <li class="dropdown rightArrow">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
+                <i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+              <!-- <ul class="dropdown-menu sitetting">
                         <li><a href="#"><i class="fa fa-cog"></i>User Settings</a></li>
                         <li><a href="#"><i class="fa fa-lock" aria-hidden="true"></i>Password change</a></li>
                         <li (click)="logout()"><a><i class="fa fa-sign-out"></i>Logout</a></li>
                      </ul> -->
-                  </li>
-               </ul>
-            </div>
-         </div>
-         <div class="row">
-            <ul>
-               <li class="menuTab" (click)="maindashboard()"><i class="fa fa-home" aria-hidden="true"></i></li>
-               <li class="menuTab"><i class="fa fa-envelope-o" aria-hidden="true"></i></li>
-               <li class="dropdown menuTab">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
-                     <i class="fa fa-cog" aria-hidden="true"></i></a>
-                  <!-- <ul class="dropdown-menu sitetting">
-                     <li (click)="abc('user')"><a><i class="fa fa-user" aria-hidden="true"></i>Users</a></li>
-                     <li (click)="abc('journal','journalcreate')"><a><i class="fa fa-sticky-note"
-                              aria-hidden="true"></i>Journal</a></li>
-                     <li (click)="abc('bank')"><a><i class="fa fa-truck" aria-hidden="true"></i>Bank</a></li>
-                     <li (click)="abc('consignment')"><a><i class="fa fa-tags"></i>Consignment</a></li>
-                     <li><a (click)="abc('period')"><i class="fa fa-cog" aria-hidden="true"></i>Period</a></li>
-
-
-                  </ul> -->
-               </li>
-            </ul>
-         </div>
-<!-- 
-         <div class="row leftCet alit" >
-               <ul>
-                  <li><i class='fas fa-gas-pump'></i></li>
-                  <li class="order" style="padding-right:1em;" ><input style="text-align: center" class="pumpDetail" type="text" [(ngModel)]="dieselrate"></li>
-                  <li class="dropdown flRight" *ngIf='showbtn'>
-                     <a style="padding: 0">
-                        <button class="addItem" (click)="savedieselrate()"><i class="fa fa-check"
-                              aria-hidden="true"></i></button></a>
-                     
-                  </li>
-               </ul>
-            </div> -->
-
-            
-         <!-- <div class="row leftCet alit" (click)="abc('contractorlist')" *ngIf='role=="superAdmin" || "admin"'>
-            <ul>
-               <li><i class="fa fa-sliders" aria-hidden="true"></i></li>
-               <li class="order" >Contractors</li>
-               <li class="dropdown flRight">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
-                     <button class="addItem" (click)="abc('contractordetail')"><i class="fa fa-plus-circle"
-                           aria-hidden="true"></i>Add</button></a>
-                  <ul class="dropdown-menu">
-                     <li><a href="#">Table 1</a></li>
-                     <li><a href="#">Table 2</a></li>
-                     <li><a href="#">Table 3</a></li>
-                     <li><a href="#">Table 4</a></li>
-                     <li><a href="#">Table 5</a></li>
-                     <li><a href="#">Table 6</a></li>
-
-                  </ul>
-               </li>
-            </ul>
-         </div>
-         <div class="row leftCet" (click)="abc('companylist')">
-            <ul>
-               <li><i class="fa fa-id-card-o" aria-hidden="true"></i></li>
-               <li class="order" >Company</li>
-               <li class="dropdown flRight">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
-                     <button class="addItem" (click)="abc('companydetail')"><i class="fa fa-plus-circle"
-                           aria-hidden="true"></i>Add</button></a>
-               </li>
-            </ul>
-         </div> -->
-
-         <!-- <div class="row leftCet" (click)="abc('petrol')">
-            <ul>
-               <li><i class="fa fa-id-card-o" aria-hidden="true"></i></li>
-               <li class="order" >Diesel Voucher</li>
-              
-            </ul>
-         </div> -->
-
-
-    
-         <!-- <div class="row leftCet" >
-            <ul>
-               <li><i class="fa fa-truck" aria-hidden="true"></i></li>
-               <li class="order" >Fleet</li>
-            </ul>
-         </div> -->
-         <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingTwo">
-               <h4 class="panel-title" (click)="abc('accountdetail')">
-                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordionMenu"
-                     href="#collapseTwo" aria-expanded="false" aria-controls="collapseThree">
-   
-                     <i class="fa fa-credit-card-alt" aria-hidden="true"></i><span  >Accounts</span></a>
-               </h4>
-            </div>
-            <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel"
-               aria-labelledby="headingTwo">
-               <div class="panel-body">
-                  <ul class="nav accordionae">
-                     <li class="order" (click)="abc('petrolvoucherlist')"> <i class="fa fa-file-text-o" aria-hidden="true"></i>Diesel Voucher</li>
-
-                     <li class="order"  (click)="abc('journal')"><i class="fa fa-sticky-note" aria-hidden="true"></i>Journal</li>
-                     <li class="order" (click)="abc('invoicelist')"><i class="fa fa-file-text" aria-hidden="true"></i>Invoice</li>
-                     <li class="order" (click)="abc('bill')"> <i class="fa fa-list-alt" aria-hidden="true"></i>Bills</li>
-                     <li class="order" (click)="abc('payment')"> <i class="fa fa-cc-mastercard" aria-hidden="true"></i>Payment Received</li>
-                     <li class="order" (click)="abc('paymentmade')"> <i class="fa fa-credit-card" aria-hidden="true"></i>Payment Made</li>
-                     <li class="order"  (click)="abc('period')"> <i class="fa fa-calendar" aria-hidden="true"></i>Period</li>
-                     <li class="order"  (click)="abc('bank')"> <i class="fa fa-university" aria-hidden="true"></i>Bank</li>
-                     <li class="order"  (click)="abc('banktransfer')"> <i class="fa fa-exchange" aria-hidden="true"></i>Bank Transfer</li>
-                     <li class="order"  (click)="abc('payvoucherlist')"> <i class="fa fa-columns" aria-hidden="true"></i>Payment Voucher</li>
-
-   
-                  </ul>
-               </div>
-            </div>
-         </div>
-
-         <div class="row leftCet" >
-            <ul>
-               <li><i class="fa fa-tachometer" aria-hidden="true"></i></li>
-               <li class="order" (click)="abc('petrols')" >Petrol Pump</li>
-            </ul>
-         </div>
-
-         <div class="panel panel-default">
-            <div class="panel-heading" role="tab" id="headingThree">
-               <h4 class="panel-title" (click)="abc('fleetdetail')">
-                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordionMenu"
-                     href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-   
-                     <i class="fa fa-truck" aria-hidden="true"></i><span >Fleet</span></a>
-               </h4>
-            </div>
-            <div id="collapseThree" class="panel-collapse collapse" role="tabpanel"
-               aria-labelledby="headingThree">
-               <div class="panel-body">
-                  <ul class="nav accordionae">
-
-                     <li class="order" (click)="abc('destination')"> <i class="fa fa-road" aria-hidden="true"></i>Destination</li>
-                     <li class="order" (click)="abc('map')"> <i class="fa fa-money" aria-hidden="true"></i>Rate</li>
-   
-                     
-                  </ul>
-               </div>
-            </div>
-         </div>
-         <!-- <div class="row leftCet" (click)="abc('map')">
-            <ul>
-               <li><i class="fa fa-map" aria-hidden="true"></i></li>
-               <li class="order" >Routes</li>
-               <li class="dropdown flRight">
-               </li>
-            </ul>
-         </div> -->
-   
-      
-         <div class="panel panel-default chevron">
-            <div class="panel-heading" role="tab" id="headingThreea">
-               <h4 class="panel-title">
-                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordionMenu"
-                     href="#collapseThreea" aria-expanded="false" aria-controls="collapseThreea">
-   
-                     <i class="fa fa-line-chart" aria-hidden="true"></i><span  >Logistics</span></a>
-               </h4>
-            </div>
-            <div id="collapseThreea" class="panel-collapse collapse" role="tabpanel"
-               aria-labelledby="headingThreea">
-               <div class="panel-body">
-                  <ul class="nav accordionae">
-                     <li class="order"   (click)="abc('consignment')"> <i class="fa fa-check-circle-o" aria-hidden="true"></i>Consignment</li>
-
-                     <li class="order"  (click)="abc('workorder')"><i class="fa fa-industry" aria-hidden="true"></i>Work Order</li>
-   
-                     <li class="order"  (click)="abc('tender')"> <i class="fa fa-list" aria-hidden="true"></i>Tender</li>
-   
-                  </ul>
-               </div>
-            </div>
-         </div>
-
-
-         <div class="panel panel-default chevrona">
-            <div class="panel-heading" role="tab" id="headingFivea">
-               <h4 class="panel-title">
-                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordionMenu"
-                     href="#collapsefivea" aria-expanded="false" aria-controls="collapsefivea">
-   
-                     <i class="fa fa-bars" aria-hidden="true"></i><span  >Set Up</span></a>
-               </h4>
-            </div>
-            <div id="collapsefivea" class="panel-collapse collapse" role="tabpanel"
-               aria-labelledby="headingFivea">
-               <div class="panel-body">
-                  <ul class="nav accordionae">
-                     <li class="order"   (click)="abc('user')"> <i class="fa fa-user-circle-o" aria-hidden="true"></i>Users</li>
-
-                     <li class="order"  (click)="abc('contractorlist')"><i class="fa fa-sliders" aria-hidden="true"></i>Contractor</li>
-   
-                     <li class="order"  (click)="abc('companylist')"> <i class="fa fa-id-card-o" aria-hidden="true"></i>Company</li>
-   
-                  </ul>
-               </div>
-            </div>
-         </div>
-
-            
-
-    
-         <div class="row leftCet" >
-            <ul>
-               <li><i class="fa fa-address-book" aria-hidden="true"></i></li>
-               <li class="order" (click)="abc('contact')" >Contact</li>
-               <li class="dropdown flRight">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
-                     <button class="addItem" ><i class="fa fa-plus-circle"
-                           aria-hidden="true"></i>Add</button></a>
-
-                  <ul class="dropdown-menu sitetting colori atea">
-                     <li  (click)="abc('Customer')"><a><i class="fa fa-user" aria-hidden="true"></i>Customer</a></li>
-                     <li  (click)="abc('Vendor')"><a><i class="fa fa-suitcase" aria-hidden="true"></i>Vendor</a></li>
-                     <li  (click)="abc('Employee')"><a><i class="fa fa-user-circle-o" aria-hidden="true"></i>Employee</a></li>
-                     <li (click)="abc('Driver')"><a><i class="fa fa-id-card"></i >Driver</a></li>
-                  </ul>
-               </li>
-            </ul>
-         </div>
-         
-         <!-- <div class="row leftCet" (click)="abc('report')" >
-            <ul>
-               <li><i class="fa fa-area-chart" aria-hidden="true"></i></li>
-               <li class="order" >Report</li>
-            </ul>
-         </div> -->
-
-
-
-
-         <div class="panel panel-default chevrona">
-            <div class="panel-heading" role="tab" id="headingFiveaa">
-               <h4 class="panel-title">
-                  <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordionMenu"
-                     href="#collapsefiveaa" aria-expanded="false" aria-controls="collapsefiveaa">
-   
-                     <i class="fa fa-area-chart" aria-hidden="true"></i><span  >Report</span></a>
-               </h4>
-            </div>
-            <div id="collapsefiveaa" class="panel-collapse collapse" role="tabpanel"
-               aria-labelledby="headingFiveaa">
-               <div class="panel-body">
-                  <ul class="nav accordionae">
-                     <li class="order"   (click)="abc('report')"> <i class="fa fa-area-chart" aria-hidden="true"></i>Report</li>
-
-                     <li class="order"  (click)="abc('ledger')"><i class="fa fa-sliders" aria-hidden="true"></i>Ledger</li>
-   
-   
-                  </ul>
-               </div>
-            </div>
-         </div>
-
-
-
-
-
-
-
-
-         <div class="row leftCet" >
-            <ul>
-               <li><i class="fa fa-sign-out" aria-hidden="true"></i></li>
-               <li class="order" (click)="logout()" >Logout</li>
-            </ul>
-         </div>
+            </li>
+          </ul>
+        </div>
       </div>
-   </div>
+      <div class="row">
+        <ul>
+          <li class="menuTab" (click)="maindashboard()"><i class="fa fa-home" aria-hidden="true"></i></li>
+          <li class="menuTab"><i class="fa fa-envelope-o" aria-hidden="true"></i></li>
+          <li class="dropdown menuTab">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
+              <i class="fa fa-cog" aria-hidden="true"></i></a>
+
+          </li>
+        </ul>
+      </div>
+      <div class="row leftCet" *ngIf="role=='siteIncharge'">
+         <ul>
+           
+
+               <li><i class="fa fa-file-text-o" aria-hidden="true"></i></li>
+               <li class="order" (click)="abc('petrolvoucherlist')">Diesel Voucher</li>
+         </ul>
+       </div>
+
+      <div class="panel panel-default" *ngIf="role!='siteIncharge'">
+        <div class="panel-heading" role="tab" id="headingTwo">
+          <h4 class="panel-title" (click)="abc('accountdetail')">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordionMenu" href="#collapseTwo"
+              aria-expanded="false" aria-controls="collapseThree">
+
+              <i class="fa fa-credit-card-alt" aria-hidden="true"></i><span  >Accounts</span></a>
+          </h4>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            <ul class="nav accordionae">
+              <li class="order" (click)="abc('petrolvoucherlist')"> <i class="fa fa-file-text-o"
+                  aria-hidden="true"></i>Diesel Voucher</li>
+
+              <li class="order"  (click)="abc('journal')"><i class="fa fa-sticky-note"
+                  aria-hidden="true"></i>Journal</li>
+              <li class="order"  (click)="abc('invoicelist')"><i class="fa fa-file-text"
+                  aria-hidden="true"></i>Invoice</li>
+              <li class="order" (click)="abc('bill')"> <i class="fa fa-list-alt"
+                  aria-hidden="true"></i>Bills</li>
+              <li class="order"  (click)="abc('payment')"> <i class="fa fa-cc-mastercard"
+                  aria-hidden="true"></i>Payment Received</li>
+              <li class="order"  (click)="abc('paymentmade')"> <i class="fa fa-credit-card"
+                  aria-hidden="true"></i>Payment Made</li>
+              <li class="order"  (click)="abc('period')"> <i class="fa fa-calendar"
+                  aria-hidden="true"></i>Period</li>
+              <li class="order" (click)="abc('bank')"> <i class="fa fa-university"
+                  aria-hidden="true"></i>Bank</li>
+              <li class="order"  (click)="abc('banktransfer')"> <i class="fa fa-exchange"
+                  aria-hidden="true"></i>Bank Transfer</li>
+              <li class="order" (click)="abc('payvoucherlist')"> <i class="fa fa-columns"
+                  aria-hidden="true"></i>Payment Voucher</li>
+
+
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="row leftCet" *ngIf="role!='siteIncharge'">
+        <ul>
+          <li><i class="fa fa-tachometer" aria-hidden="true"></i></li>
+          <li class="order" (click)="abc('petrols')">Petrol Pump</li>
+        </ul>
+      </div>
+
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingThree">
+          <h4 class="panel-title" (click)="abc('fleetdetail')">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordionMenu" href="#collapseThree"
+              aria-expanded="false" aria-controls="collapseThree">
+
+              <i class="fa fa-truck" aria-hidden="true"></i><span>Fleet</span></a>
+          </h4>
+        </div>
+        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            <ul class="nav accordionae">
+
+              <li class="order" (click)="abc('destination')"> <i class="fa fa-road" aria-hidden="true"></i>Destination
+              </li>
+              <li class="order" (click)="abc('map')"> <i class="fa fa-money" aria-hidden="true"></i>Rate</li>
+
+
+            </ul>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="panel panel-default chevron">
+        <div class="panel-heading" role="tab" id="headingThreea">
+          <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordionMenu"
+              href="#collapseThreea" aria-expanded="false" aria-controls="collapseThreea">
+
+              <i class="fa fa-line-chart" aria-hidden="true"></i><span>Logistics</span></a>
+          </h4>
+        </div>
+        <div id="collapseThreea" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThreea">
+          <div class="panel-body">
+            <ul class="nav accordionae">
+              <li class="order" (click)="abc('consignment')"> <i class="fa fa-check-circle-o"
+                  aria-hidden="true"></i>Consignment</li>
+
+              <li class="order" (click)="abc('workorder')" *ngIf="role!='siteIncharge'"><i class="fa fa-industry" aria-hidden="true"></i>Work Order
+              </li>
+
+              <li class="order" (click)="abc('tender')" *ngIf="role!='siteIncharge'"> <i class="fa fa-list" aria-hidden="true"></i>Tender</li>
+
+            </ul>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="panel panel-default chevrona">
+        <div class="panel-heading" role="tab" id="headingFivea">
+          <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordionMenu" href="#collapsefivea"
+              aria-expanded="false" aria-controls="collapsefivea">
+
+              <i class="fa fa-bars" aria-hidden="true"></i><span>Set Up</span></a>
+          </h4>
+        </div>
+        <div id="collapsefivea" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFivea">
+          <div class="panel-body">
+            <ul class="nav accordionae">
+              <li class="order" *ngIf="role=='superAdmin'"  (click)="abc('user')"> <i class="fa fa-user-circle-o"
+                  aria-hidden="true"></i>Users</li>
+
+              <li class="order" (click)="abc('contractorlist')"><i class="fa fa-sliders"
+                  aria-hidden="true"></i>Contractor</li>
+
+              <li class="order"  *ngIf="role!='siteIncharge'" (click)="abc('companylist')"> <i class="fa fa-id-card-o" aria-hidden="true"></i>Company
+              </li>
+
+            </ul>
+          </div>
+        </div>
+      </div>
+
+
+
+
+      <div class="row leftCet">
+        <ul>
+          <li><i class="fa fa-address-book" aria-hidden="true"></i></li>
+          <li class="order" (click)="abc('contact')">Contact</li>
+          <li class="dropdown flRight">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">
+              <button class="addItem"><i class="fa fa-plus-circle" aria-hidden="true"></i>Add</button></a>
+
+            <ul class="dropdown-menu sitetting colori atea">
+              <li *ngIf="role!='siteIncharge'" (click)="abc('Customer')"><a><i class="fa fa-user"
+                    aria-hidden="true"></i>Customer</a></li>
+              <li *ngIf="role!='siteIncharge'" (click)="abc('Vendor')"><a><i class="fa fa-suitcase"
+                    aria-hidden="true"></i>Vendor</a></li>
+              <li *ngIf="(role!='accounts') && (role!='siteIncharge')"  (click)="abc('Employee')"><a><i
+                    class="fa fa-user-circle-o" aria-hidden="true"></i>Employee</a></li>
+              <li (click)="abc('Driver')"><a><i class="fa fa-id-card"></i>Driver</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+
+
+
+
+      <div class="panel panel-default chevrona"  *ngIf="role!='siteIncharge'">
+        <div class="panel-heading" role="tab" id="headingFiveaa">
+          <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordionMenu"
+              href="#collapsefiveaa" aria-expanded="false" aria-controls="collapsefiveaa">
+
+              <i class="fa fa-area-chart" aria-hidden="true"></i><span>Report</span></a>
+          </h4>
+        </div>
+        <div id="collapsefiveaa" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFiveaa">
+          <div class="panel-body">
+            <ul class="nav accordionae">
+              <li class="order" (click)="abc('report')"> <i class="fa fa-area-chart" aria-hidden="true"></i>Report</li>
+
+              <li class="order" (click)="abc('ledger')"><i class="fa fa-sliders" aria-hidden="true"></i>Ledger</li>
+
+
+            </ul>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+      <div class="row leftCet">
+        <ul>
+          <li><i class="fa fa-sign-out" aria-hidden="true"></i></li>
+          <li class="order" (click)="logout()">Logout</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </nav>

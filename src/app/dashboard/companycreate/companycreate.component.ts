@@ -36,6 +36,8 @@ export class CompanycreateComponent implements OnInit {
   };
 
   docss: any = {};
+  panerr: boolean;
+  gsterr: boolean;
   constructor(
     private router: Router, private companyService:
       CompanyService, private toastr: ToastrService, private SharedService: SharedService) {
@@ -228,9 +230,23 @@ export class CompanycreateComponent implements OnInit {
         Object.assign(this.maindata, { phoneNumber: data })
       }
       if (key == 'pan') {
+        let panmatch=/^[a-zA-z]{5}\d{4}[a-zA-Z]{1}$/;
+        if(!panmatch.test(data)){
+          this.panerr=true;
+        }
+        else{
+          this.panerr=false;
+        }
         Object.assign(this.maindata.pan, { number: data })
       }
       if (key == 'gst') {
+        let gstmatch=/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/
+        if(!gstmatch.test(data)){
+          this.gsterr=true;
+        }
+        else{
+          this.gsterr=false;
+        }
         Object.assign(this.maindata.gst, { number: data })
       }
       if (key == 'tradeLicense_A') {

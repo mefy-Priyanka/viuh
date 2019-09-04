@@ -466,7 +466,9 @@ export class FleetComponent implements OnInit {
   check(xy,owner) {
     console.log(xy,owner)
     if (xy == 'trucknumber') {
-      if (this.trucknumber == '') {
+      var mask1=/^[A-Z]{2}\s[0-9]{1,2}\s[A-Z]{1,2}\s[0-9-A-Z]{1,4}$/
+
+      if (this.trucknumber == '' || !mask1.test(this.trucknumber)) {
         this.truckerr = true;
       }
       else {

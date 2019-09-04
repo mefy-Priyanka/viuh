@@ -64,7 +64,7 @@
                 <p><label>Truck Number</label></p>
                 <input type="text" class="validate" [(ngModel)]="trucknumber" [ngModelOptions]="{standalone: true}"
                   (keyup)="check('trucknumber')">
-                <p class="errormessage" *ngIf="truckerr">Truck number can't be empty</p>
+                <p class="errormessage" *ngIf="truckerr">Provide Valid truck number</p>
               </div>
 
               <div class="input-field col s3">
