@@ -38,6 +38,11 @@ export class CreatecontractorComponent implements OnInit {
   pan: any;
   reg: any;
   superadminid: string;
+  gstmask = [/\d/, /\d/, /[A-Z]/, /[A-Z]/, /[A-Z]/, /[A-Z]/, /[A-Z]/, /\d/, /\d/, /\d/, /\d/, /[A-Z]/, /[1-9A-Z]/, /\Z/, /[0-9A-Z]/];
+  panmask = [/[a-zA-z]/, /[a-zA-z]/, /[a-zA-z]/, /[a-zA-z]/, /[a-zA-z]/, /\d/, /\d/, /\d/, /\d/, /[a-zA-z]/]
+  public ifscmask = [ /[A-Z]/,/[A-Z]/,/[A-Z]/,/[A-Z]/, /\d/, /\d/,/\d/,/\d/,/\d/,/\d/,/\d/] // bank ifsc
+
+
 
   constructor(private formBuilder: FormBuilder,
     private router: Router, private companyService:
@@ -49,7 +54,7 @@ export class CreatecontractorComponent implements OnInit {
     this.contractorFormErrors = {
       email: {},
       contactPersonName: {},
-      commision_percentage:{},
+      commision_percentage: {},
       companyName: {},
       address: {},
       regNo: {},
@@ -91,7 +96,7 @@ export class CreatecontractorComponent implements OnInit {
       account_holder_name: ['', Validators.required],
       account_number: ['', Validators.required],
       ifsc: ['', Validators.required],
-      commision_percentage:['', Validators.required],
+      commision_percentage: ['', Validators.required],
     });
   }
   showContent() {
@@ -110,7 +115,7 @@ export class CreatecontractorComponent implements OnInit {
   }
 
   onContractorFormValuesChanged() {
-    
+
     for (const field in this.contractorFormErrors) {
       if (!this.contractorFormErrors.hasOwnProperty(field)) {
         continue;
@@ -155,13 +160,13 @@ export class CreatecontractorComponent implements OnInit {
         ifsc: this.contractorForm.value.ifsc,
         userId: this.userId,
         superAdminId: this.superadminid,
-        commission_percent:this.contractorForm.value.commision_percentage
+        commission_percent: this.contractorForm.value.commision_percentage
       }
       console.log('let data be', data);
       this.companyService.createContractor(data).subscribe(value => {
         this.submitted = false;
         this.toastr.success('Congo!', 'Successfully Created');
-          console.log('user', value)
+        console.log('user', value)
         let result: any = {}
         result = value;
         // this.creataccount();
@@ -369,7 +374,7 @@ export class CreatecontractorComponent implements OnInit {
         this.toastr.error('Error!', 'Server Error')
       })
   }
-  
+
 
 
 }

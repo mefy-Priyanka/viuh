@@ -70,7 +70,7 @@
                   </div>
                   <div class="input-field col s4">
                     <p><label>PAN No. <span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate" (keyup)="keyup(inputdata.pan,'pan')"  [(ngModel)]="inputdata.pan">
+                    <input type="text" class="validate" (keyup)="keyup(inputdata.pan,'pan')"  [(ngModel)]="inputdata.pan"  [textMask]="{mask: panmask, guide: false}">
                     <p *ngIf="panerr">Please provide valid pan number</p>
                   </div>
                 </div>
@@ -85,7 +85,7 @@
                   </div>
                   <div class="input-field col s4">
                     <p><label>GST No. <span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate" (keyup)="keyup(inputdata.gst,'gst')"  [(ngModel)]="inputdata.gst">
+                    <input type="text" class="validate" (keyup)="keyup(inputdata.gst,'gst')"  [(ngModel)]="inputdata.gst" [textMask]="{mask: gstmask, guide: false}">
                     <p *ngIf="gsterr">Please provide valid GST number</p>
 
                   </div>

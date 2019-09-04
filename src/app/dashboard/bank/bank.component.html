@@ -79,7 +79,7 @@
                   </div>
                   <div class="input-field col s6">
                     <p><label>IFSC Code</label></p>
-                    <input type="text" class="validate" formControlName="ifsc">
+                    <input type="text" class="validate" formControlName="ifsc"  [textMask]="{mask: ifscmask, guide: false}">
                     <p class="errormessage"
                     *ngIf="bankFormErrors.ifsc.required || (bankForm.controls.ifsc.pristine && submitted)">
                     Cannot be empty</p>
@@ -137,7 +137,7 @@
           </div>
           <div class="row">
             <div class="contractorButton">
-              <button class="submitBtn" (click)="submit1()">Next</button>
+              <button class="submitBtn" (click)="submit()">Submit</button>
               <button class="cancelBtn" (click)="listBank()">Cancel</button>
             </div>
           </div>
@@ -156,10 +156,9 @@
     </div>
 
   </form>
-  <div class="createContractorForm" *ngIf="!bank">
+  <!-- <div class="createContractorForm" *ngIf="!bank">
     <div class="row">
       <div class="col-md-12">
-        <!-- input type -->
         <div>
           <div class="tableide bankTable">
             <div class="row">
@@ -196,7 +195,6 @@
 
 
 
-        <!-- input type -->
 
 
 
@@ -205,7 +203,7 @@
       </div>
     </div>
 
-  </div>
+  </div> -->
 </section>
 
 <!-- bank -->

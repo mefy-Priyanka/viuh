@@ -17,7 +17,9 @@ export class BankComponent implements OnInit {
   submitted: boolean;
   orders = []
   userId: string;
-  banklist = []
+  banklist = [];
+  public ifscmask = [ /[A-Z]/,/[A-Z]/,/[A-Z]/,/[A-Z]/, /\d/, /\d/,/\d/,/\d/,/\d/,/\d/,/\d/] // bank ifsc
+
   constructor(private formBuilder: FormBuilder, private userService: UserService, private toastr: ToastrService) {
     this.userId = localStorage.getItem('userId');
 
