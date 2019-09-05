@@ -39,6 +39,7 @@ export class ContactvendorComponent implements OnInit {
   public incomingVendorDetail: any = {}
   public mask = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/] // Account number validation 
   public account = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/] // Account number validation 
+  public ifscmask = [ /[A-Z]/,/[A-Z]/,/[A-Z]/,/[A-Z]/, /\d/, /\d/,/\d/,/\d/,/\d/,/\d/,/\d/] // bank ifsc
 
 
   document = ['aadhar', 'gst', 'pan', 'tan']
