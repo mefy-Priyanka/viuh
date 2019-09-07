@@ -123,7 +123,7 @@
               
                 <div class="input-field col s3">
                   <p><label>Ifsc Code</label></p>
-                  <input placeholder="Enter Number" id="first_name" type="text" class="cote validate"
+                  <input placeholder="Enter Number" id="first_name" type="text" [textMask]="{mask: ifscmask, guide: false}" class="cote validate"
                     formControlName="ifsc">
                     <p class="error" [ngStyle]="{'font-size':'12px'}" *ngIf="vendorFormErrors.ifsc.required || (vendorForm.controls.ifsc.pristine && submitted)">PLease enter ifsc </p>
 
