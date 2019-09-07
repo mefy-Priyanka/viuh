@@ -42,7 +42,7 @@ superadminid: string;
 contractor:any=[];
 gstmask = [/\d/, /\d/, /[A-Z]/, /[A-Z]/, /[A-Z]/, /[A-Z]/, /[A-Z]/, /\d/, /\d/, /\d/, /\d/, /[A-Z]/, /[1-9A-Z]/, /\Z/, /[0-9A-Z]/];
 panmask = [/[a-zA-z]/, /[a-zA-z]/, /[a-zA-z]/, /[a-zA-z]/, /[a-zA-z]/, /\d/, /\d/, /\d/, /\d/, /[a-zA-z]/]
-public ifscmask = [ /[A-Z]/,/[A-Z]/,/[A-Z]/,/[A-Z]/, /\d/, /\d/,/\d/,/\d/,/\d/,/\d/,/\d/] // bank ifsc
+public ifscmask = [ /[A-Z]/,/[A-Z]/,/[A-Z]/,/[A-Z]/, /\d/, /[1-9A-Z]/,/[1-9A-Z]/,/[1-9A-Z]/,/[1-9A-Z]/,/[1-9A-Z]/,/[1-9A-Z]/] // bank ifsc
 
 constructor(private formBuilder: FormBuilder,
   private router: Router, private companyService:
