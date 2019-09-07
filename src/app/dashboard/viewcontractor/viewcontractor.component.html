@@ -95,7 +95,7 @@
                   </div>
                   <div class="input-field col s4">
                     <p><label>GST No. <span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate" formControlName="gstNo">
+                    <input type="text" class="validate" formControlName="gstNo" [textMask]="{mask: gstmask, guide: false}">
                     <p class="errormessage"
                       *ngIf="contractorFormErrors.gstNo.required || (contractorForm.controls.gstNo.pristine && submitted)">
                       GST No. can not be empty</p>
@@ -123,7 +123,7 @@
                   </div>
                   <div class="input-field col s4">
                     <p><label>PAN No. <span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate" formControlName="panCard">
+                    <input type="text" class="validate" formControlName="panCard"  [textMask]="{mask: panmask, guide: false}">
                     <p class="errormessage"
                       *ngIf="contractorFormErrors.panCard.required || (contractorForm.controls.panCard.pristine && submitted)">
                       PAN No. can not be empty</p>
@@ -177,13 +177,21 @@
                   </div>
                   <div class="input-field col s4">
                     <p><label>IFSC</label></p>
-                    <input type="text" class="validate" formControlName="ifsc">
+                    <input type="text" class="validate" formControlName="ifsc" [textMask]="{mask: ifscmask, guide: false}">
                     <p class="errormessage"
                       *ngIf="contractorFormErrors.ifsc.required || (contractorForm.controls.ifsc.pristine && submitted)">
                       IFSC can not be empty</p>
 
                   </div>
 
+
+
+                  <div class="input-field col s4">
+                    <p><label>Commision Percentage</label></p>
+                    <input type="number" class="validate" formControlName="commission_percent">
+                    <p class="errormessage" *ngIf="contractorFormErrors.commission_percent.required || (contractorForm.controls.commission_percent.pristine && submitted)">Commision Percentage can not be empty</p>
+
+                  </div>
 
 
                 </div>

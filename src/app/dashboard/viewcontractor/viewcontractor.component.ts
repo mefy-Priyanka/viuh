@@ -40,6 +40,10 @@ pan: any;
 reg: any;
 superadminid: string;
 contractor:any=[];
+gstmask = [/\d/, /\d/, /[A-Z]/, /[A-Z]/, /[A-Z]/, /[A-Z]/, /[A-Z]/, /\d/, /\d/, /\d/, /\d/, /[A-Z]/, /[1-9A-Z]/, /\Z/, /[0-9A-Z]/];
+panmask = [/[a-zA-z]/, /[a-zA-z]/, /[a-zA-z]/, /[a-zA-z]/, /[a-zA-z]/, /\d/, /\d/, /\d/, /\d/, /[a-zA-z]/]
+public ifscmask = [ /[A-Z]/,/[A-Z]/,/[A-Z]/,/[A-Z]/, /\d/, /\d/,/\d/,/\d/,/\d/,/\d/,/\d/] // bank ifsc
+
 constructor(private formBuilder: FormBuilder,
   private router: Router, private companyService:
     CompanyService, private userService: UserService, private toastr: ToastrService, private SharedService: SharedService) {
@@ -60,6 +64,8 @@ constructor(private formBuilder: FormBuilder,
   this.userId = localStorage.getItem('userId');
   console.log(this.superadminid, this.userId);
   this.contractorFormErrors = {
+    commission_percent: {},
+
     email: {},
     contactPersonName: {},
     companyName: {},
@@ -98,15 +104,17 @@ createContractorForm() {
     phoneNumber: [this.contractor.phoneNumber, Validators.required],
 
 
-    bank_name: [this.contractor.phoneNumber, Validators.required],
-    branch_name: [this.contractor.phoneNumber, Validators.required],
-    account_holder_name: [this.contractor.phoneNumber, Validators.required],
-    account_number: [this.contractor.phoneNumber, Validators.required],
-    ifsc: [this.contractor.phoneNumber, Validators.required],
+    bank_name: [this.contractor.bank_name, Validators.required],
+    branch_name: [this.contractor.branch_name, Validators.required],
+    account_holder_name: [this.contractor.account_holder_name, Validators.required],
+    account_number: [this.contractor.account_number, Validators.required],
+    ifsc: [this.contractor.ifsc, Validators.required],
+    commission_percent: [this.contractor.commission_percent, Validators.required],
+
   });
 }
 showContent() {
-  this.submitted = true;
+  // this.submitted = true;
   this.fieldinput = !this.fieldinput;
 
   // if (this.contractorForm.valid) {
@@ -169,7 +177,9 @@ FormSubmit() {
       userId: this.userId,
       superAdminId: this.superadminid,
       contractorId:this.contractor._id,
-      // commision_percentage:''
+      commission_percent: this.contractorForm.value.commission_percent
+
+      // commission_percent:''
     }
     console.log('let data be', data);
     this.companyService.updateContractor(data).subscribe(value => {
