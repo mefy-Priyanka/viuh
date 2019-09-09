@@ -108,17 +108,17 @@
                   <div class="input-field col s6">
                     <p><label>Place Of Origin</label></p>
                     <input type="text" class="validate" formControlName="origin_place">
-                    <p class="errormessage"
+                    <!-- <p class="errormessage"
                       *ngIf="consignmentFormErrors.origin_place.required || (consignmentForm.controls.origin_place.pristine && submitted)">
-                      origin_place name can't be empty</p>
+                      origin_place name can't be empty</p> -->
 
                   </div>
                   <div class="input-field col s6">
                     <p><label>Destination</label></p>
                     <input type="text" class="validate" formControlName="destination">
-                    <p class="errormessage"
+                    <!-- <p class="errormessage"
                       *ngIf="consignmentFormErrors.destination.required || (consignmentForm.controls.destination.pristine && submitted)">
-                      destination can't be empty</p>
+                      destination can't be empty</p> -->
 
                   </div>
 
@@ -163,15 +163,19 @@
                   <div class="input-field col s6">
                     <p><label>Authorised person<span class="blue_star">*</span></label></p>
 
-                    <select class="orga" formControlName="authorize_person">
+                    <input type="text" class="validate" formControlName="authorize_person" [readonly]='true'>
+                    <!-- <p class="errormessage"
+                      *ngIf="consignmentFormErrors.authorize_person.required || (consignmentForm.controls.authorize_person.pristine && submitted)">
+                      authorize_person can't be empty</p> -->
+
+
+                    <!-- <select class="orga" formControlName="authorize_person">
 
                       <option value="" disabled selected>Choose Employee</option>
                       <option *ngFor="let list of employeelist" [value]='list._id'>{{list.name}}</option>
-                    </select>
+                    </select> -->
 
-                    <p class="errormessage"
-                      *ngIf="consignmentFormErrors.authorize_person.required || (consignmentForm.controls.authorize_person.pristine && submitted)">
-                      authorize_person can't be empty</p>
+                 
 
                   </div>
 
@@ -181,7 +185,7 @@
                   <div class="input-field col s6">
                     <p><label>Driver Name<span class="blue_star">*</span></label></p>
                     <!-- <input type="text" class="validate" formControlName="driver_name">driverlist -->
-                    <select class="orga" formControlName="driver_name">
+                    <select class="orga" formControlName="driver_name" (ngModelChange)="choosedriver($event)">
 
                       <option value="" disabled selected>Choose Driver</option>
                       <option *ngFor="let list of driverlist" [value]='list._id'>{{list.name}}</option>
@@ -196,9 +200,9 @@
                   <div class="input-field col s6">
                     <p><label>Driving Lic. No<span class="blue_star">*</span></label></p>
                     <input type="text" class="validate" formControlName="driver_license_number">
-                    <p class="errormessage"
+                    <!-- <p class="errormessage"
                       *ngIf="consignmentFormErrors.driver_license_number.required || (consignmentForm.controls.driver_license_number.pristine && submitted)">
-                      driver_license_number can't be empty</p>
+                      driver_license_number can't be empty</p> -->
                   </div>
                 </div>
 
@@ -218,7 +222,7 @@
 
                   <div class="input-field col s6">
                     <p><label>within state<span class="blue_star">*</span></label></p>
-                    <label class="switch">
+                    <label class="switch" style="margin-top: 2em">
                       <input class="switch-input" type="checkbox" />
                       <span class="switch-label" data-on="Yes" data-off="No"></span>
                       <span class="switch-handle"></span>
@@ -251,14 +255,14 @@
                 <div class="row">
                   <div class="input-field col s6">
                     <p><label>Diesel Expenses <span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate" formControlName="diesel_expenses">
+                    <input type="number" class="validate" formControlName="diesel_expenses">
                     <p class="errormessage"
                       *ngIf="consignmentFormErrors.diesel_expenses.required || (consignmentForm.controls.diesel_expenses.pristine && submitted)">
                       Diesel Expenses can't be empty</p>
                   </div>
                   <div class="input-field col s6">
                     <p><label>Driver Expenses<span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate" formControlName="driver_expenses">
+                    <input type="number" class="validate" formControlName="driver_expenses">
                     <p class="errormessage"
                       *ngIf="consignmentFormErrors.driver_expenses.required || (consignmentForm.controls.driver_expenses.pristine && submitted)">
                       Driver Expenses can't be empty</p>
@@ -269,7 +273,7 @@
                 <div class="row">
                   <div class="input-field col s6">
                     <p><label>Toll Expenses<span class="blue_star">*</span></label></p>
-                    <input type="text" class="validate" formControlName="toll_expenses">
+                    <input type="number" class="validate" formControlName="toll_expenses">
                     <p class="errormessage"
                       *ngIf="consignmentFormErrors.toll_expenses.required || (consignmentForm.controls.toll_expenses.pristine && submitted)">
                       Toll Expenses can't be empty</p>
@@ -295,9 +299,10 @@
                             <th>PRODUCT</th>
                             <th class="qtya">QTY
                           <tr class="tgn">
-                            <th>tare</th>
-                            <th>gross</th>
-                            <th>net</th>
+                            <th>Tare</th>
+                            <th>Gross</th>
+                            <th>Net</th>
+                            <th>Action</th>
                           </tr>
                           </th>
 
@@ -331,14 +336,17 @@
 
                           <td class="thname">
                             <tr>
-                              <td> <input type="text" [(ngModel)]="item.tare_wt"  [ngModelOptions]="{standalone: true}">
+                              <td> <input type="number" [(ngModel)]="item.tare_wt"  [ngModelOptions]="{standalone: true}">
                               </td>
-                              <td> <input type="text" [(ngModel)]="item.gross_wt"  [ngModelOptions]="{standalone: true}">
+                              <td> <input type="number" [(ngModel)]="item.gross_wt"  [ngModelOptions]="{standalone: true}">
                               </td>
                               <td> <input type="number" [(ngModel)]="item.net_wt"  [ngModelOptions]="{standalone: true}">
                               </td>
+                              <td>
+                                <i (click)="del(i)" class="fa fa-trash" aria-hidden="true" ></i>
+
+                              </td>
                             </tr>
-                            <i (click)="del(i)" class="fa fa-trash" aria-hidden="true" ></i>
 
                           </td>
 

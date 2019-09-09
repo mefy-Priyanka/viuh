@@ -35,11 +35,16 @@ export class ConsignmentComponent implements OnInit {
   contactname: any;
   freight: any;
   arrayofobj: any = [];
+  userdata: { name: string; id: string; };
+
   constructor(private formBuilder: FormBuilder, private userService: UserService, private companyService: CompanyService, private toastr: ToastrService) {
     this.userId = localStorage.getItem('userId');
     this.role = localStorage.getItem('role');
     this.organisation = localStorage.getItem('organisation');
-
+    this.userdata={
+      name:localStorage.getItem('name'),
+      id:localStorage.getItem('userId')
+    }
     this.consignmentFormErrors = {
      
       consignor: {},
@@ -65,6 +70,7 @@ export class ConsignmentComponent implements OnInit {
   }
 
   createconsignmentForm() {
+    this.add()
     return this.formBuilder.group({
 
  
@@ -74,7 +80,7 @@ export class ConsignmentComponent implements OnInit {
       truck_number: ['', Validators.required],
       origin_place: ['', Validators.required],
       destination: ['', Validators.required],
-      authorize_person: ['', Validators.required],
+      authorize_person: [this.userdata.name, Validators.required],
       price_type: ['', Validators.required],
       driver_license_number: ['', Validators.required],
       truckconfig: ['', Validators.required],
@@ -190,7 +196,7 @@ export class ConsignmentComponent implements OnInit {
         truck_number: this.consignmentForm.value.truck_number,
         origin_place: this.consignmentForm.value.origin_place,
         destination: this.consignmentForm.value.destination,
-        authorize_person: this.consignmentForm.value.authorize_person,
+        authorize_person: this.userdata.id,
         driver_license_number: this.consignmentForm.value.driver_license_number,
         truck_confg: this.consignmentForm.value.truckconfig,
         driver_name: this.consignmentForm.value.driver_name,
@@ -350,8 +356,14 @@ export class ConsignmentComponent implements OnInit {
   }
 
   onChangeObj(id) {
+    
+    this.consignmentForm.controls['destination'].setValue('');
+
+    this.consignmentForm.controls['origin_place'].setValue('');
+    this.consignmentForm.controls['consignee'].setValue('');
 
     this.destinationlist = [];
+
     this.companyService.getdestination(id).subscribe(result => {
       console.log(result);
       let some: any = result;
@@ -361,7 +373,11 @@ export class ConsignmentComponent implements OnInit {
         }
       }
 
-      console.log(this.destinationlist)
+      // this.consignee=''
+      // this.consignmentForm.value.consignee=''
+      // console.log(this.consignee)
+      // console.log(this.consignmentForm.value.consignee)
+      console.log(this.destinationlist);
     },
       err => {
         console.log(err)
@@ -373,15 +389,42 @@ export class ConsignmentComponent implements OnInit {
         console.log(this.contactname)
       }
     }
+    
   }
   chengeconsignee(data) {
+    console.log(data)
+    this.consignmentForm.controls['destination'].setValue('');
+    this.consignmentForm.controls['origin_place'].setValue('');
     for (var j = 0; j < this.destinationlist.length; j++) {
       if (this.destinationlist[j].location_name == data) {
         this.distance = this.destinationlist[j].km;
+        this.consignmentForm.value.destination=this.destinationlist[j].location_name;
+        this.consignmentForm.value.origin_place=this.destinationlist[j].point_of_origin;
+
+        this.consignmentForm.controls['destination'].setValue(this.destinationlist[j].location_name);
+        this.consignmentForm.controls['origin_place'].setValue(this.destinationlist[j].point_of_origin);
+
+        console.log(this.consignmentForm.value.origin_place)
         console.log(this.distance)
         if (this.destinationlist[j].freight) {
           this.freight = this.destinationlist[j].freight
           console.log(this.freight)
+        }
+      }
+    }
+  }
+
+
+  choosedriver(id){
+    this.consignmentForm.controls['driver_license_number'].setValue('');
+    
+    for (var j = 0; j < this.driverlist.length; j++) {
+      if (this.driverlist[j]._id == id) {
+        console.log(this.driverlist[j])
+        if(this.driverlist[j].licence){
+          this.consignmentForm.controls['driver_license_number'].setValue(this.driverlist[j].licence.number);
+          console.log(this.consignmentForm.value.driver_license_number)
+
         }
       }
     }

@@ -36,7 +36,7 @@ export class ContactemployeeComponent implements OnInit {
   public userId = localStorage.getItem('userId');
   public mask = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/] // Phone number validation 
   public account = [/[1-9]/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/, /\d/] // Account number validation 
-  public ifscmask = [ /[A-Z]/,/[A-Z]/,/[A-Z]/,/[A-Z]/, /\d/, /[1-9A-Z]/,/[1-9A-Z]/,/[1-9A-Z]/,/[1-9A-Z]/,/[1-9A-Z]/,/[1-9A-Z]/] // bank ifsc
+  public ifscmask = [ /[A-Z]/,/[A-Z]/,/[A-Z]/,/[A-Z]/, /\d/, /[0-9A-Z]/,/[0-9A-Z]/,/[0-9A-Z]/,/[0-9A-Z]/,/[0-9A-Z]/,/[0-9A-Z]/] // bank ifsc
 
 
   document = ['aadhar', 'voterId']

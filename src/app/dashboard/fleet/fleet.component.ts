@@ -317,17 +317,17 @@ export class FleetComponent implements OnInit {
     }
     if (y == "sco") {
       console.log("sco")
-      let pollution = {
+      let sco = {
         number: this.selected.number,
         doc: this.selected.fileid,
         valid_upto: this.selected.valid
       }
       let some = {
-        main: pollution,
+        main: sco,
         title: y
       }
       this.vardata.push(some);
-      Object.assign(this.maindata, { pollution: pollution })
+      Object.assign(this.maindata, { sco: sco })
     }
     if (y == "abs") {
       console.log("abs")
@@ -563,7 +563,11 @@ export class FleetComponent implements OnInit {
     this.maindata = { userId: '', superadminid: '', others: [] };
     this.vardata = [];
     this.maindata.userId = this.userId;
-    this.maindata.superadminid = this.superadminid
+    this.maindata.superadminid = this.superadminid;
+    this.trucknumber='';
+    this.truckcapacity='';
+    this.unit='';
+    this.ownership='';
   }
   createFleet() {
     this.fleet = !this.fleet;
