@@ -29,7 +29,7 @@
                 <!-- <td class="thname" data-title="VAT ID">{{fleet}}</td> -->
                 <td data-title="ADDRESS" class="numeric" *ngIf="fleet.ownId">{{fleet.ownId.name}}</td>
                 <td data-title="ADDRESS" class="numeric" *ngIf="fleet.contractId">{{fleet.contractId.companyName}}</td>
-                <td data-title="VAT ID" class="numeric" (click)="delete(fleet._id)">
+                <td data-title="VAT ID" class="numeric" >
                   <!-- <i class="fa fa-trash" aria-hidden="true"></i> -->
                 </td>
               </tr>
