@@ -36,6 +36,7 @@ export class ConsignmentComponent implements OnInit {
   freight: any;
   arrayofobj: any = [];
   userdata: { name: string; id: string; };
+  keyword = 'truck_number';
 
   constructor(private formBuilder: FormBuilder, private userService: UserService, private companyService: CompanyService, private toastr: ToastrService) {
     this.userId = localStorage.getItem('userId');
@@ -64,11 +65,20 @@ export class ConsignmentComponent implements OnInit {
       driver_expenses: {},
       toll_expenses: {},
       product: {},
-      consignment_date: {}
+      consignment_date: {},
+      truckid:{}
     };
     this.getConsignmentList();
   }
+  selectEvent(data){
+    console.log(data);
+    this.consignmentForm.value.truckid=data._id;
+    this.consignmentForm.controls['truckid'].setValue(data._id);
+    console.log(this.consignmentForm.value.truckid)
+    this.changetruck(data._id)
 
+  }
+ 
   createconsignmentForm() {
     this.add()
     return this.formBuilder.group({
@@ -77,7 +87,7 @@ export class ConsignmentComponent implements OnInit {
       consignor: ['', Validators.required],
       consignee: ['', Validators.required],
       reference_number: ['', Validators.required],
-      truck_number: ['', Validators.required],
+      truck_number: ['',],
       origin_place: ['', Validators.required],
       destination: ['', Validators.required],
       authorize_person: [this.userdata.name, Validators.required],
@@ -85,7 +95,7 @@ export class ConsignmentComponent implements OnInit {
       driver_license_number: ['', Validators.required],
       truckconfig: ['', Validators.required],
       driver_name: ['', Validators.required],
-    
+      truckid: ['', Validators.required],
       diesel_expenses: ['',],
       driver_expenses: ['',],
       toll_expenses: [''],
@@ -177,7 +187,7 @@ export class ConsignmentComponent implements OnInit {
   }
 
   apicall() {
-
+  
     for (var i = 0; i < this.arrayofobj.length; i++) {
       this.arrayofobj[i].challan_date = new Date(this.arrayofobj[i].challan_date).toISOString()
     }
@@ -193,7 +203,7 @@ export class ConsignmentComponent implements OnInit {
         consignee: this.consignmentForm.value.consignee,
         consignment_date: new Date(this.consignmentForm.value.consignment_date).toISOString(),
         reference_number: this.consignmentForm.value.reference_number,
-        truck_number: this.consignmentForm.value.truck_number,
+        truck_number: this.consignmentForm.value.truckid,
         origin_place: this.consignmentForm.value.origin_place,
         destination: this.consignmentForm.value.destination,
         authorize_person: this.userdata.id,
@@ -241,7 +251,7 @@ export class ConsignmentComponent implements OnInit {
       contractId: this.postdata.contractId,
       payment_date: new Date(this.consignmentForm.value.consignment_date).toISOString(),
       payment_mode: 'cash',
-      fleetId: this.consignmentForm.value.truck_number,
+      fleetId: this.consignmentForm.value.truckid,
       payment: "diesel_price",
       amount_paid: this.consignmentForm.value.diesel_expenses,
       userId: localStorage.getItem('userId')
@@ -265,7 +275,7 @@ export class ConsignmentComponent implements OnInit {
       contractId: this.postdata.contractId,
       payment_date: new Date(this.consignmentForm.value.consignment_date).toISOString(),
       payment_mode: 'cash',
-      fleetId: this.consignmentForm.value.truck_number,
+      fleetId: this.consignmentForm.value.truckid,
       payment: 'driver_expense',
       amount_paid: this.consignmentForm.value.driver_expenses,
       userId: localStorage.getItem('userId')
@@ -285,7 +295,7 @@ export class ConsignmentComponent implements OnInit {
       contractId: this.postdata.contractId,
       payment_date: new Date(this.consignmentForm.value.consignment_date).toISOString(),
       payment_mode: 'cash',
-      fleetId: this.consignmentForm.value.truck_number,
+      fleetId: this.consignmentForm.value.truckid,
       payment: 'toll_price',
       amount_paid: this.consignmentForm.value.toll_expenses,
       userId: localStorage.getItem('userId')
@@ -442,6 +452,7 @@ export class ConsignmentComponent implements OnInit {
       })
   }
   submit() {
+    
     this.submitted = true;
     console.log(this.consignmentForm.valid)
     console.log(this.consignmentForm.value)

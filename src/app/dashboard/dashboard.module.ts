@@ -53,6 +53,7 @@ import { RateComponent } from './rate/rate.component';
 import { CompanyeditComponent } from './companyedit/companyedit.component';
 import { ReportComponent } from './report/report.component';
 import { LedgerComponent } from './ledger/ledger.component';
+import {AutocompleteLibModule} from 'angular-ng-autocomplete';
 
 const routes: Routes = [
     {
@@ -81,7 +82,8 @@ const routes: Routes = [
         FormsModule,
         ReactiveFormsModule,
         RouterModule.forChild(routes),
-        TextMaskModule
+        TextMaskModule,
+        AutocompleteLibModule
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     declarations: [

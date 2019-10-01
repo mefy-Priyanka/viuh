@@ -136,18 +136,40 @@
 
                   <div class="input-field col s6">
                     <p><label>Truck No.<span class="blue_star">*</span></label></p>
-                    <!-- <input type="text" class="validate" formControlName="truck_number">fleetDetail -->
-                    <select class="orga" formControlName="truck_number" (ngModelChange)="changetruck($event)">
+                    <!-- <select class="orga" formControlName="truck_number" (ngModelChange)="changetruck($event)">
 
                       <option value="" disabled selected>Choose Truck</option>
                       <option *ngFor="let list of fleetDetail" [value]='list._id'>{{list?.truck_number}}</option>
-                    </select>
+                    </select> -->
 
-                    <p class="errormessage"
-                      *ngIf="consignmentFormErrors.truck_number.required || (consignmentForm.controls.truck_number.pristine && submitted)">
-                      truck_number can't be empty</p>
+                   
 
+                      <div class="ng-autocomplete">
+                        <ng-autocomplete 
+                        formControlName="truck_number"
+                          [data]="fleetDetail"
+                          [searchKeyword]="keyword"
+                          (selected)='selectEvent($event)'
+                          [itemTemplate]="itemTemplate"
+                          [notFoundTemplate]="notFoundTemplate">                                 
+                        </ng-autocomplete>
+                         
+                        <ng-template #itemTemplate let-item>
+                        <a [innerHTML]="item.truck_number"></a>
+                        </ng-template>
+                         
+                        <ng-template #notFoundTemplate let-notFound>
+                        <div [innerHTML]="notFound"></div>
+                        </ng-template>
+                        <p class="errormessage" *ngIf="trucks==''">truck number can't be empty</p>
+                        </div>
+                        <p class="errormessage"
+                        *ngIf="consignmentFormErrors.truck_number.required || (consignmentForm.controls.truck_number.pristine && submitted)">
+                        truck_number can't be empty</p>
                   </div>
+
+              
+                    
                 </div>
                 <div class="row">
 
@@ -392,5 +414,6 @@
 
   </form>
 </section>
+
 
 <!-- consignment input -->

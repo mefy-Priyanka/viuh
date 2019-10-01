@@ -67,10 +67,9 @@ p.logo {
     /* margin: 1em 0 0 1em; */
     font-family: 'Roboto', sans-serif;
 }
-svg#truck {
-    fill: #fff;
-    height: 100px;
-    width: 100px;
+#truck {
+    height: auto;
+    width: 80%;
 }
 i.material-icons.prefix {
     color: #9E9E9E;
@@ -78,6 +77,11 @@ i.material-icons.prefix {
 }
   .rightContent {
     padding: 2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: calc(100vh - 116px);
 }
 button.login {
     width: 100%;

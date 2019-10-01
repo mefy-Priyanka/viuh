@@ -191,3 +191,10 @@ a.floatEa:hover{
   }
   
   /* loader */ 
+
+  div#no-more-tables {
+    overflow-x: scroll;
+}
+.ng-autocomplete {
+  width: 100% !important;
+}
