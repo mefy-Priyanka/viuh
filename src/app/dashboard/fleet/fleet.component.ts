@@ -6,6 +6,7 @@ import { CompanyService } from 'src/app/service/company.service';
 import { ToastrService } from 'ngx-toastr';
 import * as moment from 'moment';
 import { UserService } from 'src/app/service/user.service';
+import { SharedService } from 'src/app/service/shared.service';
 
 @Component({
   selector: 'app-fleet',
@@ -56,7 +57,7 @@ export class FleetComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     private router: Router, private companyService:
-      CompanyService, private toastr: ToastrService,private userService: UserService,) {
+      CompanyService, private toastr: ToastrService,private userService: UserService,private SharedService: SharedService, ) {
 
     this.superadminid = localStorage.getItem('SuperAdmin');
 
@@ -771,5 +772,18 @@ export class FleetComponent implements OnInit {
 
         this.toastr.error('Error!', 'Server Error')
       })
+  }
+
+
+
+  edit(fleet){
+    console.log(fleet);
+    let data1={
+      page:'fleet',
+      data:fleet
+    }
+    this.SharedService.datatravel(data1);
+
+    this.SharedService.abc('fleetedit');
   }
 }

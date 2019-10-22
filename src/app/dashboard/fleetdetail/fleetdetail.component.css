@@ -280,22 +280,6 @@ button.caretn {
 i.fa.fa-question-circle-o {
     font-size: 27px;
 }
-button.addItema {
-    border: 2px solid #32b1f8;
-    background: transparent;
-    color: #32b1f8;
-    height: 35px;
-    font-size: 15px;
-    border-radius: 2px;
-    width: 90px;
-    font-weight: 600;
-    font-family: 'Montserrat', sans-serif;
-    margin-left: 1em;
-}
-button.addItema i {
-    font-size: 17px;
-    margin-right: 7px;
-}
 /* table css */
 /* fleet css */
 /* Responsive css */

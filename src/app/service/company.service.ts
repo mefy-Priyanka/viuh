@@ -39,6 +39,10 @@ export class CompanyService {
     console.log(data);
     return this.httpClient.post(APIURL + 'fleet/create', data)
   }
+  fleetedit(data) {
+    console.log(data);
+    return this.httpClient.put(APIURL + 'fleet/update', data)
+  }
   getfleetlist(id) {
     return this.httpClient.get(APIURL + 'fleet/fleetlist?superAdminId=' + id)
 

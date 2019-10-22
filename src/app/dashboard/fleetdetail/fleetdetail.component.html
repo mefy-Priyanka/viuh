@@ -1,12 +1,11 @@
-<!-- 
 
 
-<section class="fleet">
+
+
+<!-- Fleet management -->
+<section class="fleet" >
   <div class="ft">
-    <h1>Fleet Detail
-      <button class="addItema"><i class="fa fa-pencil" aria-hidden="true"></i>Edit</button>
-
-    </h1>
+    <h1>Fleet Management</h1>
   </div>
   <div class="row">
     <div class="card fleetCard">
@@ -20,23 +19,42 @@
               <div class="input-field col s4">
                 <p><label>Truck Number</label></p>
                 <input type="text" class="validate" [(ngModel)]="trucknumber" [ngModelOptions]="{standalone: true}"
-                  (keyup)="check('trucknumber')">
-                <p class="errormessage" *ngIf="truckerr">Truck number can't be empty</p>
+                  (keyup)="check('trucknumber')" [readonly]="true">
+                <p class="errormessage" *ngIf="truckerr">Provide Valid truck number</p>
               </div>
 
-              <div class="input-field col s4">
-                  <p><label>Truck Capacity(Cal)</label></p>
-                  <input type="text" class="validate" [(ngModel)]="truckcapacity" [ngModelOptions]="{standalone: true}"
-                    (keyup)="check('truckcapacity')">
-                  <p class="errormessage" *ngIf="caperr">Truck capacity can't be empty</p>
-                </div>
+              <div class="input-field col s3">
+                <p><label>Truck Capacity</label></p>
+                <input type="number" class="validate" [(ngModel)]="truckcapacity" [ngModelOptions]="{standalone: true}"
+                  (keyup)="check('truckcapacity')">
 
-              <div class="input-field col s4">
+                <p class="errormessage" *ngIf="caperr">Truck capacity can't be empty</p>
+              </div>
+              <div class="input-field col s2">
+                <p><label>UNIT</label></p>
+                <!-- <input type="number" class="validate" [(ngModel)]="unit" [ngModelOptions]="{standalone: true}"
+                  (keyup)="check('unit')"> -->
+
+                <select [(ngModel)]="unit" [ngModelOptions]="{standalone: true}" (ngModelChange)="check('unit')">
+                  <option value="" disabled>Choose Unit</option>
+                  <option value='pieces'>Piece</option>
+                  <option value='kl'>KL</option>
+                  <option value='ton'>TON</option>
+
+                </select>
+
+
+                <p class="errormessage" *ngIf="uniterr">Unit can't be empty</p>
+              </div>
+
+              <div class="input-field col s3">
                 <p><label>Ownership <span class="blue_star">*</span></label></p>
-                <select [(ngModel)]="ownership" [ngModelOptions]="{standalone: true}" (ngModelChange)="check('ownership',$event)">
+                <select [(ngModel)]="ownership" [ngModelOptions]="{standalone: true}"
+                  (ngModelChange)="check('ownership',$event)">
                   <option value="" disabled selected>Ownership</option>
                   <option [value]='superadminid'>Owned</option>
-                  <option *ngFor="let contractor of contractorDetail" [value]='contractor._id'>{{contractor.companyName}}</option>
+                  <option *ngFor="let contractor of contractorDetail" [value]='contractor._id'>
+                    {{contractor.companyName}}</option>
 
                 </select>
                 <p class="errormessage" *ngIf="ownererr">please choose ownership</p>
@@ -75,10 +93,10 @@
               </div>
 
 
-              <div class="input-field col s3">
+              <div class="input-field col s2">
                 <p><label>Valid Upto</label></p>
-                <input (keyup)="check1('valid',selectedOption)"  id="first_name" type="date"
-                  [(ngModel)]="selected.valid" class="validate" [ngModelOptions]="{standalone: true}">
+                <input (keyup)="check1('valid',selectedOption)" id="first_name" type="date" [(ngModel)]="selected.valid"
+                  class="validate" [ngModelOptions]="{standalone: true}">
                 <p *ngIf="validerr">can't be empty</p>
               </div>
 
@@ -144,4 +162,5 @@
       </div>
     </div>
   </div>
-</section> -->
+</section>
+<!-- Fleet management -->
