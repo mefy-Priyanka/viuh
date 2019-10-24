@@ -1,0 +1,120 @@
+<!-- period -->
+<section class="createcontract" >
+  <div class="ft">
+    <h1>Payment Update
+    </h1>
+  </div>
+  <form class="createContractorForm" [formGroup]="periodForm">
+    <div class="row">
+      <div class="col-md-12">
+        <!-- input type -->
+        <div>
+          <div class="card corCard">
+            <div class="row">
+
+              <div class="nota">
+                <div class="row">
+                  <div class="input-field col s6">
+                      <p><label>Consignment ID</label></p>
+                      <select class="orga">
+                        <option value="" disabled selected>Select Month</option>
+                        <option value="Jan">155757</option>
+                      </select>
+                    </div>
+                  <div class="input-field col s6">
+                    <p><label>Bill ID</label></p>
+                    <select class="orga">
+                      <option value="" disabled selected>Select</option>
+                      <option value="open">24235</option>
+                      
+                    </select>
+                  </div>
+
+                </div>
+
+                <div class="row">
+                  <div class="input-field col s6">
+                      <p><label>Departmental Deduction</label></p>
+                      <input type="text" class="validate" formControlName="from">
+                    </div>
+                  <div class="input-field col s6">
+                    <p><label>TDS</label></p>
+                    <input type="text" class="validate">
+                  </div>
+                  
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                      <p><label>Shortage</label></p>
+                      <input type="text" class="validate" formControlName="from">
+                    </div>
+                  <div class="input-field col s6">
+                    <p><label>GST_TDS</label></p>
+                    <input type="text" class="validate">
+                  </div>
+                  
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                      <p><label>CCMS</label></p>
+                      <input type="text" class="validate" formControlName="from">
+                    </div>
+                  <div class="input-field col s6">
+                    <p><label>Payment Date</label></p>
+                    <input type="date" class="validate">
+                  </div>
+                  
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                      <p><label>Paid Amount</label></p>
+                      <input type="text" class="validate">
+                    </div>
+                  <div class="input-field col s6">
+                    <p><label>Due Amount</label></p>
+                    <input type="text" class="validate">
+                  </div>
+                  
+                </div>
+                <div class="row">
+                  <div class="input-field col s6">
+                      <p><label>Amount Status</label></p>
+                      <select class="orga">
+                        <option value="" disabled selected>Select</option>
+                        <option value="Fy18-19">Complete</option>
+                        <option value="Fy19-20">Incomplete</option>
+                      </select>
+
+                    </div>
+
+                </div>
+              
+              </div>
+
+            </div>
+          </div>
+          <div class="row">
+            <div class="contractorButton">
+              <button class="submitBtn" (click)="submit()">Next</button>
+              <button class="cancelBtn" >Cancel</button>
+            </div>
+          </div>
+        </div>
+
+
+
+
+        <!-- input type -->
+
+
+
+
+
+      </div>
+    </div>
+
+  </form>
+</section>
+
+<!-- period -->
+

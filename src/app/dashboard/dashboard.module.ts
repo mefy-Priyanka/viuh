@@ -54,6 +54,7 @@ import { CompanyeditComponent } from './companyedit/companyedit.component';
 import { ReportComponent } from './report/report.component';
 import { LedgerComponent } from './ledger/ledger.component';
 import {AutocompleteLibModule} from 'angular-ng-autocomplete';
+import { PaymentupdateComponent } from './paymentupdate/paymentupdate.component';
 
 const routes: Routes = [
     {
@@ -136,7 +137,8 @@ const routes: Routes = [
         CompanyeditComponent,
         RateComponent,
         ReportComponent,
-        LedgerComponent
+        LedgerComponent,
+        PaymentupdateComponent
     ]
 })
 export class DashboardModule { }
