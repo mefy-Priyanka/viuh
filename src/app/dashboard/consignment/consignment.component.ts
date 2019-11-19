@@ -21,7 +21,7 @@ export class ConsignmentComponent implements OnInit {
   chalandoc: any;
   submitted = false;
   consigmentDetail = [];
-  contactlist = [];
+  contactList:any = [];
   fleetDetail = [];
   destinationlist: any = [];
   driverlist: any = [];
@@ -37,6 +37,7 @@ export class ConsignmentComponent implements OnInit {
   arrayofobj: any = [];
   userdata: { name: string; id: string; };
   keyword = 'truck_number';
+  keyword1 = 'name';
 
   constructor(private formBuilder: FormBuilder, private userService: UserService, private companyService: CompanyService, private toastr: ToastrService) {
     this.userId = localStorage.getItem('userId');
@@ -74,10 +75,19 @@ export class ConsignmentComponent implements OnInit {
     console.log(data);
     this.consignmentForm.value.truckid=data._id;
     this.consignmentForm.controls['truckid'].setValue(data._id);
-    console.log(this.consignmentForm.value.truckid)
+    console.log(this.consignmentForm.value.consignor)
     this.changetruck(data._id)
 
   }
+  /***** EVENT ON SELECTING CONSIGNOR******/
+  selectConsignor(data){
+    console.log('consignor',data);
+    this.consignmentForm.value.consignor=data._id;
+    // console.log(this.consignmentForm.value.consignor)
+    this.onChangeObj(this.consignmentForm.value.consignor)
+
+  }
+ 
  
   createconsignmentForm() {
     this.add()
@@ -178,6 +188,7 @@ export class ConsignmentComponent implements OnInit {
       let result: any = {}
       result = data;
       this.fleetDetail = result.result
+      console.log('getfleetList',this.fleetDetail);
 
     },
       error => {
@@ -309,9 +320,8 @@ export class ConsignmentComponent implements OnInit {
       })
 
   }
-
+//GET CUSTOMER LIST
   customerList() {
-
     let data = {
       id: localStorage.getItem('SuperAdmin'),
       contact_type: 'customer'
@@ -320,8 +330,8 @@ export class ConsignmentComponent implements OnInit {
 
       let result: any = {}
       result = data;
-      this.contactlist = result.result
-      console.log(this.contactlist);
+      this.contactList = result.result
+      console.log('contactList',this.contactList);
     },
       error => {
         console.log(error);
@@ -393,9 +403,9 @@ export class ConsignmentComponent implements OnInit {
         console.log(err)
       })
 
-    for (var k = 0; k < this.contactlist.length; k++) {
-      if (this.contactlist[k]._id == id) {
-        this.contactname = this.contactlist[k].name
+    for (var k = 0; k < this.contactList.length; k++) {
+      if (this.contactList[k]._id == id) {
+        this.contactname = this.contactList[k].name
         console.log(this.contactname)
       }
     }

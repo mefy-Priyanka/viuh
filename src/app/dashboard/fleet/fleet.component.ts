@@ -676,7 +676,7 @@ export class FleetComponent implements OnInit {
 
     console.log('let data be', data);
     this.userService.creataccount(data).subscribe(value => {
-      this.creataccountrevenue1()
+      this.creataccountrevenue1();
     
 
     },

@@ -72,11 +72,29 @@
 
                   <div class="input-field col s6">
                     <p><label>Consignor<span class="blue_star">*</span></label></p>
-                    <select class="orga" formControlName="consignor" (ngModelChange)="onChangeObj($event)">
+                    <!-- <select class="orga" formControlName="consignor" (ngModelChange)="onChangeObj($event)">
 
                       <option value="" disabled selected>Choose Consignor</option>
-                      <option *ngFor="let list of contactlist" [value]='list._id'>{{list.name}}</option>
-                    </select>
+                      <option *ngFor="let list of contactList" [value]='list._id'>{{list.name}}</option>
+                    </select> -->
+                    <div class="ng-autocomplete">
+                      <ng-autocomplete 
+                      formControlName="consignor"
+                        [data]="contactList"
+                        [searchKeyword]="keyword1"
+                        (selected)='selectConsignor($event)'
+                        [itemTemplate]="itemTemplate1"
+                        [notFoundTemplate]="notFoundTemplate">                                 
+                      </ng-autocomplete>           
+                      <ng-template #itemTemplate1 let-item>
+                      <a [innerHTML]="item.name"></a>
+                      </ng-template>
+                       
+                      <ng-template #notFoundTemplate let-notFound>
+                      <div [innerHTML]="notFound"></div>
+                      </ng-template>
+                      <!-- <p class="errormessage" *ngIf="trucks==''">truck number can't be empty</p> -->
+                      </div>
                     <p class="errormessage"
                       *ngIf="consignmentFormErrors.consignor.required || (consignmentForm.controls.consignor.pristine && submitted)">
                       consignor can't be empty</p>
@@ -88,7 +106,7 @@
                     <select class="orga" formControlName="consignee" (ngModelChange)="chengeconsignee($event)">
 
                       <option value="" disabled selected>Choose Consignee</option>
-                      <option *ngFor="let list of destinationlist" [value]='list.location_name'>{{list.location_name}}
+                      <option *ngFor="let list of destinationlist" [value]='list.location_name'>{{list.location_name}},{{list.location_code}}
                       </option>
                     </select>
                     <p class="errormessage"
