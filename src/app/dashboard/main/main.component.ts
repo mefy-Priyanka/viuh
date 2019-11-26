@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CompanyService } from 'src/app/service/company.service';
+import { SharedService } from '../../service/shared.service';
+
 
 @Component({
   selector: 'app-main',
@@ -19,7 +21,7 @@ export class MainComponent implements OnInit {
   invoiceList: any = [];
   doc = {};
   docList: any = []
-  constructor(private companyService: CompanyService, ) {
+  constructor(private companyService: CompanyService, private sharedService: SharedService ) {
     // this.getBillList();
     this.fleetDate();
     this.billDate();
@@ -192,5 +194,11 @@ export class MainComponent implements OnInit {
     }
 
     return true;
+  }
+   // **************dashboard toggle*********************
+   abc(a) {
+    this.sharedService.abc(a);
+    // this.router.navigate(['/dashboard/fleet']);
+    console.log('Data sent', a);
   }
 }
