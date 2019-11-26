@@ -425,7 +425,7 @@ export class ConsignmentComponent implements OnInit {
         this.consignmentForm.controls['origin_place'].setValue(this.destinationlist[j].point_of_origin);
 
         console.log(this.consignmentForm.value.origin_place)
-        console.log(this.distance)
+        console.log('distance in km',this.distance)
         if (this.destinationlist[j].freight) {
           this.freight = this.destinationlist[j].freight
           console.log(this.freight)

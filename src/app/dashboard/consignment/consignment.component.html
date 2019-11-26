@@ -106,7 +106,7 @@
                     <select class="orga" formControlName="consignee" (ngModelChange)="chengeconsignee($event)">
 
                       <option value="" disabled selected>Choose Consignee</option>
-                      <option *ngFor="let list of destinationlist" [value]='list.location_name'>{{list.location_name}},{{list.location_code}}
+                      <option *ngFor="let list of destinationlist" [value]='list.location_name'>{{list.location_name}},{{list.location_code}},{{list.km}}
                       </option>
                     </select>
                     <p class="errormessage"
